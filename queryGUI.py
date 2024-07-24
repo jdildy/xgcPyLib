@@ -7,7 +7,7 @@ def findOutputDiagnostics():
     Returns:
         List[str]: A list of paths to .bp files.
     """
-    parent_directory = os.path.dirnam(os.getcwd())
+    parent_directory = os.path.dirname(os.getcwd())
     rundir_path = os.path.join(parent_directory, 'rundir')
 
     bp_files = []
