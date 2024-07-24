@@ -1,4 +1,4 @@
-/*This will serve as the new data analysis library for XGC*/ 
+This will serve as the new data analysis library for XGC
 Basic Functionality
   * Query function for listing available diagnostic output and time slices
   * Reader functions for 1D and 2D/3D data, mesh files, equilibrium, etc.
