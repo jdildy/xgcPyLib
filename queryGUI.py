@@ -10,29 +10,28 @@ def findOutputDiagnostics():
     parent_directory = os.path.dirname(os.getcwd())
     rundir_path = os.path.join(parent_directory, 'rundir')
 
-    bp_files = []
+    bp_directories = []
     
     if os.path.exists(rundir_path):
         for root, dirs, files in os.walk(rundir_path):
-            for file in files:
-                if file.endswith('.bp'):
-                    full_path = os.path.join(root, file)
-                    bp_files.append(full_path)
-
+            for dir in dirs:
+                if dir.endswith('.bp'):
+                    full_path = os.path.join(root, dir)
+                    bp_directories.append(full_path)
     else: 
         print(f"The 'rundir' directory does not exist at path: {rundir_path}")
-    return bp_files
+    return bp_directories
 
 def listOutputDiagnostics():
     """
     Prints the list of .bp files to the terminal.
     """
-    bp_files = findOutputDiagnostics()
+    bp_directories = findOutputDiagnostics()
     
-    if bp_files:
-        print(f"Found {len(bp_files)} .bp files:")
-        for file in bp_files:
-            print(file)
+    if bp_directories:
+        print(f"Found {len(bp_directories)} .bp files:")
+        for directory in bp_directories:
+            print(directory)
     else:
         print("No .bp files found.")
 
