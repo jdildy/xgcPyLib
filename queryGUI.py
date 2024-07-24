@@ -16,8 +16,8 @@ def findOutputDiagnostics():
         for root, dirs, files in os.walk(rundir_path):
             for dir in dirs:
                 if dir.endswith('.bp'):
-                    diag_outputs = os.path.basename(root)
-                    bp_directories.append(diag_outputs)
+                    full_path = os.path.basename(root, dir)
+                    bp_directories.append(full_path)
     else: 
         print(f"The 'rundir' directory does not exist at path: {rundir_path}")
     return bp_directories
