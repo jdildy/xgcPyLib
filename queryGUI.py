@@ -45,7 +45,7 @@ def listTimeSlices():
             print(timeslice)
     else: 
         print("No timeslices in the .bp files were detected.\n")
-    return 
+    return bp_timeslices
 
 
 
