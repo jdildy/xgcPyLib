@@ -1,4 +1,55 @@
 import os
+import re
+
+
+def findTimeSlices(): 
+
+    """
+    Searches .bp files by timeslices, denoted by xxxx in file name, i.e xgc.xxxx.bp
+
+    Returns: 
+        List[str]: A list of available times slices based on the timeslices in the query search.
+    """
+    parent = os.path.dirname(os.getcwd())
+    rundir = os.path.join(parent, 'rundir')
+
+    bp_timeslices = []
+    
+    pattern = re.compile(r'/b(?:2d|f2d)/.(/d+)/b')
+
+    if os.path.exists(rundir):
+        for dirpath, dirs, files in os.walk(rundir):
+            for dir in dirs: 
+                    match = pattern.search(dir)
+                    if match:
+                        full_path = os.path.join(dir)
+                        bp_timeslices.append(full_path)
+    else: 
+        print(f"The 'rundir' directory does not exist at path: {rundir}\n")
+    return bp_timeslices
+
+
+
+def listTimeSlices():
+    """
+    Prints the list of .bp files that include timeslices to the terminal
+    """
+
+    bp_timeslices = findTimeSlices()
+
+    if bp_timeslices: 
+        print(f"Found {len(bp_timeslices)} .bp files")
+        for timeslice in bp_timeslices:
+            print(timeslice)
+    else: 
+        print("No timeslices in the .bp files were detected.\n")
+    return 
+
+
+
+
+
+
 
 def findOutputDiagnostics():
     """
@@ -21,6 +72,8 @@ def findOutputDiagnostics():
     else: 
         print(f"The 'rundir' directory does not exist at path: {rundir_path}")
     return bp_directories
+
+
 
 def listOutputDiagnostics():
     """
