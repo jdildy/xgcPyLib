@@ -25,6 +25,7 @@ def findTimeSlices():
                     match = pattern.search(dir)
                     if match:
                         full_path = os.path.join(dir)
+                        print(full_path)
                         bp_timeslices.append(full_path)
     else: 
         print(f"The 'rundir' directory does not exist at path: {rundir}\n")
