@@ -20,20 +20,14 @@ def findTimeSlices():
 
     if os.path.exists(rundir):
         for root, dirs, files in os.walk(rundir):
-            for dir in dirs:
-                # Debug: print the directory name being checked
-                print(f"Checking directory: {dir}")
-
-                # Search for the pattern in the directory name
-                match = pattern.search(dir)
-                if match:
-                    # Construct the full path of the matched directory
-                    full_path = os.path.join(root, dir)
-                    print(f"Matched directory: {full_path}")
-                    bp_timeslices.append(full_path)
+            for dir in dirs: 
+                    match = pattern.search(dir)
+                    if match:
+                        full_path = os.path.join(dir)
+                        print(full_path)
+                        bp_timeslices.append(full_path)
     else: 
         print(f"The 'rundir' directory does not exist at path: {rundir}\n")
-    
     return bp_timeslices
 
 
