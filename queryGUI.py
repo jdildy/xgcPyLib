@@ -16,7 +16,7 @@ def findTimeSlices():
 
     bp_timeslices = []
     
-    pattern = re.compile(r'\b(?:2d|f2d)\.(\d+)\b')
+    pattern = re.compile(r'\b(?:2d|f2d)\.(\d+)\.bp\b')
 
     if os.path.exists(rundir):
         for root, dirs, files in os.walk(rundir):
