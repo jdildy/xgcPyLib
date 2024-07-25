@@ -13,11 +13,13 @@ def findTimeSlices():
     parent = os.path.dirname(os.getcwd())
     rundir = os.path.join(parent, 'rundir')
 
+
     bp_timeslices = []
     
     pattern = re.compile(r'/b(?:2d|f2d)/.(/d+)/b')
 
     if os.path.exists(rundir):
+        print("Rundir found. Displaying timeslice data:")
         for dirpath, dirs, files in os.walk(rundir):
             for dir in dirs: 
                     match = pattern.search(dir)
@@ -38,7 +40,7 @@ def listTimeSlices():
     bp_timeslices = findTimeSlices()
 
     if bp_timeslices: 
-        print(f"Found {len(bp_timeslices)} .bp files")
+        print(f"Found {len(bp_timeslices)} time slices")
         for timeslice in bp_timeslices:
             print(timeslice)
     else: 
