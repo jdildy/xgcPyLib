@@ -19,7 +19,6 @@ def findTimeSlices():
     pattern = re.compile(r'\b(?:2d|f2d)\.(\d+)\b')
 
     if os.path.exists(rundir):
-        print("Rundir found. Displaying timeslice data:")
         for root, dirs, files in os.walk(rundir):
             for dir in dirs: 
                     match = pattern.search(dir)
