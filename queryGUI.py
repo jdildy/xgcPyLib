@@ -16,11 +16,11 @@ def findTimeSlices():
 
     bp_timeslices = []
     
-    pattern = re.compile(r'/b(?:2d|f2d)/.(/d+)/b')
+    pattern = re.compile(r'\b(?:2d|f2d)\.(\d+)\b')
 
     if os.path.exists(rundir):
         print("Rundir found. Displaying timeslice data:")
-        for dirpath, dirs, files in os.walk(rundir):
+        for root, dirs, files in os.walk(rundir):
             for dir in dirs: 
                     match = pattern.search(dir)
                     if match:
