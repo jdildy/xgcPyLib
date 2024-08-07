@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 # from scipy.io import matlab
 from scipy.io.matlab import loadmat
  # from scipy.interpolate import interp1d
-from scipy.ndimage.filters import gaussian_filter
+from scipy.ndimage import gaussian_filter
 from scipy import stats
 def load(*args,**kwargs):
     file_path = os.path.join(args[0],'')
