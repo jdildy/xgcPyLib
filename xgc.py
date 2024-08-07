@@ -73,14 +73,14 @@ class _load(object):
 #     diag_1d_period = unitsFile.read('daig_1d_period')
 
         def openAdios2(file):
-            return Stream(str(file)+'.bp','r')
+            return Stream(str(file)+'.bp','rra')
         def readAdios2(file,variable,inds=Ellipsis):
             if '/' in variable: variable = '/'+variable
             #v = '/'+v #this may be necessary for older xgc files
 
             " NEED SOME TYPE OF CHECKER TO ENSURE CORRECT FILE BEING OPENED"
             try: 
-                with Stream(str(file)+'.bp','r') as r:
+                with Stream(str(file)+'.bp','rra') as r:
                     if not isinstance(r, Stream):
                         raise TypeError("The object is not an instance of adios2.Stream")
                     
