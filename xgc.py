@@ -84,8 +84,12 @@ class _load(object):
                     if not isinstance(r, Stream):
                         raise TypeError("The object is not an instance of adios2.Stream")
                     
-                    nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
-                    nsize = r.available_variables()[variable]['Shape']
+                    variables = r.available_variables()
+                    if variable not in variables:
+                        raise KeyError(f"Variable '{variable} not found in stream")
+                    
+                    nstep = int(variables[variable]['AvailableStepsCount'])
+                    nsize = variables[variable]['Shape']
 
                     if nstep==1:
                         data = r.read(variable)[inds]
