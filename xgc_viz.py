@@ -14,7 +14,7 @@ phi_end = 1
 t_start = 1
 t_end = 2
 
-fileDir = '/pscratch/sd/j/jdildy/XGC-Devel/project_dir/rundir/'
+fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
 loader=xgc.load(fileDir,Rmin=Rmin,Rmax=Rmax,Zmin=Zmin,Zmax=Zmax,phi_start=phi_start,phi_end=phi_end)
