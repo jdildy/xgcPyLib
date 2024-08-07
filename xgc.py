@@ -1,4 +1,10 @@
+"""Module of the XGC loader for general use, taken from Loic's load_XGC_local for BES.
 
+It reads the data from the simulation and remove the points not wanted.
+This file is based on an other code written by Lei Shi (:download:`code <../../../../FPSDP/Plasma/XGC_Profile/load_XGC_profile.py>`).
+Code modifications performed from Robert Hager's fork of the Master branch: Updated to be compliant with Adios2 v2.10 Python API
+
+"""
 import numpy as np
 import os.path
 import sys
@@ -671,8 +677,8 @@ class xgc1Load(_load):
            
              
         def read_fluc_single(i,readCmd,xgc_path,rzInds,phi_start,phi_end):
-            import adios2 as ad
-            flucFile = ad.open(xgc_path + 'xgc.3d.'+str(i).zfill(5)+'.bp','r')
+            # import adios2 as ad
+            flucFile = Stream(xgc_path + 'xgc.3d.'+str(i).zfill(5)+'.bp','r')
             dpot1 = readCmd(flucFile,'dpot',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
             pot01 = readCmd(flucFile,'pot0',inds=(rzInds,) )#[rzInds]
             eden1 = readCmd(flucFile,'eden',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
@@ -791,8 +797,8 @@ class xgc1Load(_load):
         # print 'Read time: '+str(time.time()-start)
         
         def read_fluc_single(i,readCmd,xgc_path,rzInds,phi_start,phi_end):
-           import adios2 as ad
-           f3dFile = ad.open(xgc_path + 'xgc.f3d.'+str(i).zfill(5)+'.bp','r')
+          # import adios2 as ad
+           f3dFile = Stream(xgc_path + 'xgc.f3d.'+str(i).zfill(5)+'.bp','r')
            i_T_perp = readCmd(f3dFile,'i_T_perp',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
            i_E_para = readCmd(f3dFile,'i_E_para',inds=(rzInds,)+(slice(phi_start,phi_end+1),)  )#[rzInds]
            i_u_para = readCmd(f3dFile,'i_u_para',inds=(rzInds,)+(slice(phi_start,phi_end+1),)  )#[rzInds]            
