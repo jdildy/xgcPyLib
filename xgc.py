@@ -406,13 +406,18 @@ class _load(object):
     def loadBfield(self):
         """Load magnetic field
         """
-        try:
-            self.bfield = self.readCmd(self.bfield_file,'node_data[0]/values')[...]
-        except:
-            try:
-                self.bfield = self.readCmd(self.bfield_file,'/node_data[0]/values')[...]
-            except:
-                self.bfield = self.readCmd(self.bfield_file,'bfield')[...]
+        # try:
+        #     self.bfield = self.readCmd(self.bfield_file,'node_data[0]/values')[...]
+        # except:
+        #     try:
+        #         self.bfield = self.readCmd(self.bfield_file,'/node_data[0]/values')[...]
+        #     except:
+        #         self.bfield = self.readCmd(self.bfield_file,'bfield')[...]
+        self.bfield = self.readCmd(self.bfield_file,'/node_data[0]/values')
+        if(self.bfield.shape[0] == 0):
+            self.bfield = self.readCmd(self.bfield_file,'/node_data[0]/values')
+        if(self.bfield.shape[0]==0):
+            self.bfield = self.readCmd(self.bfield_file,'bfield')
         
         
     def oned_mask(self):
