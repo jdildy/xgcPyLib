@@ -85,7 +85,7 @@ class _load(object):
                         raise TypeError("The object is not an instance of adios2.Stream")
                     
                     variables = r.available_variables()
-                    print("Available Variables:" , variables)
+                    #print("Available Variables:" , variables)
                     if variable not in variables:
                         raise KeyError(f"Variable '{variable}' not found in stream")
                     
@@ -96,15 +96,16 @@ class _load(object):
                         data = r.read(variable)[inds]
                     elif nsize != '': #mostly xgc.oneddiag
                         nsize = int(nsize)
-                        data = r.read(variable,start=[0], count=[nsize], step_start=0, step_count=nstep)
+                        data = r.read(variable,start=[0], count=[nsize])
                     else: #mostly xgc.oneddiag
-                        data = r.read(variable,start=[], count=[], step_start=0, step_count=nstep)
+                        data = r.read(variable,start=[], count=[])
             except FileNotFoundError:
                 print(f"File {file} not found.")
             except TypeError as e:
                 print(e)
             except Exception as e: 
-                print(f"An error has occured: {e}")
+                print(f"An error has occured: {e}")  
+            return data
 
         
         def openHDF5(x):
@@ -136,6 +137,7 @@ class _load(object):
         
         print('from directory:'+ self.xgc_path)
         #read in units file
+        
         self.unit_file = self.xgc_path+'units.m'
         self.unit_dic = self.load_m(self.unit_file)
         
