@@ -402,17 +402,39 @@ class _load(object):
         self.te0_sp = splrep(self.psin1d,self.Te1d[0,:],k=1)
         self.ne0_sp = splrep(self.psin1d,self.ne1d[0,:],k=1)
         
-    
+    def emptyChecker(data):
+        if data is None:
+            return True
+        elif hasattr(data,'__len__'):
+            return len(data) == 0
+        else:
+            return False
+        
     def loadBfield(self):
         """Load magnetic field
         """
         try:
             self.bfield = self.readCmd(self.bfield_file,'node_data[0]/values')[...]
-        except:
+            if self.emptyChecker(self.bfield):
+                raise ValueError("Data from path1 'node_data[0]/values' is empty or None.")
+        except Exception as e:
+            print(f"Error found: {e}")
             try:
-                self.bfield = self.readCmd(self.bfield_file,'/node_data[0]/values')[...]
-            except:
+                self.bfield = self.readCmd(self.bfield_file,'node_data[0]/values')[...]
+                if self.emptyChecker(self.bfield):
+                    raise ValueError("Data from path2 'node_data[0]/values' is empty or None.")
+            except Exception as e:
                 self.bfield = self.readCmd(self.bfield_file,'bfield')[...]
+                if self.emptyChecker(self.bfield):
+                    raise ValueError("Data from 'befield'is empty or None.")
+                
+
+
+
+    
+        
+
+            
 
         
         
@@ -426,12 +448,16 @@ class _load(object):
             
             idx = np.arange(step[0]/dstep,step[-1]/dstep+1)
             
+            
             #shape method may be deprecated... need to change
             mask1d = np.zeros(idx.shape,dtype=np.int32)
             for (i,idxi) in enumerate(idx):
                 mask1d[i] = np.where(step == idxi*dstep)[0][-1] #get last occurence
         except:
             mask1d = Ellipsis #pass variables unaffected
+
+            
+            
         
         return mask1d
     
