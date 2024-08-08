@@ -345,7 +345,7 @@ class _load(object):
         oneddiag={}
         #class structtype(): pass
         try:
-            keys = f1d.var.keys()
+            keys = f1d.keys()
         except:
             #keys = [key for key in f1d.keys()]
             #adios2
