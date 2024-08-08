@@ -406,18 +406,14 @@ class _load(object):
     def loadBfield(self):
         """Load magnetic field
         """
-        # try:
-        #     self.bfield = self.readCmd(self.bfield_file,'node_data[0]/values')[...]
-        # except:
-        #     try:
-        #         self.bfield = self.readCmd(self.bfield_file,'/node_data[0]/values')[...]
-        #     except:
-        #         self.bfield = self.readCmd(self.bfield_file,'bfield')[...]
-        self.bfield = self.readCmd(self.bfield_file,'/node_data[0]/values')
-        if(self.bfield.shape[0] == 0):
-            self.bfield = self.readCmd(self.bfield_file,'/node_data[0]/values')
-        if(self.bfield.shape[0]==0):
-            self.bfield = self.readCmd(self.bfield_file,'bfield')
+        try:
+            self.bfield = self.readCmd(self.bfield_file,'node_data[0]/values')[...]
+        except:
+            try:
+                self.bfield = self.readCmd(self.bfield_file,'/node_data[0]/values')[...]
+            except:
+                self.bfield = self.readCmd(self.bfield_file,'bfield')[...]
+
         
         
     def oned_mask(self):
@@ -430,7 +426,7 @@ class _load(object):
             
             idx = np.arange(step[0]/dstep,step[-1]/dstep+1)
             
-            #shape method may be deprecated... need  to change
+            #shape method may be deprecated... need to change
             mask1d = np.zeros(idx.shape,dtype=np.int32)
             for (i,idxi) in enumerate(idx):
                 mask1d[i] = np.where(step == idxi*dstep)[0][-1] #get last occurence
