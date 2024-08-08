@@ -258,7 +258,7 @@ class _load(object):
            value and the series of points on that surface.
         """
         # get mesh R,Z and psin
-        RZ = self.readCmd(self.mesh_file,'coordinates/values')
+        RZ = self.readCmd(self.mesh_file,'rz')
         R=RZ[:,0]
         Z=RZ[:,1]
         psi = self.readCmd(self.mesh_file,'psi')
