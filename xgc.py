@@ -263,7 +263,7 @@ class _load(object):
         Z=RZ[:,1]
         psi = self.readCmd(self.mesh_file,'psi')
         psin = psi/self.unit_dic['psi_x']
-        tri=self.readCmd(self.mesh_file,'cell_set[0]/cell_name') #already 0-based
+        tri=self.readCmd(self.mesh_file,'nd_connect_list') #already 0-based
         node_vol=self.readCmd(self.mesh_file,'node_vol')
         
         #get LFS X-point, where Bpol is null
