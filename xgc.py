@@ -73,7 +73,9 @@ class _load(object):
 #     diag_1d_period = unitsFile.read('daig_1d_period')
 
         def openAdios2(file):
-            return Stream(str(file)+'.bp','rra')
+            with Stream(str(file)+'.bp','rra') as p:
+                return p
+
         def readAdios2(file,variable,inds=Ellipsis):
             if '/' in variable: variable = '/'+variable
             #v = '/'+v #this may be necessary for older xgc files
