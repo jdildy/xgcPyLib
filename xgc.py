@@ -44,26 +44,26 @@ class _load(object):
         time step.
         """
         #Updating to meet the specifications of the new Python API model using Adios
-        def openAdios(file):
-            stream = ad.FileReader(str(file)+'.bp','r')
-            return stream
+        # def openAdios(file):
+        #     stream = ad.FileReader(str(file)+'.bp','r')
+        #     return stream
         
-        def readAdios(stream,variable,indices=Ellipsis):
-            if '/' in variable: 
-                variable = '/' + variable
-            io = ad.Stream.IO
-            engine = ad.Engine
-            #include Variable Class for shape() functionality 
-            var = ad.Variable
-            variable = io.inquire_attribute(variable)
-            if variable is None:
-                raise ValueError(f"Variable '{variable}' not found")
-            data_shape = var.shape()
-            data = np.empty(data_shape,dtype=np.float32)
-            engine.get(variable, data)
-            if indices is not Ellipsis:
-                data = data[indices]
-            return data
+        # def readAdios(stream,variable,indices=Ellipsis):
+        #     if '/' in variable: 
+        #         variable = '/' + variable
+        #     io = ad.Stream.IO
+        #     engine = ad.Engine
+        #     #include Variable Class for shape() functionality 
+        #     var = ad.Variable
+        #     variable = io.inquire_attribute(variable)
+        #     if variable is None:
+        #         raise ValueError(f"Variable '{variable}' not found")
+        #     data_shape = var.shape()
+        #     data = np.empty(data_shape,dtype=np.float32)
+        #     engine.get(variable, data)
+        #     if indices is not Ellipsis:
+        #         data = data[indices]
+        #     return data
 
 
 # import numpy
@@ -425,6 +425,7 @@ class _load(object):
             
             idx = np.arange(step[0]/dstep,step[-1]/dstep+1)
             
+            #shape method may be deprecated... need  to change
             mask1d = np.zeros(idx.shape,dtype=np.int32)
             for (i,idxi) in enumerate(idx):
                 mask1d[i] = np.where(step == idxi*dstep)[0][-1] #get last occurence
