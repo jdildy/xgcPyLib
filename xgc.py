@@ -352,11 +352,11 @@ class _load(object):
             #keys = [key for key in f1d.available_variables().keys()]
 
             #New method handling 
-            available_vars = f1d.available_variables
+            available_vars = f1d.available_variables()
             if isinstance(available_vars,dict):
                 keys = [key for key in available_vars.keys()]
             else: 
-                raise TypeError("Available_variables() did not return a dictionary-like object.")
+                raise TypeError("available_variables() did not return a dictionary-like object")
         keys.sort()
         for key in keys:
             data = self.readCmd(self.oneddiag_file,key)
