@@ -79,8 +79,7 @@ class _load(object):
             #v = '/'+v #this may be necessary for older xgc files
 
             " NEED SOME TYPE OF CHECKER TO ENSURE CORRECT FILE BEING OPENED"
-            try: 
-                with Stream(str(file)+'.bp','rra') as r:
+            with Stream(str(file)+'.bp','rra') as r:
                     if not isinstance(r, Stream):
                         raise TypeError("The object is not an instance of adios2.Stream")
                     
@@ -99,13 +98,14 @@ class _load(object):
                         data = r.read(variable,start=[0], count=[nsize])
                     else: #mostly xgc.oneddiag
                         data = r.read(variable,start=[], count=[])
-            except FileNotFoundError:
-                print(f"File {file} not found.")
-            except TypeError as e:
-                print(e)
-            except Exception as e: 
-                print(f"An error has occured: {e}")  
-            return data
+            # except FileNotFoundError:
+            #     print(f"File {file} not found.")
+            # except TypeError as e:
+            #     print(e)
+            # except Exception as e: 
+            #     print(f"An error has occured: {e}")  
+                    return data
+            
 
         
         def openHDF5(x):
@@ -403,32 +403,17 @@ class _load(object):
         self.ti0_sp = splrep(self.psin1d,self.Ti1d[0,:],k=1)
         self.te0_sp = splrep(self.psin1d,self.Te1d[0,:],k=1)
         self.ne0_sp = splrep(self.psin1d,self.ne1d[0,:],k=1)
-        
-    def emptyChecker(data):
-        if data is None:
-            return True
-        elif hasattr(data,'__len__'):
-            return len(data) == 0
-        else:
-            return False
-        
+    
     def loadBfield(self):
         """Load magnetic field
         """
         try:
             self.bfield = self.readCmd(self.bfield_file,'node_data[0]/values')[...]
-            if self.emptyChecker(self.bfield):
-                raise ValueError("Data from path1 'node_data[0]/values' is empty or None.")
-        except Exception as e:
-            print(f"Error found: {e}")
+        except:
             try:
                 self.bfield = self.readCmd(self.bfield_file,'node_data[0]/values')[...]
-                if self.emptyChecker(self.bfield):
-                    raise ValueError("Data from path2 'node_data[0]/values' is empty or None.")
-            except Exception as e:
+            except:
                 self.bfield = self.readCmd(self.bfield_file,'bfield')[...]
-                if self.emptyChecker(self.bfield):
-                    raise ValueError("Data from 'befield'is empty or None.")
                 
 
 
