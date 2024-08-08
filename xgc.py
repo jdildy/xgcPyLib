@@ -347,25 +347,17 @@ class _load(object):
         oneddiag={}
         #class structtype(): pass
         try:
-            # Was able to do this with adios.open(), Can no longer use this with ad.Stream
-            #keys = f1d.keys()
-            available_vars = f1d.available_variables()
-            if isinstance(available_vars, dict):
-                keys = [key for key in available_vars.keys()]
-            else:
-                raise ValueError("available_variables did not return a dictionary.")
-        except Exception as e:
+            keys = f1d.available_attributes()
+        except:
             #keys = [key for key in f1d.keys()]
             #adios2
-            # keys = [key for key in f1d.available_variables().keys()]
-            print(f"Error extracting keys: {e}")
-            keys = []
-            #New method handling                
+            keys = [key for key in f1d.available_variables()]
         keys.sort()
         for key in keys:
-            data = self.readCmd(self.oneddiag_file,key)
+            data = self.readCmd(f1d,key)
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
+        self.oneddiag = oneddiag
 
         print ("Keys in oneddiag")
         for key in oneddiag.keys():
