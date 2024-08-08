@@ -366,6 +366,10 @@ class _load(object):
             data = self.readCmd(self.oneddiag_file,key)
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
+
+        print ("Keys in oneddiag")
+        for key in oneddiag.keys():
+            print(key)
         self.oneddiag = oneddiag
         
         #TODO: Decide if should remove this legacy renaming
