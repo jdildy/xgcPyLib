@@ -354,15 +354,7 @@ class _load(object):
         f1d = self.openCmd(self.oneddiag_file)
         oneddiag={}
 
-
-        
-        #class structtype(): pass
-        try:
-            keys = f1d.keys()
-        except:
-            #keys = [key for key in f1d.keys()]
-            #adios2
-            keys = [key for key in f1d.available_variables(keys)]
+        keys = [key for key in f1d.available_variables(keys = ['Name'])]
 
 
         keys.sort()
