@@ -342,13 +342,13 @@ class _load(object):
     def load_oneddiag(self):
         """Load all oneddiag quantities. Rename required equilibrium profiles and compute the interpolant
         """
-        try:
-            with Stream(self.oneddiag_file+ ".bp","rra") as s:
-                keys = s.available_variables()
-        except:
+        # try:
+        #     with Stream(self.oneddiag_file+ ".bp","rra") as s:
+        #         keys = s.available_variables()
+        # except:
         #class structtype(): pass
-            with Stream(self.oneddiag_file + ".bp","rra" ) as s:
-                keys = [key for key in s.available_variables() ]
+        with Stream(self.oneddiag_file + ".bp","rra" ) as s:
+            keys = [key for key in s.available_variables() ]
         #read in all data from xgc.oneddiag
             
 
