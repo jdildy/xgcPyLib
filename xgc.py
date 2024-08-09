@@ -344,8 +344,10 @@ class _load(object):
         """
         #class structtype(): pass
         f1d = self.openCmd(self.oneddiag_file)
-        
-        psi = f1d.read('psi')
+        n_step = f1d.num_steps()
+        steplist = list(n_step - 1)
+        psi = f1d.read('psi', step_selection = steplist)
+    
 
         print(psi.shape)
 
