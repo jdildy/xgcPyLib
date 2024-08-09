@@ -347,13 +347,12 @@ class _load(object):
 
 
         #class structtype(): pass
-        with FileReader(self.oneddiag_file) as s:
+        with Stream(self.oneddiag_file + ".bp", 'rra') as s:
             vars = s.available_variables
             for name, info in vars:
                 print("variable name: " + name, end =" ")
                 for key, value in info:
                     print("\t " + key + ": " + value, end= " ")
-
                 print()
             print()
 
