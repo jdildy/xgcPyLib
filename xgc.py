@@ -361,7 +361,8 @@ class _load(object):
         #TODO: Decide if should remove this legacy renaming
         #modify 1d psin data
         self.psin1d = self.oneddiag['psi']
-        print ("The number of dimensions is: " + int(self.psin1d.ndim))
+        psin1d = str(self.psin1d)
+        print ("The number of dimensions is: " + psin1d)
         if self.psin1d.ndim > 1: self.psin1d = self.psin1d[0,:]
         
         #read n=0,m=0 potential
