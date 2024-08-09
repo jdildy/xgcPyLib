@@ -347,7 +347,7 @@ class _load(object):
         
         
         #class structtype(): pass
-        with Stream(self.oneddiag_file + ".bp", ) as s:
+        with Stream(self.oneddiag_file + ".bp","rra" ) as s:
             var_dic = s.available_variables()
             print(type(var_dic))
             print(dir(var_dic))
