@@ -346,6 +346,7 @@ class _load(object):
         #class structtype(): pass
         with Stream(self.oneddiag_file + ".bp","rra" ) as s:
             keys = [key for key in s.available_variables() ]
+            print(keys)
         #read in all data from xgc.oneddiag
             
 
@@ -362,7 +363,7 @@ class _load(object):
         #TODO: Decide if should remove this legacy renaming
         #modify 1d psin data
         self.psin1d = self.oneddiag['psi']
-        if self.psin1d.ndim > 1: self.psin1d = self.psin1d[0,:]
+        if self.psin1d['shape'] > 1: self.psin1d = self.psin1d[0,:]
         
         #read n=0,m=0 potential
         try:
