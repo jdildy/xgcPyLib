@@ -345,7 +345,9 @@ class _load(object):
         #class structtype(): pass
         f1d = self.openCmd(self.oneddiag_file)
 
-        f1d.inquire_variable('psi')
+        print(f1d.inquire_variable('psi'))
+
+  
             
         #read in all data from xgc.oneddiag
             
@@ -353,6 +355,7 @@ class _load(object):
 
        
         oneddiag={}
+
         keys.sort()
         for key in keys:
             data = self.readCmd(f1d,key)
