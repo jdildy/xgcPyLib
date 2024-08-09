@@ -350,7 +350,6 @@ class _load(object):
         n_step = var.steps()
         steplist = tuple(range(n_step))
 
-        nsize = 
 
         print(n_step)
         psi = f1d.read('psi', step_selection = [1,2,3])
