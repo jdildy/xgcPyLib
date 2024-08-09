@@ -364,7 +364,7 @@ class _load(object):
             keys = [key for key in f1d.available_variables().keys()]
 
 
-        #keys.sort()
+        keys.sort()
         for key in keys:
             data = self.readCmd(vars,key)
             if data.ndim==2: data = data[self.mask1d,:]
