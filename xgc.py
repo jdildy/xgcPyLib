@@ -347,7 +347,7 @@ class _load(object):
         
         psi = f1d.read('psi')
 
-        
+        print(psi.shape)
 
         
 
