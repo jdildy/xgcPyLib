@@ -12,13 +12,14 @@ import glob
 from scipy.interpolate import splrep, splev
 from scipy.interpolate import LinearNDInterpolator, CloughTocher2DInterpolator
 from matplotlib.tri import Triangulation
-from adios2 import Stream , FileReader
+from adios2 import Stream
 import matplotlib.pyplot as plt
 # from scipy.io import matlab
 from scipy.io.matlab import loadmat
  # from scipy.interpolate import interp1d
 from scipy.ndimage import gaussian_filter
 from scipy import stats
+
 def load(*args,**kwargs):
     file_path = os.path.join(args[0],'')
     
@@ -342,20 +343,25 @@ class _load(object):
         
         #read in all data from xgc.oneddiag
         #f1d = self.openCmd(self.oneddiag_file)
-        oneddiag={}
+        vars= {}
         
-
-
+        
         #class structtype(): pass
-        with Stream(self.oneddiag_file + ".bp", 'rra') as s:
-            vars = s.available_variables
-            for name, info in vars:
-                print("variable name: " + name, end =" ")
-                for key, value in info:
-                    print("\t " + key + ": " + value, end= " ")
-                print()
-            print()
-
+        with Stream(self.oneddiag_file + ".bp", ) as s:
+            var_dic = s.available_variables()
+            print(type(var_dic))
+            print(dir(var_dic))
+            
+        #read in all data from xgc.oneddiag
+        f1d = self.openCmd(self.oneddiag_file)
+        oneddiag={}
+        #class structtype(): pass
+        try:
+            keys = f1d.var.keys()
+        except:
+            #keys = [key for key in f1d.keys()]
+            #adios2
+            keys = [key for key in f1d.available_variables().keys()]
 
 
         #keys.sort()
