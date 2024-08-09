@@ -343,18 +343,11 @@ class _load(object):
         
         
         #class structtype(): pass
-        """ with Stream(self.oneddiag_file + ".bp","rra" ) as s:
-            var_dic = s.available_variables()
-            for items in var_dic: 
-                print(items)
-            print(type(var_dic))
-            print(dir(var_dic))"""
-            
+        with Stream(self.oneddiag_file + ".bp","rra" ) as s:
+            keys = [key for key in s.available_variables(keys = ['Name'])]
         #read in all data from xgc.oneddiag
-        f1d = self.openCmd(self.oneddiag_file)
+        
         oneddiag={}
-
-        keys = [key for key in f1d.available_variables(keys = ['Name'])]
 
 
         keys.sort()
