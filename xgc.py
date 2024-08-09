@@ -12,8 +12,7 @@ import glob
 from scipy.interpolate import splrep, splev
 from scipy.interpolate import LinearNDInterpolator, CloughTocher2DInterpolator
 from matplotlib.tri import Triangulation
-# import adios2
-from adios2 import Stream
+from adios2 import Stream , FileReader
 import matplotlib.pyplot as plt
 # from scipy.io import matlab
 from scipy.io.matlab import loadmat
@@ -73,6 +72,7 @@ class _load(object):
 #     diag_1d_period = unitsFile.read('daig_1d_period')
 
         def openAdios2(file):
+            
             with Stream(str(file)+'.bp','rra') as p:
                 return p
 
@@ -345,13 +345,27 @@ class _load(object):
         #read in all data from xgc.oneddiag
         f1d = self.openCmd(self.oneddiag_file)
         oneddiag={}
+
+
         #class structtype(): pass
         try:
-            keys = f1d.available_attributes()
+            keys = f1d.keys()
+            
         except:
-            #keys = [key for key in f1d.keys()]
+            keys = [key for key in f1d.keys()]
             #adios2
-            keys = [key for key in f1d.available_variables()]
+
+            
+        # #     available_vars = f1d.available_attributes()
+
+        # #     if isinstance(available_vars, dict):
+        # #         keys = [key for key in f1d.available_variables()]
+            
+        #     with Stream(self.oneddiag_file, 'rra') as r:
+        #         available_vars = r.available_variables()
+        #         print(available_vars)
+               
+        
         keys.sort()
         for key in keys:
             data = self.readCmd(f1d,key)
