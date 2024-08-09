@@ -345,7 +345,7 @@ class _load(object):
         f1d = self.openCmd(self.oneddiag_file)
         
         #class structtype(): pass
-        with Stream(self.oneddiag_file + ".bp","rra" ) as s:
+        with Stream(self.oneddiag_file + ".bp","w" ) as s:
             keys = [key for key in s.available_variables() ]
         #read in all data from xgc.oneddiag
             
