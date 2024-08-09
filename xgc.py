@@ -13,6 +13,7 @@ from scipy.interpolate import splrep, splev
 from scipy.interpolate import LinearNDInterpolator, CloughTocher2DInterpolator
 from matplotlib.tri import Triangulation
 from adios2 import Adios, Stream
+from adios2.bindings 
 import matplotlib.pyplot as plt
 # from scipy.io import matlab
 from scipy.io.matlab import loadmat
@@ -346,7 +347,7 @@ class _load(object):
         f1d = self.openCmd(self.oneddiag_file)
         var = f1d.inquire_variable('psi')
         n_step = var.steps()
-        steplist = range(n_step)
+        steplist = tuple(range(n_step))
 
         print(n_step)
         psi = f1d.read('psi', step_selection = steplist)
