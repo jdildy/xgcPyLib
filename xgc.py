@@ -365,7 +365,7 @@ class _load(object):
 
 
         #keys.sort()
-        for key in info:
+        for key in keys:
             data = self.readCmd(vars,key)
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
