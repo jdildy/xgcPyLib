@@ -12,7 +12,7 @@ import glob
 from scipy.interpolate import splrep, splev
 from scipy.interpolate import LinearNDInterpolator, CloughTocher2DInterpolator
 from matplotlib.tri import Triangulation
-from adios2 import Stream
+from adios2 import Adios, Stream
 import matplotlib.pyplot as plt
 # from scipy.io import matlab
 from scipy.io.matlab import loadmat
@@ -341,27 +341,28 @@ class _load(object):
         """Load all oneddiag quantities. Rename required equilibrium profiles and compute the interpolant
         """
         
-        #read in all data from xgc.oneddiag
-        #f1d = self.openCmd(self.oneddiag_file)
-        vars= {}
-        
         
         #class structtype(): pass
-        with Stream(self.oneddiag_file + ".bp","rra" ) as s:
+        """ with Stream(self.oneddiag_file + ".bp","rra" ) as s:
             var_dic = s.available_variables()
+            for items in var_dic: 
+                print(items)
             print(type(var_dic))
-            print(dir(var_dic))
+            print(dir(var_dic))"""
             
         #read in all data from xgc.oneddiag
         f1d = self.openCmd(self.oneddiag_file)
         oneddiag={}
+
+
+        
         #class structtype(): pass
         try:
-            keys = f1d.var.keys()
+            keys = f1d.keys()
         except:
             #keys = [key for key in f1d.keys()]
             #adios2
-            keys = [key for key in f1d.available_variables().keys()]
+            keys = [key for key in f1d.available_variables(keys)]
 
 
         keys.sort()
