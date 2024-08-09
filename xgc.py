@@ -341,32 +341,27 @@ class _load(object):
         """
         
         #read in all data from xgc.oneddiag
-        f1d = self.openCmd(self.oneddiag_file)
+        #f1d = self.openCmd(self.oneddiag_file)
         oneddiag={}
+        
 
 
         #class structtype(): pass
-        try:
-            keys = f1d.keys()
-            
-        except:
-            keys = [key for key in f1d.keys()]
-            #adios2
+        with FileReader(self.oneddiag_file) as s:
+            vars = s.available_variables
+            for name, info in vars:
+                print("variable name: " + name, end =" ")
+                for key, value in info:
+                    print("\t " + key + ": " + value, end= " ")
 
-            
-        # #     available_vars = f1d.available_attributes()
+                print()
+            print()
 
-        # #     if isinstance(available_vars, dict):
-        # #         keys = [key for key in f1d.available_variables()]
-            
-        #     with Stream(self.oneddiag_file, 'rra') as r:
-        #         available_vars = r.available_variables()
-        #         print(available_vars)
-               
-        
-        keys.sort()
-        for key in keys:
-            data = self.readCmd(f1d,key)
+
+
+        #keys.sort()
+        for key in info:
+            data = self.readCmd(vars,key)
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
         self.oneddiag = oneddiag
