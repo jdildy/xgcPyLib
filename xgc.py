@@ -73,7 +73,7 @@ class _load(object):
 #     diag_1d_period = unitsFile.read('daig_1d_period')
 
         def openAdios2(file):
-            return Stream(str(file)+'.bp','r')
+            return Stream(str(file)+'.bp','rra')
 
         def readAdios2(file,variable,inds=Ellipsis):
             if '/' in variable: variable = '/'+variable
@@ -335,12 +335,14 @@ class _load(object):
         self.triObj = Triangulation(self.RZ[:,0],self.RZ[:,1],self.tri)
         
         self.flux_surfaces()
+
+
         
         
     def load_oneddiag(self):
         """Load all oneddiag quantities. Rename required equilibrium profiles and compute the interpolant
         """
-        
+        f1d = self.openCmd(self.oneddiag_file)
         
         #class structtype(): pass
         with Stream(self.oneddiag_file + ".bp","rra" ) as s:
@@ -351,7 +353,7 @@ class _load(object):
 
         keys.sort()
         for key in keys:
-            data = self.readCmd(self.oneddiag_file ,key)
+            data = self.readCmd(f1d ,key)
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
         self.oneddiag = oneddiag
