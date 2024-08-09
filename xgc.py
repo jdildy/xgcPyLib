@@ -73,7 +73,7 @@ class _load(object):
 #     diag_1d_period = unitsFile.read('daig_1d_period')
 
         def openAdios2(file):
-            return Stream(str(file)+'.bp','r')
+            return Stream(str(file)+'.bp','rra')
 
         def readAdios2(file,variable,inds=Ellipsis):
             if '/' in variable: variable = '/'+variable
@@ -343,9 +343,11 @@ class _load(object):
         """Load all oneddiag quantities. Rename required equilibrium profiles and compute the interpolant
         """
         #class structtype(): pass
-        f1d = self.openCmd(self.oneddiag_file)
+        #f1d = self.openCmd(self.oneddiag_file)
 
-        print(f1d.available_variables())
+        with Stream(self.oneddiag_file + ".bp","rra" ) as s:
+            keys = [key for key in s.available_variables()]
+            print(keys)
 
   
             
