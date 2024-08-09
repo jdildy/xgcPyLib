@@ -344,7 +344,10 @@ class _load(object):
         """
         #class structtype(): pass
         f1d = self.openCmd(self.oneddiag_file)
-        print(f1d.available_variables())
+        
+        psi = f1d.read('psi')
+
+        
 
         
 
