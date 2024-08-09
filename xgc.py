@@ -361,7 +361,7 @@ class _load(object):
         #TODO: Decide if should remove this legacy renaming
         #modify 1d psin data
         self.psin1d = self.oneddiag['psi']
-        psin1d = str(self.psin1d)
+        psin1d = str(self.psin1d.ndim)
         print ("The number of dimensions is: " + psin1d)
         if self.psin1d.ndim > 1: self.psin1d = self.psin1d[0,:]
         
