@@ -343,17 +343,21 @@ class _load(object):
         """Load all oneddiag quantities. Rename required equilibrium profiles and compute the interpolant
         """
         #class structtype(): pass
+        f1d = self.openCmd(self.oneddiag_file)
+        
         with Stream(self.oneddiag_file + ".bp","rra" ) as s:
-            keys = [key for key in s.available_variables() ]
+            keys = [key for key in s.available_variables()]
+            psi = self.readCmd(f1d, 'psi')
+            
         #read in all data from xgc.oneddiag
             
 
 
-        f1d = self.openCmd(self.oneddiag_file)
+       
         oneddiag={}
         keys.sort()
         for key in keys:
-            data = self.readCmd(self.oneddiag_file,key)
+            data = self.readCmd(f1d,key)
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
         self.oneddiag = oneddiag
