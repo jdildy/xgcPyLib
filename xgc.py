@@ -351,7 +351,7 @@ class _load(object):
 
         keys.sort()
         for key in keys:
-            data = self.readCmd(self.oneddiag_file ,key)
+            data = self.readCmd(f1d ,key)
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
         self.oneddiag = oneddiag
