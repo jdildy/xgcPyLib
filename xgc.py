@@ -342,13 +342,13 @@ class _load(object):
     def load_oneddiag(self):
         """Load all oneddiag quantities. Rename required equilibrium profiles and compute the interpolant
         """
-        # try:
-        #     with Stream(self.oneddiag_file+ ".bp","rra") as s:
-        #         keys = s.available_variables()
-        # except:
+        try:
+            with Stream(self.oneddiag_file+ ".bp","rra") as s:
+                keys = s.available_variables()
+        except:
         #class structtype(): pass
-        with Stream(self.oneddiag_file + ".bp","rra" ) as s:
-            keys = [key for key in s.available_variables() ]
+            with Stream(self.oneddiag_file + ".bp","rra" ) as s:
+                keys = [key for key in s.available_variables() ]
         #read in all data from xgc.oneddiag
             
 
@@ -365,7 +365,8 @@ class _load(object):
         #TODO: Decide if should remove this legacy renaming
         #modify 1d psin data
         self.psin1d = self.oneddiag['psi']
-        if self.psin1d['shape'] > 1: self.psin1d = self.psin1d[0,:]
+        print ("The number of dimensions is: " + self.psin1d.ndim)
+        if self.psin1d.ndim > 1: self.psin1d = self.psin1d[0,:]
         
         #read n=0,m=0 potential
         try:
