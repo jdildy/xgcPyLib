@@ -346,6 +346,7 @@ class _load(object):
         f1d = self.openCmd(self.oneddiag_file)
         var = f1d.inquire_variable('psi')
         n_step = var.steps()
+        type(n_step)
         print(n_step)
         steplist = list(n_step - 1)
         psi = f1d.read('psi', step_selection = steplist)
