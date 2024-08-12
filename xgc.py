@@ -360,9 +360,7 @@ class _load(object):
         #Inialize a dictionary 
         f1d = self.openCmd(self.oneddiag_file)
 
-        var_info = f1d.available_variables()
-
-        print(type(var_info))
+        f1d = f1d.available_variables().keys()
 
         
         
@@ -372,7 +370,7 @@ class _load(object):
 
 
         
-        keys.sort()
+       
         for key in keys:
             data = self.readCmd(f1d,key)
             if data.ndim==2: data = data[self.mask1d,:]
