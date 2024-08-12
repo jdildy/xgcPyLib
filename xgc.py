@@ -720,7 +720,7 @@ class xgc1Load(_load):
         
         #read in number of planes
         fluc_file0 = self.xgc_path + 'xgc.3d.' + str(self.time_steps[1]).zfill(5)
-        print(fluc_file0)
+        print(str(fluc_file0))
 
         
 
