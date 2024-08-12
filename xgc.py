@@ -393,10 +393,9 @@ class _load(object):
         #TODO: Decide if should remove this legacy renaming
         #modify 1d psin data
         self.psin1d = self.oneddiag['psi']
-        psin1ddim = self.psin1d
-        print(str(self.psin1d.ndim))
-        psin1d = str(psin1ddim.ndim)
-        print ("The number of dimensions is: " + psin1d)
+        psin1d = str(self.psin1d.ndim)
+        print(type(psin1d))
+        print (str(psin1d.ndim) )
         if self.psin1d.ndim > 1: self.psin1d = self.psin1d[0,:]
         
         #read n=0,m=0 potential
@@ -404,6 +403,8 @@ class _load(object):
             self.psin001d = self.oneddiag['psi00_1d']/self.unit_dic['psi_x']
         except:
             self.psin001d = self.oneddiag['psi00']/self.unit_dic['psi_x']
+        print(type(self.psin001d))
+        print(str(self.psin001d.ndim))
         if self.psin001d.ndim > 1: self.psin001d = self.psin001d[0,:]
         self.pot001d = self.oneddiag['pot00_1d']
         
@@ -437,9 +438,9 @@ class _load(object):
                 self.ne1d = np.apply_along_axis(lambda a: np.interp(self.psin1d,self.psin001d,a),1,self.pot001d)/self.Te1d
         
         #create splines for t=0 data
-        self.ti0_sp = splrep(self.psin1d,self.Ti1d[0],k=1)
-        self.te0_sp = splrep(self.psin1d,self.Te1d[0],k=1)
-        self.ne0_sp = splrep(self.psin1d,self.ne1d[0],k=1)
+        self.ti0_sp = splrep(self.psin1d,self.Ti1d[0,],k=1)
+        self.te0_sp = splrep(self.psin1d,self.Te1d[0,:],k=1)
+        self.ne0_sp = splrep(self.psin1d,self.ne1d[0,:],k=1)
     
     def loadBfield(self):
         """Load magnetic field
