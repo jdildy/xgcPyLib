@@ -361,7 +361,7 @@ class _load(object):
         f1d = self.openCmd(self.oneddiag_file)
 
         # IS A DICTIONARY
-       # print(type(f1d.available_variables()))
+        print(type(f1d.available_variables()))
 
         if isinstance(f1d, dict):
             print("This is a dictionary object")
