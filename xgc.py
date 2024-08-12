@@ -86,7 +86,7 @@ class _load(object):
                         raise TypeError("The object is not an instance of adios2.Stream")
                     
                     variables = r.available_variables()
-                    print("Available Variables:" , variables)
+                    
                     if variable not in variables:
                         raise KeyError(f"Variable '{variable}' not found in stream")
                     
@@ -154,6 +154,9 @@ class _load(object):
         except:
             self.time = [0]
         
+        print(type(t_start))
+        print(type(t_end))
+        print(type(self.time))
         if t_start is None: t_start=1
         assert t_start > 0, "t_start must be greater than 0 (1-based index)"
         self.t_start=int(t_start)
@@ -496,7 +499,6 @@ class _load(object):
         except:
             mask1d = Ellipsis #pass variables unaffected
             
-        
         return mask1d
     
     
