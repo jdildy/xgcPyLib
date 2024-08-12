@@ -182,16 +182,22 @@ class _load(object):
         # #int -> 1
         # print(type(dt))
         # print(str(dt))
-        print("t_end is:" + str(t_end))
+        # t_end -> 1 but the time => 1.6897348125005422e-07
+        #print("t_end is:" + str(t_end))
         
-        self.time = self.time[(self.t_start-1):(self.t_end):dt]
+        self.time = self.time[(self.t_start-1):(self.t_end):2]
         #numpy_array
         print(type(self.time))
         print(self.time[0])
         self.time_steps = np.arange(self.t_start,self.t_end+1,dt) #1-based for file names
-    
+        print(str(self.time_steps) + ": amount of time_steps")
         self.tstep = self.unit_dic['sml_dt']*self.unit_dic['diag_1d_period']
         self.Ntimes = len(self.time)
+        print("tstep " + str(self.tstep))
+        print(type(self.tstep))
+        print("Ntimes" + str(self.Ntimes))
+        print(type(self.Ntimes))
+
         
         #magnetics file
         self.bfield_file=self.xgc_path+'xgc.bfield'
