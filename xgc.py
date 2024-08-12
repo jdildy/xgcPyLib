@@ -391,8 +391,8 @@ class _load(object):
             oneddiag[key]=data
         self.oneddiag = oneddiag
 
-        print(f1d)
-        print(self.oneddiag_file)
+        print(str(f1d))
+        print(str(self.oneddiag_file))
 
        
         
