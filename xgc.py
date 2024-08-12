@@ -182,6 +182,7 @@ class _load(object):
         # #int -> 1
         # print(type(dt))
         # print(str(dt))
+        print("t_end is:" + str(t_end))
         
         self.time = self.time[(self.t_start-1):(self.t_end):dt]
         #numpy_array
