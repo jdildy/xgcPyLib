@@ -389,6 +389,7 @@ class _load(object):
             data = self.readCmd(self.oneddiag_file,key)
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
+        print(str(data.ndim())  + " dimensions in data stuctured")
         self.oneddiag = oneddiag
 
         #print(str(f1d))
@@ -413,8 +414,8 @@ class _load(object):
         except:
             self.psin001d = self.oneddiag['psi00']/self.unit_dic['psi_x']
         # numpy array whose dimensions is also 1
-        print(type(self.psin001d))
-        print(str(self.psin001d.ndim))
+        #print(type(self.psin001d))
+        #print(str(self.psin001d.ndim))
         if self.psin001d.ndim > 1: self.psin001d = self.psin001d[0,:]
         self.pot001d = self.oneddiag['pot00_1d']
         
