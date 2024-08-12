@@ -360,7 +360,12 @@ class _load(object):
         #Inialize a dictionary 
         f1d = self.openCmd(self.oneddiag_file)
 
+        # IS A DICTIONARY
         print(type(f1d.available_variables()))
+
+        if isinstance(f1d, dict):
+            ("This is a dictionary object")
+
 
         
         
