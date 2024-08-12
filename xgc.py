@@ -176,13 +176,16 @@ class _load(object):
         self.t_end=int(t_end)
         dt = int(dt)
 
-        print(type(self.t_end))
-        print(str(self.t_end))
-        print(type(dt))
-        print(str(dt))
+        # #int -> 1
+        # print(type(self.t_end))
+        # print(str(self.t_end))
+        # #int -> 1
+        # print(type(dt))
+        # print(str(dt))
         
         self.time = self.time[(self.t_start-1):(self.t_end):dt]
-        print(self.time)
+    
+        print(type(self.time))
         print(len(self.time))
         self.time_steps = np.arange(self.t_start,self.t_end+1,dt) #1-based for file names
     
