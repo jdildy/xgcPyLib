@@ -705,8 +705,9 @@ class xgc1Load(_load):
 
         
 
-
+        print(str(fluc_file0))
         self.Nplanes=self.readCmd(fluc_file0,'dpot').shape[1]
+
         # assert isinstance(phi_start,int), "phi_start must be a plane index (Int)"
         # assert isinstance(phi_end,int), "phi_end must be a plane index (Int)"
         self.phi_start=int(phi_start)
