@@ -359,15 +359,15 @@ class _load(object):
 
         f1d = self.openCmd(self.oneddiag_file)
 
-        #returns dictionary
-        print(type(f1d.available_variables()))
-        #returns adios2.stream.Stream object
-        print(type(f1d))
+        # #returns dictionary
+        # print(type(f1d.available_variables()))
+        # #returns adios2.stream.Stream object
+        # print(type(f1d))
 
         items = f1d.available_variables()
         
 
-        print(type(items))
+        # print(type(items))
 
         if isinstance(items, dict):
             for name, info in items.items():
