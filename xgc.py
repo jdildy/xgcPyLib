@@ -717,11 +717,9 @@ class xgc1Load(_load):
         super(xgc1Load,self).__init__(xgc_path,**kwargs)
 
         #Edit where to start and what count to count by 
-        print(str(fluc_file0))
+        
         #read in number of planes
         fluc_file0 = self.xgc_path + 'xgc.3d.' + str(self.time_steps[0]).zfill(5)
-        
-
         
 
         print(str(fluc_file0))
