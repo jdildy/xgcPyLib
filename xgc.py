@@ -359,10 +359,9 @@ class _load(object):
 
         #Inialize a dictionary 
         f1d = self.openCmd(self.oneddiag_file)
-        oneddiag={}
 
-        keys = f1d.available_variables()
-        print(keys)
+
+        print(f1d)
 
         
         keys.sort()
