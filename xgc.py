@@ -535,6 +535,14 @@ class _load(object):
         
 
         print(step)
+        print(type(step))
+
+        print(dstep)
+        print(type(dstep))
+
+        print(mask1d)
+        print(type(mask1d))
+
             
         return mask1d
     
