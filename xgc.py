@@ -394,7 +394,7 @@ class _load(object):
         self.psin1d = self.oneddiag['psi']
         psin1d = str(self.psin1d.ndim)
         print(type(psin1d))
-        print (str(psin1d.ndim) )
+        print (str(psin1d))
         if self.psin1d.ndim > 1: self.psin1d = self.psin1d[0,:]
         
         #read n=0,m=0 potential
