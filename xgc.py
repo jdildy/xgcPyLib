@@ -365,13 +365,17 @@ class _load(object):
         print(type(f1d))
 
         items = f1d.available_variables()
+        
 
         print(type(items))
 
         if isinstance(items, dict):
-            print("This is a dictionary object")
-        else:
-            print("This is not a dictionary object")
+            for name, info in items.items():
+                print("variable_name: " + name, end=" ")
+                for key, value in items.items():
+                    print("\t" + key + ": " + value, end=" ")
+                print()
+
 
 
         
