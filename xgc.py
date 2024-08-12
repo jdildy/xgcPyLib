@@ -535,13 +535,13 @@ class _load(object):
         
 
         #print("The step is: " + step)
-        print(type(step))
+        print("The type of step is: " + str(type(step)))
 
         #print("The dstep is: " + dstep)
         #print(type(dstep))
 
         #print("The mask1d is: " + mask1d)
-        print(type(mask1d))
+        print("The type of mask1d is: " + str(type(mask1d)))
 
             
         return mask1d
