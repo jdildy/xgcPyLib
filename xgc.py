@@ -368,6 +368,7 @@ class _load(object):
         oneddiag ={}
 
         # print(type(items))
+        print(f1d.available_variables)
         print(items)
 
         if isinstance(items, dict):
