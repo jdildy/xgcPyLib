@@ -154,9 +154,16 @@ class _load(object):
         except:
             self.time = [0]
         
+        #int
         print(type(t_start))
+        print(t_start)
+        #nonetype
         print(type(t_end))
+        print(t_end)
+        #numpy array
         print(type(self.time))
+        print(self.time.ndim)
+        print(self.time)
         if t_start is None: t_start=1
         assert t_start > 0, "t_start must be greater than 0 (1-based index)"
         self.t_start=int(t_start)
