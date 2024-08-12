@@ -402,6 +402,7 @@ class _load(object):
         #modify 1d psin data
         self.psin1d = self.oneddiag['psi']
         psin1d = str(self.psin1d.ndim)
+
         #str -> 1
         print (str(psin1d))
         if self.psin1d.ndim > 1: self.psin1d = self.psin1d[0,:]
@@ -446,8 +447,9 @@ class _load(object):
                 #read electron density
                 self.ne1d = np.apply_along_axis(lambda a: np.interp(self.psin1d,self.psin001d,a),1,self.pot001d)/self.Te1d
         
+        print(str(self.Ti1d))
         #create splines for t=0 data
-        self.ti0_sp = splrep(self.psin1d,self.Ti1d[0],k=1)
+        self.ti0_sp = splrep(self.psin1d,self.Ti1d[0,:],k=1)
         self.te0_sp = splrep(self.psin1d,self.Te1d[0,:],k=1)
         self.ne0_sp = splrep(self.psin1d,self.ne1d[0,:],k=1)
     
