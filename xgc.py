@@ -153,6 +153,7 @@ class _load(object):
             self.time = np.array(self.readCmd(self.oneddiag_file,'time')[self.mask1d],ndmin=1)
         except:
             self.time = [0]
+        print(self.time)
         if t_start is None: t_start=1
         assert t_start > 0, "t_start must be greater than 0 (1-based index)"
         self.t_start=int(t_start)
@@ -160,10 +161,9 @@ class _load(object):
         self.t_end=int(t_end)
         dt = int(dt)
         self.time = self.time[(self.t_start-1):(self.t_end):dt]
-        print(self.t_start)
-        print(self.t_end)
+
         self.time_steps = np.arange(self.t_start,self.t_end+1,dt) #1-based for file names
-        print(self.time_steps)
+    
         self.tstep = self.unit_dic['sml_dt']*self.unit_dic['diag_1d_period']
         self.Ntimes = len(self.time)
         
