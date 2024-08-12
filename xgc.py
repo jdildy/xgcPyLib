@@ -184,9 +184,9 @@ class _load(object):
         # print(str(dt))
         
         self.time = self.time[(self.t_start-1):(self.t_end):dt]
-    
+        #numpy_array
         print(type(self.time))
-        print(len(self.time))
+        print(self.time[0])
         self.time_steps = np.arange(self.t_start,self.t_end+1,dt) #1-based for file names
     
         self.tstep = self.unit_dic['sml_dt']*self.unit_dic['diag_1d_period']
