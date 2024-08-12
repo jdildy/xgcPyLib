@@ -189,12 +189,17 @@ class _load(object):
         #numpy_array
         print(type(self.time))
         print(self.time[0])
+
+        #timestep = 1 
         self.time_steps = np.arange(self.t_start,self.t_end+1,dt) #1-based for file names
         print(str(self.time_steps) + ": amount of time_steps")
         self.tstep = self.unit_dic['sml_dt']*self.unit_dic['diag_1d_period']
         self.Ntimes = len(self.time)
+
+        #tstep = 3.3794696250010844e-07
         print("tstep " + str(self.tstep))
         print(type(self.tstep))
+        #Ntimes = 1
         print("Ntimes" + str(self.Ntimes))
         print(type(self.Ntimes))
 
@@ -527,6 +532,9 @@ class _load(object):
                 mask1d[i] = np.where(step == idxi*dstep)[0][-1] #get last occurence
         except:
             mask1d = Ellipsis #pass variables unaffected
+        
+
+        print(step)
             
         return mask1d
     
