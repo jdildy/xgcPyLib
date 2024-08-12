@@ -374,7 +374,7 @@ class _load(object):
             for name, info in vars.items():
                 print("variable_name: " + name, end=" ")
                 for key, value in vars.items():
-                    print("\t" + key + ": " + value, end=" ")
+                    print("\t" + str(key) + ": " + str(value), end=" ")
                 print()
         else: 
             print("this is not a dictionary")
