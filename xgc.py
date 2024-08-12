@@ -492,8 +492,6 @@ class _load(object):
                 mask1d[i] = np.where(step == idxi*dstep)[0][-1] #get last occurence
         except:
             mask1d = Ellipsis #pass variables unaffected
-
-            
             
         
         return mask1d
@@ -699,9 +697,15 @@ class xgc1Load(_load):
         #call parent loading init, including mesh and equilibrium
         #super().__init__(*args,**kwargs)
         super(xgc1Load,self).__init__(xgc_path,**kwargs)
+
+        #Edit where to start and what count to count by 
         
         #read in number of planes
         fluc_file0 = self.xgc_path + 'xgc.3d.' + str(self.time_steps[0]).zfill(5)
+
+        
+
+
         self.Nplanes=self.readCmd(fluc_file0,'dpot').shape[1]
         # assert isinstance(phi_start,int), "phi_start must be a plane index (Int)"
         # assert isinstance(phi_end,int), "phi_end must be a plane index (Int)"
