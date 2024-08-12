@@ -361,7 +361,8 @@ class _load(object):
         f1d = self.openCmd(self.oneddiag_file)
         oneddiag={}
 
-        keys = f1d.keys()
+        keys = f1d.available_variables()
+        print(keys)
 
         
         keys.sort()
