@@ -74,7 +74,7 @@ class _load(object):
 #     diag_1d_period = unitsFile.read('daig_1d_period')
 
         def openAdios2(file):
-            return Stream(str(file)+'.bp','r')
+            return Stream(str(file)+'.bp','rra')
 
         def readAdios2(file,variable,inds=Ellipsis):
             if '/' in variable: variable = '/'+variable
