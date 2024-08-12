@@ -368,7 +368,7 @@ class _load(object):
         oneddiag ={}
 
         # print(type(items))
-        print(vars)
+        #print(vars)
 
         # if isinstance(vars, dict):
         #     for name, info in vars.items():
