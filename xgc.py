@@ -388,12 +388,13 @@ class _load(object):
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
         self.oneddiag = oneddiag
+        print(data.ndim)
         
         #TODO: Decide if should remove this legacy renaming
         #modify 1d psin data
         self.psin1d = self.oneddiag['psi']
         psin1d = str(self.psin1d.ndim)
-        print(type(psin1d))
+        #str -> 1
         print (str(psin1d))
         if self.psin1d.ndim > 1: self.psin1d = self.psin1d[0,:]
         
@@ -402,6 +403,7 @@ class _load(object):
             self.psin001d = self.oneddiag['psi00_1d']/self.unit_dic['psi_x']
         except:
             self.psin001d = self.oneddiag['psi00']/self.unit_dic['psi_x']
+        # numpy array whose dimensions is also 1
         print(type(self.psin001d))
         print(str(self.psin001d.ndim))
         if self.psin001d.ndim > 1: self.psin001d = self.psin001d[0,:]
