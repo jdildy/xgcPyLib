@@ -357,11 +357,10 @@ class _load(object):
         #read in all data from xgc.oneddiag
             
 
-        #Inialize a dictionary 
         f1d = self.openCmd(self.oneddiag_file)
 
-        # IS A DICTIONARY
         print(type(f1d.available_variables()))
+        print(type(f1d))
 
         if isinstance(f1d, dict):
             print("This is a dictionary object")
