@@ -534,13 +534,13 @@ class _load(object):
             mask1d = Ellipsis #pass variables unaffected
         
 
-        print(step)
+        print("The step is: " + step)
         print(type(step))
 
-        print(dstep)
+        print("The dstep is: " + dstep)
         print(type(dstep))
 
-        print(mask1d)
+        print("The mask1d is: " + mask1d)
         print(type(mask1d))
 
             
