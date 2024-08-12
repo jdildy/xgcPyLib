@@ -364,22 +364,21 @@ class _load(object):
         # #returns adios2.stream.Stream object
         # print(type(f1d))
 
-        items = f1d.available_variables()
+        vars = f1d.available_variables()
         oneddiag ={}
 
         # print(type(items))
-        print(items)
+        print(vars)
 
-        if isinstance(items, dict):
-            for name, info in items.items():
+        if isinstance(vars, dict):
+            for name, info in vars.items():
                 print("variable_name: " + name, end=" ")
-                for key, value in items.items():
+                for key, value in vars.items():
                     print("\t" + key + ": " + value, end=" ")
                 print()
         else: 
             print("this is not a dictionary")
 
-        print("hi")
 
 
 
