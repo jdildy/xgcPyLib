@@ -527,20 +527,20 @@ class _load(object):
             
             
             #shape method may be deprecated... need to change
-            mask1d = np.zeros(idx.shape,dtype=np.int32)
+            mask1d = np.zeros(idx.shapse,dtype=np.int32)
             for (i,idxi) in enumerate(idx):
                 mask1d[i] = np.where(step == idxi*dstep)[0][-1] #get last occurence
         except:
             mask1d = Ellipsis #pass variables unaffected
         
 
-        print("The step is: " + step)
+        #print("The step is: " + step)
         print(type(step))
 
-        print("The dstep is: " + dstep)
+        #print("The dstep is: " + dstep)
         print(type(dstep))
 
-        print("The mask1d is: " + mask1d)
+        #print("The mask1d is: " + mask1d)
         print(type(mask1d))
 
             
