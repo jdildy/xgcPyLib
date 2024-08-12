@@ -365,6 +365,7 @@ class _load(object):
         # print(type(f1d))
 
         vars = f1d.available_variables()
+        print(vars)
         oneddiag ={}
 
         # print(type(items))
