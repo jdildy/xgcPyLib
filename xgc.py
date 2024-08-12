@@ -389,7 +389,7 @@ class _load(object):
             data = self.readCmd(self.oneddiag_file,key)
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
-        print(str(data.ndim())  + " dimensions in data stuctured")
+        print(int(data.ndim())  + " dimensions in data stuctured")
         self.oneddiag = oneddiag
 
         #print(str(f1d))
