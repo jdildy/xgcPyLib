@@ -359,10 +359,16 @@ class _load(object):
 
         f1d = self.openCmd(self.oneddiag_file)
 
+        #returns dictionary
         print(type(f1d.available_variables()))
+        #returns adios2.stream.Stream object
         print(type(f1d))
 
-        if isinstance(f1d, dict):
+        items = f1d.available_variables()
+
+        print(type(items))
+
+        if isinstance(items, dict):
             print("This is a dictionary object")
         else:
             print("This is not a dictionary object")
