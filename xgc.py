@@ -166,7 +166,7 @@ class _load(object):
         # print(type(self.time))
         # print(self.time.ndim)
         # print(self.time)
-        
+            
         if t_start is None: t_start=1
         assert t_start > 0, "t_start must be greater than 0 (1-based index)"
         self.t_start=int(t_start)
@@ -175,6 +175,12 @@ class _load(object):
         if t_end is None: t_end=len(self.time)
         self.t_end=int(t_end)
         dt = int(dt)
+
+        print(type(self.t_end))
+        print(str(self.t_end))
+        print(type(dt))
+        print(str(dt))
+        
         self.time = self.time[(self.t_start-1):(self.t_end):dt]
         print(self.time)
         print(len(self.time))
@@ -719,9 +725,8 @@ class xgc1Load(_load):
         #Edit where to start and what count to count by 
         
         #read in number of planes
-        fluc_file0 = self.xgc_path + 'xgc.3d.' + str(2).zfill(5)
+        fluc_file0 = self.xgc_path + 'xgc.3d.' + str(self.time_steps[0]).zfill(5)
         
-
         print(str(fluc_file0))
         self.Nplanes=self.readCmd(fluc_file0,'dpot').shape[1]
 
