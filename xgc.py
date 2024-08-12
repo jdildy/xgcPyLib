@@ -361,10 +361,7 @@ class _load(object):
         f1d = self.openCmd(self.oneddiag_file)
         oneddiag={}
 
-        try:
-            keys = f1d.keys()
-        except:
-            keys = [key for key in f1d.keys()]
+        keys = f1d.keys()
 
         
         keys.sort()
