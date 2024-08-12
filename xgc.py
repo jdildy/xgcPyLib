@@ -86,7 +86,7 @@ class _load(object):
                         raise TypeError("The object is not an instance of adios2.Stream")
                     
                     variables = r.available_variables()
-                    #print("Available Variables:" , variables)
+                    print("Available Variables:" , variables)
                     if variable not in variables:
                         raise KeyError(f"Variable '{variable}' not found in stream")
                     
@@ -153,7 +153,7 @@ class _load(object):
             self.time = np.array(self.readCmd(self.oneddiag_file,'time')[self.mask1d],ndmin=1)
         except:
             self.time = [0]
-        print(self.time)
+        
         if t_start is None: t_start=1
         assert t_start > 0, "t_start must be greater than 0 (1-based index)"
         self.t_start=int(t_start)
