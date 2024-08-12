@@ -360,7 +360,7 @@ class _load(object):
         #Inialize a dictionary 
         f1d = self.openCmd(self.oneddiag_file)
 
-        f1d = f1d.available_variables().keys()
+        print(f1d.keys())
 
         
         
@@ -371,11 +371,11 @@ class _load(object):
 
         
        
-        for key in keys:
-            data = self.readCmd(f1d,key)
-            if data.ndim==2: data = data[self.mask1d,:]
-            oneddiag[key]=data
-        self.oneddiag = oneddiag
+        # for key in keys:
+        #     data = self.readCmd(f1d,key)
+        #     if data.ndim==2: data = data[self.mask1d,:]
+        #     oneddiag[key]=data
+        # self.oneddiag = oneddiag
         
         #TODO: Decide if should remove this legacy renaming
         #modify 1d psin data
