@@ -379,6 +379,8 @@ class _load(object):
         else: 
             print("this is not a dictionary")
 
+        print("hi")
+
 
 
         
@@ -390,7 +392,7 @@ class _load(object):
 
         
        
-        for key in items:
+        for key in keys:
             data = self.readCmd(f1d,key)
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
