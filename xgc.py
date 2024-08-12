@@ -12,7 +12,7 @@ import glob
 from scipy.interpolate import splrep, splev
 from scipy.interpolate import LinearNDInterpolator, CloughTocher2DInterpolator
 from matplotlib.tri import Triangulation
-from adios2 import Adios, Stream
+from adios2 import Stream
 
 import matplotlib.pyplot as plt
 # from scipy.io import matlab
@@ -360,8 +360,16 @@ class _load(object):
         #Inialize a dictionary 
         f1d = self.openCmd(self.oneddiag_file)
 
+        var_info = f1d.available_variables()
 
-        print(f1d.keys())
+        print(type(var_info))
+
+        
+        
+        
+
+
+
 
         
         keys.sort()
