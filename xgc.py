@@ -356,7 +356,7 @@ class _load(object):
         # USer should be able to select which timestep to use 
         #read in all data from xgc.oneddiag
             
-
+        #Stream Object
         f1d = self.openCmd(self.oneddiag_file)
 
         # #returns dictionary
@@ -391,8 +391,10 @@ class _load(object):
             oneddiag[key]=data
         self.oneddiag = oneddiag
 
-        print(str(f1d))
-        print(str(self.oneddiag_file))
+        #print(str(f1d))
+
+        #FilePath
+        #print(str(self.oneddiag_file))
 
        
         
@@ -445,7 +447,7 @@ class _load(object):
                 self.ne1d = np.apply_along_axis(lambda a: np.interp(self.psin1d,self.psin001d,a),1,self.pot001d)/self.Te1d
         
         #create splines for t=0 data
-        self.ti0_sp = splrep(self.psin1d,self.Ti1d[0,],k=1)
+        self.ti0_sp = splrep(self.psin1d,self.Ti1d[0],k=1)
         self.te0_sp = splrep(self.psin1d,self.Te1d[0,:],k=1)
         self.ne0_sp = splrep(self.psin1d,self.ne1d[0,:],k=1)
     
