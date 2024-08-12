@@ -171,13 +171,13 @@ class _load(object):
         assert t_start > 0, "t_start must be greater than 0 (1-based index)"
         self.t_start=int(t_start)
         #length of self.time
-        print(self.time)
-        print(len(self.time))
+        
         if t_end is None: t_end=len(self.time)
         self.t_end=int(t_end)
         dt = int(dt)
         self.time = self.time[(self.t_start-1):(self.t_end):dt]
-
+        print(self.time)
+        print(len(self.time))
         self.time_steps = np.arange(self.t_start,self.t_end+1,dt) #1-based for file names
     
         self.tstep = self.unit_dic['sml_dt']*self.unit_dic['diag_1d_period']
