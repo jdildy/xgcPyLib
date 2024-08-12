@@ -365,7 +365,7 @@ class _load(object):
         # print(type(f1d))
 
         items = f1d.available_variables()
-        
+        oneddiag ={}
 
         # print(type(items))
 
@@ -389,11 +389,11 @@ class _load(object):
 
         
        
-        # for key in keys:
-        #     data = self.readCmd(f1d,key)
-        #     if data.ndim==2: data = data[self.mask1d,:]
-        #     oneddiag[key]=data
-        # self.oneddiag = oneddiag
+        for key in items:
+            data = self.readCmd(f1d,key)
+            if data.ndim==2: data = data[self.mask1d,:]
+            oneddiag[key]=data
+        self.oneddiag = oneddiag
         
         #TODO: Decide if should remove this legacy renaming
         #modify 1d psin data
