@@ -360,7 +360,7 @@ class _load(object):
         #Inialize a dictionary 
         f1d = self.openCmd(self.oneddiag_file)
 
-        print(f1d.keys())
+        print(type(f1d.available_variables()))
 
         
         
