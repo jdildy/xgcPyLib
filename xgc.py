@@ -344,30 +344,29 @@ class _load(object):
         """Load all oneddiag quantities. Rename required equilibrium profiles and compute the interpolant
         """
         #class structtype(): pass
-        f1d = self.openCmd(self.oneddiag_file)
-        var = f1d.inquire_variable('psi')
-        
-        n_step = var.steps()
-        steplist = tuple(range(n_step))
+        #f1d = self.openCmd(self.oneddiag_file)
+        #var = f1d.inquire_variable('psi')
+       #n_step = var.steps()
+        #steplist = tuple(range(n_step))
 
-
-        print(n_step)
-        psi = f1d.read('psi', step_selection = [1,2,3])
-
-
-        print(psi.shape)
-
-        
-
-  
-            
+        #print(n_step)
+        #psi = f1d.read('psi', step_selection = steplist)
+        # print(psi.shape)
+       # f1d = self.readCmd(self.oneddiag_file)
+        # USer should be able to select which timestep to use 
         #read in all data from xgc.oneddiag
             
 
-
-       
+        #Inialize a dictionary 
+        f1d = self.openCmd(self.oneddiag_file)
         oneddiag={}
 
+        try:
+            keys = f1d.keys()
+        except:
+            keys = [key for key in f1d.keys()]
+
+        
         keys.sort()
         for key in keys:
             data = self.readCmd(f1d,key)
