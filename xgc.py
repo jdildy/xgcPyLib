@@ -375,6 +375,8 @@ class _load(object):
                 for key, value in items.items():
                     print("\t" + key + ": " + value, end=" ")
                 print()
+        else: 
+            print("this is not a dictionary")
 
 
 
