@@ -389,7 +389,7 @@ class _load(object):
             data = self.readCmd(self.oneddiag_file,key)
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
-        print(str(data.ndim) + " dimensions in data stuctured")
+        #print(str(data.ndim) + " dimensions in data stuctured")
         self.oneddiag = oneddiag
 
         #print(str(f1d))
@@ -405,7 +405,7 @@ class _load(object):
         psin1d = str(self.psin1d.ndim)
 
         #str -> 1
-        print (str(psin1d))
+        #print (str(psin1d))
         if self.psin1d.ndim > 1: self.psin1d = self.psin1d[0,:]
         
         #read n=0,m=0 potential
@@ -450,9 +450,9 @@ class _load(object):
         
         print(str(self.Ti1d))
         #create splines for t=0 data
-        self.ti0_sp = splrep(self.psin1d,self.Ti1d[0,:],k=1)
-        self.te0_sp = splrep(self.psin1d,self.Te1d[0,:],k=1)
-        self.ne0_sp = splrep(self.psin1d,self.ne1d[0,:],k=1)
+        self.ti0_sp = splrep(self.psin1d,self.Ti1d,k=1)
+        self.te0_sp = splrep(self.psin1d,self.Te1d,k=1)
+        self.ne0_sp = splrep(self.psin1d,self.ne1d,k=1)
     
     def loadBfield(self):
         """Load magnetic field
