@@ -380,6 +380,8 @@ class _load(object):
         #     print("this is not a dictionary")
         if isinstance(vars, dict):
             keys = [key for key in vars.keys()]
+        
+        print(vars.keys())
     
         
        
@@ -388,7 +390,7 @@ class _load(object):
             if data.ndim==2: data = data[self.mask1d,:]
             oneddiag[key]=data
         self.oneddiag = oneddiag
-        print(data.ndim)
+       
         
         #TODO: Decide if should remove this legacy renaming
         #modify 1d psin data
