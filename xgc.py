@@ -370,25 +370,17 @@ class _load(object):
         # print(type(items))
         print(vars)
 
+        # if isinstance(vars, dict):
+        #     for name, info in vars.items():
+        #         print("variable_name: " + name, end=" ")
+        #         for key, value in vars.items():
+        #             print("\t" + str(key) + ": " + str(value), end=" ")
+        #         print()
+        # else: 
+        #     print("this is not a dictionary")
         if isinstance(vars, dict):
-            for name, info in vars.items():
-                print("variable_name: " + name, end=" ")
-                for key, value in vars.items():
-                    print("\t" + str(key) + ": " + str(value), end=" ")
-                print()
-        else: 
-            print("this is not a dictionary")
-
-
-
-
-        
-        
-        
-
-
-
-
+            keys = [key for key in vars.keys()]
+    
         
        
         for key in keys:
