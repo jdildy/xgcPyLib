@@ -776,7 +776,8 @@ class xgc1Load(_load):
         # assert isinstance(phi_start,int), "phi_start must be a plane index (Int)"
         # assert isinstance(phi_end,int), "phi_end must be a plane index (Int)"
         self.phi_start=int(phi_start) # 0 
-        if phi_end is None: phi_end=self.Nplanes-1 # 132273 - 1 = 132272
+        if phi_end is None: 
+            phi_end=self.Nplanes - 1 # 132273 - 1 = 132272
         print(self.phi_start) # 0
         print(self.Nplanes - 1) # 132273
         print(type(self.Nplanes))
