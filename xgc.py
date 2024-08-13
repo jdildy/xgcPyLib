@@ -149,8 +149,10 @@ class _load(object):
         #read in time
         self.oneddiag_file=self.xgc_path+'xgc.oneddiag'
         self.mask1d = self.oned_mask()
+        
         try:
             self.time = np.array(self.readCmd(self.oneddiag_file,'time')[self.mask1d],ndmin=1)
+            
         except:
             self.time = [0]
         
@@ -165,7 +167,7 @@ class _load(object):
         # #numpy array
         # print(type(self.time))
         # print(self.time.ndim)
-        # print(self.time)
+        print(self.time)
             
         if t_start is None: t_start=1
         assert t_start > 0, "t_start must be greater than 0 (1-based index)"
