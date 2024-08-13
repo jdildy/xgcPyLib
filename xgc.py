@@ -175,41 +175,45 @@ class _load(object):
         if t_start is None: t_start=1
         assert t_start > 0, "t_start must be greater than 0 (1-based index)"
         self.t_start=int(t_start)
-        #self.t_start = 1
+        #self.t_start is Class int = 1
         
         
         if t_end is None: t_end=len(self.time)
-        print(len(self.time))
+        # print(len(self.time)) -> 1
         self.t_end=int(t_end)
         dt = int(dt)
 
-        # #int -> 1
-        # print(type(self.t_end))
-        # print(str(self.t_end))
-        # #int -> 1
-        # print(type(dt))
-        # print(str(dt))
-        # t_end -> 1 but the time => 1.6897348125005422e-07
-        #print("t_end is:" + str(t_end))
+        # self.t_end is Class int = 1
         
-        self.time = self.time[(self.t_start-1):(self.t_end):2]
-        #numpy_array
-        #self.time => 1.6897348125005422e-07
-        #print(type(self.time))
+        # #dt is Class int = 1
+        
+        # t_end -> 1 but the self.time => 1.6897348125005422e-07
+        
+        # 
+        
+        self.time = self.time[(self.t_start-1):(self.t_end):1]
+        #self.time is Class NumpyArray = 1.6897348125005422e-07
+
+        # myarr = myarr[(a):(b):(c)]
+        # a = start index = 0
+        # b = end index = 1 
+        # c = Step 1
+        
        # print(self.time[0])
 
         #timestep = 1 
         self.time_steps = np.arange(self.t_start,self.t_end+1,dt) #1-based for file names
         #print(str(self.time_steps) + ": amount of time_steps")
         self.tstep = self.unit_dic['sml_dt']*self.unit_dic['diag_1d_period']
-        self.Ntimes = len(self.time)
 
-        #tstep = 3.3794696250010844e-07
-        #print("tstep " + str(self.tstep))
-        #print(type(self.tstep)) float
-        #Ntimes = 1
-        #print("Ntimes " + str(self.Ntimes))
-        #print(type(self.Ntimes))
+
+        self.Ntimes = len(self.time)
+      
+
+        #tstep is Class float = 3.3794696250010844e-07
+        #Ntimes is class =  1
+        
+        print(type(self.Ntimes))
 
         
         #magnetics file
