@@ -202,7 +202,7 @@ class _load(object):
        # print(self.time[0])
 
         #timestep = 1 
-        self.time_steps = np.arange(self.t_start,self.t_end+1,dt) #1-based for file names
+        self.time_steps = np.arange(self.t_start,self.t_end+1,2) #1-based for file names
         #print(str(self.time_steps) + ": amount of time_steps")
         self.tstep = self.unit_dic['sml_dt']*self.unit_dic['diag_1d_period']
 
@@ -544,19 +544,17 @@ class _load(object):
             mask1d = np.zeros(idx.shape,dtype=np.int32)
             for (i,idxi) in enumerate(idx):
                 mask1d[i] = np.where(step == idxi*dstep)[0][-1] #get last occurence
-            print("This works")
+            
         except:
+            # This block runs
             mask1d = Ellipsis #pass variables unaffected
-            print("No, this works")
+           
         
 
-        print("The step[0] is: " + str(step[0]))
-        print("The step[-1] is: " + str(step[-1]))
+
 
         #print("The type of step is: " + str(type(step))) = Class - Numpy Array
 
-        print("The dstep is: " + dstep)
-        print(type(dstep))
 
         #print("The mask1d is: " + mask1d)
         # print("The type of mask1d is: " + str(type(mask1d))) = Class - Ellipsis
