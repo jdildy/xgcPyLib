@@ -862,11 +862,11 @@ class xgc1Load(_load):
         #print 'Read time: '+str(time.time()-start)
         
         #except:
-        print(str(self.Ntimes))
-        print(str(self.Nplanes))
-        print(str(self.t_start))
-        print(str(i))
-        print(str(self.readCmd))
+        print(str(self.Ntimes)) # 1
+        print(str(self.Nplanes)) # 2
+        print(str(self.t_start)) # 1 
+        # print(str(i))
+        print(str(self.readCmd)) 
         print(str(self.xgc_path))
         print(str(self.rzInds))
         print(str(self.phi_start))
