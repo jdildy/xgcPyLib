@@ -766,7 +766,9 @@ class xgc1Load(_load):
         #Edit where to start and what count to count by 
         
         #read in number of planes
+        #fluc_file0 = self.xgc_path + 'xgc.3d.' + str(self.time_steps[0]).zfill(5)
         fluc_file0 = self.xgc_path + 'xgc.3d.' + str(2).zfill(5)
+
         
         print(str(fluc_file0))
         self.Nplanes=self.readCmd(fluc_file0,'dpot').shape[1]
@@ -860,6 +862,15 @@ class xgc1Load(_load):
         #print 'Read time: '+str(time.time()-start)
         
         #except:
+        print(str(self.Ntimes))
+        print(str(self.Nplanes))
+        print(str(self.t_start))
+        print(str(i))
+        print(str(self.readCmd))
+        print(str(self.xgc_path))
+        print(str(self.rzInds))
+        print(str(self.phi_start))
+        print(str(self.phi_end))
         for i in range(self.Ntimes): 
             sys.stdout.write('\r\tLoading file ['+str(i)+'/'+str(self.Ntimes)+']')
             _,self.dpot[:,:,i],self.pot0[:,i],self.eden[:,:,i] = read_fluc_single(self.t_start + i,self.readCmd,self.xgc_path,self.rzInds,self.phi_start,self.phi_end)
