@@ -761,7 +761,7 @@ class xgc1Load(_load):
         #call parent loading init, including mesh and equilibrium
         #super().__init__(*args,**kwargs)
         super(xgc1Load,self).__init__(xgc_path,**kwargs)
-
+        phi_end = None
         #Edit where to start and what count to count by 
         print(phi_end )
         #read in number of planes
