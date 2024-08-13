@@ -825,9 +825,13 @@ class xgc1Load(_load):
             print(rzInds)
             print(phi_start)
             print(phi_end)
-            dpot1 = readCmd(flucFile,'dpot' )#[self.rzInds,self.phi_start:(self.phi_end+1)]
-            pot01 = readCmd(flucFile,'pot0',inds=(rzInds,) )#[rzInds]
-            eden1 = readCmd(flucFile,'eden',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
+            dpot1 = readCmd(flucFile,'dpot')#[self.rzInds,self.phi_start:(self.phi_end+1)]
+            #dpot1 = readCmd(flucFile,'dpot',inds=(rzInds,) )#[rzInds]
+            pot01 = readCmd(flucFile, 'pot0')
+            #pot01 = readCmd(flucFile,'pot0',inds=(rzInds,) )#[rzInds]
+            eden1 = readCmd(flucFile,'eden')
+            #eden1 = readCmd(flucFile,'eden',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
+            
             return i,dpot1,pot01,eden1, 
         
         #import time
