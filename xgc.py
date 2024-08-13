@@ -452,7 +452,6 @@ class _load(object):
         #TODO: Decide if should remove this legacy renaming
         #modify 1d psin data
         self.psin1d = self.oneddiag['psi']
-        psin1d = str(self.psin1d.ndim)
 
         #str -> 1
         #print (str(psin1d))
@@ -768,9 +767,10 @@ class xgc1Load(_load):
         #read in number of planes
         #fluc_file0 = self.xgc_path + 'xgc.3d.' + str(self.time_steps[0]).zfill(5)
         fluc_file0 = self.xgc_path + 'xgc.3d.' + str(2).zfill(5)
-
+        
         
         self.Nplanes=self.readCmd(fluc_file0,'dpot').shape[1]
+        print("The number of planes is: " + str(self.Nplanes))
         
 
         # assert isinstance(phi_start,int), "phi_start must be a plane index (Int)"
@@ -865,15 +865,15 @@ class xgc1Load(_load):
         #print 'Read time: '+str(time.time()-start)
         
         #except:
-        print(str(self.Ntimes)) # 1
-        print(str(self.Nplanes)) # 2
-        print(str(self.t_start)) # 1 
-        # print(str(i))
-        print(str(self.readCmd)) # <function _load.__init__.<locals>.readAdios2 at 0x7f4e0792a480>
-        print(str(self.xgc_path)) # /pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun/
-        print(str(self.rzInds)) # [False False False ... False False False]
-        print(str(self.phi_start)) # 0
-        print(str(self.phi_end)) # 1
+        # print(str(self.Ntimes)) # 1
+        # print(str(self.Nplanes)) # 2
+        # print(str(self.t_start)) # 1 
+        # # print(str(i))
+        # print(str(self.readCmd)) # <function _load.__init__.<locals>.readAdios2 at 0x7f4e0792a480>
+        # print(str(self.xgc_path)) # /pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun/
+        # print(str(self.rzInds)) # [False False False ... False False False]
+        # print(str(self.phi_start)) # 0
+        # print(str(self.phi_end)) # 1
         for i in range(self.Ntimes): 
             sys.stdout.write('\r\tLoading file ['+str(i)+'/'+str(self.Ntimes)+']')
             _,self.dpot[:,:,i],self.pot0[:,i],self.eden[:,:,i] = read_fluc_single(self.t_start + i,self.readCmd,self.xgc_path,self.rzInds,self.phi_start,self.phi_end)
