@@ -151,12 +151,16 @@ class _load(object):
         self.mask1d = self.oned_mask()
         
         try:
+            #This block runs
             self.time = np.array(self.readCmd(self.oneddiag_file,'time')[self.mask1d],ndmin=1)
-            print("This worked")
+            #self.time = 1.6897348125005422e-07
+            #self.time => numpy.array
+
+            
             
         except:
             self.time = [0]
-            print("No this worked")
+            
         
         # #int -> 1
         # print(type(t_start))
@@ -166,10 +170,8 @@ class _load(object):
         # print(type(t_end))
         # print(t_end)
 
-        # #numpy array
-        # print(type(self.time))
-        # print(self.time.ndim)
-        print(self.time)
+        print(self.time.ndim)
+      
             
         if t_start is None: t_start=1
         assert t_start > 0, "t_start must be greater than 0 (1-based index)"
