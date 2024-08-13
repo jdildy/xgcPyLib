@@ -211,9 +211,8 @@ class _load(object):
       
 
         #tstep is Class float = 3.3794696250010844e-07
-        #Ntimes is class =  1
+        #Ntimes is class int =  1
         
-        print(type(self.Ntimes))
 
         
         #magnetics file
@@ -546,11 +545,11 @@ class _load(object):
             mask1d = Ellipsis #pass variables unaffected
         
 
-        #print("The step is: " + step)
-        # print("The type of step is: " + str(type(step))) = Class - Numpy Array
+        print("The step is: " + step)
+        #print("The type of step is: " + str(type(step))) = Class - Numpy Array
 
-        #print("The dstep is: " + dstep)
-        #print(type(dstep))
+        print("The dstep is: " + dstep)
+        print(type(dstep))
 
         #print("The mask1d is: " + mask1d)
         # print("The type of mask1d is: " + str(type(mask1d))) = Class - Ellipsis
