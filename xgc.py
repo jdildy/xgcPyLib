@@ -778,7 +778,7 @@ class xgc1Load(_load):
         self.phi_start=int(phi_start) # 0 
         if phi_end is None: phi_end=self.Nplanes-1 # 132273 - 1 = 132272
         print(self.phi_start) # 0
-        print(self.Nplanes) # 132273
+        print(self.Nplanes - 1) # 132273
         print(phi_end)
         self.phi_end = int(phi_end)
         
