@@ -476,7 +476,7 @@ class _load(object):
             itemp_par=self.oneddiag['i_parallel_mean_en_1d']
             itemp_per=self.oneddiag['i_perp_temperature_1d']
         self.Ti1d=(itemp_par+itemp_per)*2./3
-        print("Self.Ti1d is type " + str(type(self.Ti1d)))
+    
         
         try:
             etemp_par=self.oneddiag['e_parallel_mean_en_avg']
@@ -776,6 +776,7 @@ class xgc1Load(_load):
         # assert isinstance(phi_start,int), "phi_start must be a plane index (Int)"
         # assert isinstance(phi_end,int), "phi_end must be a plane index (Int)"
         self.phi_start=int(phi_start) # 0 
+        print("Nplanes is " + str(self.Nplanes))
         if phi_end is None: phi_end=self.Nplanes - 1 # 132273 - 1 = 132272
         print("Phi_end before int() " + str(phi_end))
         self.phi_end = int(phi_end)
