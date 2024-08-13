@@ -180,8 +180,8 @@ class _load(object):
         
         if t_end is None: t_end=len(self.time)
         print(len(t_end))
-        self.t_end=int(t_end)
-        dt = int(dt)
+        # self.t_end=int(t_end)
+        # dt = int(dt)
 
         # #int -> 1
         # print(type(self.t_end))
