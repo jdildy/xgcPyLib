@@ -820,11 +820,11 @@ class xgc1Load(_load):
             i = 2
             flucFile = self.xgc_path + 'xgc.3d.' + str(2).zfill(5)
             #flucFile = Stream(xgc_path + 'xgc.3d.'+str(2).zfill(5)+'.bp','rra')
-            print(str(flucFile))
-            print(type(flucFile))
-            print(rzInds)
-            print(phi_start)
-            print(phi_end)
+            # print(str(flucFile))
+            # print(type(flucFile))
+            # print(rzInds)
+            # print(phi_start)
+            # print(phi_end)
             dpot1 = readCmd(flucFile,'dpot')#[self.rzInds,self.phi_start:(self.phi_end+1)]
             #dpot1 = readCmd(flucFile,'dpot',inds=(rzInds,) )#[rzInds]
             pot01 = readCmd(flucFile, 'pot0')
