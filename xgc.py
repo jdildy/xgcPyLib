@@ -162,17 +162,14 @@ class _load(object):
             self.time = [0]
             
         
-        # #int -> 1
-        # print(type(t_start))
-        # print(t_start)
-
+       
         # #nonetype
         # print(type(t_end))
         # print(t_end)
 
       
             
-        if t_start is None: t_start=1
+        if t_start is None: t_start=1 # t_start initialized to 1 in __init__.
         assert t_start > 0, "t_start must be greater than 0 (1-based index)"
         self.t_start=int(t_start)
         #self.t_start is Class int = 1
@@ -484,14 +481,14 @@ class _load(object):
         try:
             etemp_par=self.oneddiag['e_parallel_mean_en_avg']
             etemp_per=self.oneddiag['e_perp_temperature_avg']
-            self.Te1d=(etemp_par+etemp_per)*2./3
+            self.Te1d=(etemp_par+etemp_per)*2./3 #Numpy Array
             #read electron density
             self.ne1d = self.oneddiag['e_gc_density_1d']
         except:
             try:
                 etemp_par=self.oneddiag['e_parallel_mean_en_1d']
                 etemp_per=self.oneddiag['e_perp_temperature_1d']
-                self.Te1d=(etemp_par+etemp_per)*2./3
+                self.Te1d=(etemp_par+etemp_per)*2./3 #Numpy array
                 #read electron density
                 self.ne1d = self.oneddiag['e_gc_density_1d']
             except: #ion only sim
@@ -500,21 +497,11 @@ class _load(object):
                 self.Te1d=(etemp_par+etemp_per)*2./3
                 #read electron density
                 self.ne1d = np.apply_along_axis(lambda a: np.interp(self.psin1d,self.psin001d,a),1,self.pot001d)/self.Te1d
-        
-        
-         #print("Self.Ti1d is type " + str(type(self.Ti1d))) # Numpy Array
-         #print("Self.Ti1d is type " + str(type(self.Te1d))) Numpy Array
-         #print("Self.Ti1d is type " + str(type(self.ne1d))) Numpy Array 
-
-
+                #numpy array
         #create splines for t=0 data
-        self.ti0_sp = splrep(self.psin1d,self.Ti1d,k=1)
-        self.te0_sp = splrep(self.psin1d,self.Te1d,k=1)
-        self.ne0_sp = splrep(self.psin1d,self.ne1d,k=1)
-
-        print(type(self.ti0_sp))
-        print(type(self.te0_sp))
-        print(type(self.ne0_sp))
+        self.ti0_sp = splrep(self.psin1d,self.Ti1d,k=1) #Tuple
+        self.te0_sp = splrep(self.psin1d,self.Te1d,k=1) #Tuple
+        self.ne0_sp = splrep(self.psin1d,self.ne1d,k=1) #Tuple 
     
     def loadBfield(self):
         """Load magnetic field
@@ -782,19 +769,19 @@ class xgc1Load(_load):
         fluc_file0 = self.xgc_path + 'xgc.3d.' + str(2).zfill(5)
         
         
-        self.Nplanes=self.readCmd(fluc_file0,'dpot').shape[1]
+        self.Nplanes=self.readCmd(fluc_file0,'dpot').shape[1] #
         print("The number of planes is: " + str(self.Nplanes))
         
 
         # assert isinstance(phi_start,int), "phi_start must be a plane index (Int)"
         # assert isinstance(phi_end,int), "phi_end must be a plane index (Int)"
-        self.phi_start=int(phi_start)
-        if phi_end is None: phi_end=self.Nplanes-1
+        self.phi_start=int(phi_start) # 0 
+        if phi_end is None: phi_end=self.Nplanes-1 # 132273 - 1 = 132272
         self.phi_end = int(phi_end)
-        self.Nplanes=self.phi_end-self.phi_start+1
+        self.Nplanes=self.phi_end-self.phi_start+1 # 132272 - 0 + 1 = 132273
 
-        print("This is self.phi_start: " + str(self.phi_start))
-        print("This is self.phi_end: " + str(self.phi_start))
+        print("This is self.phi_start: " + str(self.phi_start)) # 0
+        print("This is self.phi_end: " + str(self.phi_end))
         
         if not skip_fluc:
             print('Loading fluctuations...')
