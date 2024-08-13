@@ -531,8 +531,11 @@ class _load(object):
            Use this on oneddiag variables, e.g. n_e1d = ad.file('xgc.oneddiag.bp','e_gc_density_1d')[mask1d,:]
         """
         try:
+            #step[0] = 2
+            #step[1] = Does Not Exist
+            #step[-1] (gets last element in the array) = 2
             step = self.readCmd(self.oneddiag_file,'step')
-            dstep = step[1] - step[0]
+            dstep = step[1] - step[0] #should throw OutOfBounds since it has only 1 element
             
             idx = np.arange(step[0]/dstep,step[-1]/dstep+1)
             
@@ -541,8 +544,10 @@ class _load(object):
             mask1d = np.zeros(idx.shape,dtype=np.int32)
             for (i,idxi) in enumerate(idx):
                 mask1d[i] = np.where(step == idxi*dstep)[0][-1] #get last occurence
+            print("This works")
         except:
             mask1d = Ellipsis #pass variables unaffected
+            print("No, this works")
         
 
         print("The step[0] is: " + str(step[0]))
