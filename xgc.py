@@ -815,13 +815,14 @@ class xgc1Load(_load):
             #return i,dpot1,pot01,eden1
            
              
-        def read_fluc_single(i,readCmd,xgc_path,rzInds,phi_start,phi_end):
+        def read_fluc_single(i,readCmd,xgc_path,rzInds,phi_start,phi_end,):
             # import adios2 as ad
+            print(i)
             flucFile = Stream(xgc_path + 'xgc.3d.'+str(i).zfill(5)+'.bp','r')
             dpot1 = readCmd(flucFile,'dpot',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
             pot01 = readCmd(flucFile,'pot0',inds=(rzInds,) )#[rzInds]
             eden1 = readCmd(flucFile,'eden',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
-            return i,dpot1,pot01,eden1
+            return i,dpot1,pot01,eden1, 
         
         #import time
         #start = time.time() #ipyparallel
