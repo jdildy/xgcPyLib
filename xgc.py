@@ -460,10 +460,10 @@ class _load(object):
         #read n=0,m=0 potential
         try:
             self.psin001d = self.oneddiag['psi00_1d']/self.unit_dic['psi_x']
-            print("This code block works")
+            
         except:
+            #This runs
             self.psin001d = self.oneddiag['psi00']/self.unit_dic['psi_x']
-            print("No, this code block works")
 
         # numpy array whose dimensions is also 1
         #print(type(self.psin001d))
@@ -479,6 +479,7 @@ class _load(object):
             itemp_par=self.oneddiag['i_parallel_mean_en_1d']
             itemp_per=self.oneddiag['i_perp_temperature_1d']
         self.Ti1d=(itemp_par+itemp_per)*2./3
+        print("Self.Ti1d is type " + str(type(self.Ti1d)))
         
         try:
             etemp_par=self.oneddiag['e_parallel_mean_en_avg']
@@ -500,11 +501,20 @@ class _load(object):
                 #read electron density
                 self.ne1d = np.apply_along_axis(lambda a: np.interp(self.psin1d,self.psin001d,a),1,self.pot001d)/self.Te1d
         
-        #print(str(self.Ti1d))
+        
+        print("Self.Ti1d is type " + str(type(self.Ti1d)))
+        print("Self.Ti1d is type " + str(type(self.Te1d)))
+        print("Self.Ti1d is type " + str(type(self.ne1d)))
+
+
         #create splines for t=0 data
         self.ti0_sp = splrep(self.psin1d,self.Ti1d,k=1)
         self.te0_sp = splrep(self.psin1d,self.Te1d,k=1)
         self.ne0_sp = splrep(self.psin1d,self.ne1d,k=1)
+
+        print(self.ti0_sp)
+        print(self.te0_sp)
+        print(self.ne0_sp)
     
     def loadBfield(self):
         """Load magnetic field
