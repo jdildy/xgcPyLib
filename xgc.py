@@ -152,9 +152,11 @@ class _load(object):
         
         try:
             self.time = np.array(self.readCmd(self.oneddiag_file,'time')[self.mask1d],ndmin=1)
+            print("This worked")
             
         except:
             self.time = [0]
+            print("No this worked")
         
         # #int -> 1
         # print(type(t_start))
@@ -189,21 +191,22 @@ class _load(object):
         
         self.time = self.time[(self.t_start-1):(self.t_end):2]
         #numpy_array
-        print(type(self.time))
-        print(self.time[0])
+        #self.time => 1.6897348125005422e-07
+        #print(type(self.time))
+       # print(self.time[0])
 
         #timestep = 1 
         self.time_steps = np.arange(self.t_start,self.t_end+1,dt) #1-based for file names
-        print(str(self.time_steps) + ": amount of time_steps")
+        #print(str(self.time_steps) + ": amount of time_steps")
         self.tstep = self.unit_dic['sml_dt']*self.unit_dic['diag_1d_period']
         self.Ntimes = len(self.time)
 
         #tstep = 3.3794696250010844e-07
-        print("tstep " + str(self.tstep))
-        print(type(self.tstep))
+        #print("tstep " + str(self.tstep))
+        #print(type(self.tstep)) float
         #Ntimes = 1
-        print("Ntimes" + str(self.Ntimes))
-        print(type(self.Ntimes))
+        #print("Ntimes " + str(self.Ntimes))
+        #print(type(self.Ntimes))
 
         
         #magnetics file
