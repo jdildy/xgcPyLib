@@ -502,9 +502,9 @@ class _load(object):
                 self.ne1d = np.apply_along_axis(lambda a: np.interp(self.psin1d,self.psin001d,a),1,self.pot001d)/self.Te1d
         
         
-        print("Self.Ti1d is type " + str(type(self.Ti1d)))
-        print("Self.Ti1d is type " + str(type(self.Te1d)))
-        print("Self.Ti1d is type " + str(type(self.ne1d)))
+         #print("Self.Ti1d is type " + str(type(self.Ti1d))) # Numpy Array
+         #print("Self.Ti1d is type " + str(type(self.Te1d))) Numpy Array
+         #print("Self.Ti1d is type " + str(type(self.ne1d))) Numpy Array 
 
 
         #create splines for t=0 data
@@ -512,9 +512,9 @@ class _load(object):
         self.te0_sp = splrep(self.psin1d,self.Te1d,k=1)
         self.ne0_sp = splrep(self.psin1d,self.ne1d,k=1)
 
-        print(self.ti0_sp)
-        print(self.te0_sp)
-        print(self.ne0_sp)
+        print(type(self.ti0_sp))
+        print(type(self.te0_sp))
+        print(type(self.ne0_sp))
     
     def loadBfield(self):
         """Load magnetic field
