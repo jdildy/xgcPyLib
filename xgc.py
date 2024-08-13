@@ -819,7 +819,7 @@ class xgc1Load(_load):
             # import adios2 as ad
             i = 2
 
-            print(str(flucFile))
+            print(type(flucFile))
             print(rzInds)
             print(phi_start)
             print(phi_end)
