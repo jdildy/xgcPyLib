@@ -154,7 +154,7 @@ class _load(object):
             #This block runs
             self.time = np.array(self.readCmd(self.oneddiag_file,'time')[self.mask1d],ndmin=1)
             #self.time = 1.6897348125005422e-07
-            #self.time => numpy.array
+            #self.time => 1D numpy.array with 1 element
 
             
             
@@ -170,16 +170,16 @@ class _load(object):
         # print(type(t_end))
         # print(t_end)
 
-        print(self.time.ndim)
-        print(self.time.shape)
       
             
         if t_start is None: t_start=1
         assert t_start > 0, "t_start must be greater than 0 (1-based index)"
         self.t_start=int(t_start)
-        #length of self.time
+        #self.t_start = 1
+        
         
         if t_end is None: t_end=len(self.time)
+        print(str(len(t_end)))
         self.t_end=int(t_end)
         dt = int(dt)
 
