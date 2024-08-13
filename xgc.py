@@ -171,7 +171,7 @@ class _load(object):
         # print(t_end)
 
         print(self.time.ndim)
-        print(" ")
+        print(self.time.shape)
       
             
         if t_start is None: t_start=1
