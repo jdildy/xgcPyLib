@@ -546,7 +546,7 @@ class _load(object):
         
 
         print("The step[0] is: " + str(step[0]))
-        print("The step[1] is: " + str(step[1]))
+        print("The step[-1] is: " + str(step[-1]))
 
         #print("The type of step is: " + str(type(step))) = Class - Numpy Array
 
