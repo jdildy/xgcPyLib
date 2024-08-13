@@ -766,7 +766,7 @@ class xgc1Load(_load):
         #Edit where to start and what count to count by 
         
         #read in number of planes
-        fluc_file0 = self.xgc_path + 'xgc.3d.' + str(self.time_steps[0]).zfill(5)
+        fluc_file0 = self.xgc_path + 'xgc.3d.' + str(2).zfill(5)
         
         print(str(fluc_file0))
         self.Nplanes=self.readCmd(fluc_file0,'dpot').shape[1]
