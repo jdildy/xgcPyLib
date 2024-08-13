@@ -872,8 +872,8 @@ class xgc1Load(_load):
         print(str(self.phi_start)) # 0
         print(str(self.phi_end)) # 1
         for i in range(self.Ntimes): 
-            sys.stdout.write('\r\tLoading file ['+str(2)+'/'+str(self.Ntimes)+']')
-            _,self.dpot[:,:,i],self.pot0[:,i],self.eden[:,:,i] = read_fluc_single(self.t_start + i,self.readCmd,self.xgc_path,self.rzInds,self.phi_start,self.phi_end)
+            sys.stdout.write('\r\tLoading file ['+str(i)+'/'+str(self.Ntimes)+']')
+            _,self.dpot[:,:,i],self.pot0[:,i],self.eden[:,:,i] = read_fluc_single(self.t_start + 1,self.readCmd,self.xgc_path,self.rzInds,self.phi_start,self.phi_end)
                 
         #for i in range(self.Ntimes): #same as the for loop above
         #    sys.stdout.write('\r\tLoading file ['+str(i)+'/'+str(self.Ntimes)+']')
