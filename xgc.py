@@ -179,7 +179,7 @@ class _load(object):
         
         
         if t_end is None: t_end=len(self.time)
-        print(str(len(t_end)))
+        print(len(t_end))
         self.t_end=int(t_end)
         dt = int(dt)
 
@@ -543,13 +543,13 @@ class _load(object):
         
 
         #print("The step is: " + step)
-        print("The type of step is: " + str(type(step)))
+        # print("The type of step is: " + str(type(step))) = Class - Numpy Array
 
         #print("The dstep is: " + dstep)
         #print(type(dstep))
 
         #print("The mask1d is: " + mask1d)
-        print("The type of mask1d is: " + str(type(mask1d)))
+        # print("The type of mask1d is: " + str(type(mask1d))) = Class - Ellipsis
 
             
         return mask1d
