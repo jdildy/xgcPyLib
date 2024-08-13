@@ -763,24 +763,19 @@ class xgc1Load(_load):
         super(xgc1Load,self).__init__(xgc_path,**kwargs)
         phi_end = None
         #Edit where to start and what count to count by 
-        print(phi_end )
         #read in number of planes
         #fluc_file0 = self.xgc_path + 'xgc.3d.' + str(self.time_steps[0]).zfill(5)
         fluc_file0 = self.xgc_path + 'xgc.3d.' + str(2).zfill(5)
         
         
         self.Nplanes=self.readCmd(fluc_file0,'dpot').shape[1] #
-        print("The number of planes is: " + str(self.Nplanes))
-        print("Phi_end before calculation" + str(phi_end))
+        
 
         # assert isinstance(phi_start,int), "phi_start must be a plane index (Int)"
         # assert isinstance(phi_end,int), "phi_end must be a plane index (Int)"
         self.phi_start=int(phi_start) # 0 
-        print("Nplanes is " + str(self.Nplanes))
         if phi_end is None: phi_end=self.Nplanes - 1 # 132273 - 1 = 132272
-        print("Phi_end before int() " + str(phi_end))
         self.phi_end = int(phi_end)
-        print("Phi_end after int() " + str(phi_end))
         self.Nplanes=self.phi_end-self.phi_start+1 # 132272 - 0 + 1 = 132273
 
         
