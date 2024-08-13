@@ -191,7 +191,7 @@ class _load(object):
         
         # 
         
-        self.time = self.time[(self.t_start-1):(self.t_end):1]
+        self.time = self.time[(self.t_start-1):(self.t_end):dt]
         #self.time is Class NumpyArray = 1.6897348125005422e-07
 
         # myarr = myarr[(a):(b):(c)]
@@ -199,10 +199,9 @@ class _load(object):
         # b = end index = 1 
         # c = Step 1
         
-       # print(self.time[0])
 
-        #timestep = 1 
-        self.time_steps = np.arange(self.t_start,self.t_end+1,2) #1-based for file names
+        #time_step = 1 
+        self.time_steps = np.arange(self.t_start,self.t_end+1,dt) #1-based for file names
         #print(str(self.time_steps) + ": amount of time_steps")
         self.tstep = self.unit_dic['sml_dt']*self.unit_dic['diag_1d_period']
 
