@@ -460,8 +460,11 @@ class _load(object):
         #read n=0,m=0 potential
         try:
             self.psin001d = self.oneddiag['psi00_1d']/self.unit_dic['psi_x']
+            print("This code block works")
         except:
             self.psin001d = self.oneddiag['psi00']/self.unit_dic['psi_x']
+            print("No, this code block works")
+
         # numpy array whose dimensions is also 1
         #print(type(self.psin001d))
         #print(str(self.psin001d.ndim))
