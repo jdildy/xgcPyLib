@@ -818,7 +818,7 @@ class xgc1Load(_load):
              
         def read_fluc_single(i,readCmd,xgc_path,rzInds,phi_start,phi_end):
             # import adios2 as ad
-            flucFile = Stream(xgc_path + 'xgc.3d.'+str(i).zfill(5)+'.bp','r')
+            flucFile = Stream(xgc_path + 'xgc.3d.'+str(2).zfill(5)+'.bp','r')
             dpot1 = readCmd(flucFile,'dpot',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
             pot01 = readCmd(flucFile,'pot0',inds=(rzInds,) )#[rzInds]
             eden1 = readCmd(flucFile,'eden',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
@@ -866,13 +866,13 @@ class xgc1Load(_load):
         print(str(self.Nplanes)) # 2
         print(str(self.t_start)) # 1 
         # print(str(i))
-        print(str(self.readCmd)) 
-        print(str(self.xgc_path))
-        print(str(self.rzInds))
-        print(str(self.phi_start))
-        print(str(self.phi_end))
+        print(str(self.readCmd)) # <function _load.__init__.<locals>.readAdios2 at 0x7f4e0792a480>
+        print(str(self.xgc_path)) # /pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun/
+        print(str(self.rzInds)) # [False False False ... False False False]
+        print(str(self.phi_start)) # 0
+        print(str(self.phi_end)) # 1
         for i in range(self.Ntimes): 
-            sys.stdout.write('\r\tLoading file ['+str(i)+'/'+str(self.Ntimes)+']')
+            sys.stdout.write('\r\tLoading file ['+str(2)+'/'+str(self.Ntimes)+']')
             _,self.dpot[:,:,i],self.pot0[:,i],self.eden[:,:,i] = read_fluc_single(self.t_start + i,self.readCmd,self.xgc_path,self.rzInds,self.phi_start,self.phi_end)
                 
         #for i in range(self.Ntimes): #same as the for loop above
