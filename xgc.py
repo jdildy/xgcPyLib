@@ -780,7 +780,7 @@ class xgc1Load(_load):
         self.phi_end = int(phi_end)
         self.Nplanes=self.phi_end-self.phi_start+1 # 132272 - 0 + 1 = 132273
 
-        print("This is self.phi_start: " + str(self.phi_start)) # 0
+        print("This is self.phi_start: " + str(self.phi_start)) # 0 
         print("This is self.phi_end: " + str(self.phi_end))
         
         if not skip_fluc:
