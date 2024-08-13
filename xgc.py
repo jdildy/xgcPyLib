@@ -818,8 +818,8 @@ class xgc1Load(_load):
         def read_fluc_single(i,readCmd,xgc_path,rzInds,phi_start,phi_end,):
             # import adios2 as ad
             i = 2
-
-            flucFile = Stream(xgc_path + 'xgc.3d.'+str(2).zfill(5)+'.bp','rra')
+            flucFile = self.xgc_path + 'xgc.3d.' + str(2).zfill(5)
+            #flucFile = Stream(xgc_path + 'xgc.3d.'+str(2).zfill(5)+'.bp','rra')
             print(str(flucFile))
             print(type(flucFile))
             print(rzInds)
