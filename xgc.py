@@ -819,7 +819,7 @@ class xgc1Load(_load):
             # import adios2 as ad
             i = 2
             flucFile = Stream(xgc_path + 'xgc.3d.'+str(2).zfill(5)+'.bp','rra')
-            dpot1 = readCmd(flucFile,'dpot' )#[self.rzInds,self.phi_start:(self.phi_end+1)]
+            dpot1 = readCmd(flucFile,'dpot' ,inds=(rzInds,)+(slice(phi_start,phi_end+1),))#[self.rzInds,self.phi_start:(self.phi_end+1)]
             pot01 = readCmd(flucFile,'pot0',inds=(rzInds,) )#[rzInds]
             eden1 = readCmd(flucFile,'eden',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
             return i,dpot1,pot01,eden1, 
