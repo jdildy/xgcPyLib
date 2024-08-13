@@ -770,8 +770,8 @@ class xgc1Load(_load):
         fluc_file0 = self.xgc_path + 'xgc.3d.' + str(2).zfill(5)
 
         
-        print(str(fluc_file0))
         self.Nplanes=self.readCmd(fluc_file0,'dpot').shape[1]
+        
 
         # assert isinstance(phi_start,int), "phi_start must be a plane index (Int)"
         # assert isinstance(phi_end,int), "phi_end must be a plane index (Int)"
@@ -779,6 +779,9 @@ class xgc1Load(_load):
         if phi_end is None: phi_end=self.Nplanes-1
         self.phi_end = int(phi_end)
         self.Nplanes=self.phi_end-self.phi_start+1
+
+        print("This is self.phi_start: " + str(self.phi_start))
+        print("This is self.phi_end: " + str(self.phi_start))
         
         if not skip_fluc:
             print('Loading fluctuations...')
@@ -818,7 +821,7 @@ class xgc1Load(_load):
              
         def read_fluc_single(i,readCmd,xgc_path,rzInds,phi_start,phi_end):
             # import adios2 as ad
-            flucFile = Stream(xgc_path + 'xgc.3d.'+str(2).zfill(5)+'.bp','r')
+            flucFile = Stream(xgc_path + 'xgc.3d.'+str(i).zfill(5)+'.bp','r')
             dpot1 = readCmd(flucFile,'dpot',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
             pot01 = readCmd(flucFile,'pot0',inds=(rzInds,) )#[rzInds]
             eden1 = readCmd(flucFile,'eden',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
@@ -873,7 +876,7 @@ class xgc1Load(_load):
         print(str(self.phi_end)) # 1
         for i in range(self.Ntimes): 
             sys.stdout.write('\r\tLoading file ['+str(i)+'/'+str(self.Ntimes)+']')
-            _,self.dpot[:,:,i],self.pot0[:,i],self.eden[:,:,i] = read_fluc_single(self.t_start + 1,self.readCmd,self.xgc_path,self.rzInds,self.phi_start,self.phi_end)
+            _,self.dpot[:,:,i],self.pot0[:,i],self.eden[:,:,i] = read_fluc_single(self.t_start + i,self.readCmd,self.xgc_path,self.rzInds,self.phi_start,self.phi_end)
                 
         #for i in range(self.Ntimes): #same as the for loop above
         #    sys.stdout.write('\r\tLoading file ['+str(i)+'/'+str(self.Ntimes)+']')
