@@ -817,7 +817,7 @@ class xgc1Load(_load):
              
         def read_fluc_single(i,readCmd,xgc_path,rzInds,phi_start,phi_end,):
             # import adios2 as ad
-            print(i)
+            i = 2
             flucFile = Stream(xgc_path + 'xgc.3d.'+str(i).zfill(5)+'.bp','r')
             dpot1 = readCmd(flucFile,'dpot',inds=(rzInds,)+(slice(phi_start,phi_end+1),) )#[self.rzInds,self.phi_start:(self.phi_end+1)]
             pot01 = readCmd(flucFile,'pot0',inds=(rzInds,) )#[rzInds]
