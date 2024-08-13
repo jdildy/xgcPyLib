@@ -545,7 +545,9 @@ class _load(object):
             mask1d = Ellipsis #pass variables unaffected
         
 
-        print("The step length is: " + str(len(step)))
+        print("The step[0] is: " + step[0])
+        print("The step[1] is: " + step[1])
+
         #print("The type of step is: " + str(type(step))) = Class - Numpy Array
 
         print("The dstep is: " + dstep)
