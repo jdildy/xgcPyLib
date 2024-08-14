@@ -57,6 +57,7 @@ class xgc1(object):
             else:
                 print(f"The 'rundir' directory does not exist at path: {path}\n")
             
+            bp_timeslices.sort()
             return bp_timeslices
     
         
