@@ -29,7 +29,7 @@ class xgc1(object):
 
         
 
-        print("Reading XGC Output Data")
+    print("Reading XGC Output Data")
         
 
         # def findTimeSlices():
