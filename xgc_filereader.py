@@ -24,10 +24,24 @@ class xgc1(object):
         print("TimeSlice Data Capture Complete.")
 
         self.length = len(self.time)
-        
+
         self.start = self.time[0]
         self.end = self.time[-1]
-        print(self.end)
+        self.step = self.time[1] - self.time[0]
+
+        istart = self.start
+        iend = self.end
+        istep = self.step
+      
+
+        for i in range(istart, iend, istep):
+            filename = "xgc.3d.%5.5d.bp" %(i)
+
+            with Stream(filename,"rra") as f:
+                dpot = f.read("dpot")
+                print(dpot)
+        
+        
         
                   
 
