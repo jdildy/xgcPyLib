@@ -57,6 +57,8 @@ class xgc1(object):
             else:
                 print(f"The 'rundir' directory does not exist at path: {path}\n")
             
+            for i in range(0,len(bp_timeslices)):
+                bp_timeslices[i] = int(bp_timeslices)  
             bp_timeslices.sort()
             return bp_timeslices
     
