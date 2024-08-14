@@ -19,7 +19,7 @@ import re
 class xgc1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'/')  #get file_path, add path separator if not there
-
+        print(str(self.xgc_path))
         self.vars = {}
         print("Reading XGC Output Data...")
         print("Getting Time Slice Data...")
@@ -36,17 +36,18 @@ class xgc1(object):
         istart = self.start
         iend = self.end
         istep = self.step
+
+        
       
 
-        for i in range(istart, iend, istep):
-            filename = xgc_path + "xgc.3d.%5.5d.bp" %(i)
-            print(filename)
-            # try:
-            #     with Stream(filename,"rra") as f:
-            #         dpot = f.read("dpot")
-            #         dden = f.read('eden')
-            # except Exception as e:
-            #     print(f"Error reading file: {e}")
+        # for i in range(istart, iend, istep):
+        #     filename = xgc_path + "xgc.3d.%5.5d.bp" %(i)
+        #     # try:
+        #     #     with Stream(filename,"rra") as f:
+        #     #         dpot = f.read("dpot")
+        #     #         dden = f.read('eden')
+        #     # except Exception as e:
+        #     #     print(f"Error reading file: {e}")
 
             
                   
