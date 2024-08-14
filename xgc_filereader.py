@@ -78,7 +78,7 @@ class xgc1(object):
                 select = input("Select a choice: ")
                 choice = int(select)
 
-                if any(choice == number for number, _ in choice):
+                if any(choice == number for number, _ in choices):
                     return choice
                 else: 
                     print("Invalid choice. Please select a valid option")
