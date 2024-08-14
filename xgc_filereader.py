@@ -9,6 +9,9 @@ from scipy.special import erfc
 import scipy.sparse as sp
 from tqdm.auto import trange, tqdm
 
+import adios2
+
+
 
 import os
 import re
@@ -36,11 +39,14 @@ class xgc1(object):
 
         for i in range(istart, iend, istep):
             filename = "xgc.3d.%5.5d.bp" %(i)
-            print(str(filename))
+            try:
+                with Stream(filename,"rra") as f:
+                    dpot = f.read("dpot")
+                    dden = f.read('eden')
+            except Exception as e:
+                print(f"Error reading file: {e}")
 
-            with Stream(filename,"rra") as f:
-                dpot = f.read("dpot")
-                print(dpot)
+            
                   
 
         print("xgc.3d.xxxxx.bp files read sucessfully.")
