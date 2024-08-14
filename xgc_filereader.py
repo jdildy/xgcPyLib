@@ -44,51 +44,12 @@ class xgc1(object):
             else: 
                 print(f"The 'rundir' directory does not exist at path: {rundir}\n")
             return bp_timeslices
-
-
-
-            
-
-            
-        
-
-
-        
-
-        print("Reading XGC Output Data...")
-        print("Getting Time Slice Data...")
-        #self.time = find_timeslice()
-        print("TimeSlice Data Capture Complete.")
-        
-
-        # def findTimeSlices():
-        #     """
-        #     Searches .bp files by timeslices, denoted by xxxx in file name, i.e xgc.xxxx.bp
-
-        #     Returns: 
-        #         List[str]: A list of available times slices based on the timeslices in the query search.
-        #     """
-        #     path = os.path.dirname(os.getcwd())
-        #     rundir = os.path.join(path, 'rundir')
-
-
-        #     bp_timeslices = []
-            
-        #     pattern = re.compile(r'\b(?:2d|f2d)\.(\d+)\.bp\b')
-
-        #     if os.path.exists(rundir):
-        #         for root, dirs, files in os.walk(rundir):
-        #             for dir in dirs: 
-        #                     match = pattern.search(dir)
-        #                     if match:
-        #                         full_path = os.path.join(dir)
-        #                         print(full_path)
-        #                         bp_timeslices.append(full_path)
-        #     else: 
-        #         print(f"The 'rundir' directory does not exist at path: {rundir}\n")
-        #     return bp_timeslices
-
-
-        
-
     
+
+    print("Reading XGC Output Data...")
+    print("Getting Time Slice Data...")
+    #self.time = find_timeslice()
+    print("TimeSlice Data Capture Complete.")
+
+       
+        
