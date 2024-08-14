@@ -50,6 +50,8 @@ class xgc1(object):
                 print(f"The 'rundir' directory does not exist at path: {path}\n")
             
             return bp_timeslices
+    
+        
 
     # Call methods to demonstrate functionality
 
