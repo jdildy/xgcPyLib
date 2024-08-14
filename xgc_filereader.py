@@ -17,6 +17,7 @@ class xgc1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
 
+        self.vars = {}
         print("Reading XGC Output Data...")
         print("Getting Time Slice Data...")
         self.time = self.find_timeslice()
