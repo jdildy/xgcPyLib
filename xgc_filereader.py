@@ -35,7 +35,7 @@ class xgc1(object):
                         print()
 
     def find_timeslice(self):
-            path = self.path
+            path = self.xgc_path
 
             bp_timeslices = []
 
