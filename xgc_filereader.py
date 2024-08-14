@@ -43,12 +43,12 @@ class xgc1(object):
         for i in range(istart, iend, istep):
             filename = xgc_path + "/xgc.3d.%5.5d.bp" %(i)
             print(filename)
-            # try:
-            #     with Stream(filename,"rra") as f:
-            #         dpot = f.read("dpot")
-            #         dden = f.read('eden')
-            # except Exception as e:
-            #     print(f"Error reading file: {e}")
+            try:
+                with Stream(filename,"rra") as f:
+                    dpot = f.read("dpot")
+                    dden = f.read('eden')
+            except Exception as e:
+                print(f"Error reading file: {e}")
 
             
                   
