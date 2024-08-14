@@ -46,10 +46,10 @@ class xgc1(object):
             return bp_timeslices
     
 
-    print("Reading XGC Output Data...")
-    print("Getting Time Slice Data...")
-    #self.time = find_timeslice()
-    print("TimeSlice Data Capture Complete.")
+        print("Reading XGC Output Data...")
+        print("Getting Time Slice Data...")
+        self.time = find_timeslice()
+        print("TimeSlice Data Capture Complete.")
 
        
         
