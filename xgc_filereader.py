@@ -41,7 +41,7 @@ class xgc1(object):
       
 
         for i in range(istart, iend, istep):
-            filename = xgc_path + "xgc.3d.%5.5d.bp" %(i)
+            filename = xgc_path + "/xgc.3d.%5.5d.bp" %(i)
             print(filename)
             # try:
             #     with Stream(filename,"rra") as f:
