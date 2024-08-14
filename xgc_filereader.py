@@ -26,7 +26,9 @@ class xgc1(object):
         self.length = len(self.time)
         
         self.start = self.time[0]
-        print(str(self.time[0]))
+        self.end = self.time[-1]
+        print(self.end)
+        
                   
 
         print("xgc.3d.xxxxx.bp files read sucessfully.")
