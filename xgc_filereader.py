@@ -57,6 +57,8 @@ class xgc1(object):
             print("Select timestep")
         elif choice == 2:
             print("Select Range")
+        elif choice == 3: 
+            print("Exit")
         else:
             #default
             print("Error Occured")
@@ -73,8 +75,8 @@ class xgc1(object):
             print(f"{number}. {description}")
         while True:
             try:
-                input = input("Select a choice: ")
-                choice = int(input)
+                select = input("Select a choice: ")
+                choice = int(select)
 
                 if any(choice == number for number, _ in choice):
                     return choice
