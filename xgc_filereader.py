@@ -1,7 +1,7 @@
 import numpy as np
 import os
 from matplotlib.tri import Triangulation, LinearTriInterpolator, CubicTriInterpolator
-from adios2 import Stream, Adios
+from adios2 import Stream
 import matplotlib.pyplot as plt
 from scipy.io import matlab
 from scipy.optimize import curve_fit
@@ -36,13 +36,11 @@ class xgc1(object):
 
         for i in range(istart, iend, istep):
             filename = "xgc.3d.%5.5d.bp" %(i)
+            print(str(filename))
 
             with Stream(filename,"rra") as f:
                 dpot = f.read("dpot")
                 print(dpot)
-        
-        
-        
                   
 
         print("xgc.3d.xxxxx.bp files read sucessfully.")
