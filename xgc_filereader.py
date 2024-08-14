@@ -48,8 +48,8 @@ class xgc1(object):
 
             if os.path.exists(path):
                 for root, dirs, files in os.walk(path):
-                    for file in files:
-                        match = pattern.search(file)
+                    for dir in dirs:
+                        match = pattern.search(dir)
                         if match:
                             number = match.group(1)
                             print(number)
