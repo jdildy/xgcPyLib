@@ -22,10 +22,14 @@ class xgc1(object):
         self.time = self.find_timeslice()
         print("TimeSlice Data Capture Complete.")
 
+        if not os.path.exists(self.xgc_path):
+            raise FileNotFoundError(f"The directory does not exist: {self.xgc_path}")
+
 
 
 
     def reader(self, file):
+        try:
             with Stream(file, "rra") as f:
                 for _ in f.steps():
                     for name, info in f.available_variables().items():
@@ -33,10 +37,11 @@ class xgc1(object):
                         for key, value in info.items():
                             print("\t" + key + ": " + value, end=" ")
                         print()
+        except:
+            print(f"Error reading file {file}: {e}")
 
     def find_timeslice(self):
             path = self.xgc_path
-
             bp_timeslices = []
 
             pattern = re.compile(r'\b(?:3d|f3d)\.(\d+)\.bp\b')
