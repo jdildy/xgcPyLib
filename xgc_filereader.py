@@ -59,7 +59,7 @@ class xgc1(object):
             
             for i in range(0,len(bp_timeslices)):
                 bp_timeslices[i] = int(bp_timeslices)  
-            bp_timeslices.sort()
+            bp_timeslices = sorted(bp_timeslices)
             return bp_timeslices
     
         
