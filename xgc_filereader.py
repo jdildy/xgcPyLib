@@ -52,12 +52,24 @@ class xgc1(object):
                         match = pattern.search(dir)
                         if match:
                             number = match.group(1)
-                            print(number)
+                            #print(number)
                             bp_timeslices.append(number)
             else:
                 print(f"The 'rundir' directory does not exist at path: {path}\n")
             
-            print(len(bp_timeslices))
+            print("Number of files found: " + str(len(bp_timeslices)))
+
+            numbers = [int(item) for item in bp_timeslices]
+            numbers.sort()
+            print(numbers)
+
+            
+
+
+
+
+
+
             
     
         
