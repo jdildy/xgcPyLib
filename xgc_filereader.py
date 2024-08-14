@@ -19,7 +19,7 @@ class xgc1(object):
 
         print("Reading XGC Output Data...")
         print("Getting Time Slice Data...")
-        #self.time = self.find_timeslice()
+        self.time = self.find_timeslice()
         print("TimeSlice Data Capture Complete.")
 
 
