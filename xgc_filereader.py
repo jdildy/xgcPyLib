@@ -41,7 +41,7 @@ class xgc1(object):
         try:
             with Stream('xgc.3d.00002.bp', "rra") as f:
                 for _ in f.steps():
-                    vars = f.available_variables()
+                    self.vars = f.available_variables()
                     # # if isinstance(vars, dict):
                     # #     for name, info in vars.items():
                     # #         print("variable_name: " + name, end=" ")
@@ -50,7 +50,7 @@ class xgc1(object):
                     #     print()
         except Exception as e:
             print(f"Error reading file: {e}")
-        return vars
+        return self.vars
         
 
 
