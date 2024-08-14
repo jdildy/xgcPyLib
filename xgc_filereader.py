@@ -24,7 +24,7 @@ class xgc1(object):
         print("TimeSlice Data Capture Complete.")
 
         # for i in self.time:
-        self.vars = self.reader()
+        #     self.vars[i] = self.reader()
 
         print("xgc.3d.xxxxx.bp files read sucessfully.")
         
@@ -38,9 +38,9 @@ class xgc1(object):
 
 
 
-    def reader(self):
+    def reader(self, file):
         try:
-            with Stream('xgc.3d.00002.bp', "rra") as f:
+            with Stream(file, "rra") as f:
                 for _ in f.steps():
                     self.vars = f.available_variables()
                     # # if isinstance(vars, dict):
@@ -78,10 +78,11 @@ class xgc1(object):
 
             numbers = [int(item) for item in bp_timeslices]
             numbers.sort()
-            sorted_array = [f"{num:05d}" for num in numbers]
+            print(numbers)
+            # sorted_array = [f"{num:05d}" for num in numbers]
             # print(sorted_array) WORKS 
             
-            return sorted_array
+            return numbers
 
 
 
