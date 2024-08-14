@@ -22,6 +22,9 @@ class xgc1(object):
         self.time = self.find_timeslice()
         print("TimeSlice Data Capture Complete.")
 
+        for i in self.time:
+            self.vars = self.reader('xgc.3d.%5.bp' % (str(i)))
+        print("xgc.3d.xxxxx.bp files read sucessfully.")
         
 
         
@@ -75,6 +78,7 @@ class xgc1(object):
             numbers.sort()
             sorted_array = [f"{num:05d}" for num in numbers]
             # print(sorted_array) WORKS 
+            
             return sorted_array
 
 
