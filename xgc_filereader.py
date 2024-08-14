@@ -1,7 +1,7 @@
 import numpy as np
 import os
 from matplotlib.tri import Triangulation, LinearTriInterpolator, CubicTriInterpolator
-from adios2 import Stream
+from adios2 import Stream, Adios
 import matplotlib.pyplot as plt
 from scipy.io import matlab
 from scipy.optimize import curve_fit
@@ -22,6 +22,16 @@ class xgc1(object):
         self.time = self.find_timeslice()
         print("TimeSlice Data Capture Complete.")
 
+        # for x in self.time:
+        self.vars = self.reader(x)
+
+        
+        
+        
+        
+
+
+
         if not os.path.exists(self.xgc_path):
             raise FileNotFoundError(f"The directory does not exist: {self.xgc_path}")
 
@@ -32,13 +42,26 @@ class xgc1(object):
         try:
             with Stream(file, "rra") as f:
                 for _ in f.steps():
-                    for name, info in f.available_variables().items():
-                        print("variable_name: " + name, end=" ")
-                        for key, value in info.items():
-                            print("\t" + key + ": " + value, end=" ")
+                    vars = f.available_variables()
+                    if isinstance(vars, dict):
+                        for name, info in vars.items():
+                            print("variable_name: " + name, end=" ")
+                            # for key, value in info.items():
+                            #     #print("\t" + key + ": " + value, end=" ")
                         print()
-        except:
+        except Exception as e:
             print(f"Error reading file {file}: {e}")
+        
+
+
+
+
+
+
+
+
+
+
 
     def find_timeslice(self):
             path = self.xgc_path
