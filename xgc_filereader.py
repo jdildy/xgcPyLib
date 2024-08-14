@@ -23,8 +23,11 @@ class xgc1(object):
         self.time = self.find_timeslice()
         print("TimeSlice Data Capture Complete.")
 
-        length = len(self.time)
-        print("Length: " + str(length))
+        self.length = len(self.time)
+        
+        self.start = self.time[0]
+        print(str(self.time[0]))
+                  
 
         print("xgc.3d.xxxxx.bp files read sucessfully.")
         
