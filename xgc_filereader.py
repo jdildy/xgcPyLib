@@ -31,7 +31,6 @@ class xgc1(object):
         self.start = self.time[0] 
         self.end = self.time[-1] + self.step
     
-        
 
         istart = self.start #2
         iend = self.end #2172
@@ -40,12 +39,55 @@ class xgc1(object):
         self.length = len(self.time)
         length = self.length
 
-        print("Loading File Info....")
+        print("Loading 3D File Info....")
         print("First Timestep: " + str(istart))
         print("Last Timestep: " + str(iend - istep))
         print("Step: " + str(istep))
         print("There are " + str(length) + " total steps available.")
-        print("----------------------------------------")
+        print("----------------------------------------\n")
+
+        choices = [
+            (1, "Option 1: Read a single 3D data file"),
+            (2, "Option 2: Read a range of 3D data files"),
+            (3, "Option 3: Exit")
+        ]
+        choice = self.user_select("Please choose an option:", choices)
+
+        if choice == 1:
+            print("Select timestep")
+        elif choice == 2:
+            print("Select Range")
+        else:
+            #default
+            print("Error Occured")
+
+
+
+
+
+
+
+    def user_select(prompt, choices):
+        print(prompt)
+        for number, description in choices:
+            print(f"{number}. {description}")
+        while True:
+            try:
+                input = input("Select a choice: ")
+                choice = int(input)
+
+                if any(choice == number for number, _ in choice):
+                    return choice
+                else: 
+                    print("Invalid choice. Please select a valid option")
+            except:
+                print("Invalid input. Please enter a number.")
+
+
+
+
+
+
 
     
         
