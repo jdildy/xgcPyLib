@@ -52,5 +52,5 @@ class xgc1(object):
         
         return bp_timeslices
 
-
-xgc_instance = xgc1
+if __name__ == "__main__":
+    xgc_instance = xgc1
