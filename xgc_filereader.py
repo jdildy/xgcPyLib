@@ -29,9 +29,10 @@ class xgc1(object):
         
         self.length = len(self.time)
 
-        self.start = self.time[0]
-        self.end = self.time[-1]
         self.step = self.time[1] - self.time[0]
+        self.start = self.time[0] 
+        self.end = self.time[-1] + self.step
+        
 
         istart = self.start
         iend = self.end
@@ -42,15 +43,15 @@ class xgc1(object):
         print(istep)
       
 
-        # for i in range(istart, iend, istep):
-        #     filename = xgc_path + "/xgc.3d.%5.5d.bp" %(i)
-        #     #print(filename)
-        #     try:
-        #         with Stream(filename,"rra") as f:
-        #             dpot = f.read("dpot")
-        #             dden = f.read('eden')
-        #     except Exception as e:
-        #         print(f"Error reading file: {e}")
+        for i in range(istart, iend, istep):
+            filename = xgc_path + "/xgc.3d.%5.5d.bp" %(i)
+            #print(filename)
+            try:
+                with Stream(filename,"rra") as f:
+                    dpot = f.read("dpot")
+                    dden = f.read('eden')
+            except Exception as e:
+                print(f"Error reading file: {e}")
 
             
                   
