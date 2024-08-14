@@ -22,8 +22,10 @@ class xgc1(object):
         self.time = self.find_timeslice()
         print("TimeSlice Data Capture Complete.")
 
-        # for x in self.time:
-        self.vars = self.reader(x)
+        for i in self.time:
+            self.vars = self.reader('xgc.3d.%5.bp' % (i))
+
+        print("xgc.3d.xxxxx.bp files read sucessfully.")
 
         
         
@@ -43,14 +45,15 @@ class xgc1(object):
             with Stream(file, "rra") as f:
                 for _ in f.steps():
                     vars = f.available_variables()
-                    if isinstance(vars, dict):
-                        for name, info in vars.items():
-                            print("variable_name: " + name, end=" ")
-                            # for key, value in info.items():
-                            #     #print("\t" + key + ": " + value, end=" ")
-                        print()
+                    # # if isinstance(vars, dict):
+                    # #     for name, info in vars.items():
+                    # #         print("variable_name: " + name, end=" ")
+                    #         # for key, value in info.items():
+                    #         #     #print("\t" + key + ": " + value, end=" ")
+                    #     print()
         except Exception as e:
             print(f"Error reading file {file}: {e}")
+        return vars
         
 
 
