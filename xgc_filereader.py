@@ -22,17 +22,13 @@ class xgc1(object):
         self.time = self.find_timeslice()
         print("TimeSlice Data Capture Complete.")
 
-        for i in self.time:
-            self.vars = self.reader('xgc.3d.%5.bp' % (i))
+        # for i in self.time:
+        #     self.vars = self.reader('xgc.3d.%5.bp' % (i))
 
-        print("xgc.3d.xxxxx.bp files read sucessfully.")
+        # print("xgc.3d.xxxxx.bp files read sucessfully.")
 
         
         
-        
-        
-
-
 
         if not os.path.exists(self.xgc_path):
             raise FileNotFoundError(f"The directory does not exist: {self.xgc_path}")
@@ -89,7 +85,9 @@ class xgc1(object):
             numbers.sort()
             sorted_array = [f"{num:05d}" for num in numbers]
             # print(sorted_array) WORKS 
-            return sorted_array
+            bp_timeslices= np.array(sorted_array)
+            print(f'the  dtype  of bp_timeslices is; {bp_timeslices.dtype}')
+            return bp_timeslices
 
 
 
