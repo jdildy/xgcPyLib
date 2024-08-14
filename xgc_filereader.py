@@ -17,11 +17,7 @@ class xgc1(object):
     def __init__(self):
         self.path = "/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun" + '/'
 
-        # Call methods to demonstrate functionality
-        print("Reading XGC Output Data...")
-        print("Getting Time Slice Data...")
-        #self.time = self.find_timeslice()
-        print("TimeSlice Data Capture Complete.")
+        
 
     def reader(self, file):
         with Stream(file, "rra") as f:
@@ -52,5 +48,8 @@ class xgc1(object):
         
         return bp_timeslices
 
-if __name__ == "__main__":
-    xgc_instance = xgc1
+    # Call methods to demonstrate functionality
+    print("Reading XGC Output Data...")
+    print("Getting Time Slice Data...")
+    #time = self.find_timeslice()
+    print("TimeSlice Data Capture Complete.")
