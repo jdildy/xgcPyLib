@@ -26,10 +26,39 @@ class xgc1(object):
                             print("\t" + key + ": " + value, end=" ")
                         print()
 
+        def find_timeslice():
+            path = self.path
+
+            bp_timeslices = []
+
+            pattern = re.compile(r'\b(?:3d|f3d)\.(\d+)\.bp\b')
+
+            if os.path.exists(path):
+                 for root, dirs, files in os.walk(path):
+                    for dir in dirs: 
+                        match = pattern.search(dir)
+                        if match:
+                            full_path = os.path.join(dir)
+                            print(full_path)
+                            bp_timeslices.append(full_path)
+            else: 
+                print(f"The 'rundir' directory does not exist at path: {rundir}\n")
+            return bp_timeslices
+
+
+
+            
+
+            
+        
+
 
         
 
-    print("Reading XGC Output Data")
+        print("Reading XGC Output Data...")
+        print("Getting Time Slice Data...")
+        self.time = find_timeslice()
+        print("TimeSlice Data Capture Complete.")
         
 
         # def findTimeSlices():
