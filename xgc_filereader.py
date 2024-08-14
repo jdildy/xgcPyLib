@@ -38,12 +38,17 @@ class xgc1(object):
         istep = self.step #2
 
         self.length = len(self.time)
+        length = self.length
 
-        print("File Info: \n")
+        print("Loading File Info.... \n")
         print("First Timestep: " + str(istart))
         print("Last Timestep: " + str(iend - istep))
         print("Step: " + str(istep))
+        print("There are " + str(length) + " total steps available.")
+        print("----------------------------------------")
 
+    
+        
 
 
         
