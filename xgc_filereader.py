@@ -61,9 +61,10 @@ class xgc1(object):
 
             numbers = [int(item) for item in bp_timeslices]
             numbers.sort()
-            print(numbers)
+            sorted_array = [f"{num:05d}" for num in numbers]
+            print(sorted_array)
 
-            
+
 
 
 
