@@ -26,6 +26,7 @@ class xgc1(object):
         self.time = self.find_timeslice()
         print("TimeSlice Data Capture Complete.")
 
+        print(self.xgc_path)
         self.length = len(self.time)
 
         self.start = self.time[0]
@@ -39,12 +40,12 @@ class xgc1(object):
 
         for i in range(istart, iend, istep):
             filename = "xgc.3d.%5.5d.bp" %(i)
-            try:
-                with Stream(filename,"rra") as f:
-                    dpot = f.read("dpot")
-                    dden = f.read('eden')
-            except Exception as e:
-                print(f"Error reading file: {e}")
+            # try:
+            #     with Stream(filename,"rra") as f:
+            #         dpot = f.read("dpot")
+            #         dden = f.read('eden')
+            # except Exception as e:
+            #     print(f"Error reading file: {e}")
 
             
                   
