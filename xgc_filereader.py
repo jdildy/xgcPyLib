@@ -41,29 +41,39 @@ class xgc1(object):
         print(istart)
         print(iend)
         print(istep)
-      
-
+        
+        print("Reading xgc.3d.xxxx.bp files...")
         for i in range(istart, iend, istep):
             filename = xgc_path + "/xgc.3d.%5.5d.bp" %(i)
             #print(filename)
             try:
                 with Stream(filename,"rra") as f:
-                    dpot = f.read("dpot")
-                    dden = f.read('eden')
+                    self.dpot = f.read("dpot")
+                    self.dden = f.read('eden')
             except Exception as e:
                 print(f"Error reading file: {e}")
-
-            
-                  
-
         print("xgc.3d.xxxxx.bp files read sucessfully.")
-        
 
-        
-        
+        print(type(self.dpot))
+        print(self.dpot)
 
-        if not os.path.exists(self.xgc_path):
-            raise FileNotFoundError(f"The directory does not exist: {self.xgc_path}")
+
+        # print("Reading xgc.f3d.xxxx.bp files...")
+        # for i in range(istart, iend, istep):
+        #     filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(i)
+        #     #print(filename)
+        #     try:
+        #         with Stream(filename,"rra") as f:
+        #             dpot = f.read("dpot")
+        #             dden = f.read('eden')
+        #     except Exception as e:
+        #         print(f"Error reading file: {e}")
+        # print("xgc.f3d.xxxxx.bp files read sucessfully.")
+
+
+
+
+
 
 
 
