@@ -67,7 +67,7 @@ class xgc1(object):
 
 
 
-    def user_select(prompt, choices):
+    def user_select(self, prompt, choices):
         print(prompt)
         for number, description in choices:
             print(f"{number}. {description}")
