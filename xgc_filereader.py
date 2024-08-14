@@ -21,10 +21,10 @@ class xgc1(object):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         print(str(self.xgc_path))
         self.vars = {}
-        print("Reading XGC Output Data...")
+        print("Reading XGC Output Data:")
         print("Getting Time Slice Data...")
         self.time = self.xgc1_timeslice()
-        print("TimeSlice Data Capture Complete.")
+        print("TimeSlice Data Capture Complete.\n")
         self.length = len(self.time)
 
         self.step = self.time[1] - self.time[0]
@@ -40,7 +40,7 @@ class xgc1(object):
         self.length = len(self.time)
         length = self.length
 
-        print("Loading File Info.... \n")
+        print("Loading File Info....")
         print("First Timestep: " + str(istart))
         print("Last Timestep: " + str(iend - istep))
         print("Step: " + str(istep))
