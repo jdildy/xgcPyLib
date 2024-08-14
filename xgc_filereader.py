@@ -40,9 +40,9 @@ class xgc1(object):
         self.length = len(self.time)
 
         print("File Info: \n")
-        print("First Timestep: " + istart)
+        print("First Timestep: " + str(istart))
         print("Last Timestep: " + str(iend - istep))
-        print("Step: " + istep)
+        print("Step: " + str(istep))
 
 
 
