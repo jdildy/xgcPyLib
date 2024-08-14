@@ -42,6 +42,7 @@ class xgc1(object):
         print(iend)
         print(istep)
         
+        #XGC.3D.Reader
         print("Reading xgc.3d.xxxx.bp files...")
         for i in range(istart, iend, istep):
             filename = xgc_path + "/xgc.3d.%5.5d.bp" %(i)
@@ -54,21 +55,20 @@ class xgc1(object):
                 print(f"Error reading file: {e}")
         print("xgc.3d.xxxxx.bp files read sucessfully.")
 
-        print(type(self.dpot))
-        print(self.dpot)
 
+        #XGC.F3D.Reader
 
-        # print("Reading xgc.f3d.xxxx.bp files...")
-        # for i in range(istart, iend, istep):
-        #     filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(i)
-        #     #print(filename)
-        #     try:
-        #         with Stream(filename,"rra") as f:
-        #             dpot = f.read("dpot")
-        #             dden = f.read('eden')
-        #     except Exception as e:
-        #         print(f"Error reading file: {e}")
-        # print("xgc.f3d.xxxxx.bp files read sucessfully.")
+        print("Reading xgc.f3d.xxxx.bp files...")
+        for i in range(istart, iend, istep):
+            filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(i)
+            #print(filename)
+            try:
+                with Stream(filename,"rra") as f:
+                    i_pol_n0_f0= f.read('i_poloidal_flow_n0_f0')
+                    e_pol_n0_f0= f.read('e_poloidal_flow_n0_f0')
+            except Exception as e:
+                print(f"Error reading file: {e}")
+        print("xgc.f3d.xxxxx.bp files read sucessfully.")
 
 
 
