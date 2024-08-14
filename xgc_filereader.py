@@ -44,16 +44,16 @@ class xgc1(object):
             path = self.xgc_path
             bp_timeslices = []
 
-            pattern = re.compile(r'\b(?:3d|f3d)\.(\d+)\.bp\b')
+            pattern = re.compile(r'\b3d\.(\d+)\.bp\b')
 
             if os.path.exists(path):
                 for root, dirs, files in os.walk(path):
-                    for dir in dirs:
-                        match = pattern.search(dir)
+                    for file in files:
+                        match = pattern.search(file)
                         if match:
-                            full_path = os.path.join(root, dir)
-                            print(full_path)
-                            bp_timeslices.append(full_path)
+                            number = match.group(1)
+                            print(number)
+                            bp_timeslices.append(number)
             else:
                 print(f"The 'rundir' directory does not exist at path: {path}\n")
             
