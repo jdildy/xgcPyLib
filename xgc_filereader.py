@@ -52,13 +52,6 @@ class xgc1(object):
 
 
 
-
-
-
-
-
-
-
     def find_timeslice(self):
             path = self.xgc_path
             bp_timeslices = []
@@ -82,9 +75,7 @@ class xgc1(object):
             numbers.sort()
             sorted_array = [f"{num:05d}" for num in numbers]
             # print(sorted_array) WORKS 
-            bp_timeslices= np.array(sorted_array)
-            print(f'the  dtype  of bp_timeslices is; {bp_timeslices.dtype}')
-            return bp_timeslices
+            return sorted_array
 
 
 
