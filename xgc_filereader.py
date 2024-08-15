@@ -313,9 +313,6 @@ class xgc1(object):
                     print("The starting timestep must be less than the final ending timestep")
                     continue
 
-                print(f"Selected Start: {stepSt}")
-                print(f"Selected End: {stepEd} ")
-
                 if stepSt in time and stepEd in time:
                     return stepSt, stepEd
                 else: 
