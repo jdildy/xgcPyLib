@@ -185,7 +185,8 @@ class xgc1(object):
                     self.e_toroidal_flow_n0_f0 = f.read('e_toroidal_flow_n0_f0')          
                     self.e_toroidal_flow_turb_df = f.read('e_toroidal_flow_turb_df')          
                     self.e_toroidal_flow_turb_f0 = f.read('e_toroidal_flow_turb_f0')
-                    print(type( self.e_toroidal_flow_turb_f0))         
+            
+                    print(self.e_toroidal_flow_turb_f0.ndim)    
                                         
                     
 
