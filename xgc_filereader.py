@@ -112,7 +112,7 @@ class xgc1(object):
                 select = input("Select a choice: ")
                 choice = int(select)
 
-                if any(choice == number for number, _ in time):
+                if choice == time
                     return choice
                 else: 
                     print("Invalid choice. Please select a valid option")
@@ -187,7 +187,7 @@ class xgc1(object):
 
             numbers = [int(item) for item in bp_timeslices]
             numbers.sort()
-            # sorted_array = [f"{num:05d}" for num in numbers]
+            print(type(numbers[0]))
             # print(sorted_array) WORKS 
             return numbers
 
