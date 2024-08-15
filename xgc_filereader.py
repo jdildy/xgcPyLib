@@ -101,15 +101,13 @@ class xgc1(object):
     def single_timstep(self, time):
 
         while True:
-            try:
                 select = input("Select a timestep: ")
-                choice = str(select)
+                choice = int(select)
                 if choice == time:
                     return choice
                 else: 
                     print("Invalid choice. Please select a valid timestep.")
-            except:
-                print("Invalid input. Please enter a valid timesetep.")
+            
                 
 
     # def mult_timestep(self, choice1 choice2):
