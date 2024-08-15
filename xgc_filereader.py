@@ -36,7 +36,6 @@ class xgc1(object):
         iend = self.end #2172
         istep = self.step #2
         time = self.time # list
-        print(time)
 
         self.length = len(self.time)
         length = self.length
@@ -63,14 +62,12 @@ class xgc1(object):
 
         elif choice == 2:
             print("Select Range")
+
         elif choice == 3: 
             print("Exit")
         else:
             #default
             print("Error Occured")
-
-         
-        
 
 
         # #XGC.F3D.Reader
@@ -101,23 +98,27 @@ class xgc1(object):
         #     print("xgc.3d.xxxxx.bp files read sucessfully.")
 
 
-
-
-
     def single_timstep(self, prompt, time):
         print(prompt)
 
-        while True:
-            try:
-                select = input("Select a choice: ")
-                choice = int(select)
+        select = input("Select a timestep: ")
+        choice = int(select)
 
-                if choice == time:
-                    return choice
-                else: 
-                    print("Invalid choice. Please select a valid option")
-            except:
-                print("Invalid input. Please enter a number.")
+        if choice == time:
+            return choice
+
+
+        # while True:
+        #     try:
+        #         select = input("Select a timestep: ")
+        #         choice = int(select)
+
+        #         if choice == time:
+        #             return choice
+        #         else: 
+        #             print("Invalid choice. Please select a valid timestep.")
+        #     except:
+        #         print("Invalid input. Please enter a valid timesetep.")
                 
 
     # def mult_timestep(self, choice1 choice2):
@@ -187,7 +188,7 @@ class xgc1(object):
 
             numbers = [int(item) for item in bp_timeslices]
             numbers.sort()
-            print(type(numbers[0]))
+            #print(type(numbers[0])) each element is of type int
             # print(sorted_array) WORKS 
             return numbers
 
