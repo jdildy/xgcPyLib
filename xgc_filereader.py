@@ -304,15 +304,17 @@ class xgc1(object):
 
         
     def mult_timestep(self, time):
-        print(time)
         while True:
             try:
-                stepSt = input("Enter the starting timestep: ")
-                stepEd = input("Enter the ending timestep: ")
+                stepSt = int(input("Enter the starting timestep: "))
+                stepEd = int(input("Enter the ending timestep: "))
 
                 if stepSt > stepEd:
                     print("The starting timestep must be less than the final ending timestep")
                     continue
+
+                print(f"Selected Start: {stepSt}")
+                print(f"Selected End: {stepEd} ")
 
                 if stepSt in time and stepEd in time:
                     return stepSt, stepEd
