@@ -60,12 +60,15 @@ class xgc1(object):
             #XGC.3D.Reader
             print("Reading xgc.3d.%5.5d.bp files..." %(single))
             filename = xgc_path + "/xgc.3d.%5.5d.bp" %(single)
-            print(filename)
+            
             try:
                 with Stream(filename,"rra") as f:
                     self.dpot = f.read("dpot")
+                    self.eden = f.read('eden')
+                    self.e_marker_weight = f.read('e_marker_weight')
                     
-                    print("xgc.3d.%5.5d.bp files read sucessfully." %(single))
+                    
+                    print("xgc.3d.%5.5d.bp read sucessfully." %(single))
             except Exception as e:
                 print(f"Error reading file: {e}")
             
