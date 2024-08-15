@@ -105,7 +105,9 @@ class xgc1(object):
         choice = int(select)
 
         if choice == time:
-            return choice
+            print(choice)
+        else:
+            print("Didn't work")
 
 
         # while True:
