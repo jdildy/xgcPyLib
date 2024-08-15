@@ -36,6 +36,7 @@ class xgc1(object):
         iend = self.end #2172
         istep = self.step #2
         time = self.time # list
+        print(time)
 
         self.length = len(self.time)
         length = self.length
