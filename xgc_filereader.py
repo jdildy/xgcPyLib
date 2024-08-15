@@ -111,6 +111,7 @@ class xgc1(object):
                     
                     self.i_pol_n0_f0= f.read('i_poloidal_flow_n0_f0')
                     self.e_pol_n0_f0= f.read('e_poloidal_flow_n0_f0')
+                    self.dpot = f.read('dpot')
 
             except Exception as e:
                 print(f"Error reading file: {e}")
