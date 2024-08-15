@@ -520,7 +520,8 @@ class xgc1(object):
                 except Exception as e:
                     print(f"Error reading file: {e}")
             
-            print("Requested file read sucessful.")
+            print("Requested file read sucessful.\n")
+
 
         elif choice == 3: 
             print("Exit")
@@ -539,7 +540,9 @@ class xgc1(object):
                 if stepSt > stepEd:
                     print("The starting timestep must be less than the final ending timestep")
                     continue
-
+                if stepSt == stepEd:
+                    print("The timesteps selected can not be equal.")
+                    continue
                 if stepSt in time and stepEd in time:
                     return stepSt, stepEd
                 else: 
