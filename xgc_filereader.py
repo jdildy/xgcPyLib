@@ -302,7 +302,7 @@ class xgc1(object):
             
             for i in pbar:
                 try:
-                    with Stream(xgc_path + 'xgc.3d.%5.5d.bp' %(i), "rra") as f:
+                    with Stream(xgc_path + '/xgc.3d.%5.5d.bp' %(i), "rra") as f:
                         #2D Numpy Arrays # works
                         self.dpot = f.read("dpot") 
                         self.eden = f.read('eden') 
@@ -337,7 +337,7 @@ class xgc1(object):
             
 
                 try:
-                    with Stream(xgc_path + 'xgc.3d.%5.5d.bp' %(i), "rra") as f:
+                    with Stream(xgc_path + '/xgc.3d.%5.5d.bp' %(i), "rra") as f:
                         #2D Numpy Array
                         #e_works
                         self.dpotf3d = f.read('dpot')
