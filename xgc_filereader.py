@@ -106,12 +106,24 @@ class xgc1(object):
             try:
                 with Stream(filename,"rra") as f:
                     #2D Numpy Array
+                    self.dpotf3d = f.read('dpot')
+                    self.e_ExB_enflux_en = f.read('e_ExB_enflux_en')
+                    self.e_ExB_flux_en = f.read('e_ExB_flux_en')
+                    self.e_T_para = f.read('e_T_para')
+                    self.e_T_perp = f.read('e_T_perp')
+                    self.e_den = f.read('e_den')
+                    self.e_den_en = f.read('e_den_en')
+                    self.e_energy_en = f.read('e_energy_en')
+
+
                     #1D Numpy Array 
+                   
+            
+                    
                     #Scalar
                     
-                    self.i_pol_n0_f0= f.read('i_poloidal_flow_n0_f0')
-                    self.e_pol_n0_f0= f.read('e_poloidal_flow_n0_f0')
-                    self.dpot = f.read('dpot')
+                    
+                    
 
             except Exception as e:
                 print(f"Error reading file: {e}")
