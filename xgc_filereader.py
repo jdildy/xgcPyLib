@@ -71,16 +71,18 @@ class xgc1(object):
                     self.etheta = f.read('etheta') 
                     self.iden = f.read('iden')
                     self.shpot = f.read('shpot')
+                    print(type(self.dpot))
+                    print(self.eden.ndim)
 
-                    #1D Arrays
-                    self.e_marker_den = f.read('e_marker_den')
-                    self.i_marker_weight = f.read('i_marker_weight')
-                    self.i_weight_variance = f.read('i_weight_variance')
-                    self.i_marker_den = f.read('e_marker_den')
-                    self.i_marker_weight = f.read('e_marker_weight')
-                    self.i_weight_variance = f.read('e_weight_variance')
-                    self.pot0 = f.read('pot0')
-                    self.pot0m = f.read('pot0m')
+                    # #1D Arrays
+                    # self.e_marker_den = f.read('e_marker_den')
+                    # self.i_marker_weight = f.read('i_marker_weight')
+                    # self.i_weight_variance = f.read('i_weight_variance')
+                    # self.i_marker_den = f.read('e_marker_den')
+                    # self.i_marker_weight = f.read('e_marker_weight')
+                    # self.i_weight_variance = f.read('e_weight_variance')
+                    # self.pot0 = f.read('pot0')
+                    # self.pot0m = f.read('pot0m')
 
             
                     #Scalar #works
@@ -98,17 +100,17 @@ class xgc1(object):
             
 
 
-            # #XGC.F3D.Reader
-            # print("Reading xgc.f3d.%5.5d.bp files..." %(single))
-            # filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
+            #XGC.F3D.Reader
+            print("Reading xgc.f3d.%5.5d.bp files..." %(single))
+            filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
 
-            # try:
-            #     with Stream(filename,"rra") as f:
-            #         self.i_pol_n0_f0= f.read('i_poloidal_flow_n0_f0')
-            #         self.e_pol_n0_f0= f.read('e_poloidal_flow_n0_f0')
-            # except Exception as e:
-            #     print(f"Error reading file: {e}")
-            # print("Reading xgc.f3d.%5.5d.bp file sucessful." %(single))
+            try:
+                with Stream(filename,"rra") as f:
+                    self.i_pol_n0_f0= f.read('i_poloidal_flow_n0_f0')
+                    self.e_pol_n0_f0= f.read('e_poloidal_flow_n0_f0')
+            except Exception as e:
+                print(f"Error reading file: {e}")
+            print("Reading xgc.f3d.%5.5d.bp file sucessful." %(single))
 
             
 
