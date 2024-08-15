@@ -100,10 +100,24 @@ class xgc1(object):
 
     def single_timstep(self, time):
         choice = input("Select a timestep")
-        for _ in time:
-            if choice == time:
-                print(choice)
-                return choice
+        select = int(choice)
+        if select in time:
+            return select
+        else:
+            print("Please enter a valid timestep.")
+
+        while True:
+            try:
+                select = int(input("Enter a valid timestep "))
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+                continue
+        
+            if select in time:
+                return select
+            else:
+                print("Timestep not found. Try again.")
+                
             
             
                 
