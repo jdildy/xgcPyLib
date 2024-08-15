@@ -307,7 +307,6 @@ class xgc1(object):
             for i in pbar:
 
                 try:
-                    print("Reading xgc.3d.%5.5d.bp" %(i))
                     with Stream(xgc_path + '/xgc.3d.%5.5d.bp' %(i), "rra") as f:
                         #2D Numpy Arrays # works
                         self.dpot = f.read("dpot") 
@@ -337,13 +336,11 @@ class xgc1(object):
                         self.nwall = f.read('nwall')
                         self.sheath_nphi = f.read('sheath_nphi')
                         self.time3d = f.read('time')
-                    print("xgc.3d.%5.5d.bp read sucessfull" %(i))
                 except Exception as e:
                     print(f"Error reading file: {e}")
             
 
                 try:
-                    print("Reading xgc.f3d.%5.5d.bp" %(i))
                     with Stream(xgc_path + '/xgc.f3d.%5.5d.bp' %(i), "rra") as f:
                         #2D Numpy Array
                         #e_works
@@ -520,7 +517,6 @@ class xgc1(object):
                         self.nphif3d = f.read('nphi')
                         self.step =  f.read('step')
                         self.timef3d = f.read('time')
-                    print("xgc.f3d.%5.5d.bp read sucessfull" %(i))
                 except Exception as e:
                     print(f"Error reading file: {e}")
                     
