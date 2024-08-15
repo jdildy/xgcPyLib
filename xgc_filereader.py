@@ -104,8 +104,8 @@ class xgc1(object):
                     
                     
                     print("xgc.3d.%5.5d.bp read sucessfully." %(single))
-            except Exception as e:
-                print(f"Error reading file: {e}")
+            except:
+                print()
             
 
 
