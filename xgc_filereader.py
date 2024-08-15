@@ -130,14 +130,7 @@ class xgc1(object):
                     self.e_marker_den = f.read('e_marker_den')
                     self.i_marker_den = f.read('i_marker_den')
 
-                    self.i_marker_weight = f.read('i_marker_weight')
-                    self.e_marker_weight = f.read('e_marker_weight')
-
-                    self.e_weight_variance = f.read('e_weight_variance')
-                    self.i_weight_variance = f.read('i_weight_variance')
-
-                    self.pot0 = f.read('pot0')
-                    self.pot0m = f.read('pot0m')
+                    
 
             
                     #Scalar #works
