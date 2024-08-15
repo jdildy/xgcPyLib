@@ -107,17 +107,17 @@ class xgc1(object):
     def single_timstep(self, prompt, time):
         print(prompt)
 
-        for _ in time:
-            while True:
-                try:
-                    selection = input("Enter a timestep to read: ")
-                    selection = int(selection)
-                    if selection == time:
-                        return time
-                    else: 
-                        print("Invalid choice, Please enter a valid number. ")
-                except: 
-                    print("Invalid input. Please enter a number.")
+        while True:
+            try:
+                select = input("Select a choice: ")
+                choice = int(select)
+
+                if any(choice == number for number, _ in time):
+                    return choice
+                else: 
+                    print("Invalid choice. Please select a valid option")
+            except:
+                print("Invalid input. Please enter a number.")
                 
 
     # def mult_timestep(self, choice1 choice2):
