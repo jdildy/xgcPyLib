@@ -103,8 +103,7 @@ class xgc1(object):
         while True:
             try:
                 select = input("Select a timestep: ")
-                choice = int(select)
-
+                choice = str(select)
                 if choice == time:
                     return choice
                 else: 
