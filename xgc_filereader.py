@@ -90,7 +90,7 @@ class xgc1(object):
                     self.nphi3d = f.read('nphi')
                     self.nwall = f.read('nwall')
                     self.sheath_nphi = f.read('sheath_nphi')
-                    self.time = f.read('time')
+                    self.time3d = f.read('time')
                 
                     
                     print("xgc.3d.%5.5d.bp read sucessfully." %(single))
@@ -288,13 +288,12 @@ class xgc1(object):
                     print("xgc.f3d.%5.5d.bp read sucessfully." %(single))
             except Exception as e:
                 print(f"Error reading file: {e}")
-
-
-        
         
 
         elif choice == 2:
-            print("Select Range")
+            start, end  = self.mult_timestep(time)
+            print(start)
+            print(end)
 
         elif choice == 3: 
             print("Exit")
@@ -304,8 +303,23 @@ class xgc1(object):
 
 
         
+    def mult_timestep(self, time):
+        while True:
+            try:
+                stepSt = input("Enter the starting timestep")
+                stepEd = input("Enter the ending timestep")
 
+                if(stepSt > stepEd):
+                    print("The starting timestep must be less than the final ending timestep")
+                    continue
 
+                if stepSt in time and stepEd in time:
+                    return stepSt, stepEd
+                else: 
+                    print("Both timesteps must be apart of the timestep list. Try again.")
+            except ValueError:
+                print("Invalid inputs. Inputs must be numeric and cannot be letters.")
+            
     def single_timstep(self, time):
 
         while True:
@@ -320,12 +334,6 @@ class xgc1(object):
             else:
                 print("Timestep not found. Try again.")
                 
-            
-            
-                
-
-    # def mult_timestep(self, choice1 choice2):
-
     def user_select(self, prompt, choices):
         print(prompt)
         for number, description in choices:
@@ -340,7 +348,14 @@ class xgc1(object):
                 else: 
                     print("Invalid choice. Please select a valid option")
             except:
-                print("Invalid input. Please enter a number.")
+                print("Invalid input. Please enter a number.")    
+            
+                
+
+    
+
+
+    
 
 
 
