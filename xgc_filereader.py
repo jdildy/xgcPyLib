@@ -44,6 +44,7 @@ class xgc1(object):
         print("Last Timestep: " + str(iend - istep))
         print("Step: " + str(istep))
         print("There are " + str(length) + " total steps available.")
+        print(type(self.time))
         print("----------------------------------------\n")
 
         choices = [
