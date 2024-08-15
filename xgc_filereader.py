@@ -114,7 +114,7 @@ class xgc1(object):
                     self.e_den = f.read('e_den')
                     self.e_den_en = f.read('e_den_en')
                     self.e_energy_en = f.read('e_energy_en')
-
+                    self.e_parallel_flow_n0_df = f.read('e_parallel_flow_n0_df')
 
                     #1D Numpy Array 
                    
@@ -124,10 +124,9 @@ class xgc1(object):
                     
                     
                     
-
+                    print("xgc.f3d.%5.5d.bp read sucessfully." %(single))
             except Exception as e:
                 print(f"Error reading file: {e}")
-            print("Reading xgc.f3d.%5.5d.bp file sucessful." %(single))
 
 
         
