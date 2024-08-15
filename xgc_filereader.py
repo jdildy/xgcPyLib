@@ -90,22 +90,11 @@ class xgc1(object):
                     self.nwall = f.read('nwall')
                     self.sheath_nphi = f.read('sheath_nphi')
                     self.time = f.read('time')
-                   
-
-
-
-                    
-                    
-
-                    
-                    
-                    
-                    
-                    
+            
                     
                     print("xgc.3d.%5.5d.bp read sucessfully." %(single))
-            except:
-                print()
+            except Exception as e:
+                print("Exception " + {e} + " ocurred.")
             
 
 
