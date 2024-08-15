@@ -17,6 +17,54 @@ import adios2
 import os
 import re
 
+def user_select( prompt, choices):
+        print(prompt)
+        for number, description in choices:
+            print(f"{number}. {description}")
+        while True:
+            try:
+                select = input("Select a choice: ")
+                choice = int(select)
+
+                if any(choice == number for number, _ in choices):
+                    return choice
+                else: 
+                    print("Invalid choice. Please select a valid option")
+            except:
+                print("Invalid input. Please enter a number.")    
+def mult_timestep( time):
+        while True:
+            try:
+                stepSt = int(input("Enter the starting timestep: "))
+                stepEd = int(input("Enter the ending timestep: "))
+
+                if stepSt > stepEd:
+                    print("The starting timestep must be less than the final ending timestep")
+                    continue
+                if stepSt == stepEd:
+                    print("The timesteps selected can not be equal.")
+                    continue
+                if stepSt in time and stepEd in time:
+                    return stepSt, stepEd
+                else: 
+                    print("Both timesteps must be apart of the timestep list. Try again.")
+            except ValueError:
+                print("Invalid inputs. Inputs must be numeric and cannot be letters.")
+            
+def single_timstep( time):
+
+        while True:
+            try:
+                select = int(input("Enter a valid timestep: "))
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+                continue
+        
+            if select in time:
+                return select
+            else:
+                print("Timestep not found. Try again.")
+
 class xgc1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -61,7 +109,7 @@ class xgc1(object):
         choice = self.user_select("Please choose an option:", choices)
 
         if choice == 1:
-            single = self.single_timstep(time)
+            single = single_timstep(time)
             #XGC.3D.Reader
             print("Reading xgc.3d.%5.5d.bp..." %(single))
             filename = xgc_path + "/xgc.3d.%5.5d.bp" %(single)
@@ -296,7 +344,7 @@ class xgc1(object):
         
 
         elif choice == 2:
-            start, end  = self.mult_timestep(time)
+            start, end = mult_timestep(time)
             print(f"Selected starting timestep: {start}")
             print(f"Selected ending timestep: {end}")
 
@@ -531,54 +579,9 @@ class xgc1(object):
 
 
         
-    def mult_timestep(self, time):
-        while True:
-            try:
-                stepSt = int(input("Enter the starting timestep: "))
-                stepEd = int(input("Enter the ending timestep: "))
-
-                if stepSt > stepEd:
-                    print("The starting timestep must be less than the final ending timestep")
-                    continue
-                if stepSt == stepEd:
-                    print("The timesteps selected can not be equal.")
-                    continue
-                if stepSt in time and stepEd in time:
-                    return stepSt, stepEd
-                else: 
-                    print("Both timesteps must be apart of the timestep list. Try again.")
-            except ValueError:
-                print("Invalid inputs. Inputs must be numeric and cannot be letters.")
-            
-    def single_timstep(self, time):
-
-        while True:
-            try:
-                select = int(input("Enter a valid timestep: "))
-            except ValueError:
-                print("Invalid input. Please enter a number.")
-                continue
-        
-            if select in time:
-                return select
-            else:
-                print("Timestep not found. Try again.")
+    
                 
-    def user_select(self, prompt, choices):
-        print(prompt)
-        for number, description in choices:
-            print(f"{number}. {description}")
-        while True:
-            try:
-                select = input("Select a choice: ")
-                choice = int(select)
-
-                if any(choice == number for number, _ in choices):
-                    return choice
-                else: 
-                    print("Invalid choice. Please select a valid option")
-            except:
-                print("Invalid input. Please enter a number.")    
+    
             
                 
 
@@ -600,20 +603,20 @@ class xgc1(object):
        
 
 
-    def xgc1reader(self, file):
-        try:
-            with Stream(file, "rra") as f:
-                for _ in f.steps():
-                    self.vars = f.available_variables()
-                    # # if isinstance(vars, dict):
-                    # #     for name, info in vars.items():
-                    # #         print("variable_name: " + name, end=" ")
-                    #         # for key, value in info.items():
-                    #         #     #print("\t" + key + ": " + value, end=" ")
-                    #     print()
-        except Exception as e:
-            print(f"Error reading file: {e}")
-        return self.vars
+    # def xgc1reader(self, file):
+    #     try:
+    #         with Stream(file, "rra") as f:
+    #             for _ in f.steps():
+    #                 self.vars = f.available_variables()
+    #                 # # if isinstance(vars, dict):
+    #                 # #     for name, info in vars.items():
+    #                 # #         print("variable_name: " + name, end=" ")
+    #                 #         # for key, value in info.items():
+    #                 #         #     #print("\t" + key + ": " + value, end=" ")
+    #                 #     print()
+    #     except Exception as e:
+    #         print(f"Error reading file: {e}")
+    #     return self.vars
 
     def xgc1_timeslice(self):
             path = self.xgc_path
