@@ -23,6 +23,7 @@ class xgc1(object):
         self.vars = {}
         print("Reading XGC Output Data:")
         print("Getting Time Slice Data...")
+        
         self.time = self.xgc1_timeslice()
         print("TimeSlice Data Capture Complete.\n")
         self.length = len(self.time)
