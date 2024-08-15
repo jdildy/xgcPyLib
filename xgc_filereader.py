@@ -65,6 +65,7 @@ class xgc1(object):
                 with Stream(filename,"rra") as f:
                     self.dpot = f.read("dpot") # works
                     self.eden = f.read('eden') # works
+                    self.epara = f.read('epara')
                     
                     
                     
