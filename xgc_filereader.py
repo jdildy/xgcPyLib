@@ -58,7 +58,7 @@ class xgc1(object):
         if choice == 1:
             single = self.single_timstep(time)
             #XGC.3D.Reader
-            print("Reading xgc.3d.%5.5d.bp files..." %(single))
+            print("Reading xgc.3d.%5.5d.bp..." %(single))
             filename = xgc_path + "/xgc.3d.%5.5d.bp" %(single)
             
             try:
@@ -72,9 +72,7 @@ class xgc1(object):
                     self.iden = f.read('iden')
                     self.shpot = f.read('shpot')
 
-                    #1D Arrays
-                    self.i_marker_den = f.read('i_marker_den')
-                   
+                    
                     
 
                     
