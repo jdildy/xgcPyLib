@@ -56,6 +56,7 @@ class xgc1(object):
         if choice == 1:
             print("Select timestep in range")
             single = self.single_timstep("Select a timestep: ", single)
+            print(single)
         
 
         elif choice == 2:
@@ -108,28 +109,7 @@ class xgc1(object):
             while True:
                 try:
                     if choices == self.time:
-                        filename = self.xgc_path + "/xgc.3d.%5.5d.bp" %(choices)
-                        with Stream(filename, "rra") as f:
-                            self.dpot = f.read('dpot')
-                            self.e_marker_den = f.read('e_marker_den')
-                            self.e_mean_weight = f.read('e_mean_weight')
-                            self.eden = f.read('epara')
-                            self.epsi = f.read('epsi')
-                            self.etheta = f.read('ethata')
-                            self.i_marker_den = f.read('i_marker_den')
-                            self.i_mean_weight = f.read('i_mean_weight')
-                            self.i_weight_variance = f.read('i_weight_variance')
-                            self.iden = f.read('iden')
-                            self.iphi = f.read('iphi')
-                            self.nnode = f.read('nnode')
-                            self.nwall = f.read('nwall')
-                            self.pot0 = f.read('pot0')
-                            self.nphi = f.read('nphi')
-                            self.pot0 = f.read('pot0')
-                            self.pot0m = f.read('pot0m')
-                            self.sheath_nphi = f.read('sheath_nphi')
-                            self.shpot = f.read('shpot')
-                            self.time = f.read('time')
+                        return choices
                     else: 
                         print("Invalid choice. Please select a valid option")
                     print("Timestep for F3D and 3D sucessfully loaded. ")
