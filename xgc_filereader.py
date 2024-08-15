@@ -49,7 +49,7 @@ class xgc1(object):
         choices = [
             (1, "Option 1: Read a single 3D data file"),
             (2, "Option 2: Read a range of 3D data files"),
-            (3, "Option 3: Exit")
+            (3, "Option 3: Exit.")
         ]
         choice = self.user_select("Please choose an option:", choices)
 
