@@ -56,7 +56,7 @@ class xgc1(object):
         choice = self.user_select("Please choose an option:", choices)
 
         if choice == 1:
-            single = self.single_timstep("Select a timestep: ", time)
+            single = self.single_timstep(time)
             print(single)
         
 
@@ -98,12 +98,10 @@ class xgc1(object):
         #     print("xgc.3d.xxxxx.bp files read sucessfully.")
 
 
-    def single_timstep(self, prompt, time):
-        print(prompt)
+    def single_timstep(self, time):
 
         select = input("Select a timestep: ")
         choice = int(select)
-        print (choice)
         return choice
 
 
