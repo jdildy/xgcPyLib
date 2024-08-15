@@ -57,7 +57,52 @@ class xgc1(object):
 
         if choice == 1:
             single = self.single_timstep(time)
-            print(single)
+            #XGC.3D.Reader
+            print("Reading xgc.3d.%5.5d.bp files..." %(single))
+            filename = xgc_path + "/xgc.3d.%5.5d.bp" %(single)
+            try:
+                with Stream(filename,"rra") as f:
+                    self.dpot = f.read("dpot")
+                    self.eden = f.read('eden')
+                    self.e_marker_weight = f.read('e_marker_weight')
+                    self.epara = f.read('epara')
+                    self.epsi = f.read('epsi')
+                    self.etheta = f.read('etheta')
+                    self.i_marker_den = f.read('i_marker_den')
+                    self.i_marker_weight = f.read('i_marker_weight')
+                    self.i_weight_variance = f.read('i_weight_variance')
+                    self.iden = f.read('iden')
+                    self.iphi = f.read('iphi')
+                    self.nnode = f.read('nnode')
+                    self.nphi = f.read('nphi')
+                    self.nwall = f.read('nwall')
+                    self.pot0 = f.read('pot0')
+                    self.pot0m = f.read('pot0m')
+                    self.sheath_nphi = f.read('sheath_nphi')
+                    self.shpot = f.read('shpot')
+                    self.time = f.read('time')
+            except Exception as e:
+                print(f"Error reading file: {e}")
+            print("xgc.3d.%5.5d.bp files read sucessfully." %(single))
+
+
+            # #XGC.F3D.Reader
+            # print("Reading xgc.f3d.%5.5d.bp files..." %(single))
+            # filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
+
+            # try:
+            #     with Stream(filename,"rra") as f:
+            #         self.i_pol_n0_f0= f.read('i_poloidal_flow_n0_f0')
+            #         self.e_pol_n0_f0= f.read('e_poloidal_flow_n0_f0')
+            # except Exception as e:
+            #     print(f"Error reading file: {e}")
+            # print("Reading xgc.f3d.%5.5d.bp file sucessful." %(single))
+
+            
+
+
+
+        
         
 
         elif choice == 2:
@@ -70,39 +115,14 @@ class xgc1(object):
             print("Error Occured")
 
 
-        # #XGC.F3D.Reader
-        # print("Reading xgc.f3d.xxxx.bp files...")
-        # for i in range(istart, iend, istep):
-        #     filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(i)
-        #     #print(filename)
-        #     try:
-        #         with Stream(filename,"rra") as f:
-        #             self.i_pol_n0_f0= f.read('i_poloidal_flow_n0_f0')
-        #             self.e_pol_n0_f0= f.read('e_poloidal_flow_n0_f0')
-        #     except Exception as e:
-        #         print(f"Error reading file: {e}")
-        # print("xgc.f3d.xxxxx.bp files read sucessfully.")
-
-
-        #XGC.3D.Reader
-        # print("Reading xgc.3d.xxxx.bp files...")
-        # for i in range(istart, iend, istep):
-        #     filename = xgc_path + "/xgc.3d.%5.5d.bp" %(i)
-        #     #print(filename)
-        #     try:
-        #         with Stream(filename,"rra") as f:
-        #             self.dpot = f.read("dpot")
-        #             self.dden = f.read('eden')
-        #     except Exception as e:
-        #         print(f"Error reading file: {e}")
-        #     print("xgc.3d.xxxxx.bp files read sucessfully.")
+        
 
 
     def single_timstep(self, time):
 
         while True:
             try:
-                select = int(input("Enter a valid timestep "))
+                select = int(input("Enter a valid timestep: "))
             except ValueError:
                 print("Invalid input. Please enter a number.")
                 continue
