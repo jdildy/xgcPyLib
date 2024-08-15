@@ -72,8 +72,18 @@ class xgc1(object):
                     self.iden = f.read('iden')
                     self.shpot = f.read('shpot')
 
+                    #1D Arrays
+                    self.e_marker_den = f.read('e_marker_den')
+                    self.i_marker_weight = f.read('i_marker_weight')
+                    self.i_weight_variance = f.read('i_weight_variance')
+                    self.i_marker_den = f.read('e_marker_den')
+                    self.i_marker_weight = f.read('e_marker_weight')
+                    self.i_weight_variance = f.read('e_weight_variance')
+                    self.pot0 = f.read('pot0')
+                    self.pot0m = f.read('pot0m')
+
             
-                    #Scalar
+                    #Scalar #works
                     self.iphi = f.read('iphi')
                     self.nnode = f.read('nnode')
                     self.nphi = f.read('nphi')
