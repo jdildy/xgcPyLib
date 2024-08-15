@@ -101,13 +101,7 @@ class xgc1(object):
     def single_timstep(self, prompt, time):
         print(prompt)
 
-        select = input("Select a timestep: ")
-        choice = int(select)
-        print (choice)
-        if choice == time:
-            print(choice)
-        else:
-            print("Didn't work")
+                
 
 
         # while True:
