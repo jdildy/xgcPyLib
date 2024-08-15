@@ -297,7 +297,7 @@ class xgc1(object):
             print(f"Selected starting timestep: {start}")
             print(f"Selected ending timestep: {end}")
 
-            pbar = tqdm(range(start,end + istep,istep), desc="Processing Files")
+            pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
             print("Reading requested file range.")
             
             for i in pbar:
