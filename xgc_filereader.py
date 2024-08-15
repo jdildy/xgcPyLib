@@ -8,8 +8,8 @@ from scipy.optimize import curve_fit
 from scipy.special import erfc
 import scipy.sparse as sp
 from tqdm.auto import trange, tqdm
-
 import adios2
+
 
 
 
@@ -24,7 +24,7 @@ class xgc1(object):
         print("Reading XGC Output Data:")
         print("Getting Time Slice Data...")
 
-        
+
         self.time = self.xgc1_timeslice()
         print("TimeSlice Data Capture Complete.\n")
         self.length = len(self.time)
