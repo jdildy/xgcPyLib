@@ -87,7 +87,7 @@ class xgc1(object):
                     #Scalar #works
                     self.iphi = f.read('iphi')
                     self.nnode = f.read('nnode')
-                    self.nphi = f.read('nphi')
+                    self.nphi3d = f.read('nphi')
                     self.nwall = f.read('nwall')
                     self.sheath_nphi = f.read('sheath_nphi')
                     self.time = f.read('time')
@@ -124,6 +124,7 @@ class xgc1(object):
                     self.i_den = f.read('i_den')
                     self.i_den_en = f.read('i_den_en')
                     self.i_energy_en = f.read('i_energy_en')
+                    self.i_u_para = f.read('i_u_para')
 
 
                     #1D Numpy Array #works
@@ -196,7 +197,7 @@ class xgc1(object):
                     self.e_toroidal_flow_n0_f0 = f.read('e_toroidal_flow_n0_f0')          
                     self.e_toroidal_flow_turb_df = f.read('e_toroidal_flow_turb_df')          
                     self.e_toroidal_flow_turb_f0 = f.read('e_toroidal_flow_turb_f0')
-                    
+
                     #i_
                     self.i_parallel_flow_n0_df = f.read('i_parallel_flow_n0_df')
                     self.i_parallel_flow_n0_f0 = f.read('i_parallel_flow_n0_f0')
@@ -266,27 +267,21 @@ class xgc1(object):
                     self.i_toroidal_flow_n0_f0 = f.read('i_toroidal_flow_n0_f0')          
                     self.i_toroidal_flow_turb_df = f.read('i_toroidal_flow_turb_df')          
                     self.i_toroidal_flow_turb_f0 = f.read('i_toroidal_flow_turb_f0')
-   
 
-              
-                                        
-                    
+                    self.pot0 = f.read('pot0')
 
-
-
-
-
-
-
-
-
-
-
-
-                    
-            
                     
                     #Scalar
+                    self.inode1m1 = f.read('inode1m1')
+                    self.iphim1 = f.read('iphim1')
+                    self.n_energy = f.read('n_energy')
+                    self.ndata = f.read('ndata')
+                    self.nnode = f.read('nnode')
+                    self.nphif3d = f.read('nphi')
+                    self.step =  f.read('step')
+                    self.timef3d = f.read('time')
+                    
+
                     
                     
                     
