@@ -106,6 +106,7 @@ class xgc1(object):
             try:
                 with Stream(filename,"rra") as f:
                     #2D Numpy Array
+                    #e_
                     self.dpotf3d = f.read('dpot')
                     self.e_ExB_enflux_en = f.read('e_ExB_enflux_en')
                     self.e_ExB_flux_en = f.read('e_ExB_flux_en')
@@ -114,9 +115,19 @@ class xgc1(object):
                     self.e_den = f.read('e_den')
                     self.e_den_en = f.read('e_den_en')
                     self.e_energy_en = f.read('e_energy_en')
-                    self.e_u_para = f.read('e_u_para') 
+                    self.e_u_para = f.read('e_u_para')  
+                    #i_
+                    self.i_ExB_enflux_en = f.read('i_ExB_enflux_en')
+                    self.i_ExB_flux_en = f.read('i_ExB_flux_en')
+                    self.i_T_para = f.read('i_T_para')
+                    self.i_T_perp = f.read('i_T_perp')
+                    self.i_den = f.read('i_den')
+                    self.i_den_en = f.read('i_den_en')
+                    self.i_energy_en = f.read('i_energy_en')
 
-                    #1D Numpy Array 
+
+                    #1D Numpy Array #works
+                    #e_ 
                     self.e_parallel_flow_n0_df = f.read('e_parallel_flow_n0_df')
                     self.e_parallel_flow_n0_f0 = f.read('e_parallel_flow_n0_f0')
                     self.e_parallel_flow_turb_df = f.read('e_parallel_flow_turb_df')
@@ -185,8 +196,7 @@ class xgc1(object):
                     self.e_toroidal_flow_n0_f0 = f.read('e_toroidal_flow_n0_f0')          
                     self.e_toroidal_flow_turb_df = f.read('e_toroidal_flow_turb_df')          
                     self.e_toroidal_flow_turb_f0 = f.read('e_toroidal_flow_turb_f0')
-            
-                    print(self.e_toroidal_flow_turb_f0.ndim)    
+              
                                         
                     
 
@@ -201,8 +211,7 @@ class xgc1(object):
 
 
 
-                    #1D Numpy Array 
-                   
+                    
             
                     
                     #Scalar
