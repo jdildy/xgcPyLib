@@ -115,6 +115,34 @@ class xgc1(object):
                     self.e_den_en = f.read('e_den_en')
                     self.e_energy_en = f.read('e_energy_en')
                     self.e_parallel_flow_n0_df = f.read('e_parallel_flow_n0_df')
+                    self.e_parallel_flow_n0_f0 = f.read('e_parallel_flow_n0_f0')
+                    self.e_parallel_flow_turb_df = f.read('e_parallel_flow_turb_df')
+                    self.e_parallel_flow_turb_f0 = f.read('e_parallel_flow_turb_f0')
+                    self.e_poloidal_flow_n0_df = f.read('e_poloidal_flow_n0_df')
+                    self.e_poloidal_flow_n0_f0 = f.read('e_poloidal_flow_n0_f0')
+                    self.e_poloidal_flow_turb_df = f.read('e_poloidal_flow_turb_df')
+                    self.e_poloidal_flow_turb_f0 = f.read('e_poloidal_flow_turb_f0')
+                    self.e_rad_mom_flux_3db_n0_df = f.read('e_rad_mom_flux_3db_n0_df')
+                    self.e_rad_mom_flux_3db_n0_f0 = f.read('e_rad_mom_flux_3db_n0_f0')
+                    self.e_rad_mom_flux_3db_turb_df = f.read('e_rad_mom_flux_3db_turb_df')
+                    self.e_rad_mom_flux_3db_turb_f0 = f.read('e_rad_mom_flux_3db_turb_f0')
+                    self.e_rad_mom_flux_ExB_n0_df = f.read('e_rad_mom_flux_ExB_n0_df')
+                    self.e_rad_mom_flux_ExB_n0_f0 = f.read('e_rad_mom_flux_ExB_n0_f0')
+                    self.e_rad_mom_flux_ExB_turb_df = f.read('e_rad_mom_flux_ExB_turb_df')
+                    self.e_rad_mom_flux_ExB_turb_f0 = f.read('e_rad_mom_flux_ExB_turb_f0')
+                    self.e_rad_mom_flux_mag_n0_df = f.read('e_rad_mom_flux_mag_n0_df')
+                    self.e_rad_mom_flux_mag_n0_f0 = f.read('e_rad_mom_flux_mag_n0_f0')
+                    self.e_rad_mom_flux_mag_turb_df = f.read('e_rad_mom_flux_mag_turb_df')
+                    self.e_rad_mom_flux_mag_turb_f0 = f.read('e_rad_mom_flux_mag_turb_f0')
+
+
+
+
+
+
+
+
+
 
                     #1D Numpy Array 
                    
