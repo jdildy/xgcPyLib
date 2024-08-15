@@ -304,6 +304,7 @@ class xgc1(object):
 
         
     def mult_timestep(self, time):
+        print(time)
         while True:
             try:
                 stepSt = input("Enter the starting timestep: ")
