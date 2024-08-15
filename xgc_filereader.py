@@ -301,11 +301,12 @@ class xgc1(object):
             print(f"Selected ending timestep: {end}")
 
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
-            print("Reading requested file range.")
+            
             
             
             for i in pbar:
                 try:
+                    print("Reading xgc.%5.5d.bp "(i))
                     with Stream(xgc_path + '/xgc.3d.%5.5d.bp' %(i), "rra") as f:
                         #2D Numpy Arrays # works
                         self.dpot = f.read("dpot") 
