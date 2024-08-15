@@ -75,7 +75,6 @@ class xgc1(object):
                     #1D Arrays
                     self.i_marker_den = f.read('i_marker_den')
                     self.i_marker_weight = f.read('i_marker_weight')
-                    self.i_weight_variance = f.read('i_weight_variance')
                     
 
                     
