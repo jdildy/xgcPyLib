@@ -134,6 +134,32 @@ class xgc1(object):
                     self.e_rad_mom_flux_mag_n0_f0 = f.read('e_rad_mom_flux_mag_n0_f0')
                     self.e_rad_mom_flux_mag_turb_df = f.read('e_rad_mom_flux_mag_turb_df')
                     self.e_rad_mom_flux_mag_turb_f0 = f.read('e_rad_mom_flux_mag_turb_f0')
+                    self.e_radial_en_flux_3db_n0_df = f.read('e_radial_en_flux_3db_n0_df')
+                    self.e_radial_en_flux_3db_n0_f0 = f.read('e_radial_en_flux_3db_n0_f0')
+                    self.e_radial_en_flux_3db_turb_df = f.read('e_radial_en_flux_3db_turb_df')
+                    self.e_radial_en_flux_3db_turb_f0 = f.read('e_radial_en_flux_3db_turb_f0')
+                    self.e_radial_en_flux_ExB_n0_df = f.read('e_radial_en_flux_ExB_n0_df')
+                    self.e_radial_en_flux_ExB_n0_f0 = f.read('e_radial_en_flux_ExB_n0_f0')
+                    self.e_radial_en_flux_ExB_turb_df = f.read('e_radial_en_flux_ExB_turb_df')     
+                    self.e_radial_en_flux_ExB_turb_f0 = f.read('e_radial_en_flux_ExB_turb_f0')
+                    self.e_radial_en_flux_mag_n0_df = f.read('e_radial_en_flux_mag_n0_df')       
+                    self.e_radial_en_flux_mag_n0_f0 = f.read('e_radial_en_flux_mag_n0_f0')   
+                    self.e_radial_en_flux_mag_turb_df = f.read('e_radial_en_flux_mag_turb_df')  
+                    self.e_radial_en_flux_mag_turb_f0 = f.read('e_radial_en_flux_mag_turb_f0')
+                    self.e_radial_flux_3db_n0_df = f.read('e_radial_flux_3db_n0_df')           
+                    self.e_radial_flux_3db_n0_f0 = f.read('e_radial_flux_3db_n0_f0')  
+                    self.e_radial_flux_3db_turb_df = f.read('e_radial_flux_3db_turb_df')   
+                    self.e_radial_flux_3db_turb_f0 = f.read('e_radial_flux_3db_turb_f0')    
+                    self.e_radial_flux_ExB_n0_df = f.read('e_radial_flux_ExB_n0_df')          
+                    self.e_radial_flux_ExB_n0_f0 = f.read('e_radial_flux_ExB_n0_f0')        
+                    self.e_radial_flux_ExB_turb_df = f.read('e_radial_flux_ExB_turb_df')        
+                    self.e_radial_flux_ExB_turb_f0 = f.read('e_radial_flux_ExB_turb_f0')         
+                    self.e_radial_flux_mag_n0_df = f.read('e_radial_flux_mag_n0_df')        
+                    self.e_radial_flux_mag_n0_f0 = f.read('e_radial_flux_mag_n0_f0')          
+                    self.e_radial_flux_mag_turb_df = f.read('e_radial_flux_mag_turb_df')      
+                    
+
+
 
 
 
