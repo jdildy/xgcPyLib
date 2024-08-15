@@ -299,7 +299,7 @@ class xgc1(object):
 
             pbar = tqdm(range(start,end + istep,istep), desc="Processing Files")
             print("Reading requested file range.")
-            file = xgc_path + "/xgc.3d.%5.5d.bp" %(start)
+            
             for i in pbar:
                 try:
                     with Stream(xgc_path + 'xgc.3d.%5.5d.bp' %(i), "rra") as f:
@@ -337,7 +337,7 @@ class xgc1(object):
             
 
                 try:
-                    with Stream(filename,"rra") as f:
+                    with Stream(xgc_path + 'xgc.3d.%5.5d.bp' %(i), "rra") as f:
                         #2D Numpy Array
                         #e_works
                         self.dpotf3d = f.read('dpot')
