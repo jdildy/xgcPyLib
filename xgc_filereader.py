@@ -72,6 +72,18 @@ class xgc1(object):
                     self.iden = f.read('iden')
                     self.shpot = f.read('shpot')
 
+            
+                    #Scalar
+                    self.iphi = f.read('iphi')
+                    self.nnode = f.read('nnode')
+                    self.nphi = f.read('nphi')
+                    self.nwall = f.read('nwall')
+                    self.sheath_nphi = f.read('sheath_nphi')
+                    self.time = f.read('time')
+                   
+
+
+
                     
                     
 
