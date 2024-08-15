@@ -63,7 +63,7 @@ class xgc1(object):
             
             try:
                 with Stream(filename,"rra") as f:
-                    #2D Arrays # works
+                    #2D Numpy Arrays # works
                     self.dpot = f.read("dpot") 
                     self.eden = f.read('eden') 
                     self.epara = f.read('epara') 
@@ -71,10 +71,9 @@ class xgc1(object):
                     self.etheta = f.read('etheta') 
                     self.iden = f.read('iden')
                     self.shpot = f.read('shpot')
-                    print(type(self.dpot))
-                    print(self.eden.ndim)
 
-                    # #1D Arrays
+
+                    # #1D Arrays Not working for some reason... Will ask Robert
                     # self.e_marker_den = f.read('e_marker_den')
                     # self.i_marker_weight = f.read('i_marker_weight')
                     # self.i_weight_variance = f.read('i_weight_variance')
@@ -106,14 +105,16 @@ class xgc1(object):
 
             try:
                 with Stream(filename,"rra") as f:
+                    #2D Numpy Array
+                    #1D Numpy Array 
+                    #Scalar
+                    
                     self.i_pol_n0_f0= f.read('i_poloidal_flow_n0_f0')
                     self.e_pol_n0_f0= f.read('e_poloidal_flow_n0_f0')
+
             except Exception as e:
                 print(f"Error reading file: {e}")
             print("Reading xgc.f3d.%5.5d.bp file sucessful." %(single))
-
-            
-
 
 
         
