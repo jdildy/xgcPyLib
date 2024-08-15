@@ -112,7 +112,7 @@ class xgc1(object):
                 select = input("Select a choice: ")
                 choice = int(select)
 
-                if choice == time
+                if choice == time:
                     return choice
                 else: 
                     print("Invalid choice. Please select a valid option")
