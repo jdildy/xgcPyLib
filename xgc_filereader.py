@@ -63,15 +63,18 @@ class xgc1(object):
             
             try:
                 with Stream(filename,"rra") as f:
-                    #2D Arrays
-                    self.dpot = f.read("dpot") # works
-                    self.eden = f.read('eden') # works
-                    self.epara = f.read('epara') #works
-                    self.epsi = f.read('epsi') # works
-                    self.etheta = f.read('etheta') # works
+                    #2D Arrays # works
+                    self.dpot = f.read("dpot") 
+                    self.eden = f.read('eden') 
+                    self.epara = f.read('epara') 
+                    self.epsi = f.read('epsi') 
+                    self.etheta = f.read('etheta') 
                     self.iden = f.read('iden')
                     self.shpot = f.read('shpot')
 
+                    #1D Arrays
+                    self.i_marker_den = f.read('i_marker_den')
+                    
                     
                     
                     
