@@ -63,9 +63,9 @@ class xgc1(object):
             
             try:
                 with Stream(filename,"rra") as f:
-                    self.dpot = f.read("dpot")
-                    self.eden = f.read('eden')
-                    self.e_marker_weight = f.read('e_marker_weight')
+                    self.dpot = f.read("dpot") # works
+                    self.eden = f.read('eden') # works
+                    
                     
                     
                     print("xgc.3d.%5.5d.bp read sucessfully." %(single))
