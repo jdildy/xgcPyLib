@@ -60,6 +60,7 @@ class xgc1(object):
             #XGC.3D.Reader
             print("Reading xgc.3d.%5.5d.bp files..." %(single))
             filename = xgc_path + "/xgc.3d.%5.5d.bp" %(single)
+            print(filename)
             try:
                 with Stream(filename,"rra") as f:
                     self.dpot = f.read("dpot")
@@ -81,9 +82,10 @@ class xgc1(object):
                     self.sheath_nphi = f.read('sheath_nphi')
                     self.shpot = f.read('shpot')
                     self.time = f.read('time')
+                    print("xgc.3d.%5.5d.bp files read sucessfully." %(single))
             except Exception as e:
                 print(f"Error reading file: {e}")
-            print("xgc.3d.%5.5d.bp files read sucessfully." %(single))
+            
 
 
             # #XGC.F3D.Reader
