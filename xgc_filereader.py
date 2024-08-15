@@ -35,6 +35,7 @@ class xgc1(object):
         istart = self.start #2
         iend = self.end #2172
         istep = self.step #2
+        time = self.time # list
 
         self.length = len(self.time)
         length = self.length
@@ -55,8 +56,7 @@ class xgc1(object):
         choice = self.user_select("Please choose an option:", choices)
 
         if choice == 1:
-            print("Select timestep in range")
-            single = self.single_timstep("Select a timestep: ", single)
+            single = self.single_timstep("Select a timestep: ", time)
             print(single)
         
 
@@ -103,22 +103,21 @@ class xgc1(object):
 
 
 
-    def single_timstep(self, prompt, choices):
+    def single_timstep(self, prompt, time):
         print(prompt)
 
-        for _ in self.time:
+        for _ in time:
             while True:
                 try:
-                    if choices == self.time:
-                        return choices
+                    selection = input("Enter a timestep to read: ")
+                    selection = int(selection)
+                    if selection == time:
+                        return time
                     else: 
-                        print("Invalid choice. Please select a valid option")
-                    print("Timestep for F3D and 3D sucessfully loaded. ")
-                except:
+                        print("Invalid choice, Please enter a valid number. ")
+                except: 
                     print("Invalid input. Please enter a number.")
                 
-
-        
 
     # def mult_timestep(self, choice1 choice2):
 
