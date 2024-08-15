@@ -104,9 +104,9 @@ class xgc1(object):
                 select = input("Select a timestep: ")
                 choice = int(select)
                 if choice == time:
+                    print(choice )
                     return choice
-                else: 
-                    print("Invalid choice. Please select a valid timestep.")
+            
             
                 
 
