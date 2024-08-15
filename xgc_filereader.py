@@ -519,8 +519,8 @@ class xgc1(object):
                         self.timef3d = f.read('time')
                 except Exception as e:
                     print(f"Error reading file: {e}")
-                    
-
+            
+            print("Requested file read sucessful.")
 
         elif choice == 3: 
             print("Exit")
