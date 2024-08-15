@@ -300,6 +300,7 @@ class xgc1(object):
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
             print("Reading requested file range.")
             
+            
             for i in pbar:
                 try:
                     with Stream(xgc_path + '/xgc.3d.%5.5d.bp' %(i), "rra") as f:
