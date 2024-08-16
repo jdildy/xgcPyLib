@@ -123,7 +123,7 @@ class xgc1(object):
             print(filename)
             
             try:
-                xgc1.xgc1_reader(filename)
+                xgc1.xgc1_reader('xgc.3d.00002.bp')
                 # with Stream(filename,"rra") as f:
                 #     #2D Numpy Arrays # works
                 #     self.dpot = f.read("dpot") 
@@ -1231,7 +1231,7 @@ class xgca(object):
         else:
             print(f"Variable with name '{name}' not found")
 
-#General FileReader 
+#General FileReader Class
 class loader(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -1315,7 +1315,7 @@ xgc1Obj = xgc1(fileDir)
 
 #genloader = loader(fileDir)
 #print(type(xgc1(fileDir)))
-#manager = loader(fileDir)
+manager = loader(fileDir)
 
 
 
