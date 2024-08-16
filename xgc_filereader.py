@@ -1305,7 +1305,7 @@ class loader(object):
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
-loaderxgca=xgca(fileDir)
+loaderxgc1=xgc1(fileDir)
 #genloader = loader(fileDir)
 #print(type(xgc1(fileDir)))
 #manager = loader(fileDir)
