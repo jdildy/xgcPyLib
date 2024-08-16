@@ -1200,7 +1200,7 @@ class loader(object):
     def meshbp_reader(self):
         print("Reading 'xgc.mesh.bp' file...")
         try:
-            with Stream(self.xgc_path + '/xgc.mesh.bp', 'rra') as r:
+            with Stream(self.xgc_path + 'xgc.mesh.bp', 'rra') as r:
                 variables_list = r.available_attributes()
                 print(self.xgc_path + '/xgc.mesh.bp')
 
