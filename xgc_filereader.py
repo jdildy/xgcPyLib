@@ -1179,6 +1179,7 @@ class xgca(object):
 
             numbers = [int(item) for item in bp_timeslices]
             numbers.sort()
+            print(numbers)
             #print(type(numbers[0])) each element is of type int
             # print(sorted_array) WORKS 
             return numbers
