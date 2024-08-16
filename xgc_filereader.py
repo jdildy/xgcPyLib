@@ -1271,8 +1271,8 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 #genloader = loader(fileDir)
 #print(type(xgc1(fileDir)))
 manager = loader(fileDir)
-hyp_vis_rad = manager.reader('xgc.hyp_vis_rad.bp')
-#grad_rz = manager.reader('xgc.grad_rz.bp')
+#hyp_vis_rad = manager.reader('xgc.hyp_vis_rad.bp')
+grad_rz = manager.reader('xgc.grad_rz.bp')
 
 n_r = manager.get_loadVar('n_r')
 print(n_r)
