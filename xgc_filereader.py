@@ -1308,7 +1308,8 @@ class loader(object):
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
-reader = xgc1.xgc1_reader()
+xgc1Obj = xgc1().xgc1_reader(fileDir)
+
 
 
 #genloader = loader(fileDir)
