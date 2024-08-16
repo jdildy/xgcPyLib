@@ -1231,6 +1231,6 @@ class loader(object):
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
-#loader=xgc1(fileDir)
+loader=xgc1(fileDir)
 loader=xgca(fileDir)
 
