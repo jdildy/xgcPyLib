@@ -172,7 +172,7 @@ class xgc1(object):
             filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
 
             try:
-                #self.xgc1_reader(filename)
+                self.xgc1_reader(filename)
                 #with Stream(filename,"rra") as f:
                     # #2D Numpy Array
                     # #e_works
@@ -1309,13 +1309,14 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
 xgc1Obj = xgc1(fileDir)
-# xgc1Obj.xgc1_reader(fileDir)
 
+i_radial_en_flux_ExB_turb_df = xgc1Obj.get_loadVar3D('i_radial_en_flux_ExB_turb_df')
+print(i_radial_en_flux_ExB_turb_df)
 
 
 #genloader = loader(fileDir)
 #print(type(xgc1(fileDir)))
-manager = loader(fileDir)
+#manager = loader(fileDir)
 
 
 
