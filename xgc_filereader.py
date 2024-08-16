@@ -123,7 +123,7 @@ class xgc1(object):
             print(filename)
             
             try:
-                data3d = xgc1.xgc1_reader(filename)
+                xgc1.xgc1_reader(filename)
                 # with Stream(filename,"rra") as f:
                 #     #2D Numpy Arrays # works
                 #     self.dpot = f.read("dpot") 
@@ -172,7 +172,7 @@ class xgc1(object):
             filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
 
             try:
-                dataf3d = xgc1.xgc1_reader(filename)
+                xgc1.xgc1_reader(filename)
                 #with Stream(filename,"rra") as f:
                     # #2D Numpy Array
                     # #e_works
@@ -1308,7 +1308,9 @@ class loader(object):
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
-loaderxgc1=xgc1(fileDir)
+reader = xgc1.xgc1_reader()
+
+
 #genloader = loader(fileDir)
 #print(type(xgc1(fileDir)))
 #manager = loader(fileDir)
