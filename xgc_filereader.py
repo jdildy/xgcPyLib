@@ -119,6 +119,7 @@ class xgc1(object):
             #XGC.3D.Reader
             print("Reading xgc.3d.%5.5d.bp..." %(single))
             filename = xgc_path + "/xgc.3d.%5.5d.bp" %(single)
+            print(filename)
             
             try:
                 xgc1.xgc1_reader(filename)
@@ -1209,7 +1210,6 @@ class xgca(object):
             return numbers
     
     def readerxgca(self, file):
-        
         
         try:
             with Stream(self.xgc_path + file, 'rra') as r:
