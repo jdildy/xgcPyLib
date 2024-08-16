@@ -663,7 +663,6 @@ class xgca(object):
         self.time = self.xgca_timeslice()
         print("TimeSlice Data Capture Complete.\n")
         self.length = len(self.time)
-        print(self.length)
 
         self.step = self.time[1] - self.time[0]
         self.start = self.time[0] 
@@ -1228,6 +1227,6 @@ class loader(object):
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
-loader=xgc1(fileDir)
-#loader=xgca(fileDir)
+#loader=xgc1(fileDir)
+loader=xgca(fileDir)
 
