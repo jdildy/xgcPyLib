@@ -1193,34 +1193,34 @@ class loader(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         print(str(self.xgc_path))
+        self.array_container = {}
         self.meshbp_reader()
+
 
     def meshbp_reader(self):
         print("Reading 'xgc.mesh.bp' file...")
         try:
             with Stream(self.xgc_path + '/xgc.mesh.bp', 'rra') as r:
-                self.epsilon = r.read('epsilon')
-                self.ff_1dp_p = r.read('ff_1dp_p')
-                self.ff_hdp_p = r.read('ff_hdp_p')
-                self.grid_nwall = r.read('grid_nwall')
-                self.grid_wall_nodes = r.read('grid_wall_nodes')
-                self.m_max_surf = r.read('m_max_surf')
-                self.mapping = r.read('mapping')
-                self.n_geo = r.read('n_geo')
-                self.n_n = r.read('n_n')
-                self.n_t = r.read('n_t')
-                self.nd_connect_list = r.read('nd_connect_list')
-                self.nextnode = r.read('nextnode')
-                self.node_vol = r.read('')
+                variables_list = r.available_attributes()
 
-
-
-
-
+                for var_name in variables_list:
+                    var = r.read(var_name)
+                    self.array_container[var_name] = np.array(var)
 
                 print("Reading xgc.mesh.bp file sucessful.")
         except Exception as e:
             print(f"Error reading file: {e}")
+
+
+    def get_loadVar(self,name):
+        if name in self.array_container:
+            return self.array_container[name]
+        else:
+            print(f"Variable with name '{name}' not found")
+
+        
+        
+        
 
         
 
@@ -1266,9 +1266,22 @@ class loader(object):
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
-#loaderxgc1=xgc1(fileDir)
 #loaderxgca=xgca(fileDir)
 #genloader = loader(fileDir)
-print(type(xgc1(fileDir)))
+#print(type(xgc1(fileDir)))
+manager = loader(fileDir)
+try:
+    mapping = manager.get_loadVar('mapping')
+    print("RAAHHH SUCESSS")
+except:
+    print("didn't work D:s")
+
+
+
+
+
+
+
+
 
 
