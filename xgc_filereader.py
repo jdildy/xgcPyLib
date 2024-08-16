@@ -1205,8 +1205,8 @@ class loader(object):
         try:
             with Stream(self.xgc_path + 'xgc.mesh.bp', 'rra') as r:
                 variables_list = r.available_attributes()
-                for var_name in variables_list:
-                    var = r.read(var_name)
+                print(variables_list)
+    
                 #print(self.xgc_path + '/xgc.mesh.bp')
 
                 
