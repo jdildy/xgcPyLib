@@ -123,7 +123,7 @@ class xgc1(object):
             print(filename)
             
             try:
-                xgc1.xgc1_reader('xgc.3d.00002.bp')
+                self.xgc1_reader(filename)
                 # with Stream(filename,"rra") as f:
                 #     #2D Numpy Arrays # works
                 #     self.dpot = f.read("dpot") 
@@ -172,7 +172,7 @@ class xgc1(object):
             filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
 
             try:
-                #xgc1.xgc1_reader(filename)
+                #self.xgc1_reader(filename)
                 #with Stream(filename,"rra") as f:
                     # #2D Numpy Array
                     # #e_works
