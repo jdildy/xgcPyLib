@@ -172,7 +172,7 @@ class xgc1(object):
             filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
 
             try:
-                xgc1.xgc1_reader(filename)
+                #xgc1.xgc1_reader(filename)
                 #with Stream(filename,"rra") as f:
                     # #2D Numpy Array
                     # #e_works
