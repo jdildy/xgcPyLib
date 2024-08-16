@@ -1194,7 +1194,7 @@ class loader(object):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         #print(str(self.xgc_path)) # /pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun/
         self.array_container = {}
-        self.reader('xgc.hyp_vis_rad.bp')
+        #self.reader('xgc.hyp_vis_rad.bp')
         self.reader('xgc.grad_rz')
         
 
@@ -1209,7 +1209,7 @@ class loader(object):
                 for var_name in variables_list:
                     var = r.read(var_name)
                     self.array_container[var_name] = np.array(var)
-            print(f"Reading {file} file sucessful.")
+                print(f"Reading {file} file sucessful.")
         except Exception as e:
             print(f"Error reading file: {e}")
 
