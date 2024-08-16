@@ -73,7 +73,7 @@ class xgc1(object):
         print(str(self.xgc_path))
         self.vars = {}
         print("Reading XGC Output Data:")
-        print("Getting Time Slice Data...")
+        print("Gathering Time Slice Data...")
 
 
         self.time = self.xgc1_timeslice()
@@ -579,6 +579,7 @@ class xgc1(object):
 
         elif choice == 3: 
             print("Exit")
+            return 
         else:
             #default
             print("Error Occured")
@@ -658,7 +659,7 @@ class xgca(object):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         print(str(self.xgc_path))
         self.vars = {}
-        print("Gathering xgca (1D) Data:")
+        print("Gathering xgca (2D) Data:")
         print("Getting Time Slice Data...")
         self.time = self.xgca_timeslice()
         if not self.time:
@@ -1187,42 +1188,71 @@ class xgca(object):
             # print(sorted_array) WORKS 
             return numbers
 
+#General FileReader 
 class loader(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
-        print(str(self.xgc_path))
+        #print(str(self.xgc_path))
 
-    def readAdios(file,variable,inds = Ellipsis):
-        if '/' in variable: variable = '/'+variable
-            #v = '/'+v #this may be necessary for older xgc files
+    def meshbp_reader(self):
+        print("Reading 'xgc.mesh.bp' file...")
+        try:
+            with Stream(self.xgc_path + '/xgc.mesh.bp', 'rra') as r:
+                self.epsilon = r.read('epsilon')
+                self.ff_1dp_p = r.read('ff_1dp_p')
+                self.ff_hdp_p = r.read('ff_hdp_p')
+                self.grid_nwall = r.read('grid_nwall')
+                self.grid_wall_nodes = r.read('grid_wall_nodes')
+                self.m_max_surf = r.read('m_max_surf')
+                self.mapping = r.read('mapping')
+                self.n_geo = r.read('n_geo')
+                self.n_n = r.read('n_n')
+                self.n_t = r.read('n_t')
+                self.nd_connect_list = r.read('nd_connect_list')
 
-        " NEED SOME TYPE OF CHECKER TO ENSURE CORRECT FILE BEING OPENED"
-        with Stream(str(file)+'.bp','rra') as r:
-                if not isinstance(r, Stream):
-                    raise TypeError("The object is not an instance of adios2.Stream")
-                
-                variables = r.available_variables()
-                
-                if variable not in variables:
-                    raise KeyError(f"Variable '{variable}' not found in stream")
-                
-                nstep = int(variables[variable]['AvailableStepsCount'])
-                nsize = variables[variable]['Shape']
 
-                if nstep==1:
-                    data = r.read(variable)[inds]
-                elif nsize != '': #mostly xgc.oneddiag
-                    nsize = int(nsize)
-                    data = r.read(variable,start=[0], count=[nsize], step_start = 0, step_count = nstep)
-                else: #mostly xgc.oneddiag
-                    data = r.read(variable,start=[], count=[], step_start = 0, step_count=nstep)
-        # except FileNotFoundError:
-        #     print(f"File {file} not found.")
-        # except TypeError as e:
-        #     print(e)
-        # except Exception as e: 
-        #     print(f"An error has occured: {e}")  
-                return data
+
+
+                print("Reading xgc.mesh.bp file sucessful.")
+        except Exception as e:
+            print(f"Error reading file: {e}")
+
+        
+
+
+
+
+    # def readAdios(file,variable,inds = Ellipsis):
+    #     if '/' in variable: variable = '/'+variable
+    #         #v = '/'+v #this may be necessary for older xgc files
+
+    #     " NEED SOME TYPE OF CHECKER TO ENSURE CORRECT FILE BEING OPENED"
+    #     with Stream(str(file)+'.bp','rra') as r:
+    #             if not isinstance(r, Stream):
+    #                 raise TypeError("The object is not an instance of adios2.Stream")
+                
+    #             variables = r.available_variables()
+                
+    #             if variable not in variables:
+    #                 raise KeyError(f"Variable '{variable}' not found in stream")
+                
+    #             nstep = int(variables[variable]['AvailableStepsCount'])
+    #             nsize = variables[variable]['Shape']
+
+    #             if nstep==1:
+    #                 data = r.read(variable)[inds]
+    #             elif nsize != '': #mostly xgc.oneddiag
+    #                 nsize = int(nsize)
+    #                 data = r.read(variable,start=[0], count=[nsize], step_start = 0, step_count = nstep)
+    #             else: #mostly xgc.oneddiag
+    #                 data = r.read(variable,start=[], count=[], step_start = 0, step_count=nstep)
+    #     # except FileNotFoundError:
+    #     #     print(f"File {file} not found.")
+    #     # except TypeError as e:
+    #     #     print(e)
+    #     # except Exception as e: 
+    #     #     print(f"An error has occured: {e}")  
+    #             return data
         
 
 
@@ -1231,6 +1261,8 @@ class loader(object):
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
-loader=xgc1(fileDir)
-loader=xgca(fileDir)
+#loaderxgc1=xgc1(fileDir)
+#loaderxgca=xgca(fileDir)
+genloader = loader(fileDir)
+
 
