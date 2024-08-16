@@ -588,6 +588,7 @@ class xgc1(object):
             print("Error Occured")
 
     def xgc1_reader(self, file): 
+        print(file)
         try:
             with Stream(file, 'rra') as r:
                 variables_list = r.available_variables()
