@@ -1202,7 +1202,7 @@ class loader(object):
         try:
             with Stream(self.xgc_path + '/xgc.mesh.bp', 'rra') as r:
                 variables_list = r.available_attributes()
-                #print(variables_list)
+                print(self.xgc_path + '/xgc.mesh.bp')
 
                 for var_name in variables_list:
                     var = r.read(var_name)
@@ -1271,13 +1271,6 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 #genloader = loader(fileDir)
 #print(type(xgc1(fileDir)))
 manager = loader(fileDir)
-manager.meshbp_reader()
-try:
-    mapping = manager.get_loadVar('mapping')
-    print("RAAHHH SUCESSS")
-except:
-    print("didn't work D:s")
-
 
 
 
