@@ -77,6 +77,10 @@ class xgc1(object):
 
 
         self.time = self.xgc1_timeslice()
+        if not self.time:
+            print("No 3D Timeslisces data available. Reading other files.")
+            return
+        
         print("TimeSlice Data Capture Complete.\n")
         self.length = len(self.time)
 
@@ -347,7 +351,6 @@ class xgc1(object):
             except Exception as e:
                 print(f"Error reading file: {e}")
         
-
         elif choice == 2:
             start, end = mult_timestep(time)
             print(f"Selected starting timestep: {start}")
@@ -358,7 +361,6 @@ class xgc1(object):
             
             
             for i in pbar:
-
                 try:
                     with Stream(xgc_path + '/xgc.3d.%5.5d.bp' %(i), "rra") as f:
                         #2D Numpy Arrays # works
@@ -575,7 +577,6 @@ class xgc1(object):
             
             print("Requested file read sucessful.\n")
 
-
         elif choice == 3: 
             print("Exit")
         else:
@@ -659,7 +660,10 @@ class xgca(object):
         self.vars = {}
         print("Gathering xgca (1D) Data:")
         print("Getting Time Slice Data...")
-
+        self.time = self.xgc1_timeslice()
+        if not self.time:
+            print("No 2D Timeslisce data available. Reading other files.")
+            return
         self.time = self.xgca_timeslice()
         print("TimeSlice Data Capture Complete.\n")
         self.length = len(self.time)
@@ -1179,7 +1183,6 @@ class xgca(object):
 
             numbers = [int(item) for item in bp_timeslices]
             numbers.sort()
-            print(numbers)
             #print(type(numbers[0])) each element is of type int
             # print(sorted_array) WORKS 
             return numbers
