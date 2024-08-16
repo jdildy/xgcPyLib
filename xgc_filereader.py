@@ -153,14 +153,15 @@ class xgc1(object):
             for i in pbar:
                 try:
                     self.xgc1_reader(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
+
                 except Exception as e:
-                    print(f"Error reading file: {e}")
+                    print(f"Error reading file: {e}\n")
 
                 try:
                     self.xgc1_reader(xgc_path + '/xgc.f3d%5.5d.bp' %(i))
-                    print("Requested file read sucessful.\n")
+                    
                 except Exception as e:
-                    print(f"Error reading file: {e}")
+                    print(f"Error reading file: {e}\n")
         elif choice == 3: 
             print("Exit")
             return 
