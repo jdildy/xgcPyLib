@@ -1194,13 +1194,12 @@ class loader(object):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         #print(str(self.xgc_path)) # /pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun/
         self.array_container = {}
-        self.reader('xgc.hyp_vis_rad.bp')
         #self.reader('xgc.grad_rz')
         
 
     # Can handle all BP files except heatdiag2 and sheathdiag. Need to create tests to catch if 
     def reader(self, file):
-        #rint("Reading 'xgc.mesh.bp' file...")
+        
     
         
         try:
