@@ -123,7 +123,7 @@ class xgc1(object):
             print(filename)
             
             try:
-                xgc1.xgc1_reader(filename)
+                data3d = xgc1.xgc1_reader(filename)
                 # with Stream(filename,"rra") as f:
                 #     #2D Numpy Arrays # works
                 #     self.dpot = f.read("dpot") 
@@ -163,7 +163,7 @@ class xgc1(object):
                     
                 print("xgc.3d.%5.5d.bp read sucessfully.\n" %(single))
             except Exception as e:
-                print(f"Error reading file: {e}")
+                print(f"Error reading file: {e}\n")
             
 
 
@@ -172,7 +172,7 @@ class xgc1(object):
             filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
 
             try:
-                xgc1.xgc1_reader(filename)
+                dataf3d = xgc1.xgc1_reader(filename)
                 #with Stream(filename,"rra") as f:
                     # #2D Numpy Array
                     # #e_works
@@ -353,7 +353,7 @@ class xgc1(object):
                     
                 print("xgc.f3d.%5.5d.bp read sucessfully.\n" %(single))
             except Exception as e:
-                print(f"Error reading file: {e}")
+                print(f"Error reading file: {e}\n")
         
         elif choice == 2:
             start, end = mult_timestep(time)
@@ -588,10 +588,9 @@ class xgc1(object):
             #default
             print("Error Occured")
 
-    def xgc1_reader(self, file): 
+    def xgc1_reader(self,file): 
         print("This is the file path:")
         print(file)
-
         try:
             with Stream(file, 'rra') as r:
                 variables_list = r.available_variables()
@@ -603,7 +602,7 @@ class xgc1(object):
             print(f"Error reading file: {e}")
 
 
-    def get_loadVar3D(self,name):
+    def get_loadVar3D(self, name):
         if name in self.array_container:
             return self.array_container[str(name)]
         else:
