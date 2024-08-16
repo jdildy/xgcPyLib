@@ -1199,13 +1199,13 @@ class loader(object):
 
 
     def reader(self,file):
-        print("Reading 'xgc.mesh.bp' file...")
-        #print(self.xgc_path + file)
+        #rint("Reading 'xgc.mesh.bp' file...")
+        print(self.xgc_path + file)
         
         try:
             with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_attributes()
-                print(self.xgc_path + '/xgc.mesh.bp')
+                #print(self.xgc_path + '/xgc.mesh.bp')
 
                 for var_name in variables_list:
                     var = r.read(var_name)
