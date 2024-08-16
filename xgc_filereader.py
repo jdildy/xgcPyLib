@@ -1194,8 +1194,8 @@ class loader(object):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         #print(str(self.xgc_path)) # /pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun/
         self.array_container = {}
-        #self.reader('xgc.hyp_vis_rad.bp')
-        self.reader('xgc.grad_rz')
+        self.reader('xgc.hyp_vis_rad.bp')
+        #self.reader('xgc.grad_rz')
         
 
     # Can handle all BP files except heatdiag2 and sheathdiag. Need to create tests to catch if 
@@ -1272,8 +1272,8 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 #genloader = loader(fileDir)
 #print(type(xgc1(fileDir)))
 manager = loader(fileDir)
-#hyp_vis_rad = manager.reader('xgc.hyp_vis_rad.bp')
-grad_rz = manager.reader('xgc.grad_rz.bp')
+hyp_vis_rad = manager.reader('xgc.hyp_vis_rad.bp')
+#grad_rz = manager.reader('xgc.grad_rz.bp')
 
 n_r = manager.get_loadVar('n_r')
 print(n_r)
