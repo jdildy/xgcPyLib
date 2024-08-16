@@ -589,7 +589,7 @@ class xgc1(object):
 
     def xgc1_reader(self, file): 
         try:
-            with Stream(self.xgc_path + file, 'rra') as r:
+            with Stream(file, 'rra') as r:
                 variables_list = r.available_variables()
                 for var_name in variables_list:
                     var = r.read(var_name)
