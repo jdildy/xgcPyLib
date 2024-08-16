@@ -131,8 +131,8 @@ class xgc1(object):
                     self.i_marker_den = f.read('i_marker_den')
                     #works
 
-                    self.i_marker_weight = f.read('i_marker_weight')
-                    #self.e_marker_weight = f.read('e_marker_weight')
+                    #self.i_marker_weight = f.read('i_marker_weight')
+                    self.e_marker_weight = f.read('e_marker_weight')
 
                     self.e_weight_variance = f.read('e_weight_variance')
                     self.i_weight_variance = f.read('i_weight_variance')
