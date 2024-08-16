@@ -1192,7 +1192,7 @@ class xgca(object):
 class loader(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
-        #print(str(self.xgc_path))
+        print(str(self.xgc_path))
 
     def meshbp_reader(self):
         print("Reading 'xgc.mesh.bp' file...")
