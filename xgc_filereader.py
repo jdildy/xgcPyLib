@@ -1198,13 +1198,15 @@ class loader(object):
         
 
 
-    def reader(self,file):
+    def reader(self):
         #rint("Reading 'xgc.mesh.bp' file...")
-        print(self.xgc_path + file)
         
         try:
-            with Stream(str(self.xgc_path + file), 'rra') as r:
-                self.epsilon = r.read('epsilon')
+            with Stream(self.xgc_path + 'xgc.mesh.bp', 'rra') as r:
+                variables_list = r.available_attributes()
+                #print(self.xgc_path + '/xgc.mesh.bp')
+
+                
 
                 print("Reading xgc.mesh.bp file sucessful.")
         except Exception as e:
