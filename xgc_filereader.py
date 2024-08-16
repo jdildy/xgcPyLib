@@ -1204,12 +1204,7 @@ class loader(object):
         
         try:
             with Stream(str(self.xgc_path + file), 'rra') as r:
-                variables_list = r.available_attributes()
-                #print(self.xgc_path + '/xgc.mesh.bp')
-
-                for var_name in variables_list:
-                    var = r.read(var_name)
-                    self.array_container[var_name] = np.array(var)
+                self.epsilon = r.read('epsilon')
 
                 print("Reading xgc.mesh.bp file sucessful.")
         except Exception as e:
