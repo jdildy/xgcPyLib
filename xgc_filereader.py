@@ -1274,6 +1274,9 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 #print(type(xgc1(fileDir)))
 manager = loader(fileDir)
 
+nsurf = manager.get_loadVar('nsurf')
+print(nsurf)
+
 
 
 
