@@ -1209,9 +1209,7 @@ class loader(object):
                 for var_name in variables_list:
                     var = r.read(var_name)
                     self.array_container[var_name] = np.array(var)
-    
-
-                print(f"Reading {file} file sucessful.")
+            print(f"Reading {file} file sucessful.")
         except Exception as e:
             print(f"Error reading file: {e}")
 
