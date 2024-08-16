@@ -411,9 +411,9 @@ class xgc1(object):
             #default
             print("Error Occured")
 
+
+
     def xgc1_reader(self,file): 
-        print("This is the file path:")
-        print(file)
         try:
             with Stream(file, 'rra') as r:
                 variables_list = r.available_variables()
@@ -501,11 +501,16 @@ class xgc1(object):
             # print(sorted_array) WORKS 
             return numbers
 
+
+
+
+
+
 class xgca(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         print(str(self.xgc_path))
-        self.array = {}
+        self.array_container = {}
         print("Gathering xgca (2D) Data:")
         print("Getting Time Slice Data...")
         self.time = self.xgca_timeslice()
