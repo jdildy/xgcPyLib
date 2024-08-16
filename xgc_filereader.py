@@ -1211,7 +1211,7 @@ class loader(object):
                 self.n_t = r.read('n_t')
                 self.nd_connect_list = r.read('nd_connect_list')
                 self.nextnode = r.read('nextnode')
-                self.node_vol = r.read('node_vol')
+                self.node_vol = r.read('')
 
 
 
@@ -1266,8 +1266,9 @@ class loader(object):
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
-print(type(loaderxgc1=xgc1(fileDir)))
+#loaderxgc1=xgc1(fileDir)
 #loaderxgca=xgca(fileDir)
 #genloader = loader(fileDir)
+print(type(xgc1(fileDir)))
 
 
