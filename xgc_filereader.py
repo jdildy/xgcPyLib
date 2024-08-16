@@ -1161,6 +1161,7 @@ class xgca(object):
 
     def xgca_timeslice(self):
             path = self.xgc_path
+            print(path)
             bp_timeslices = []
 
             pattern = re.compile(r'\b2d\.(\d+)\.bp\b')
