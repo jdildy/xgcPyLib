@@ -660,10 +660,10 @@ class xgca(object):
         print("Gathering xgca (1D) Data:")
         print("Getting Time Slice Data...")
 
-
         self.time = self.xgca_timeslice()
         print("TimeSlice Data Capture Complete.\n")
         self.length = len(self.time)
+        print(self.length)
 
         self.step = self.time[1] - self.time[0]
         self.start = self.time[0] 
@@ -739,7 +739,6 @@ class xgca(object):
 
             #XGC.F2D.Reader
             print("Reading xgc.f2d.%5.5d.bp files..." %(single))
-            filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
 
             try:
                 with Stream(filename,"rra") as f:
