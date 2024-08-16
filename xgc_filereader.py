@@ -660,7 +660,7 @@ class xgca(object):
         self.vars = {}
         print("Gathering xgca (1D) Data:")
         print("Getting Time Slice Data...")
-        self.time = self.xgc1_timeslice()
+        self.time = self.xgca_timeslice()
         if not self.time:
             print("No 2D Timeslisce data available. Reading other files.")
             return
