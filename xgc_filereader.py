@@ -1194,16 +1194,19 @@ class loader(object):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         #print(str(self.xgc_path)) # /pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun/
         self.array_container = {}
-        self.reader()
+        self.reader('xgc.mesh.bp')
         
 
 
     def reader(self):
         #rint("Reading 'xgc.mesh.bp' file...")
+    
         
         try:
             with Stream(self.xgc_path + 'xgc.mesh.bp', 'rra') as r:
                 variables_list = r.available_attributes()
+                for var_name in variables_list:
+                    var = r.read(var_name)
                 #print(self.xgc_path + '/xgc.mesh.bp')
 
                 
