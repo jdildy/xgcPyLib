@@ -1192,15 +1192,17 @@ class xgca(object):
 class loader(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
-        #print(str(self.xgc_path))
+        #print(str(self.xgc_path)) # /pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun/
         self.array_container = {}
-        self.meshbp_reader()
+        
 
 
-    def meshbp_reader(self):
+    def reader(self,file):
         print("Reading 'xgc.mesh.bp' file...")
+        print(self.xgc_path + file)
+        
         try:
-            with Stream(self.xgc_path + 'xgc.mesh.bp', 'rra') as r:
+            with Stream(self.xgc + file, 'rra') as r:
                 variables_list = r.available_attributes()
                 print(self.xgc_path + '/xgc.mesh.bp')
 
