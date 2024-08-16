@@ -119,6 +119,7 @@ class xgc1(object):
             #XGC.3D.Reader
             print("Reading xgc.3d.%5.5d.bp..." %(single))
             filename = xgc_path + "/xgc.3d.%5.5d.bp" %(single)
+            print("First Iteration")
             print(filename)
             
             try:
@@ -588,7 +589,9 @@ class xgc1(object):
             print("Error Occured")
 
     def xgc1_reader(self, file): 
+        print("This is the file path:")
         print(file)
+
         try:
             with Stream(file, 'rra') as r:
                 variables_list = r.available_variables()
