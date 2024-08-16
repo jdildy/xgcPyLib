@@ -71,7 +71,7 @@ class xgc1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         print(str(self.xgc_path))
-        self.vars = {}
+        self.array_container = {}
         print("Reading XGC Output Data:")
         print("Gathering Time Slice Data...")
 
@@ -121,44 +121,45 @@ class xgc1(object):
             filename = xgc_path + "/xgc.3d.%5.5d.bp" %(single)
             
             try:
-                with Stream(filename,"rra") as f:
-                    #2D Numpy Arrays # works
-                    self.dpot = f.read("dpot") 
-                    self.eden = f.read('eden') 
-                    self.epara = f.read('epara') 
-                    self.epsi = f.read('epsi') 
-                    self.etheta = f.read('etheta') 
-                    self.iden = f.read('iden')
-                    self.shpot = f.read('shpot')
+                xgc1.xgc1_reader(filename)
+                # with Stream(filename,"rra") as f:
+                #     #2D Numpy Arrays # works
+                #     self.dpot = f.read("dpot") 
+                #     self.eden = f.read('eden') 
+                #     self.epara = f.read('epara') 
+                #     self.epsi = f.read('epsi') 
+                #     self.etheta = f.read('etheta') 
+                #     self.iden = f.read('iden')
+                #     self.shpot = f.read('shpot')
 
 
-                    # #1D Arrays Not working for some reason... Will ask Robert
-                    self.e_marker_den = f.read('e_marker_den')
-                    self.i_marker_den = f.read('i_marker_den')
-                    #works
+                #     # #1D Arrays Not working for some reason... Will ask Robert
+                #     self.e_marker_den = f.read('e_marker_den')
+                #     self.i_marker_den = f.read('i_marker_den')
+                #     #works
 
-                    self.i_mean_weight = f.read('i_mean_weight') 
-                    self.e_mean_weight = f.read('e_mean_weight')
+                #     self.i_mean_weight = f.read('i_mean_weight') 
+                #     self.e_mean_weight = f.read('e_mean_weight')
 
-                    self.e_weight_variance = f.read('e_weight_variance')
-                    self.i_weight_variance = f.read('i_weight_variance')
-                    #works
+                #     self.e_weight_variance = f.read('e_weight_variance')
+                #     self.i_weight_variance = f.read('i_weight_variance')
+                #     #works
 
-                    self.pot0 = f.read('pot0')
-                    self.pot0m = f.read('pot0m')
-                    #works
+                #     self.pot0 = f.read('pot0')
+                #     self.pot0m = f.read('pot0m')
+                #     #works
 
             
-                    #Scalar #works
-                    self.iphi = f.read('iphi')
-                    self.nnode = f.read('nnode')
-                    self.nphi3d = f.read('nphi')
-                    self.nwall = f.read('nwall')
-                    self.sheath_nphi = f.read('sheath_nphi')
-                    self.time3d = f.read('time')
+                #     #Scalar #works
+                #     self.iphi = f.read('iphi')
+                #     self.nnode = f.read('nnode')
+                #     self.nphi3d = f.read('nphi')
+                #     self.nwall = f.read('nwall')
+                #     self.sheath_nphi = f.read('sheath_nphi')
+                #     self.time3d = f.read('time')
                 
                     
-                    print("xgc.3d.%5.5d.bp read sucessfully.\n" %(single))
+                print("xgc.3d.%5.5d.bp read sucessfully.\n" %(single))
             except Exception as e:
                 print(f"Error reading file: {e}")
             
@@ -169,185 +170,186 @@ class xgc1(object):
             filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
 
             try:
-                with Stream(filename,"rra") as f:
-                    #2D Numpy Array
-                    #e_works
-                    self.dpotf3d = f.read('dpot')
-                    self.e_ExB_enflux_en = f.read('e_ExB_enflux_en')
-                    self.e_ExB_flux_en = f.read('e_ExB_flux_en')
-                    self.e_T_para = f.read('e_T_para')
-                    self.e_T_perp = f.read('e_T_perp')
-                    self.e_den = f.read('e_den')
-                    self.e_den_en = f.read('e_den_en')
-                    self.e_energy_en = f.read('e_energy_en')
-                    self.e_u_para = f.read('e_u_para')  
-                    #i_#works
-                    self.i_ExB_enflux_en = f.read('i_ExB_enflux_en')
-                    self.i_ExB_flux_en = f.read('i_ExB_flux_en')
-                    self.i_T_para = f.read('i_T_para')
-                    self.i_T_perp = f.read('i_T_perp')
-                    self.i_den = f.read('i_den')
-                    self.i_den_en = f.read('i_den_en')
-                    self.i_energy_en = f.read('i_energy_en')
-                    self.i_u_para = f.read('i_u_para')
+                xgc1.xgc1_reader(filename)
+                #with Stream(filename,"rra") as f:
+                    # #2D Numpy Array
+                    # #e_works
+                    # self.dpotf3d = f.read('dpot')
+                    # self.e_ExB_enflux_en = f.read('e_ExB_enflux_en')
+                    # self.e_ExB_flux_en = f.read('e_ExB_flux_en')
+                    # self.e_T_para = f.read('e_T_para')
+                    # self.e_T_perp = f.read('e_T_perp')
+                    # self.e_den = f.read('e_den')
+                    # self.e_den_en = f.read('e_den_en')
+                    # self.e_energy_en = f.read('e_energy_en')
+                    # self.e_u_para = f.read('e_u_para')  
+                    # #i_#works
+                    # self.i_ExB_enflux_en = f.read('i_ExB_enflux_en')
+                    # self.i_ExB_flux_en = f.read('i_ExB_flux_en')
+                    # self.i_T_para = f.read('i_T_para')
+                    # self.i_T_perp = f.read('i_T_perp')
+                    # self.i_den = f.read('i_den')
+                    # self.i_den_en = f.read('i_den_en')
+                    # self.i_energy_en = f.read('i_energy_en')
+                    # self.i_u_para = f.read('i_u_para')
 
 
-                    #1D Numpy Array #works
-                    #e_ works
-                    self.e_parallel_flow_n0_df = f.read('e_parallel_flow_n0_df')
-                    self.e_parallel_flow_n0_f0 = f.read('e_parallel_flow_n0_f0')
-                    self.e_parallel_flow_turb_df = f.read('e_parallel_flow_turb_df')
-                    self.e_parallel_flow_turb_f0 = f.read('e_parallel_flow_turb_f0')
-                    self.e_poloidal_flow_n0_df = f.read('e_poloidal_flow_n0_df')
-                    self.e_poloidal_flow_n0_f0 = f.read('e_poloidal_flow_n0_f0')
-                    self.e_poloidal_flow_turb_df = f.read('e_poloidal_flow_turb_df')
-                    self.e_poloidal_flow_turb_f0 = f.read('e_poloidal_flow_turb_f0')
-                    self.e_rad_mom_flux_3db_n0_df = f.read('e_rad_mom_flux_3db_n0_df')
-                    self.e_rad_mom_flux_3db_n0_f0 = f.read('e_rad_mom_flux_3db_n0_f0')
-                    self.e_rad_mom_flux_3db_turb_df = f.read('e_rad_mom_flux_3db_turb_df')
-                    self.e_rad_mom_flux_3db_turb_f0 = f.read('e_rad_mom_flux_3db_turb_f0')
-                    self.e_rad_mom_flux_ExB_n0_df = f.read('e_rad_mom_flux_ExB_n0_df')
-                    self.e_rad_mom_flux_ExB_n0_f0 = f.read('e_rad_mom_flux_ExB_n0_f0')
-                    self.e_rad_mom_flux_ExB_turb_df = f.read('e_rad_mom_flux_ExB_turb_df')
-                    self.e_rad_mom_flux_ExB_turb_f0 = f.read('e_rad_mom_flux_ExB_turb_f0')
-                    self.e_rad_mom_flux_mag_n0_df = f.read('e_rad_mom_flux_mag_n0_df')
-                    self.e_rad_mom_flux_mag_n0_f0 = f.read('e_rad_mom_flux_mag_n0_f0')
-                    self.e_rad_mom_flux_mag_turb_df = f.read('e_rad_mom_flux_mag_turb_df')
-                    self.e_rad_mom_flux_mag_turb_f0 = f.read('e_rad_mom_flux_mag_turb_f0')
-                    self.e_radial_en_flux_3db_n0_df = f.read('e_radial_en_flux_3db_n0_df')
-                    self.e_radial_en_flux_3db_n0_f0 = f.read('e_radial_en_flux_3db_n0_f0')
-                    self.e_radial_en_flux_3db_turb_df = f.read('e_radial_en_flux_3db_turb_df')
-                    self.e_radial_en_flux_3db_turb_f0 = f.read('e_radial_en_flux_3db_turb_f0')
-                    self.e_radial_en_flux_ExB_n0_df = f.read('e_radial_en_flux_ExB_n0_df')
-                    self.e_radial_en_flux_ExB_n0_f0 = f.read('e_radial_en_flux_ExB_n0_f0')
-                    self.e_radial_en_flux_ExB_turb_df = f.read('e_radial_en_flux_ExB_turb_df')     
-                    self.e_radial_en_flux_ExB_turb_f0 = f.read('e_radial_en_flux_ExB_turb_f0')
-                    self.e_radial_en_flux_mag_n0_df = f.read('e_radial_en_flux_mag_n0_df')       
-                    self.e_radial_en_flux_mag_n0_f0 = f.read('e_radial_en_flux_mag_n0_f0')   
-                    self.e_radial_en_flux_mag_turb_df = f.read('e_radial_en_flux_mag_turb_df')  
-                    self.e_radial_en_flux_mag_turb_f0 = f.read('e_radial_en_flux_mag_turb_f0')
-                    self.e_radial_flux_3db_n0_df = f.read('e_radial_flux_3db_n0_df')           
-                    self.e_radial_flux_3db_n0_f0 = f.read('e_radial_flux_3db_n0_f0')  
-                    self.e_radial_flux_3db_turb_df = f.read('e_radial_flux_3db_turb_df')   
-                    self.e_radial_flux_3db_turb_f0 = f.read('e_radial_flux_3db_turb_f0')    
-                    self.e_radial_flux_ExB_n0_df = f.read('e_radial_flux_ExB_n0_df')          
-                    self.e_radial_flux_ExB_n0_f0 = f.read('e_radial_flux_ExB_n0_f0')        
-                    self.e_radial_flux_ExB_turb_df = f.read('e_radial_flux_ExB_turb_df')        
-                    self.e_radial_flux_ExB_turb_f0 = f.read('e_radial_flux_ExB_turb_f0')         
-                    self.e_radial_flux_mag_n0_df = f.read('e_radial_flux_mag_n0_df')        
-                    self.e_radial_flux_mag_n0_f0 = f.read('e_radial_flux_mag_n0_f0')          
-                    self.e_radial_flux_mag_turb_df = f.read('e_radial_flux_mag_turb_df') 
-                    self.e_radial_flux_mag_turb_f0 = f.read('e_radial_flux_mag_turb_f0')         
-                    self.e_radial_pot_en_flux_3db_n0_df = f.read('e_radial_pot_en_flux_3db_n0_df')    
-                    self.e_radial_pot_en_flux_3db_n0_f0 = f.read('e_radial_pot_en_flux_3db_n0_f0')    
-                    self.e_radial_pot_en_flux_3db_turb_df = f.read('e_radial_pot_en_flux_3db_turb_df')  
-                    self.e_radial_pot_en_flux_3db_turb_f0 = f.read('e_radial_pot_en_flux_3db_turb_f0') 
-                    self.e_radial_pot_en_flux_ExB0_n0_df = f.read('e_radial_pot_en_flux_ExB0_n0_df')    
-                    self.e_radial_pot_en_flux_ExB0_n0_f0 = f.read('e_radial_pot_en_flux_ExB0_n0_f0')   
-                    self.e_radial_pot_en_flux_ExB0_turb_df = f.read('e_radial_pot_en_flux_ExB0_turb_df') 
-                    self.e_radial_pot_en_flux_ExB0_turb_f0 = f.read('e_radial_pot_en_flux_ExB0_turb_f0') 
-                    self.e_radial_pot_en_flux_ExBt_n0_df = f.read('e_radial_pot_en_flux_ExBt_n0_df')  
-                    self.e_radial_pot_en_flux_ExBt_n0_f0 = f.read('e_radial_pot_en_flux_ExBt_n0_f0')   
-                    self.e_radial_pot_en_flux_ExBt_turb_df = f.read('e_radial_pot_en_flux_ExBt_turb_df') 
-                    self.e_radial_pot_en_flux_ExBt_turb_f0 = f.read('e_radial_pot_en_flux_ExBt_turb_f0') 
-                    self.e_radial_pot_en_flux_mag_n0_df = f.read('e_radial_pot_en_flux_mag_n0_df')   
-                    self.e_radial_pot_en_flux_mag_n0_f0 = f.read('e_radial_pot_en_flux_mag_n0_f0')    
-                    self.e_radial_pot_en_flux_mag_turb_df = f.read('e_radial_pot_en_flux_mag_turb_df') 
-                    self.e_radial_pot_en_flux_mag_turb_f0 = f.read('e_radial_pot_en_flux_mag_turb_f0')
-                    self.e_tor_ang_mom_n0_df = f.read('e_tor_ang_mom_n0_df')          
-                    self.e_tor_ang_mom_n0_f0 = f.read('e_tor_ang_mom_n0_f0')            
-                    self.e_tor_ang_mom_turb_df = f.read('e_tor_ang_mom_turb_df')             
-                    self.e_tor_ang_mom_turb_f0 = f.read('e_tor_ang_mom_turb_f0')         
-                    self.e_toroidal_flow_n0_df = f.read('e_toroidal_flow_n0_df')           
-                    self.e_toroidal_flow_n0_f0 = f.read('e_toroidal_flow_n0_f0')          
-                    self.e_toroidal_flow_turb_df = f.read('e_toroidal_flow_turb_df')          
-                    self.e_toroidal_flow_turb_f0 = f.read('e_toroidal_flow_turb_f0')
+                    # #1D Numpy Array #works
+                    # #e_ works
+                    # self.e_parallel_flow_n0_df = f.read('e_parallel_flow_n0_df')
+                    # self.e_parallel_flow_n0_f0 = f.read('e_parallel_flow_n0_f0')
+                    # self.e_parallel_flow_turb_df = f.read('e_parallel_flow_turb_df')
+                    # self.e_parallel_flow_turb_f0 = f.read('e_parallel_flow_turb_f0')
+                    # self.e_poloidal_flow_n0_df = f.read('e_poloidal_flow_n0_df')
+                    # self.e_poloidal_flow_n0_f0 = f.read('e_poloidal_flow_n0_f0')
+                    # self.e_poloidal_flow_turb_df = f.read('e_poloidal_flow_turb_df')
+                    # self.e_poloidal_flow_turb_f0 = f.read('e_poloidal_flow_turb_f0')
+                    # self.e_rad_mom_flux_3db_n0_df = f.read('e_rad_mom_flux_3db_n0_df')
+                    # self.e_rad_mom_flux_3db_n0_f0 = f.read('e_rad_mom_flux_3db_n0_f0')
+                    # self.e_rad_mom_flux_3db_turb_df = f.read('e_rad_mom_flux_3db_turb_df')
+                    # self.e_rad_mom_flux_3db_turb_f0 = f.read('e_rad_mom_flux_3db_turb_f0')
+                    # self.e_rad_mom_flux_ExB_n0_df = f.read('e_rad_mom_flux_ExB_n0_df')
+                    # self.e_rad_mom_flux_ExB_n0_f0 = f.read('e_rad_mom_flux_ExB_n0_f0')
+                    # self.e_rad_mom_flux_ExB_turb_df = f.read('e_rad_mom_flux_ExB_turb_df')
+                    # self.e_rad_mom_flux_ExB_turb_f0 = f.read('e_rad_mom_flux_ExB_turb_f0')
+                    # self.e_rad_mom_flux_mag_n0_df = f.read('e_rad_mom_flux_mag_n0_df')
+                    # self.e_rad_mom_flux_mag_n0_f0 = f.read('e_rad_mom_flux_mag_n0_f0')
+                    # self.e_rad_mom_flux_mag_turb_df = f.read('e_rad_mom_flux_mag_turb_df')
+                    # self.e_rad_mom_flux_mag_turb_f0 = f.read('e_rad_mom_flux_mag_turb_f0')
+                    # self.e_radial_en_flux_3db_n0_df = f.read('e_radial_en_flux_3db_n0_df')
+                    # self.e_radial_en_flux_3db_n0_f0 = f.read('e_radial_en_flux_3db_n0_f0')
+                    # self.e_radial_en_flux_3db_turb_df = f.read('e_radial_en_flux_3db_turb_df')
+                    # self.e_radial_en_flux_3db_turb_f0 = f.read('e_radial_en_flux_3db_turb_f0')
+                    # self.e_radial_en_flux_ExB_n0_df = f.read('e_radial_en_flux_ExB_n0_df')
+                    # self.e_radial_en_flux_ExB_n0_f0 = f.read('e_radial_en_flux_ExB_n0_f0')
+                    # self.e_radial_en_flux_ExB_turb_df = f.read('e_radial_en_flux_ExB_turb_df')     
+                    # self.e_radial_en_flux_ExB_turb_f0 = f.read('e_radial_en_flux_ExB_turb_f0')
+                    # self.e_radial_en_flux_mag_n0_df = f.read('e_radial_en_flux_mag_n0_df')       
+                    # self.e_radial_en_flux_mag_n0_f0 = f.read('e_radial_en_flux_mag_n0_f0')   
+                    # self.e_radial_en_flux_mag_turb_df = f.read('e_radial_en_flux_mag_turb_df')  
+                    # self.e_radial_en_flux_mag_turb_f0 = f.read('e_radial_en_flux_mag_turb_f0')
+                    # self.e_radial_flux_3db_n0_df = f.read('e_radial_flux_3db_n0_df')           
+                    # self.e_radial_flux_3db_n0_f0 = f.read('e_radial_flux_3db_n0_f0')  
+                    # self.e_radial_flux_3db_turb_df = f.read('e_radial_flux_3db_turb_df')   
+                    # self.e_radial_flux_3db_turb_f0 = f.read('e_radial_flux_3db_turb_f0')    
+                    # self.e_radial_flux_ExB_n0_df = f.read('e_radial_flux_ExB_n0_df')          
+                    # self.e_radial_flux_ExB_n0_f0 = f.read('e_radial_flux_ExB_n0_f0')        
+                    # self.e_radial_flux_ExB_turb_df = f.read('e_radial_flux_ExB_turb_df')        
+                    # self.e_radial_flux_ExB_turb_f0 = f.read('e_radial_flux_ExB_turb_f0')         
+                    # self.e_radial_flux_mag_n0_df = f.read('e_radial_flux_mag_n0_df')        
+                    # self.e_radial_flux_mag_n0_f0 = f.read('e_radial_flux_mag_n0_f0')          
+                    # self.e_radial_flux_mag_turb_df = f.read('e_radial_flux_mag_turb_df') 
+                    # self.e_radial_flux_mag_turb_f0 = f.read('e_radial_flux_mag_turb_f0')         
+                    # self.e_radial_pot_en_flux_3db_n0_df = f.read('e_radial_pot_en_flux_3db_n0_df')    
+                    # self.e_radial_pot_en_flux_3db_n0_f0 = f.read('e_radial_pot_en_flux_3db_n0_f0')    
+                    # self.e_radial_pot_en_flux_3db_turb_df = f.read('e_radial_pot_en_flux_3db_turb_df')  
+                    # self.e_radial_pot_en_flux_3db_turb_f0 = f.read('e_radial_pot_en_flux_3db_turb_f0') 
+                    # self.e_radial_pot_en_flux_ExB0_n0_df = f.read('e_radial_pot_en_flux_ExB0_n0_df')    
+                    # self.e_radial_pot_en_flux_ExB0_n0_f0 = f.read('e_radial_pot_en_flux_ExB0_n0_f0')   
+                    # self.e_radial_pot_en_flux_ExB0_turb_df = f.read('e_radial_pot_en_flux_ExB0_turb_df') 
+                    # self.e_radial_pot_en_flux_ExB0_turb_f0 = f.read('e_radial_pot_en_flux_ExB0_turb_f0') 
+                    # self.e_radial_pot_en_flux_ExBt_n0_df = f.read('e_radial_pot_en_flux_ExBt_n0_df')  
+                    # self.e_radial_pot_en_flux_ExBt_n0_f0 = f.read('e_radial_pot_en_flux_ExBt_n0_f0')   
+                    # self.e_radial_pot_en_flux_ExBt_turb_df = f.read('e_radial_pot_en_flux_ExBt_turb_df') 
+                    # self.e_radial_pot_en_flux_ExBt_turb_f0 = f.read('e_radial_pot_en_flux_ExBt_turb_f0') 
+                    # self.e_radial_pot_en_flux_mag_n0_df = f.read('e_radial_pot_en_flux_mag_n0_df')   
+                    # self.e_radial_pot_en_flux_mag_n0_f0 = f.read('e_radial_pot_en_flux_mag_n0_f0')    
+                    # self.e_radial_pot_en_flux_mag_turb_df = f.read('e_radial_pot_en_flux_mag_turb_df') 
+                    # self.e_radial_pot_en_flux_mag_turb_f0 = f.read('e_radial_pot_en_flux_mag_turb_f0')
+                    # self.e_tor_ang_mom_n0_df = f.read('e_tor_ang_mom_n0_df')          
+                    # self.e_tor_ang_mom_n0_f0 = f.read('e_tor_ang_mom_n0_f0')            
+                    # self.e_tor_ang_mom_turb_df = f.read('e_tor_ang_mom_turb_df')             
+                    # self.e_tor_ang_mom_turb_f0 = f.read('e_tor_ang_mom_turb_f0')         
+                    # self.e_toroidal_flow_n0_df = f.read('e_toroidal_flow_n0_df')           
+                    # self.e_toroidal_flow_n0_f0 = f.read('e_toroidal_flow_n0_f0')          
+                    # self.e_toroidal_flow_turb_df = f.read('e_toroidal_flow_turb_df')          
+                    # self.e_toroidal_flow_turb_f0 = f.read('e_toroidal_flow_turb_f0')
 
-                    #i_
-                    self.i_parallel_flow_n0_df = f.read('i_parallel_flow_n0_df')
-                    self.i_parallel_flow_n0_f0 = f.read('i_parallel_flow_n0_f0')
-                    self.i_parallel_flow_turb_df = f.read('i_parallel_flow_turb_df')
-                    self.i_parallel_flow_turb_f0 = f.read('i_parallel_flow_turb_f0')
-                    self.i_poloidal_flow_n0_df = f.read('i_poloidal_flow_n0_df')
-                    self.i_poloidal_flow_n0_f0 = f.read('i_poloidal_flow_n0_f0')
-                    self.i_poloidal_flow_turb_df = f.read('i_poloidal_flow_turb_df')
-                    self.i_poloidal_flow_turb_f0 = f.read('i_poloidal_flow_turb_f0')
-                    self.i_rad_mom_flux_3db_n0_df = f.read('i_rad_mom_flux_3db_n0_df')
-                    self.i_rad_mom_flux_3db_n0_f0 = f.read('i_rad_mom_flux_3db_n0_f0')
-                    self.i_rad_mom_flux_3db_turb_df = f.read('i_rad_mom_flux_3db_turb_df')
-                    self.i_rad_mom_flux_3db_turb_f0 = f.read('i_rad_mom_flux_3db_turb_f0')
-                    self.i_rad_mom_flux_ExB_n0_df = f.read('i_rad_mom_flux_ExB_n0_df')
-                    self.i_rad_mom_flux_ExB_n0_f0 = f.read('i_rad_mom_flux_ExB_n0_f0')
-                    self.i_rad_mom_flux_ExB_turb_df = f.read('i_rad_mom_flux_ExB_turb_df')
-                    self.i_rad_mom_flux_ExB_turb_f0 = f.read('i_rad_mom_flux_ExB_turb_f0')
-                    self.i_rad_mom_flux_mag_n0_df = f.read('i_rad_mom_flux_mag_n0_df')
-                    self.i_rad_mom_flux_mag_n0_f0 = f.read('i_rad_mom_flux_mag_n0_f0')
-                    self.i_rad_mom_flux_mag_turb_df = f.read('i_rad_mom_flux_mag_turb_df')
-                    self.i_rad_mom_flux_mag_turb_f0 = f.read('i_rad_mom_flux_mag_turb_f0')
-                    self.i_radial_en_flux_3db_n0_df = f.read('i_radial_en_flux_3db_n0_df')
-                    self.i_radial_en_flux_3db_n0_f0 = f.read('i_radial_en_flux_3db_n0_f0')
-                    self.i_radial_en_flux_3db_turb_df = f.read('i_radial_en_flux_3db_turb_df')
-                    self.i_radial_en_flux_3db_turb_f0 = f.read('i_radial_en_flux_3db_turb_f0')
-                    self.i_radial_en_flux_ExB_n0_df = f.read('i_radial_en_flux_ExB_n0_df')
-                    self.i_radial_en_flux_ExB_n0_f0 = f.read('i_radial_en_flux_ExB_n0_f0')
-                    self.i_radial_en_flux_ExB_turb_df = f.read('i_radial_en_flux_ExB_turb_df')     
-                    self.i_radial_en_flux_ExB_turb_f0 = f.read('i_radial_en_flux_ExB_turb_f0')
-                    self.i_radial_en_flux_mag_n0_df = f.read('i_radial_en_flux_mag_n0_df')       
-                    self.i_radial_en_flux_mag_n0_f0 = f.read('i_radial_en_flux_mag_n0_f0')   
-                    self.i_radial_en_flux_mag_turb_df = f.read('i_radial_en_flux_mag_turb_df')  
-                    self.i_radial_en_flux_mag_turb_f0 = f.read('i_radial_en_flux_mag_turb_f0')
-                    self.i_radial_flux_3db_n0_df = f.read('i_radial_flux_3db_n0_df')           
-                    self.i_radial_flux_3db_n0_f0 = f.read('i_radial_flux_3db_n0_f0')  
-                    self.i_radial_flux_3db_turb_df = f.read('i_radial_flux_3db_turb_df')   
-                    self.i_radial_flux_3db_turb_f0 = f.read('i_radial_flux_3db_turb_f0')    
-                    self.i_radial_flux_ExB_n0_df = f.read('i_radial_flux_ExB_n0_df')          
-                    self.i_radial_flux_ExB_n0_f0 = f.read('i_radial_flux_ExB_n0_f0')        
-                    self.i_radial_flux_ExB_turb_df = f.read('i_radial_flux_ExB_turb_df')        
-                    self.i_radial_flux_ExB_turb_f0 = f.read('i_radial_flux_ExB_turb_f0')         
-                    self.i_radial_flux_mag_n0_df = f.read('i_radial_flux_mag_n0_df')        
-                    self.i_radial_flux_mag_n0_f0 = f.read('i_radial_flux_mag_n0_f0')          
-                    self.i_radial_flux_mag_turb_df = f.read('i_radial_flux_mag_turb_df') 
-                    self.i_radial_flux_mag_turb_f0 = f.read('i_radial_flux_mag_turb_f0')         
-                    self.i_radial_pot_en_flux_3db_n0_df = f.read('i_radial_pot_en_flux_3db_n0_df')    
-                    self.i_radial_pot_en_flux_3db_n0_f0 = f.read('i_radial_pot_en_flux_3db_n0_f0')    
-                    self.i_radial_pot_en_flux_3db_turb_df = f.read('i_radial_pot_en_flux_3db_turb_df')  
-                    self.i_radial_pot_en_flux_3db_turb_f0 = f.read('i_radial_pot_en_flux_3db_turb_f0') 
-                    self.i_radial_pot_en_flux_ExB0_n0_df = f.read('i_radial_pot_en_flux_ExB0_n0_df')    
-                    self.i_radial_pot_en_flux_ExB0_n0_f0 = f.read('i_radial_pot_en_flux_ExB0_n0_f0')   
-                    self.i_radial_pot_en_flux_ExB0_turb_df = f.read('i_radial_pot_en_flux_ExB0_turb_df') 
-                    self.i_radial_pot_en_flux_ExB0_turb_f0 = f.read('i_radial_pot_en_flux_ExB0_turb_f0') 
-                    self.i_radial_pot_en_flux_ExBt_n0_df = f.read('i_radial_pot_en_flux_ExBt_n0_df')  
-                    self.i_radial_pot_en_flux_ExBt_n0_f0 = f.read('i_radial_pot_en_flux_ExBt_n0_f0')   
-                    self.i_radial_pot_en_flux_ExBt_turb_df = f.read('i_radial_pot_en_flux_ExBt_turb_df') 
-                    self.i_radial_pot_en_flux_ExBt_turb_f0 = f.read('i_radial_pot_en_flux_ExBt_turb_f0') 
-                    self.i_radial_pot_en_flux_mag_n0_df = f.read('i_radial_pot_en_flux_mag_n0_df')   
-                    self.i_radial_pot_en_flux_mag_n0_f0 = f.read('i_radial_pot_en_flux_mag_n0_f0')    
-                    self.i_radial_pot_en_flux_mag_turb_df = f.read('i_radial_pot_en_flux_mag_turb_df') 
-                    self.i_radial_pot_en_flux_mag_turb_f0 = f.read('i_radial_pot_en_flux_mag_turb_f0')
-                    self.i_tor_ang_mom_n0_df = f.read('i_tor_ang_mom_n0_df')          
-                    self.i_tor_ang_mom_n0_f0 = f.read('i_tor_ang_mom_n0_f0')            
-                    self.i_tor_ang_mom_turb_df = f.read('i_tor_ang_mom_turb_df')             
-                    self.i_tor_ang_mom_turb_f0 = f.read('i_tor_ang_mom_turb_f0')         
-                    self.i_toroidal_flow_n0_df = f.read('i_toroidal_flow_n0_df')           
-                    self.i_toroidal_flow_n0_f0 = f.read('i_toroidal_flow_n0_f0')          
-                    self.i_toroidal_flow_turb_df = f.read('i_toroidal_flow_turb_df')          
-                    self.i_toroidal_flow_turb_f0 = f.read('i_toroidal_flow_turb_f0')
+                    # #i_
+                    # self.i_parallel_flow_n0_df = f.read('i_parallel_flow_n0_df')
+                    # self.i_parallel_flow_n0_f0 = f.read('i_parallel_flow_n0_f0')
+                    # self.i_parallel_flow_turb_df = f.read('i_parallel_flow_turb_df')
+                    # self.i_parallel_flow_turb_f0 = f.read('i_parallel_flow_turb_f0')
+                    # self.i_poloidal_flow_n0_df = f.read('i_poloidal_flow_n0_df')
+                    # self.i_poloidal_flow_n0_f0 = f.read('i_poloidal_flow_n0_f0')
+                    # self.i_poloidal_flow_turb_df = f.read('i_poloidal_flow_turb_df')
+                    # self.i_poloidal_flow_turb_f0 = f.read('i_poloidal_flow_turb_f0')
+                    # self.i_rad_mom_flux_3db_n0_df = f.read('i_rad_mom_flux_3db_n0_df')
+                    # self.i_rad_mom_flux_3db_n0_f0 = f.read('i_rad_mom_flux_3db_n0_f0')
+                    # self.i_rad_mom_flux_3db_turb_df = f.read('i_rad_mom_flux_3db_turb_df')
+                    # self.i_rad_mom_flux_3db_turb_f0 = f.read('i_rad_mom_flux_3db_turb_f0')
+                    # self.i_rad_mom_flux_ExB_n0_df = f.read('i_rad_mom_flux_ExB_n0_df')
+                    # self.i_rad_mom_flux_ExB_n0_f0 = f.read('i_rad_mom_flux_ExB_n0_f0')
+                    # self.i_rad_mom_flux_ExB_turb_df = f.read('i_rad_mom_flux_ExB_turb_df')
+                    # self.i_rad_mom_flux_ExB_turb_f0 = f.read('i_rad_mom_flux_ExB_turb_f0')
+                    # self.i_rad_mom_flux_mag_n0_df = f.read('i_rad_mom_flux_mag_n0_df')
+                    # self.i_rad_mom_flux_mag_n0_f0 = f.read('i_rad_mom_flux_mag_n0_f0')
+                    # self.i_rad_mom_flux_mag_turb_df = f.read('i_rad_mom_flux_mag_turb_df')
+                    # self.i_rad_mom_flux_mag_turb_f0 = f.read('i_rad_mom_flux_mag_turb_f0')
+                    # self.i_radial_en_flux_3db_n0_df = f.read('i_radial_en_flux_3db_n0_df')
+                    # self.i_radial_en_flux_3db_n0_f0 = f.read('i_radial_en_flux_3db_n0_f0')
+                    # self.i_radial_en_flux_3db_turb_df = f.read('i_radial_en_flux_3db_turb_df')
+                    # self.i_radial_en_flux_3db_turb_f0 = f.read('i_radial_en_flux_3db_turb_f0')
+                    # self.i_radial_en_flux_ExB_n0_df = f.read('i_radial_en_flux_ExB_n0_df')
+                    # self.i_radial_en_flux_ExB_n0_f0 = f.read('i_radial_en_flux_ExB_n0_f0')
+                    # self.i_radial_en_flux_ExB_turb_df = f.read('i_radial_en_flux_ExB_turb_df')     
+                    # self.i_radial_en_flux_ExB_turb_f0 = f.read('i_radial_en_flux_ExB_turb_f0')
+                    # self.i_radial_en_flux_mag_n0_df = f.read('i_radial_en_flux_mag_n0_df')       
+                    # self.i_radial_en_flux_mag_n0_f0 = f.read('i_radial_en_flux_mag_n0_f0')   
+                    # self.i_radial_en_flux_mag_turb_df = f.read('i_radial_en_flux_mag_turb_df')  
+                    # self.i_radial_en_flux_mag_turb_f0 = f.read('i_radial_en_flux_mag_turb_f0')
+                    # self.i_radial_flux_3db_n0_df = f.read('i_radial_flux_3db_n0_df')           
+                    # self.i_radial_flux_3db_n0_f0 = f.read('i_radial_flux_3db_n0_f0')  
+                    # self.i_radial_flux_3db_turb_df = f.read('i_radial_flux_3db_turb_df')   
+                    # self.i_radial_flux_3db_turb_f0 = f.read('i_radial_flux_3db_turb_f0')    
+                    # self.i_radial_flux_ExB_n0_df = f.read('i_radial_flux_ExB_n0_df')          
+                    # self.i_radial_flux_ExB_n0_f0 = f.read('i_radial_flux_ExB_n0_f0')        
+                    # self.i_radial_flux_ExB_turb_df = f.read('i_radial_flux_ExB_turb_df')        
+                    # self.i_radial_flux_ExB_turb_f0 = f.read('i_radial_flux_ExB_turb_f0')         
+                    # self.i_radial_flux_mag_n0_df = f.read('i_radial_flux_mag_n0_df')        
+                    # self.i_radial_flux_mag_n0_f0 = f.read('i_radial_flux_mag_n0_f0')          
+                    # self.i_radial_flux_mag_turb_df = f.read('i_radial_flux_mag_turb_df') 
+                    # self.i_radial_flux_mag_turb_f0 = f.read('i_radial_flux_mag_turb_f0')         
+                    # self.i_radial_pot_en_flux_3db_n0_df = f.read('i_radial_pot_en_flux_3db_n0_df')    
+                    # self.i_radial_pot_en_flux_3db_n0_f0 = f.read('i_radial_pot_en_flux_3db_n0_f0')    
+                    # self.i_radial_pot_en_flux_3db_turb_df = f.read('i_radial_pot_en_flux_3db_turb_df')  
+                    # self.i_radial_pot_en_flux_3db_turb_f0 = f.read('i_radial_pot_en_flux_3db_turb_f0') 
+                    # self.i_radial_pot_en_flux_ExB0_n0_df = f.read('i_radial_pot_en_flux_ExB0_n0_df')    
+                    # self.i_radial_pot_en_flux_ExB0_n0_f0 = f.read('i_radial_pot_en_flux_ExB0_n0_f0')   
+                    # self.i_radial_pot_en_flux_ExB0_turb_df = f.read('i_radial_pot_en_flux_ExB0_turb_df') 
+                    # self.i_radial_pot_en_flux_ExB0_turb_f0 = f.read('i_radial_pot_en_flux_ExB0_turb_f0') 
+                    # self.i_radial_pot_en_flux_ExBt_n0_df = f.read('i_radial_pot_en_flux_ExBt_n0_df')  
+                    # self.i_radial_pot_en_flux_ExBt_n0_f0 = f.read('i_radial_pot_en_flux_ExBt_n0_f0')   
+                    # self.i_radial_pot_en_flux_ExBt_turb_df = f.read('i_radial_pot_en_flux_ExBt_turb_df') 
+                    # self.i_radial_pot_en_flux_ExBt_turb_f0 = f.read('i_radial_pot_en_flux_ExBt_turb_f0') 
+                    # self.i_radial_pot_en_flux_mag_n0_df = f.read('i_radial_pot_en_flux_mag_n0_df')   
+                    # self.i_radial_pot_en_flux_mag_n0_f0 = f.read('i_radial_pot_en_flux_mag_n0_f0')    
+                    # self.i_radial_pot_en_flux_mag_turb_df = f.read('i_radial_pot_en_flux_mag_turb_df') 
+                    # self.i_radial_pot_en_flux_mag_turb_f0 = f.read('i_radial_pot_en_flux_mag_turb_f0')
+                    # self.i_tor_ang_mom_n0_df = f.read('i_tor_ang_mom_n0_df')          
+                    # self.i_tor_ang_mom_n0_f0 = f.read('i_tor_ang_mom_n0_f0')            
+                    # self.i_tor_ang_mom_turb_df = f.read('i_tor_ang_mom_turb_df')             
+                    # self.i_tor_ang_mom_turb_f0 = f.read('i_tor_ang_mom_turb_f0')         
+                    # self.i_toroidal_flow_n0_df = f.read('i_toroidal_flow_n0_df')           
+                    # self.i_toroidal_flow_n0_f0 = f.read('i_toroidal_flow_n0_f0')          
+                    # self.i_toroidal_flow_turb_df = f.read('i_toroidal_flow_turb_df')          
+                    # self.i_toroidal_flow_turb_f0 = f.read('i_toroidal_flow_turb_f0')
 
-                    self.pot0 = f.read('pot0')
+                    # self.pot0 = f.read('pot0')
 
                     
-                    #Scalar
-                    self.inode1m1 = f.read('inode1m1')
-                    self.iphim1 = f.read('iphim1')
-                    self.n_energy = f.read('n_energy')
-                    self.ndata = f.read('ndata')
-                    self.nnode = f.read('nnode')
-                    self.nphif3d = f.read('nphi')
-                    self.step =  f.read('step')
-                    self.timef3d = f.read('time')
+                    # #Scalar
+                    # self.inode1m1 = f.read('inode1m1')
+                    # self.iphim1 = f.read('iphim1')
+                    # self.n_energy = f.read('n_energy')
+                    # self.ndata = f.read('ndata')
+                    # self.nnode = f.read('nnode')
+                    # self.nphif3d = f.read('nphi')
+                    # self.step =  f.read('step')
+                    # self.timef3d = f.read('time')
                     
                     
-                    print("xgc.f3d.%5.5d.bp read sucessfully.\n" %(single))
+                print("xgc.f3d.%5.5d.bp read sucessfully.\n" %(single))
             except Exception as e:
                 print(f"Error reading file: {e}")
         
@@ -584,6 +586,24 @@ class xgc1(object):
             #default
             print("Error Occured")
 
+    def xgc1_reader(self, file): 
+        try:
+            with Stream(self.xgc_path + file, 'rra') as r:
+                variables_list = r.available_variables()
+                for var_name in variables_list:
+                    var = r.read(var_name)
+                    self.array_container[var_name] = np.array(var)
+            print(f"Reading {file} file sucessful.")
+        except Exception as e:
+            print(f"Error reading file: {e}")
+
+
+    def get_loadVar3D(self,name):
+        if name in self.array_container:
+            return self.array_container[str(name)]
+        else:
+            print(f"Variable with name '{name}' not found")
+
 
 
 
@@ -658,7 +678,7 @@ class xgca(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         print(str(self.xgc_path))
-        self.vars = {}
+        self.array = {}
         print("Gathering xgca (2D) Data:")
         print("Getting Time Slice Data...")
         self.time = self.xgca_timeslice()
@@ -1187,6 +1207,26 @@ class xgca(object):
             #print(type(numbers[0])) each element is of type int
             # print(sorted_array) WORKS 
             return numbers
+    
+    def readerxgca(self, file):
+        
+        
+        try:
+            with Stream(self.xgc_path + file, 'rra') as r:
+                variables_list = r.available_variables()
+                for var_name in variables_list:
+                    var = r.read(var_name)
+                    self.array_container[var_name] = np.array(var)
+            print(f"Reading {file} file sucessful.")
+        except Exception as e:
+            print(f"Error reading file: {e}")
+
+
+    def get_loadVarxgca(self,name):
+        if name in self.array_container:
+            return self.array_container[str(name)]
+        else:
+            print(f"Variable with name '{name}' not found")
 
 #General FileReader 
 class loader(object):
@@ -1197,10 +1237,8 @@ class loader(object):
         #self.reader('xgc.grad_rz')
         
 
-    # Can handle all BP files except heatdiag2 and sheathdiag. Need to create tests to catch if 
+    # Can handle all General BP files except heatdiag2 and sheathdiag. Need to create tests to catch if 
     def reader(self, file):
-        
-    
         
         try:
             with Stream(self.xgc_path + file, 'rra') as r:
@@ -1267,15 +1305,20 @@ class loader(object):
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
-#loaderxgca=xgca(fileDir)
+loaderxgca=xgca(fileDir)
 #genloader = loader(fileDir)
 #print(type(xgc1(fileDir)))
-manager = loader(fileDir)
-hyp_vis_rad = manager.reader('xgc.hyp_vis_rad.bp')
-grad_rz = manager.reader('xgc.grad_rz.bp')
+#manager = loader(fileDir)
 
-n_r = manager.get_loadVar('n_r')
-print(n_r)
+
+
+
+
+# hyp_vis_rad = manager.reader('xgc.hyp_vis_rad.bp')
+# grad_rz = manager.reader('xgc.grad_rz.bp')
+
+# n_r = manager.get_loadVar('n_r')
+# print(n_r)
 
 
 
