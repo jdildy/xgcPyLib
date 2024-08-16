@@ -1214,7 +1214,7 @@ class loader(object):
 
     def get_loadVar(self,name):
         if name in self.array_container:
-            return self.array_container[name]
+            return self.array_container[str(name)]
         else:
             print(f"Variable with name '{name}' not found")
 
