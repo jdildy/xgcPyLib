@@ -91,7 +91,9 @@ class data1(object):
                         setattr(self,vars, r.read(vars, start=[0], count = [shape]))
                     elif vars!='gsamples' and 'samples':
                         setattr(self,vars,r.read(vars,start=[],count=[]))
+            print("Sucess?")
         except Exception as e:
+            
             print(f"Exception in file: {e}")
                         
                         
