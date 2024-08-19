@@ -78,18 +78,28 @@ class data1(object):
         print("Reading xgc.oneddiag.bp data...")
 
         try:
-            with Stream(xgc_path + "/xgc.oneddiag.bp", 'rra') as f:
-                variable_list = f.available_variables()
-                for name in variable_list:
-                    for _ in f.steps: 
-                        var = f.read(name)
-                    self.array_container[name] = np.array(var)
-                print("Sucess?")
-        except:
-            print("Fail.")
-    
+            self.array_container = {}
+            with Stream(xgc_path + "/xgc.oneddiag.bp","rra") as r:
+                self.vars = r.available_variables()
+                for vars in self.vars:
+                    stepcount = self.vars[vars]['AvailableStepsCount']
+                    shape = self.vars[vars]['Shape']
+                    singleVal = self.vars[vars]['SingleValue']
+                    stepcount = int(stepcount)
+                    if shape != '':
+                        shape = int(shape)
+                        setattr(self,vars, r.read(vars, start=[0], count = [shape], step_start = 0, step_count = stepcount))
+                    elif vars!='gsamples' and 'samples':
+                        setattr(self,vars,r.read(vars,start=[],count=[], step_start=0, step_count=stepcount))
+        except Exception as e:
+            print(f"Exception in file: {e}")
+                        
+                        
 
+                
 
+        except Exception as e:
+            print(f"Error reading file: {e}\n")
 
 
     # def readerdata1(self, file):
