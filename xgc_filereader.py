@@ -80,6 +80,8 @@ class data1(object):
                 if isinstance(vars, dict):  # Ensure vars is a dictionary
                     for _ in r.steps():  # Call steps() to get the iterable
                         print(f"Current step is {r.current_step}")
+
+                        
                         for name, info in vars.items():  # Iterate over dictionary items
                             print("variable_name: " + name, end=" \n")
                             var = r.read(name)  # Read the variable
