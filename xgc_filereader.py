@@ -76,24 +76,20 @@ class data1(object):
         filename = xgc_path + "/xgc.oneddiag.bp"
         try:
             with Stream(filename, "rra") as r:
-                vars = r.available_variables()
-                for _ in r.steps:
-                    print(f"Current step is {r.current_step}")
-                    if isinstance(vars, dict):
-                        for name, info in vars.items():
+                vars = r.available_variables()  # Call the method to get available variables
+                if isinstance(vars, dict):  # Ensure vars is a dictionary
+                    for _ in r.steps():  # Call steps() to get the iterable
+                        print(f"Current step is {r.current_step}")
+                        for name, info in vars.items():  # Iterate over dictionary items
                             print("variable_name: " + name, end=" \n")
-                            var = r.read(name, )
-                            self.array_container[name] = np.array(var)
-                        else: 
-                            print("this is not a dictionary")
+                            var = r.read(name)  # Read the variable
+                            self.array_container[name] = np.array(var)  # Store the variable in the container
+                else:
+                    print("This is not a dictionary")
             print("Success.")
         except Exception as e:
             print(f"Error in file: {e}\n")
                     
-
-                
-        except Exception as e:
-            print(f"Exception in file: {e}")
 
                         
                         
