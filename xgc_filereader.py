@@ -76,8 +76,8 @@ class data1(object):
         filename = xgc_path + "/xgc.oneddiag.bp"
         try:
             with Stream(filename,"rra") as r:
-                for _ in r.steps:
-                    variables_list = r.available_variables()
+                variables_list = r.available_variables()
+                for _ in r.steps:   
                     for var_name in variables_list:
                         var = r.read(var_name)
                         self.array_container[var_name] = np.array(var)
