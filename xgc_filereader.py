@@ -93,6 +93,7 @@ class data1(object):
     def read_oneddiag(self):
         try:
             with Stream(self.xgc_path + "/xgc.oneddiag.bp", "rra") as r:
+                print(r.steps)
                 self.vars = r.available_variables()
                 #print(self.vars)
                 for v in self.vars:
