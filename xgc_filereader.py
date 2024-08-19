@@ -75,7 +75,6 @@ class data1(object):
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
 
-        print("Reading xgc.oneddiag.bp data...")
 
         try:
             self.array_container = {}
@@ -86,17 +85,13 @@ class data1(object):
                     shape = self.vars[vars]['Shape']
                     singleVal = self.vars[vars]['SingleValue']
                     stepcount = int(stepcount)
-
-                    #print(stepcount)
-                    #print(shape)
-                    #print(singleVal)
-                    #print(type(stepcount))
-                    print(type(shape))
-                    #print(type(singleVal))
+                    if shape!='':
+                        shape=int(shape)
+                        setattr(self,vars,r.read(vars,start=[0], count=[shape]))
+                    elif vars!='gsamples' and vars!='samples' :
+                        setattr(self,vars,r.read(vars ,start=[], count=[]))
                     
-                    
-                    
-            #print(self.array_container)
+            print("Success?")
         except Exception as e:
             print(f"Exception in file: {e}")
                         
