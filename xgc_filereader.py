@@ -74,18 +74,6 @@ class data1(object):
         self.array_container = {}
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
-        
-
-        choices = [
-            (1, "Option 1: Read a single 3D data file"),
-            (2, "Option 2: Read a range of 3D data files"),
-            (3, "Option 3: Exit.")
-        ]
-
-        choice = user_select("Please Choose an option:", choices)
-
-
-        
 
 
         try:
