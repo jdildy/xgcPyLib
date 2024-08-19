@@ -76,7 +76,7 @@ class data1(object):
         filename = xgc_path + "/xgc.oneddiag.bp"
         data = self.read_oneddiag()
 
-        #print(data)
+        print(data)
 
 
 
@@ -96,10 +96,10 @@ class data1(object):
         try:
             with Stream(self.xgc_path + "/xgc.oneddiag.bp", "rra") as r:
                 self.vars = r.available_variables()
-                print(r.num_steps)
+                
                 for v in self.vars:
                     #print(v)
-                    data = r.read(v)
+                    data = r.read(v)[0]
                     self.array_container[v] = np.array(data)
                 return self.array_container
                    
