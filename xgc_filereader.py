@@ -80,9 +80,6 @@ class data1(object):
                 if isinstance(vars, dict):
                     for name, info in vars.items():
                         print("variable_name: " + name, end=" ")
-                        for key, value in vars.items():
-                            print("\t" + str(key) + ": " + str(value), end=" ")
-                        print()
                 else: 
                     print("this is not a dictionary")
                 print(f"Reading {filename} file sucessful.")
