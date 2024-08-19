@@ -94,7 +94,7 @@ class data1(object):
         try:
             with Stream(self.xgc_path + "/xgc.oneddiag.bp", "rra") as r:
                 self.vars = r.available_variables()
-                print(self.vars)
+                #print(self.vars)
                 for v in self.vars:
                     print(v)
                     nstep = self.vars[v]['AvailableStepsCount']
