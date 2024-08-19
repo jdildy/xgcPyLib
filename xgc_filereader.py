@@ -981,7 +981,7 @@ data1Obj = data1(fileDir)
 
 time = data1Obj.get_oneddiag('time')
 psi = data1Obj.get_oneddiag('psi')
-psindex = data1Obj.get_oneddiag('psindex')
+tindex = data1Obj.get_oneddiag('tindex')
 step = data1Obj.get_oneddiag('step')
 
 print(time)
