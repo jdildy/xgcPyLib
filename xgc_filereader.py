@@ -94,6 +94,8 @@ class data1(object):
             print("Success?")
         except Exception as e:
             print(f"Exception in file: {e}")
+
+        print(self.array_container)
                         
                         
 
