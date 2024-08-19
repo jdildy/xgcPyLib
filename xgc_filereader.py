@@ -85,6 +85,8 @@ class data1(object):
                     var = r.read(var_name)
                     self.array_container[var_name] = np.array(var)
             print(f"Reading {filename} file sucessful.")
+        
+        
                 
         except Exception as e:
             print(f"Exception in file: {e}")
@@ -976,7 +978,9 @@ data1Obj = data1(fileDir)
 
 psi = data1Obj.get_oneddiag('psi')
 
-print(type(psi))
+print(np.ndim(psi))
+
+
 
 
 
