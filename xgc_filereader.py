@@ -77,11 +77,9 @@ class data1(object):
         try:
             with FileReader(filename) as r:
                 vars = r.available_variables()  # Call the method to get available variables
-                if isinstance(vars, dict):  # Ensure vars is a dictionary
-                    for _ in r.steps():  # Call steps() to get the iterable
-                        print(f"Current step is {r.current_step}")
-                else:
-                    print("This is not a dictionary")
+                for _ in r.steps():  # Call steps() to get the iterable
+                    print(f"Current step is {r.current_step}")
+               
             print("Success.")
         except Exception as e:
             print(f"Error in file: {e}\n")
