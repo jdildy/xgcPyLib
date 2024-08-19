@@ -977,11 +977,11 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 data1Obj = data1(fileDir)
 
 psi = data1Obj.get_oneddiag('psi')
-print(psi)
+# print(psi)
 
-psi = np.array(psi)
-print(psi.shape)
-print(psi.size)
+# psi = np.array(psi)
+# print(psi.shape)
+# print(psi.size)
 
 
 
