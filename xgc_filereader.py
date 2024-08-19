@@ -1,7 +1,7 @@
 import numpy as np
 import os
 from matplotlib.tri import Triangulation, LinearTriInterpolator, CubicTriInterpolator
-from adios2 import Stream
+from adios2 import Stream, FileReader
 import matplotlib.pyplot as plt
 from scipy.io import matlab
 from scipy.optimize import curve_fit
@@ -75,13 +75,17 @@ class data1(object):
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
         try:
-            with Stream(filename,"rra") as r:
-                variables_list = r.available_variables()
-                for _ in r.steps:   
-                    for var_name in variables_list:
-                        var = r.read(var_name)
-                        self.array_container[var_name] = np.array(var)
-            print(f"Reading {filename} file sucessful.")
+            with FileReader(filename) as r:
+                vars = r.available_variables()
+                if isinstance(vars, dict):
+                    for name, info in vars.items():
+                        print("variable_name: " + name, end=" ")
+                        for key, value in vars.items():
+                            print("\t" + str(key) + ": " + str(value), end=" ")
+                        print()
+                else: 
+                    print("this is not a dictionary")
+                print(f"Reading {filename} file sucessful.")
     
 
                 
