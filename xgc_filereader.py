@@ -88,9 +88,9 @@ class data1(object):
                     stepcount = int(stepcount)
                     if shape != '':
                         shape = int(shape)
-                        setattr(self,vars, r.read(vars, start=[0], count = [shape], step_start = 0, step_count = stepcount))
+                        setattr(self,vars, r.read(vars, start=[0], count = [shape], step_count = stepcount))
                     elif vars!='gsamples' and 'samples':
-                        setattr(self,vars,r.read(vars,start=[],count=[], step_start=0, step_count=stepcount))
+                        setattr(self,vars,r.read(vars,start=[],count=[], step_count=stepcount))
         except Exception as e:
             print(f"Exception in file: {e}")
                         
