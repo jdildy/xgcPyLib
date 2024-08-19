@@ -91,7 +91,7 @@ class data1(object):
                         self.array_container = setattr(self,vars, r.read(vars, start=[0], count = [shape]))
                     elif vars!='gsamples' and 'samples':
                         self.array_container = setattr(self,vars,r.read(vars,start=[],count=[]))
-            print("Sucess?")
+            print(self.array_container)
         except Exception as e:
             print(f"Exception in file: {e}")
                         
@@ -983,8 +983,8 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # print(i_radial_en_flux_ExB_turb_df)
 data1Obj = data1(fileDir)
 
-psi = data1Obj.get_oneddiag('psi')
-print(psi)
+#psi = data1Obj.get_oneddiag('psi')
+#print(psi)
 
 
 
