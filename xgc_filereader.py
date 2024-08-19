@@ -78,10 +78,11 @@ class data1(object):
             with Stream(filename, "rra") as r:
                 vars = r.available_variables()
                 for _ in r.steps:
+                    print(f"Current step is {r.current_step}")
                     if isinstance(vars, dict):
                         for name, info in vars.items():
                             print("variable_name: " + name, end=" \n")
-                            var = r.read(name)
+                            var = r.read(name, )
                             self.array_container[name] = np.array(var)
                         else: 
                             print("this is not a dictionary")
