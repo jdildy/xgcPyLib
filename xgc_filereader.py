@@ -985,6 +985,9 @@ tindex = data1Obj.get_oneddiag('tindex')
 step = data1Obj.get_oneddiag('step')
 
 print(time)
+print(psi)
+print(tindex)
+print(step)
 
 #psi = data1Obj.get_oneddiag('psi')
 
