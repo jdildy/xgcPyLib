@@ -76,7 +76,7 @@ class data1(object):
         filename = xgc_path + "/xgc.oneddiag.bp"
         data = self.read_oneddiag()
 
-        print(data)
+        #print(data)
 
 
 
