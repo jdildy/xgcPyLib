@@ -98,10 +98,12 @@ class data1(object):
                         
                         
 
-                
-
-        except Exception as e:
-            print(f"Error reading file: {e}\n")
+    def get_onediagVar(self, name):
+        if hasattr(self, name):
+            return getattr(self, name)
+        else:
+            print(f"Variable '{name}' not found.")
+            return None
 
 
     # def readerdata1(self, file):
@@ -981,6 +983,9 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # i_radial_en_flux_ExB_turb_df = xgc1Obj.get_loadVar3D('i_radial_en_flux_ExB_turb_df')
 # print(i_radial_en_flux_ExB_turb_df)
 data1Obj = data1(fileDir)
+
+psi = data1Obj.get_oneddiag('psi')
+print(psi)
 
 
 
