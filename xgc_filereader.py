@@ -89,10 +89,10 @@ class data1(object):
         
         try:
             with Stream(filename, "rra") as r:
-                time = r.read('time')  # Call the method to get available variables
-                
-               
-            print(time)
+                variables_list = r.available_variables()
+                for var_name in variables_list:
+                    var = r.read(var_name)
+                    self.array_container[var_name] = np.array(var)
         except Exception as e:
             print(f"Error in file: {e}\n")
         
@@ -978,6 +978,8 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # i_radial_en_flux_ExB_turb_df = xgc1Obj.get_loadVar3D('i_radial_en_flux_ExB_turb_df')
 # print(i_radial_en_flux_ExB_turb_df)
 data1Obj = data1(fileDir)
+
+time = data1Obj.get_oneddiag('time')
 
 #psi = data1Obj.get_oneddiag('psi')
 
