@@ -906,6 +906,7 @@ class loader(object):
                 for _ in r.steps():
                     variables_list = r.available_variables()
                     for var_name in variables_list:
+                        print(var_name)
                         var = r.read(var_name)
                         self.array_container[var_name] = np.array(var)
             print(f"Reading {file} file sucessful.")
