@@ -89,10 +89,11 @@ class data1(object):
         
         try:
             with Stream(filename, "rra") as r:
-                variables_list = r.available_variables()
-                for var_name in variables_list:
-                    var = r.read(var_name)
-                    self.array_container[var_name] = np.array(var)
+                self.vars = r.available_variables()
+                for v in self.vars:
+                    nstep = self.vars[v]['AvailableStepsCount']
+            print(nstep)
+                    
         except Exception as e:
             print(f"Error in file: {e}\n")
         
@@ -979,15 +980,15 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # print(i_radial_en_flux_ExB_turb_df)
 data1Obj = data1(fileDir)
 
-time = data1Obj.get_oneddiag('time')
-psi = data1Obj.get_oneddiag('psi')
-tindex = data1Obj.get_oneddiag('tindex')
-step = data1Obj.get_oneddiag('step')
+# time = data1Obj.get_oneddiag('time')
+# psi = data1Obj.get_oneddiag('psi')
+# tindex = data1Obj.get_oneddiag('tindex')
+# step = data1Obj.get_oneddiag('step')
 
-print(time)
-print(psi)
-print(tindex)
-print(step)
+# print(time)
+# print(psi)
+# print(tindex)
+# print(step)
 
 #psi = data1Obj.get_oneddiag('psi')
 
