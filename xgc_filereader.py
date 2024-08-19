@@ -70,14 +70,18 @@ def single_timstep(time):
 class data1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
-        print(str(self.xgc_path))
+        #print(str(self.xgc_path))
         self.array_container = {}
         print("Reading XGC Output Data:")
 
         print("Reading xgc.oneddiag.bp data...")
 
+
+
+    def readerdata1(self):
+
         try:
-            with Stream(xgc_path + '/xgc.oneddiag.bp', 'rra') as r: 
+            with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r: 
                 variables_list = r.available_variables()
 
                 nstep = int(variables_list)
