@@ -93,8 +93,7 @@ class data1(object):
                 
                 for var_name in variables_list:
                     var = r.read(var_name)
-                    self.array_container[var_name] = np.array(var)
-            
+                    #self.array_container[var_name] = np.array(var)
             print("Variables size in oneddiag: " + str(len(self.array_container)))
         except Exception as e:
             print(f"Error reading file: {e}\n")
