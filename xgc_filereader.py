@@ -90,13 +90,13 @@ class data1(object):
                     #print(stepcount)
                     #print(shape)
                     #print(singleVal)
-                    print(type(stepcount))
+                    #print(type(stepcount))
                     print(type(shape))
-                    print(type(singleVal))
+                    #print(type(singleVal))
                     
                     
                     
-            print(self.array_container)
+            #print(self.array_container)
         except Exception as e:
             print(f"Exception in file: {e}")
                         
