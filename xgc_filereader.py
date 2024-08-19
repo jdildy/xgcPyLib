@@ -9,6 +9,7 @@ from scipy.special import erfc
 import scipy.sparse as sp
 from tqdm.auto import trange, tqdm
 
+
 import adios2
 
 
@@ -64,6 +65,43 @@ def single_timstep(time):
                 return select
             else:
                 print("Timestep not found. Try again.")
+
+# object for xgc.oneddiag.bp
+class data1(object):
+    def __init__(self,xgc_path):
+        self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
+        print(str(self.xgc_path))
+        self.array_container = {}
+        print("Reading XGC Output Data:")
+
+        print("Reading xgc.oneddiag.bp data...")
+
+        try:
+            with Stream(xgc_path + '/xgc.oneddiag.bp', 'rra') as r: 
+                variables_list = r.available_variables()
+
+                nstep = int(variables_list)
+                
+                for var_name in variables_list:
+                    var = r.read(var_name)
+                    self.array_container[var_name] = np.array(var)
+            print("xgc.oneddiag.bp file read sucessful.")
+            print("Variables size in oneddiag: " + str(len(self.array_container)))
+        except Exception as e:
+            print(f"Error reading file: {e}\n")
+
+    def get_oneddiag(self, name):
+        if name in self.array_container:
+            return self.array_container[str(name)]
+        else:
+            print(f"Variable with name '{name}' not found.")
+
+
+        
+
+
+
+
 
 
  
@@ -198,7 +236,7 @@ class xgc1(object):
         if name in self.array_container:
             return self.array_container[str(name)]
         else:
-            print(f"Variable with name '{name}' not found")
+            print(f"Variable with name '{name}' not found.")
 
 
 
@@ -828,7 +866,7 @@ class xgca(object):
         if name in self.array_container:
             return self.array_container[str(name)]
         else:
-            print(f"Variable with name '{name}' not found")
+            print(f"Variable with name '{name}' not found.")
 
 #General FileReader Class
 class loader(object):
@@ -857,7 +895,7 @@ class loader(object):
         if name in self.array_container:
             return self.array_container[str(name)]
         else:
-            print(f"Variable with name '{name}' not found")
+            print(f"Variable with name '{name}' not found.")
 
         
         
@@ -907,7 +945,7 @@ class loader(object):
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 #required
-xgcaObj = xgca(fileDir)
+xgc1Obj = xgc1(fileDir)
 #xgcaObj = xgca(fileDir)
 #manager = loader(fileDir)
 
@@ -915,6 +953,7 @@ xgcaObj = xgca(fileDir)
 # i_radial_en_flux_ExB_turb_df = xgc1Obj.get_loadVar3D('i_radial_en_flux_ExB_turb_df')
 # print(i_radial_en_flux_ExB_turb_df)
 
+#data1Ob = data1(fileDir)
 
 
 
