@@ -88,19 +88,18 @@ class data1(object):
                     stepcount = int(stepcount)
                     if shape != '':
                         shape = int(shape)
-                        setattr(self,vars, r.read(vars, start=[0], count = [shape]))
+                        self.array_container = setattr(self,vars, r.read(vars, start=[0], count = [shape]))
                     elif vars!='gsamples' and 'samples':
-                        setattr(self,vars,r.read(vars,start=[],count=[]))
+                        self.array_container = setattr(self,vars,r.read(vars,start=[],count=[]))
             print("Sucess?")
         except Exception as e:
-            
             print(f"Exception in file: {e}")
                         
                         
 
     def get_onediagVar(self, name):
-        if hasattr(self, name):
-            return getattr(self, name)
+        if name in self.array_container:
+            return self.array_container[str(name)]
         else:
             print(f"Variable '{name}' not found.")
             return None
