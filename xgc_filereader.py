@@ -91,7 +91,7 @@ class data1(object):
             with Stream(filename, "rra") as r:
                 self.vars = r.available_variables()
                 for v in self.vars:
-                    nstep = self.vars[v]['AvailableStepsCount']
+                    nstep = self.vars[v]
             print(nstep)
                     
         except Exception as e:
