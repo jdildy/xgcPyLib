@@ -980,6 +980,7 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 data1Obj = data1(fileDir)
 
 time = data1Obj.get_oneddiag('time')
+print(time)
 
 #psi = data1Obj.get_oneddiag('psi')
 
