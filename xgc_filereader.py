@@ -97,14 +97,7 @@ class data1(object):
                 #print(self.vars)
                 for v in self.vars:
                     print(v)
-                    nstep = self.vars[v]['AvailableStepsCount']
-                    nsize = self.vars[v]['Shape']
-                    if nsize!='':
-                        nsize = int(nsize)
-                        data = r.read(v,start=[0], count = nsize)
-                    else:
-                        data = r.read(v, start=[], count=[])
-                return data
+                   
 
                     
 
