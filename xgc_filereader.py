@@ -978,6 +978,11 @@ data1Obj = data1(fileDir)
 psi = data1Obj.get_oneddiag('psi')
 print(psi)
 
+psi = np.array(psi)
+print(psi.shape)
+print(psi.size)
+
+
 
 
 
