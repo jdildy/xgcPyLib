@@ -80,7 +80,7 @@ class data1(object):
         with Stream(xgc_path + "/xgc.oneddiag.bp", 'rra') as f:
             var = f.available_variables()
 
-            print("Size: " + str(var))
+            print("Size: " + str(type(var)))
 
     # def readerdata1(self, file):
     #     try:
