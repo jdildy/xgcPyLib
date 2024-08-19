@@ -92,7 +92,9 @@ class data1(object):
                 self.vars = r.available_variables()
                 for v in self.vars:
                     nstep = self.vars[v]['AvailableStepsCount']
+                    nsize = self.vars[v]['Shape']
             print(nstep)
+            print(nsize)
                     
         except Exception as e:
             print(f"Error in file: {e}\n")
