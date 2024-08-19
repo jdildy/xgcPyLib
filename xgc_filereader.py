@@ -87,9 +87,13 @@ class data1(object):
                     singleVal = self.vars[vars]['SingleValue']
                     stepcount = int(stepcount)
 
-                    print(stepcount)
+                    #print(stepcount)
                     #print(shape)
                     #print(singleVal)
+                    print(type(stepcount))
+                    print(type(shape))
+                    print(type(singleVal))
+                    
                     
                     
             print(self.array_container)
