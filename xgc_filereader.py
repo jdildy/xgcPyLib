@@ -75,7 +75,7 @@ class data1(object):
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
         try:
-            with FileReader(filename) as r:
+            with Stream(filename, "rra") as r:
                 vars = r.available_variables()
                 if isinstance(vars, dict):
                     for name, info in vars.items():
