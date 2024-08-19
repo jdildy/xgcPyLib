@@ -88,8 +88,8 @@ class data1(object):
                     stepcount = int(stepcount)
 
                     print(stepcount)
-                    print(shape)
-                    print(singleVal)
+                    #print(shape)
+                    #print(singleVal)
                     
                     
             print(self.array_container)
