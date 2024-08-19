@@ -87,9 +87,9 @@ class data1(object):
                     stepcount = int(stepcount)
                     if shape!='':
                         shape=int(shape)
-                        setattr(self,vars,r.read(vars,start=[0], count=[shape]))
+                        self.array_container = r.read(vars,start=[0], count=[shape])
                     elif vars!='gsamples' and vars!='samples' :
-                        setattr(self,vars,r.read(vars ,start=[], count=[]))
+                        self.array_container = r.read(vars ,start=[], count=[])
                     
             print("Success?")
         except Exception as e:
@@ -97,12 +97,7 @@ class data1(object):
                         
                         
 
-    def get_onediagVar(self, name):
-        if name in self.array_container:
-            return self.array_container[str(name)]
-        else:
-            print(f"Variable '{name}' not found.")
-            return None
+    
 
 
     # def readerdata1(self, file):
@@ -982,6 +977,13 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # i_radial_en_flux_ExB_turb_df = xgc1Obj.get_loadVar3D('i_radial_en_flux_ExB_turb_df')
 # print(i_radial_en_flux_ExB_turb_df)
 data1Obj = data1(fileDir)
+
+
+
+
+
+
+
 
 #psi = data1Obj.get_oneddiag('psi')
 #print(psi)
