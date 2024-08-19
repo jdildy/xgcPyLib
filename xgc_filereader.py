@@ -903,7 +903,7 @@ class loader(object):
         
         try:
             with Stream(self.xgc_path + file, 'rra') as r:
-                for _ in r.steps:
+                for _ in r.steps():
                     variables_list = r.available_variables()
                     for var_name in variables_list:
                         var = r.read(var_name)
@@ -982,6 +982,7 @@ print(psi)
 psi = np.array(psi)
 print(psi.shape)
 print(psi.size)
+
 
 
 
