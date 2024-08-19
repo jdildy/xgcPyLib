@@ -76,11 +76,11 @@ class data1(object):
         filename = xgc_path + "/xgc.oneddiag.bp"
         try:
             with Stream(filename,"rra") as r:
-                
-                variables_list = r.available_variables()
-                for var_name in variables_list:
-                    var = r.read(var_name)
-                    self.array_container[var_name] = np.array(var)
+                for _ in r.steps:
+                    variables_list = r.available_variables()
+                    for var_name in variables_list:
+                        var = r.read(var_name)
+                        self.array_container[var_name] = np.array(var)
             print(f"Reading {filename} file sucessful.")
     
 
