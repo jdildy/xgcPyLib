@@ -74,6 +74,11 @@ class data1(object):
         self.array_container = {}
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
+        data = self.read_oneddiag()
+
+        print(data)
+
+
 
         # choices = [
         #     (1, "Option 1: Read a single 2D data file"),
@@ -85,18 +90,22 @@ class data1(object):
 
         # if choice == 1:
         #     single = single_timestep(time)
-
-        
+    def read_oneddiag(self):
         try:
-            with Stream(filename, "rra") as r:
+            with Stream(self.xgc_path + "/xgc.oneddiag.bp", "rra") as r:
                 self.vars = r.available_variables()
                 print(self.vars)
                 for v in self.vars:
                     print(v)
                     nstep = self.vars[v]['AvailableStepsCount']
                     nsize = self.vars[v]['Shape']
-                    print(nstep)
-                    print(nsize)
+                    if nsize!='':
+                        nsize = int(nsize)
+                        data = r.read(v,start=[0], count = nsize)
+                    else:
+                        data = r.read(v, start=[], count=[])
+                return data
+
                     
 
                     
