@@ -95,6 +95,7 @@ class data1(object):
                     nsize = self.vars[v]['Shape']
             print(nstep)
             print(nsize)
+            print(type(nsize))
                     
         except Exception as e:
             print(f"Error in file: {e}\n")
