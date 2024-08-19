@@ -52,7 +52,7 @@ def mult_timestep(time):
             except ValueError:
                 print("Invalid inputs. Inputs must be numeric and cannot be letters.")
             
-def single_timstep(time):
+def single_timestep(time):
 
         while True:
             try:
@@ -74,16 +74,28 @@ class data1(object):
         self.array_container = {}
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
+
+        # choices = [
+        #     (1, "Option 1: Read a single 2D data file"),
+        #     (2, "Option 2: Read a range of 2D data files"),
+        #     (3, "Option 3: Exit.")
+        # ]
+
+        # choice = user_select("Please choose an option:", choices)
+
+        # if choice == 1:
+        #     single = single_timestep(time)
+
+        
         try:
             with Stream(filename, "rra") as r:
-                vars = r.available_variables()  # Call the method to get available variables
-                for _ in r.steps():  # Call steps() to get the iterable
-                    print(f"Current step is {r.current_step}")
+                time = r.read('time')  # Call the method to get available variables
+                
                
-            print("Success.")
+            print(time)
         except Exception as e:
             print(f"Error in file: {e}\n")
-                    
+        
 
                         
                         
@@ -169,7 +181,7 @@ class xgc1(object):
         choice = user_select("Please choose an option:", choices)
 
         if choice == 1:
-            single = single_timstep(time)
+            single = single_timestep(time)
 
 
             #XGC.3D.Reader
@@ -244,9 +256,6 @@ class xgc1(object):
             print(f"Reading {file} file sucessful.")
         except Exception as e:
             print(f"Error reading file: {e}")
-
-
-
 
     def get_loadVar3D(self, name):
         if name in self.array_container:
@@ -375,7 +384,7 @@ class xgca(object):
         choice = user_select("Please choose an option:", choices)
 
         if choice == 1:
-            single = single_timstep(time)
+            single = single_timestep(time)
             #XGC.2D.Reader
             print("Reading xgc.2d.%5.5d.bp..." %(single))
             filename = xgc_path + "/xgc.2d.%5.5d.bp" %(single)
