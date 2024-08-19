@@ -84,9 +84,9 @@ class data1(object):
             print(f"Error reading file: {e}\n")
 
 
-    def readerdata1(self):
+    def readerdata1(self, file):
         try:
-            with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r: 
+            with Stream(file, 'rra') as r: 
                 variables_list = r.available_variables()
 
                 nstep = int(variables_list)
