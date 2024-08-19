@@ -902,8 +902,8 @@ class loader(object):
     def reader(self, file):
         
         try:
-            for _ in r.steps:
-                with Stream(self.xgc_path + file, 'rra') as r:
+            with Stream(self.xgc_path + file, 'rra') as r:
+                for _ in r.steps:
                     variables_list = r.available_variables()
                     for var_name in variables_list:
                         var = r.read(var_name)
