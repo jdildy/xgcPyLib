@@ -979,7 +979,7 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # print(i_radial_en_flux_ExB_turb_df)
 data1Obj = data1(fileDir)
 
-psi = data1.get_oneddiag('psi')
+psi = data1Obj.get_oneddiag('psi')
 
 
 
