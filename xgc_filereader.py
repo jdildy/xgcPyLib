@@ -74,24 +74,33 @@ class data1(object):
         self.array_container = {}
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
-        self.array_container = {}
+        
+
+        choices = [
+            (1, "Option 1: Read a single 3D data file"),
+            (2, "Option 2: Read a range of 3D data files"),
+            (3, "Option 3: Exit.")
+        ]
+
+        choice = user_select("Please Choose an option:", choices)
+
+
+        
+
 
         try:
             
-            with Stream(xgc_path + "/xgc.oneddiag.bp","rra") as r:
+            with Stream(filename,"rra") as r:
                 self.vars = r.available_variables()
-                for vars in self.vars:
-                    stepcount = self.vars[vars]['AvailableStepsCount']
-                    shape = self.vars[vars]['Shape']
-                    singleVal = self.vars[vars]['SingleValue']
-                    stepcount = int(stepcount)
-                    self.array_container = r.read(vars, start=[0],count=[shape])
-                    
-            print("Success?")
+                variables_list = r.available_variables()
+                for var_name in variables_list:
+                    var = r.read(var_name)
+                    self.array_container[var_name] = np.array(var)
+            print(f"Reading {filename} file sucessful.")
+                
         except Exception as e:
             print(f"Exception in file: {e}")
 
-        print(self.array_container)
                         
                         
 
