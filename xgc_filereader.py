@@ -96,6 +96,7 @@ class data1(object):
                 self.vars = r.available_variables()
                 #print(self.vars)
                 for v in self.vars:
+                    print(v)
                     data = r.read(v)
 
                 return data
