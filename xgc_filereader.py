@@ -75,7 +75,7 @@ class data1(object):
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
         try:
-            with Stream(filename, "rra") as r:
+            with Stream(filename, "r") as r:
                 vars = r.available_variables()  # Call the method to get available variables
                 if isinstance(vars, dict):  # Ensure vars is a dictionary
                     for _ in r.steps():  # Call steps() to get the iterable
@@ -976,9 +976,9 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # print(i_radial_en_flux_ExB_turb_df)
 data1Obj = data1(fileDir)
 
-psi = data1Obj.get_oneddiag('psi')
+#psi = data1Obj.get_oneddiag('psi')
 
-print(psi)
+#print(psi)
 
 
 
