@@ -975,6 +975,8 @@ data1Obj = data1(fileDir)
 
 psi = data1Obj.get_oneddiag('psi')
 
+print(psi)
+
 
 
 
