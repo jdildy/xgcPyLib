@@ -85,11 +85,7 @@ class data1(object):
                     shape = self.vars[vars]['Shape']
                     singleVal = self.vars[vars]['SingleValue']
                     stepcount = int(stepcount)
-                    if shape!='':
-                        shape=int(shape)
-                        self.array_container = r.read(vars,start=[0], count=[shape])
-                    elif vars!='gsamples' and vars!='samples' :
-                        self.array_container = r.read(vars ,start=[], count=[])
+                    self.array_container = r.read(vars, start=[0],count=[shape])
                     
             print("Success?")
         except Exception as e:
