@@ -98,8 +98,8 @@ class data1(object):
                 for v in self.vars:
                     print(v)
                     data = r.read(v)
-
-                return data
+                    self.array_container[v] = np.array(data)
+                return self.array_container
                    
 
                     
