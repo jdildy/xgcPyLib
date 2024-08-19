@@ -79,7 +79,7 @@ class data1(object):
                 vars = r.available_variables()
                 if isinstance(vars, dict):
                     for name, info in vars.items():
-                        print("variable_name: " + name, end=" ")
+                        print("variable_name: " + name, end=" \n")
                 else: 
                     print("this is not a dictionary")
                 print(f"Reading {filename} file sucessful.")
