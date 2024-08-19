@@ -77,7 +77,6 @@ class data1(object):
 
 
         try:
-            
             with Stream(filename,"rra") as r:
                 self.vars = r.available_variables()
                 variables_list = r.available_variables()
@@ -977,8 +976,10 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 data1Obj = data1(fileDir)
 
 psi = data1Obj.get_oneddiag('psi')
+psi = np.array(psi)
+print(psi.ndim)
 
-print(np.ndim(psi))
+
 
 
 
