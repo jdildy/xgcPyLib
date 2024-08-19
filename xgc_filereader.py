@@ -91,17 +91,17 @@ class data1(object):
         # if choice == 1:
         #     single = single_timestep(time)
     def read_oneddiag(self):
+
+
         try:
             with Stream(self.xgc_path + "/xgc.oneddiag.bp", "rra") as r:
-                print(r.steps)
                 self.vars = r.available_variables()
-                # #print(self.vars)
-                # for v in self.vars:
-                #     print(v)
-                #     data = r.read(v)
-                #     self.array_container[v] = np.array(data)
-                # return self.array_container
-                
+                print(self.vars)
+                for v in self.vars:
+                    #print(v)
+                    data = r.read(v)
+                    self.array_container[v] = np.array(data)
+                return self.array_container
                    
 
                     
