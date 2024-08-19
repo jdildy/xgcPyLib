@@ -74,10 +74,10 @@ class data1(object):
         self.array_container = {}
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
-
+        self.array_container = {}
 
         try:
-            self.array_container = {}
+            
             with Stream(xgc_path + "/xgc.oneddiag.bp","rra") as r:
                 self.vars = r.available_variables()
                 for vars in self.vars:
@@ -116,9 +116,10 @@ class data1(object):
 
     def get_oneddiag(self, name):
         if name in self.array_container:
-            return self.array_container[str(name)]
+            return self.array_container[name]
         else:
-            print(f"Variable with name '{name}' not found.")
+            print(f"Variable '{name}' not found.")
+            return None
 
 
         
