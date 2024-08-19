@@ -90,6 +90,7 @@ class data1(object):
         try:
             with Stream(filename, "rra") as r:
                 self.vars = r.available_variables()
+                print(self.vars)
                 for v in self.vars:
                     nstep = self.vars[v]['AvailableStepsCount']
                     nsize = self.vars[v]['Shape']
