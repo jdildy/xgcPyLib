@@ -92,6 +92,7 @@ class data1(object):
                 self.vars = r.available_variables()
                 print(self.vars)
                 for v in self.vars:
+                    print(v)
                     nstep = self.vars[v]['AvailableStepsCount']
                     nsize = self.vars[v]['Shape']
             print(nstep)
