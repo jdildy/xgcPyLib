@@ -73,13 +73,18 @@ class data1(object):
         #print(str(self.xgc_path))
         self.array_container = {}
         print("Reading XGC Output Data:")
+        filename = xgc_path + "/xgc.oneddiag.bp"
 
         print("Reading xgc.oneddiag.bp data...")
 
+        try:
+            self.readerdata1(filename)
+            print("xgc.oneddiag.bp file read sucessful.")
+        except Exception as e:
+            print(f"Error reading file: {e}\n")
 
 
     def readerdata1(self):
-
         try:
             with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r: 
                 variables_list = r.available_variables()
@@ -89,7 +94,7 @@ class data1(object):
                 for var_name in variables_list:
                     var = r.read(var_name)
                     self.array_container[var_name] = np.array(var)
-            print("xgc.oneddiag.bp file read sucessful.")
+            
             print("Variables size in oneddiag: " + str(len(self.array_container)))
         except Exception as e:
             print(f"Error reading file: {e}\n")
