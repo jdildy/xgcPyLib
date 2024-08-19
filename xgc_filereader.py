@@ -77,13 +77,18 @@ class data1(object):
         try:
             with Stream(filename, "rra") as r:
                 vars = r.available_variables()
-                if isinstance(vars, dict):
-                    for name, info in vars.items():
-                        print("variable_name: " + name, end=" \n")
-                else: 
-                    print("this is not a dictionary")
-                print(f"Reading {filename} file sucessful.")
-    
+                for _ in r.steps:
+                    if isinstance(vars, dict):
+                        for name, info in vars.items():
+                            print("variable_name: " + name, end=" \n")
+                            var = r.read(name)
+                            self.array_container[name] = np.array(var)
+                        else: 
+                            print("this is not a dictionary")
+            print("Success.")
+        except Exception as e:
+            print(f"Error in file: {e}\n")
+                    
 
                 
         except Exception as e:
