@@ -74,18 +74,16 @@ class data1(object):
         self.array_container = {}
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
-
-
         try:
             with Stream(filename,"rra") as r:
-                self.vars = r.available_variables()
+                
                 variables_list = r.available_variables()
                 for var_name in variables_list:
                     var = r.read(var_name)
                     self.array_container[var_name] = np.array(var)
             print(f"Reading {filename} file sucessful.")
-        
-        
+    
+
                 
         except Exception as e:
             print(f"Exception in file: {e}")
@@ -904,8 +902,9 @@ class loader(object):
         try:
             with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_variables()
-                for name in variables_list:
-                    print(name)
+                for var_name in variables_list:
+                    var = r.read(var_name)
+                    self.array_container[var_name] = np.array(var)
             print(f"Reading {file} file sucessful.")
         except Exception as e:
             print(f"Error reading file: {e}")
@@ -974,14 +973,7 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # print(i_radial_en_flux_ExB_turb_df)
 data1Obj = data1(fileDir)
 
-#psi = data1Obj.get_oneddiag('psi')
-# print(psi)
-
-# psi = np.array(psi)
-# print(psi.shape)
-# print(psi.size)
-
-
+psi = data1Obj.get_oneddiag('psi')
 
 
 
