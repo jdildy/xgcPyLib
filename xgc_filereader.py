@@ -75,7 +75,7 @@ class data1(object):
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
         try:
-            with Stream(filename) as r:
+            with Stream(filename, "rra") as r:
                 vars = r.available_variables()  # Call the method to get available variables
                 for _ in r.steps():  # Call steps() to get the iterable
                     print(f"Current step is {r.current_step}")
