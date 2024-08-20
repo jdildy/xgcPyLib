@@ -42,7 +42,7 @@ class meshdata(object):
         Zmin = self.managerObj.get_loadVar('eq_x_z') if 'x' in str(Zmin).lower() else Zmin
         Zmax = self.managerObj.get_loadVar('eq_x_z') if 'x' in str(Zmax).lower() else Zmax
 
-        Nplanes = np.array(self.xgc1Obj.get_loadVar3D('dpot')).shape[1]
+        #Nplanes = np.array(self.xgc1Obj.get_loadVar3D('dpot')).shape[1]
         mask1d = self.oned_mask()
 
         try:
