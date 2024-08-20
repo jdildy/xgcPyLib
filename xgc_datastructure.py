@@ -12,12 +12,12 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 class meshdata():
     
     managerObj = xgc_filereader.loader(fileDir)
-    managerObj.reader('/xgc.mesh.bp')
+    # managerObj.reader('/xgc.mesh.bp')
 
     # nodes = managerObj.get_loadVar('nd_connect_list')
     # print(nodes)
-    RZ = managerObj.get_loadVar('rz')
-    print(RZ)
+    # RZ = managerObj.get_loadVar('rz')
+    # print(RZ)
 
 
     
