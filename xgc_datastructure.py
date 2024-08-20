@@ -5,40 +5,42 @@ from matplotlib.tri import Triangulation, LinearTriInterpolator
 import os
 import xgc_filereader
 
-Rmin = 2.2
-Rmax = 2.31
-Zmin = -0.25
-Zmax = 0.4
+
 
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 class meshdata(object):
+    Rmin = 2.2
+    Rmax = 2.31
+    Zmin = -0.25
+    max = 0.4
+
     def __init__(self):
-        managerObj = xgc_filereader.loader(fileDir)
+        self.managerObj = xgc_filereader.loader(fileDir)
         # xgc1 object
-        xgc1Obj = xgc_filereader.xgc1(fileDir)
+        self.xgc1Obj = xgc_filereader.xgc1(fileDir)
         # oneddiag object
-        data1Obj =  xgc_filereader.data1(fileDir)
+        self.data1Obj =  xgc_filereader.data1(fileDir)
 
 
-        managerObj.reader('/xgc.mesh.bp')
-        managerObj.reader('xgc.units.bp')
+        self.managerObj.reader('/xgc.mesh.bp')
+        self.managerObj.reader('xgc.units.bp')
 
-        RZ = managerObj.get_loadVar('rz')
+        RZ = self.managerObj.get_loadVar('rz')
     
         R = RZ[:,0]
         Z = RZ[:,1]
 
-        Rmin = managerObj.get_loadVar('eq_x_r') if 'x' in str(Rmin).lower() else Rmin
-        Rmax = managerObj.get_loadVar('eq_x_r') if 'x' in str(Rmax).lower() else Rmax
-        Zmin = managerObj.get_loadVar('eq_x_z') if 'x' in str(Zmin).lower() else Zmin
-        Zmax = managerObj.get_loadVar('eq_x_z') if 'x' in str(Zmax).lower() else Zmax
+        Rmin = self.managerObj.get_loadVar('eq_x_r') if 'x' in str(Rmin).lower() else Rmin
+        Rmax = self.managerObj.get_loadVar('eq_x_r') if 'x' in str(Rmax).lower() else Rmax
+        Zmin = self.managerObj.get_loadVar('eq_x_z') if 'x' in str(Zmin).lower() else Zmin
+        Zmax = self.managerObj.get_loadVar('eq_x_z') if 'x' in str(Zmax).lower() else Zmax
 
-        Nplanes = np.array(xgc1Obj.get_loadVar3D('dpot')).shape[1]
+        Nplanes = np.array(self.xgc1Obj.get_loadVar3D('dpot')).shape[1]
         mask1d = self.oned_mask()
 
         try:
-            time = np.array(data1Obj.read_oneddiag('time')[mask1d],ndmin=1)
+            time = np.array(self.data1Obj.read_oneddiag('time')[mask1d],ndmin=1)
         except:
             time = [0]
 
@@ -54,7 +56,7 @@ class meshdata(object):
         Zi = np.linspace(Zmin, Zmax, 400)
         RI,ZI = np.meshgrid(Ri,Zi)
 
-        nd_connect_list = managerObj.get_loadVar('nd_connect_list')
+        nd_connect_list = self.managerObj.get_loadVar('nd_connect_list')
 
         triObj = Triangulation(R, Z, nd_connect_list)
 
