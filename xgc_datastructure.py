@@ -32,4 +32,3 @@ plt.grid(True)
 # Step 4: Display the Plot
 plt.show()
 
-
