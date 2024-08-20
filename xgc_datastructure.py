@@ -173,6 +173,7 @@ class meshdata(object):
 # #     def  __init__(self) -> None:
 # #         pass
     
+meshdata()
 
 
 
