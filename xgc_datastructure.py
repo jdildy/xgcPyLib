@@ -81,8 +81,11 @@ class meshdata(object):
         print("dpot 3D: \n")
         print(dpot3D)
 
-        print("dpot F3D: \n")
-        print(dpotF3D)
+        # print("dpot F3D: \n")
+        # print(dpotF3D)
+
+        print("triObj: \n")
+        print(triObj)
 
 
         dpot3D = np.array(dpot3D)
