@@ -10,18 +10,21 @@ import xgc_filereader
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 class meshdata(object):
-    Rmin = 2.2
-    Rmax = 2.31
-    Zmin = -0.25
-    max = 0.4
+    
 
     def __init__(self):
+        Rmin = 2.2
+        Rmax = 2.31
+        Zmin = -0.25
+        Zmax = 0.4
+
+        
         self.managerObj = xgc_filereader.loader(fileDir)
         # xgc1 object
         self.xgc1Obj = xgc_filereader.xgc1(fileDir)
         # oneddiag object
         self.data1Obj =  xgc_filereader.data1(fileDir)
-
+        
 
         self.managerObj.reader('/xgc.mesh.bp')
         self.managerObj.reader('xgc.units.bp')
