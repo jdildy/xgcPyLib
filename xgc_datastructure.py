@@ -63,10 +63,10 @@ class meshdata(object):
 
         triObj = Triangulation(R, Z, nd_connect_list)
 
-        As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
+        #As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
 
-        print(type(As))
-        print(As)
+        # print(type(As))
+        # print(As)
 
     
     
