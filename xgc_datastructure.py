@@ -32,10 +32,9 @@ class meshdata(object):
         self.managerObj.reader('/xgc.mesh.bp')
         self.managerObj.reader('/xgc.units.bp')
 
-        RZ = self.managerObj.get_loadVar('rz')
-    
-        R = RZ[:,0]
-        Z = RZ[:,1]
+        self.RZ = self.managerObj.get_loadVar('rz')
+        self.R=self.RZ[:,0]
+        self.Z=self.RZ[:,1]
 
         Rmin = self.managerObj.get_loadVar('eq_x_r') if 'x' in str(Rmin).lower() else Rmin
         Rmax = self.managerObj.get_loadVar('eq_x_r') if 'x' in str(Rmax).lower() else Rmax
@@ -71,12 +70,12 @@ class meshdata(object):
 
         nd_connect_list = self.managerObj.get_loadVar('nd_connect_list')
 
-        triObj = Triangulation(R, Z, nd_connect_list)
+        triObj = Triangulation(self.RZ[:,0], self.RZ[:,1], nd_connect_list)
 
         #As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
 
         dpot3D = self.xgc1Obj.get_loadVar3D('dpot')
-        dpotF3D = self.xgc1Obj.get_loadVarF3D('dpot')
+        #dpotF3D = self.xgc1Obj.get_loadVarF3D('dpot')
 
         print("dpot 3D: \n")
         print(dpot3D)
@@ -91,7 +90,7 @@ class meshdata(object):
         dpot3D = np.array(dpot3D)
         print(f"The size of 3D array is {dpot3D.size}")
         print(f"Length of dpot3d: {len(dpot3D)}")
-        print(f"Length of triObj: {triObj}")
+        
 
         # dpotF3D = np.array(dpotF3D)
         # print(f"The size of F3D array is {dpotF3D.size}")
@@ -108,16 +107,16 @@ class meshdata(object):
 
 
 
-        plt.figure(1)
-        tci=LinearTriInterpolator(triObj,dpot3D)
-        out=tci(RI,ZI)
-        fac=0.25
-        colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
-        plt.contourf(RI,ZI,out,levels=colra)
-        plt.colorbar()
-        plt.xlabel('R [m]')
-        plt.ylabel('Z [m]')
-        plt.show()
+        # plt.figure(1)
+        # tci=LinearTriInterpolator(triObj,dpot3D)
+        # out=tci(RI,ZI)
+        # fac=0.25
+        # colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
+        # plt.contourf(RI,ZI,out,levels=colra)
+        # plt.colorbar()
+        # plt.xlabel('R [m]')
+        # plt.ylabel('Z [m]')
+        # plt.show()
 
     
     
