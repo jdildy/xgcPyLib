@@ -10,8 +10,6 @@ import xgc_filereader
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 class meshdata(object):
-
-
     def oned_mask(self):
         try:
             step = self.data1Obj.read_oneddiag('step')
@@ -26,26 +24,28 @@ class meshdata(object):
             mask1d = Ellipsis
 
         return mask1d
-    
+        
     Rmin = 2.2
     Rmax = 2.31
     Zmin = -0.25
     Zmax = 0.4
+        
+        #managerObj = xgc_filereader.loader(fileDir)
+        # managerObj.reader('/xgc.mesh.bp')
+
+        # nodes = managerObj.get_loadVar('nd_connect_list')
+        # print(nodes)
+        # RZ = managerObj.get_loadVar('rz')
+        # print(RZ)
+
     
-    #managerObj = xgc_filereader.loader(fileDir)
-    # managerObj.reader('/xgc.mesh.bp')
-
-    # nodes = managerObj.get_loadVar('nd_connect_list')
-    # print(nodes)
-    # RZ = managerObj.get_loadVar('rz')
-    # print(RZ)
 
 
-    #general reader object
+        #general reader object
     managerObj = xgc_filereader.loader(fileDir)
-    # xgc1 object
+        # xgc1 object
     xgc1Obj = xgc_filereader.xgc1(fileDir)
-    # oneddiag object
+        # oneddiag object
     data1Obj =  xgc_filereader.data1(fileDir)
 
     managerObj.reader('/xgc.mesh.bp')
@@ -87,36 +87,30 @@ class meshdata(object):
     print(type(As))
     print(As)
 
-    # Calculate grad(As) and transfrom As and grad(As)
-    # to field-following representation
+        # Calculate grad(As) and transfrom As and grad(As)
+        # to field-following representation
 
 
-    #dAs = GradAll()
+        #dAs = GradAll()
 
-    #tci = LinearTriInterpolator(triObj,As_phi_ff[])
-    #out=tci
-
-    
-        
-        
-    #def GradAll(field):
+        #tci = LinearTriInterpolator(triObj,As_phi_ff[])
+        #out=tci
 
         
-    #def conv_read2ff():
+            
+            
+        #def GradAll(field):
+
+            
+        #def conv_read2ff():
 
 
 
+        
+        
 
 
-
-
-
-
-    
-    
-
-
-    
+        
 
 
 
@@ -171,3 +165,6 @@ class meshdata(object):
 # # class fluxdata():
 # #     def  __init__(self) -> None:
 # #         pass
+    
+
+
