@@ -111,16 +111,16 @@ class meshdata(object):
 
 
 
-        plt.figure(1)
-        tci=LinearTriInterpolator(triObj,dpot3D[0])
-        out=tci(RI,ZI)
-        fac=0.25
-        colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
-        plt.contourf(RI,ZI,out,levels=colra)
-        plt.colorbar()
-        plt.xlabel('R [m]')
-        plt.ylabel('Z [m]')
-        plt.show()
+        # plt.figure(1)
+        # tci=LinearTriInterpolator(triObj,dpot3D[0])
+        # out=tci(RI,ZI)
+        # fac=0.25
+        # colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
+        # plt.contourf(RI,ZI,out,levels=colra)
+        # plt.colorbar()
+        # plt.xlabel('R [m]')
+        # plt.ylabel('Z [m]')
+        # plt.show()
 
     
     
@@ -329,24 +329,23 @@ class meshdata(object):
 # #     #grid_nwall
 # #     #grid_nwall_nodes
 
-# #     x = [1, 2, 3, 4, 5]
-# #     y = [2, 3, 5, 7, 11]
+    x = [1, 2, 3, 4, 5]
+    y = [2, 3, 5, 7, 11]
 
-# #     # Create a new figure
-# #     plt.figure()
+    # Create a new figure
+    plt.figure()
 
-# #     # Plot the data
-# #     plt.plot(x, y, marker='o', linestyle='-', color='b')
+    # Plot the data
+    plt.plot(x, y, marker='o', linestyle='-', color='b')
 
-# #     # Add a title and labels
-# #     plt.title('Simple Line Plot')
-# #     plt.xlabel('X-axis')
-# #     plt.ylabel('Y-axis')
+    # Add a title and labels
+    plt.title('Simple Line Plot')
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
 
-# #     # Display the plot
-# #     plt.show()
+    # Display the plot
+    plt.show()
 
-# #     triObj = Triangulation()
 
 
     
