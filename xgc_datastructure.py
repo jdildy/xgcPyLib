@@ -18,9 +18,9 @@ class meshdata():
     # print(nodes)
     # RZ = managerObj.get_loadVar('rz')
     # print(RZ)
-    manager = xgc_filereader.loader(fileDir)
+    managerObj = xgc_filereader.loader(fileDir)
 
-    # manager.reader('/xgc.mesh.bp')
+    managerObj.reader('/xgc.mesh.bp')
 
     # rz = manager.get_loadVar('rz')
     # print(rz)
