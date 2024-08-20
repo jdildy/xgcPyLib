@@ -52,14 +52,14 @@ class meshdata(object):
 
         Ntimes = len(time)
 
-        self.managerObj.reader('/xgc.bfield.bp')
-        try:
-            self.bfield = self.managerObj.get_loadVar('node_data[0]/values')[...]
-        except: 
-            try:
-                self.bfield = self.managerObj.get_loadVar('/node_data[0]/values')[...]
-            except:
-                self.bfield = self.managerObj.get_loadVar('bfield')[...]
+        # self.managerObj.reader('/xgc.bfield.bp')
+        # try:
+        #     self.bfield = self.managerObj.get_loadVar('node_data[0]/values')[...]
+        # except: 
+        #     try:
+        #         self.bfield = self.managerObj.get_loadVar('/node_data[0]/values')[...]
+        #     except:
+        #         self.bfield = self.managerObj.get_loadVar('bfield')[...]
 
         
     
@@ -78,6 +78,8 @@ class meshdata(object):
         dpot = self.xgc1Obj.get_loadVar3D('dpot')
 
         print(dpot)
+        dpot = np.array(dpot)
+        print(f"The size of this array is {dpot.size}")
 
         # Calculate grad(As) and transform As and grad(As) to 
         # Field-following projections
