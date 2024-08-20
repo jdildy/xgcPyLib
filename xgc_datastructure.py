@@ -85,6 +85,7 @@ class meshdata(object):
 
         print(len(self.RZ[:,0]))
         print(len(self.RZ[:,1]))
+        print(len(dpot3D))
 
         print("triObj: \n")
         print(triObj)
