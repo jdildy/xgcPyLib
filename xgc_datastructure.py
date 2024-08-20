@@ -77,23 +77,23 @@ class meshdata(object):
         dpot3D = self.xgc1Obj.get_loadVar3D('dpot')
         #dpotF3D = self.xgc1Obj.get_loadVarF3D('dpot')
 
-        print("dpot 3D: \n")
-        print(dpot3D)
+        # print("dpot 3D: \n")
+        # print(dpot3D)
 
-        # print("dpot F3D: \n")
-        # print(dpotF3D)
+        # # print("dpot F3D: \n")
+        # # print(dpotF3D)
 
-        print(len(self.RZ[:,0]))
-        print(len(self.RZ[:,1]))
-        print(len(dpot3D[0]))
+        # print(len(self.RZ[:,0]))
+        # print(len(self.RZ[:,1]))
+        # print(len(dpot3D[0]))
 
-        print("triObj: \n")
-        print(triObj)
+        # print("triObj: \n")
+        # print(triObj)
 
 
-        dpot3D = np.array(dpot3D)
-        print(f"The size of 3D array is {dpot3D.size}")
-        print(f"Length of dpot3d: {len(dpot3D)}")
+        # dpot3D = np.array(dpot3D)
+        # print(f"The size of 3D array is {dpot3D.size}")
+        # print(f"Length of dpot3d: {len(dpot3D)}")
         
 
         # dpotF3D = np.array(dpotF3D)
@@ -112,15 +112,15 @@ class meshdata(object):
 
 
         plt.figure(1)
-        tci=LinearTriInterpolator(triObj,dpot3D)
-        # out=tci(RI,ZI)
-        # fac=0.25
-        # colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
-        # plt.contourf(RI,ZI,out,levels=colra)
-        # plt.colorbar()
-        # plt.xlabel('R [m]')
-        # plt.ylabel('Z [m]')
-        # plt.show()
+        tci=LinearTriInterpolator(triObj,dpot3D[:,0])
+        out=tci(RI,ZI)
+        fac=0.25
+        colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
+        plt.contourf(RI,ZI,out,levels=colra)
+        plt.colorbar()
+        plt.xlabel('R [m]')
+        plt.ylabel('Z [m]')
+        plt.show()
 
     
     
