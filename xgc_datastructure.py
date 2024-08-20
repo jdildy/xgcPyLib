@@ -83,7 +83,7 @@ class meshdata(object):
     triObj = Triangulation(R, Z, nd_connect_list)
 
     As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
-    
+
     print(type(As))
     print(As)
 
@@ -91,21 +91,19 @@ class meshdata(object):
     # to field-following representation
 
 
-    dAs = GradAll()
+    #dAs = GradAll()
 
-    tci = LinearTriInterpolator(triObj,As_phi_ff[])
-    out=tci
+    #tci = LinearTriInterpolator(triObj,As_phi_ff[])
+    #out=tci
 
     
         
         
-    def GradAll(field):
+    #def GradAll(field):
 
         
-    def conv_read2ff():
+    #def conv_read2ff():
 
-
-    def
 
 
 
