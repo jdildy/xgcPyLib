@@ -20,10 +20,10 @@ class meshdata():
     # print(RZ)
     manager = xgc_filereader.loader(fileDir)
 
-    manager.reader('/xgc.mesh.bp')
+    # manager.reader('/xgc.mesh.bp')
 
-    rz = manager.get_loadVar('rz')
-    print(rz)
+    # rz = manager.get_loadVar('rz')
+    # print(rz)
 
 
     
