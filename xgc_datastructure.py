@@ -10,7 +10,9 @@ class meshdata():
     managerObj = xgc_filereader.loader(fileDir)
     managerObj.reader('/xgc.mesh.bp')
 
-    RZ = managerObj.get_loadVar('coordinate/values')
+    nodes = managerObj.get_loadVar('nd_connect_list')
+    RZ = managerObj.get_loadVar('rz')
+
 
 
 
