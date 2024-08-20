@@ -65,7 +65,7 @@ class meshdata(object):
         As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
 
         # print(type(As))
-        print(As)
+        print(As.shape)
 
     
     
