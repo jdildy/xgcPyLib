@@ -4,6 +4,9 @@ import numpy as np
 from matplotlib.tri import Triangulation, LinearTriInterpolator
 import os
 import xgc_filereader
+from scipy.sparse import csr_matrix
+
+import numpy as np
 
 
 
@@ -27,7 +30,7 @@ class meshdata(object):
         
 
         self.managerObj.reader('/xgc.mesh.bp')
-        self.managerObj.reader('xgc.units.bp')
+        self.managerObj.reader('/xgc.units.bp')
 
         RZ = self.managerObj.get_loadVar('rz')
     
@@ -48,12 +51,20 @@ class meshdata(object):
             time = [0]
 
         Ntimes = len(time)
-        
-        
 
+        self.managerObj.reader('/xgc.bfield.bp')
+        try:
+            self.bfield = self.managerObj.get_loadVar('node_data[0]/values')[...]
+        except: 
+            try:
+                self.bfield = self.managerObj.get_loadVar('/node_data[0]/values')[...]
+            except:
+                self.bfield = self.managerObj.get_loadVar('bfield')[...]
+
+        
     
 
-    #setup Mesh Grid
+        #setup Mesh Grid
         Ri = np.linspace(Rmin, Rmax, 400)
         Zi = np.linspace(Zmin, Zmax, 400)
         RI,ZI = np.meshgrid(Ri,Zi)
@@ -62,11 +73,33 @@ class meshdata(object):
 
         triObj = Triangulation(R, Z, nd_connect_list)
 
-        As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
+        #As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
 
-        # print(type(As))
-        print(As.shape)
+        dpot = self.xgc1Obj.get_loadVar3D('dpot')
 
+        print(dpot)
+
+        # Calculate grad(As) and transform As and grad(As) to 
+        # Field-following projections
+
+    #     dAs = self.GradAll(As[:,:,0])
+    #     As_phi_ff = conv_real2ff(As[:,:,0])
+    #    # dAs_phi_ff = 
+
+
+
+        # plt.figure(1)
+        # tci=LinearTriInterpolator(triObj,)
+        # out=tci(RI,ZI)
+        # fac=0.25
+        # colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
+        # plt.contourf(RI,ZI,out,levels=colra)
+        # plt.colorbar()
+        # plt.xlabel('R [m]')
+        # plt.ylabel('Z [m]')
+        # plt.show()
+
+    
     
     
   
@@ -88,6 +121,7 @@ class meshdata(object):
             dstep = step[1] - step[0]
 
             idx = np.arange(step[0]/dstep[-1]/dstep+1)
+            idx = np.array(idx)
 
             mask1d = np.zeros(idx.shape, dtype=np.int32)
             for(i,idxi) in enumerate(idx):
@@ -110,45 +144,186 @@ class meshdata(object):
         
             
             
-        #def GradAll(field):
+#     def GradAll(self, field):
+#         field = np.array(field)
+#         if field.ndim!=2:
+#             print("GradParX: Wrong array shape of field, must be (nnode,nphi)")
+#             return -1
+#         nphi  = field.shape[1]
+#         nnode = field.shape[0]
+#         grad_field = np.zeros((nnode,nphi,3))
+#         grad_field[:,:,0:2] = self.GradPlane(field)
+#         grad_field[:,:,2]   = self.GradParX(field)
+#         return grad_field
+    
+#     def GradPlane(self,field):
+#         field = np.array(field)
+#         if field.ndim>2:
+#             print("GradPlane: Wrong array shape of field, must be (nnode,nphi) or (nnode)")
+#             return -1
+#         nnode = field.shape[0]
+#         if field.ndim==2:
+#             field_loc = field
+#             nphi = field.shape[1]
+#         else:
+#             nphi           = 1
+#             field_loc      = np.zeros((nnode,nphi),dtype=field.dtype)
+#             field_loc[:,0] = field
+#         grad_field = np.zeros((nnode,nphi,2),dtype=field.dtype)
+#         for iphi in range(nphi):
+#             grad_field[:,iphi,0] = self.grad_mat_psi_r.dot(field_loc[:,iphi])
+#             grad_field[:,iphi,1] = self.grad_mat_theta_z.dot(field_loc[:,iphi])
+#         return grad_field
 
+#     def GradParX(self, field):
+#         self.managerObj.reader('/xgc.bfield.bp')
+#         field = np.array(field)
+#         self.managerObj.reader('/xgc.ff_1dp_fwd.bp')
+#          #l_r   = self.ff_1dp_fwd_dl
+#         l_r = self.managerObj.get_loadVar('dl_par')
+#         self.managerObj.reader('/xgc.ff_1dp_rev.bp')
+#         #l_l   = self.ff_1dp_rev_dl
+#         l_l    = self.managerObj.get_loadVar('dl_par')
+#         if field.ndim!=2:
+#             print("GradParX: Wrong array shape of field, must be (nnode,nphi)")
+#             return -1
+#         nphi  = field.shape[1]
+#         nnode = field.shape[0]
+#         if nnode!=self.ff_1dp_fwd.shape[0]:
+#             return -1
+#         sgn   = np.sign(self.bfield[0,2])
+#         l_tot = l_r+l_l
+#         bdotgrad_field = np.zeros_like(field)
+#         for iphi in range(nphi):
+#             iphi_l  = iphi-1 if iphi>0 else nphi-1
+#             iphi_r  = np.fmod((iphi+1),nphi)
+#             field_l = self.ff_1dp_rev.dot(field[:,iphi_l])
+#             field_r = self.ff_1dp_fwd.dot(field[:,iphi_r])
+#             #
+#             bdotgrad_field[:,iphi] = sgn * (-(    l_r)/(l_l*l_tot)*field_l        \
+#                                             +(l_r-l_l)/(l_l*l_r  )*field[:,iphi]  \
+#                                             +(    l_l)/(l_r*l_tot)*field_r        )
+#         return bdotgrad_field
+
+
+#     def load_grad_mat(self):
+#         # fn = self.xgc_path+'xgc.grad_rz'
+#         self.managerObj.reader('xgc_grad_rz')
+
+#         try:
+#             # Flag indicating whether gradient is (R,Z) or (psi,theta)
+#             self.grad_mat_basis = self.managerObj.get_loadVar('basis')
+#             # Set up matrix for psi/R derivative
+#             nelement            = self.managerObj.get_loadVar('nelement_r')
+#             eindex              = self.managerObj.get_loadVar('eindex_r')-1
+#             value               = self.managerObj.get_loadVar('value_r')
+#             nrows               = self.managerObj.get_loadVar('m_r')
+#             ncols               = self.managerObj.get_loadVar('n_r')
+#             self.grad_mat_psi_r = self.create_sparse_xgc(nelement,eindex,value,m=nrows,n=ncols)
+#             # Set up matrix for theta/Z derivative
+#             nelement              = self.managerObj.get_loadVar('nelement_z')
+#             eindex                = self.managerObj.get_loadVar('eindex_z')-1
+#             value                 = self.managerObj.get_loadVar('value_z')
+#             nrows                 = self.managerObj.get_loadVar('m_z')
+#             ncols                 = self.managerObj.get_loadVar('n_z')
+#             self.grad_mat_theta_z = self.create_sparse_xgc(nelement,eindex,value,m=nrows,n=ncols)
+#         except:
+#             self.grad_mat_psi_r   = 0
+#             self.grad_mat_theta_z = 0
+#             self_grad_mat_basis   = 0
+
+#     def create_sparse_xgc(self,nelement,eindex,value,m=None,n=None):
+#     # Create Python sparse matrix from XGC data
+#         nelement = np.array(nelement)
+    
+#         if m is None: m = nelement.size
+#         if n is None: n = nelement.size
+        
+#         #format for Python sparse matrix
+#         indptr = np.insert(np.cumsum(nelement),0,0)
+#         indices = np.empty((indptr[-1],))
+#         data = np.empty((indptr[-1],))
+#         for i in range(nelement.size):
+#                 indices[indptr[i]:indptr[i+1]] = eindex[i,0:nelement[i]]
+#                 data[indptr[i]:indptr[i+1]] = value[i,0:nelement[i]]
+#         #create sparse matrices
+#         spmat = csr_matrix((data,indices,indptr),shape=(m,n))
+#         return spmat
             
-        #def conv_read2ff():
+#     def conv_read2ff(self, field):
+#         field = np.array(field)
+#         if (field.ndim==3):
+#             field_work = field
+#         elif (field.ndim==2):
+#             field_work = np.zeros((field.shape[0],field.shape[1],1),dtype=field.dtype)
+#             field_work[:,:,0] = field[:,:]
+#         else:
+#             print("conv_real2ff: input field has wrong shape.")
+#             return -1
+#         fdim = field_work.shape[2]
+#         nphi = field_work.shape[1]
+#         field_ff = np.zeros((field_work.shape[0],nphi,fdim,2),dtype=field_work.dtype)
+#         for iphi in range(nphi):
+#             iphi_l  = iphi-1 if iphi>0 else nphi-1
+#             iphi_r  = iphi
+#             for j in range(fdim):
+#                 field_ff[:,iphi,j,0] = self.ff_hdp_rev.dot(field_work[:,iphi_l,j])
+#                 field_ff[:,iphi,j,1] = self.ff_hdp_fwd.dot(field_work[:,iphi_r,j])
+#         field_ff = np.transpose(field_ff,(1,0,2,3))
+#         if fdim==1:
+#             field_ff = (np.transpose(field_ff,(0,1,3,2)))[:,:,:]
+#         #
+#         return field_ff
+    
+#     def load_ff_mapping(self):
+#         self.ff_map_names = ["ff_1dp_fwd","ff_1dp_rev","ff_hdp_fwd","ff_hdp_rev"]
+#         for ff_name in self.ff_map_names:
+#             self.managerObj.reader(fileDir+'xgc.'+ff_name)
+#             try:
+#                 nelement = self.managerObj.get_loadVar('nelement')
+#                 eindex   = self.managerObj.get_loadVar('eindex')-1
+#                 value    = self.managerObj.get_loadVar('value')
+#                 nrows    = self.managerObj.get_loadVar('nrows')
+#                 ncols    = self.managerObj.get_loadVar('ncols')
+#                 dl_par   = self.managerObj.get_loadVar('dl_par')
+#                 self.__setattr__(ff_name,self.create_sparse_xgc(nelement, eindex, value, m=nrows, n=ncols))
+#                 #
+#                 varn     = ff_name+'_dl'
+#                 self.__setattr__(varn,dl_par)
+#             except:
+#                 self.__setattr__(ff_name,0)
 
 
+    
 
         
-        
-
-
-        
 
 
 
 
-#     #nd_connect_list -> connectivity information
-#     #rz -> 
-#     #grid_nwall
-#     #grid_nwall_nodes
+# #     #nd_connect_list -> connectivity information
+# #     #rz -> 
+# #     #grid_nwall
+# #     #grid_nwall_nodes
 
-#     x = [1, 2, 3, 4, 5]
-#     y = [2, 3, 5, 7, 11]
+# #     x = [1, 2, 3, 4, 5]
+# #     y = [2, 3, 5, 7, 11]
 
-#     # Create a new figure
-#     plt.figure()
+# #     # Create a new figure
+# #     plt.figure()
 
-#     # Plot the data
-#     plt.plot(x, y, marker='o', linestyle='-', color='b')
+# #     # Plot the data
+# #     plt.plot(x, y, marker='o', linestyle='-', color='b')
 
-#     # Add a title and labels
-#     plt.title('Simple Line Plot')
-#     plt.xlabel('X-axis')
-#     plt.ylabel('Y-axis')
+# #     # Add a title and labels
+# #     plt.title('Simple Line Plot')
+# #     plt.xlabel('X-axis')
+# #     plt.ylabel('Y-axis')
 
-#     # Display the plot
-#     plt.show()
+# #     # Display the plot
+# #     plt.show()
 
-#     triObj = Triangulation()
+# #     triObj = Triangulation()
 
 
     
@@ -158,26 +333,26 @@ class meshdata(object):
 
 
 
-# # class fdata():
-# #     def __init__(self) -> None:
-# #         pass
+# # # class fdata():
+# # #     def __init__(self) -> None:
+# # #         pass
 
 
 
 
-# # class fielddata():
-# #     def __init__(self) -> None:
-# #         pass
+# # # class fielddata():
+# # #     def __init__(self) -> None:
+# # #         pass
 
 
 
 
 
-# # class fluxdata():
-# #     def  __init__(self) -> None:
-# #         pass
+# # # class fluxdata():
+# # #     def  __init__(self) -> None:
+# # #         pass
     
-meshdata()
+# meshdata()
 
 
 
