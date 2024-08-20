@@ -50,6 +50,7 @@ class meshdata(object):
         #Ntimes = len(time)
 
         print(time)
+        print(Nplanes)
         
 
     

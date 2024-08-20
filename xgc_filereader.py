@@ -112,7 +112,6 @@ class data1(object):
                 # return self.array_container
 
                 #nstep = int(r.available_variables()[v])
-                print("Success?")
                 return data
         except Exception as e:
             print(f"Error in file: {e}\n")
@@ -917,13 +916,13 @@ class loader(object):
 
     
 
-fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
+#fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 #required
 #xgc1Obj = xgc1(fileDir)
 #xgcaObj = xgca(fileDir)
 # manager = loader(fileDir)
-data1Obj = data1(fileDir)
+#data1Obj = data1(fileDir)
 
 # manager.reader('/xgc.mesh.bp')
 
@@ -960,8 +959,8 @@ data1Obj = data1(fileDir)
 
 
 
-psi = data1Obj.read_oneddiag('psi')
-print(psi)
+#psi = data1Obj.read_oneddiag('psi')
+#print(psi)
 #print(psi)
 
 
