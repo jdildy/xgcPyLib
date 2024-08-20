@@ -11,9 +11,9 @@ class meshdata():
     managerObj.reader('/xgc.mesh.bp')
 
     nodes = managerObj.get_loadVar('nd_connect_list')
+    print(nodes)
     RZ = managerObj.get_loadVar('rz')
-
-
+    print(RZ)
 
 
     
