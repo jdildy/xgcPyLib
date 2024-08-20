@@ -87,9 +87,13 @@ class meshdata(object):
 
         dpot3D = np.array(dpot3D)
         print(f"The size of 3D array is {dpot3D.size}")
+        print(f"Length of dpot3d: {len(dpot3D)}")
+        print(f"Length of triObj: {triObj}")
 
-        dpotF3D = np.array(dpotF3D)
-        print(f"The size of F3D array is {dpotF3D.size}")
+        # dpotF3D = np.array(dpotF3D)
+        # print(f"The size of F3D array is {dpotF3D.size}")
+
+
 
 
         # Calculate grad(As) and transform As and grad(As) to 
@@ -101,16 +105,16 @@ class meshdata(object):
 
 
 
-        plt.figure(1)
-        tci=LinearTriInterpolator(triObj,dpot3D)
-        out=tci(RI,ZI)
-        fac=0.25
-        colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
-        plt.contourf(RI,ZI,out,levels=colra)
-        plt.colorbar()
-        plt.xlabel('R [m]')
-        plt.ylabel('Z [m]')
-        plt.show()
+        # plt.figure(1)
+        # tci=LinearTriInterpolator(triObj,dpot3D)
+        # out=tci(RI,ZI)
+        # fac=0.25
+        # colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
+        # plt.contourf(RI,ZI,out,levels=colra)
+        # plt.colorbar()
+        # plt.xlabel('R [m]')
+        # plt.ylabel('Z [m]')
+        # plt.show()
 
     
     
