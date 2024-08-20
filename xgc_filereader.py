@@ -232,8 +232,7 @@ class xgc1(object):
 
 
     def xgc1_reader(self,file): 
-        file = str(file).lower()
-        if '.f3d.' in file:
+        if '.f3d.' in str(file).lower():
             try:
                 with Stream(file, 'rra') as r:
                     variables_list = r.available_variables()
