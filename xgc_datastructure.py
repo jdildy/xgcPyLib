@@ -85,7 +85,7 @@ class meshdata(object):
 
         print(len(self.RZ[:,0]))
         print(len(self.RZ[:,1]))
-        print(len(dpot3D[:,0]))
+        print(len(dpot3D[0]))
 
         # print("triObj: \n")
         # print(triObj)
@@ -112,7 +112,7 @@ class meshdata(object):
 
 
         plt.figure(1)
-        tci=LinearTriInterpolator(triObj,dpot3D[:,0])
+        tci=LinearTriInterpolator(triObj,dpot3D[0])
         out=tci(RI,ZI)
         fac=0.25
         colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
