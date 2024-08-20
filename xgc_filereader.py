@@ -917,12 +917,13 @@ class loader(object):
 
     
 
-#fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
+fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 #required
 #xgc1Obj = xgc1(fileDir)
 #xgcaObj = xgca(fileDir)
 # manager = loader(fileDir)
+data1Obj = data1(fileDir)
 
 # manager.reader('/xgc.mesh.bp')
 
@@ -959,7 +960,7 @@ class loader(object):
 
 
 
-#psi = data1Obj.get_oneddiag('psi')
+psi = data1Obj.read_oneddiag('psi')
 #print(psi)
 
 
