@@ -107,8 +107,8 @@ class meshdata(object):
 
 
 
-        # plt.figure(1)
-        # tci=LinearTriInterpolator(triObj,dpot3D)
+        plt.figure(1)
+        tci=LinearTriInterpolator(triObj,dpot3D)
         # out=tci(RI,ZI)
         # fac=0.25
         # colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
