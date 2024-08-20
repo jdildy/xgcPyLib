@@ -22,8 +22,13 @@ class meshdata():
 
     managerObj.reader('/xgc.mesh.bp')
 
-    rz = managerObj.get_loadVar('rz')
-    print(rz)
+    RZ = managerObj.get_loadVar('rz')
+    R = RZ[:,0]
+    Z = RZ[:,1]
+
+    print(R)
+    print(Z)
+    
 
 
     
