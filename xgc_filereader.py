@@ -74,7 +74,7 @@ class data1(object):
         self.array_container = {}
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
-        data = self.read_oneddiag()
+        #data = self.read_oneddiag()
 
         #print(data)
 
@@ -90,19 +90,30 @@ class data1(object):
 
         # if choice == 1:
         #     single = single_timestep(time)
-    def read_oneddiag(self):
+    def read_oneddiag(self,variable,inds = Ellipsis):
         try:
             with Stream(self.xgc_path + "/xgc.oneddiag.bp", "rra") as r:
-                self.vars = r.available_variables()
-                
-                for v in self.vars:
-                    #print(v)
+                #self.vars = r.available_variables()
 
-                    #Start HERE 
-                    #data = r.read(v)[]
-                    self.array_container[v] = np.array(data)
-                return self.array_container
-                   
+                nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
+                nsize = r.available_variables()[variable]['Shape']
+                if nsize != '': #mostly xgc.oneddiag
+                    nsize = int(nsize)
+                    data = r.read(variable,start=[0], count=[nsize])
+                else: #mostly xgc.oneddiag
+                    data = r.read(variable,start=[], count=[])
+                
+                # for v in self.vars:
+                #     #print(v)
+
+                #     #Start HERE 
+                #     #data = r.read(v)[]
+                #     self.array_container[v] = np.array(data)
+                # return self.array_container
+
+                #nstep = int(r.available_variables()[v])
+                print("Success?")
+                return data
         except Exception as e:
             print(f"Error in file: {e}\n")
     
