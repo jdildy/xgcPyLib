@@ -76,7 +76,7 @@ class data1(object):
         filename = xgc_path + "/xgc.oneddiag.bp"
         data = self.read_oneddiag()
 
-        print(data)
+        #print(data)
 
 
 
@@ -91,56 +91,27 @@ class data1(object):
         # if choice == 1:
         #     single = single_timestep(time)
     def read_oneddiag(self):
-
-
         try:
             with Stream(self.xgc_path + "/xgc.oneddiag.bp", "rra") as r:
                 self.vars = r.available_variables()
                 
                 for v in self.vars:
                     #print(v)
-                    data = r.read(v)[1085]
+
+                    #Start HERE 
+                    #data = r.read(v)[]
                     self.array_container[v] = np.array(data)
                 return self.array_container
                    
-
-                    
-
-                    
         except Exception as e:
             print(f"Error in file: {e}\n")
-        
-
-                        
-                        
-
     
-
-
-    # def readerdata1(self, file):
-    #     try:
-    #         with Stream(file, 'rra') as r: 
-    #             variables_list = r.available_variables()
-
-    #             nstep = int(variables_list)
-                
-    #             for var_name in variables_list:
-    #                 var = r.read(var_name)
-    #                 #self.array_container[var_name] = np.array(var)
-    #         print("Variables size in oneddiag: " + str(len(self.array_container)))
-    #     except Exception as e:
-    #         print(f"Error reading file: {e}\n")
-
     def get_oneddiag(self, name):
         if name in self.array_container:
             return self.array_container[name]
         else:
             print(f"Variable '{name}' not found.")
             return None
-
-
-        
-
 
 
 
@@ -276,51 +247,6 @@ class xgc1(object):
             return self.array_container[str(name)]
         else:
             print(f"Variable with name '{name}' not found.")
-
-
-
-
-
-
-        
-    
-                
-    
-            
-                
-
-    
-
-
-    
-
-
-
-
-
-
-
-    
-        
-
-
-       
-
-
-    # def xgc1reader(self, file):
-    #     try:
-    #         with Stream(file, "rra") as f:
-    #             for _ in f.steps():
-    #                 self.vars = f.available_variables()
-    #                 # # if isinstance(vars, dict):
-    #                 # #     for name, info in vars.items():
-    #                 # #         print("variable_name: " + name, end=" ")
-    #                 #         # for key, value in info.items():
-    #                 #         #     #print("\t" + key + ": " + value, end=" ")
-    #                 #     print()
-    #     except Exception as e:
-    #         print(f"Error reading file: {e}")
-    #     return self.vars
 
     def xgc1_timeslice(self):
             path = self.xgc_path
@@ -914,11 +840,10 @@ class loader(object):
         #print(str(self.xgc_path)) # /pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun/
         self.array_container = {}
         #self.reader('xgc.grad_rz')
-        
+
 
     # Can handle all General BP files except heatdiag2 and sheathdiag. Need to create tests to catch if 
     def reader(self, file):
-        
         try:
             with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_variables()
@@ -986,12 +911,12 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 #required
 #xgc1Obj = xgc1(fileDir)
 #xgcaObj = xgca(fileDir)
-#manager = loader(fileDir)
+manager = loader(fileDir)
 
 #Testing
 # i_radial_en_flux_ExB_turb_df = xgc1Obj.get_loadVar3D('i_radial_en_flux_ExB_turb_df')
 # print(i_radial_en_flux_ExB_turb_df)
-data1Obj = data1(fileDir)
+#data1Obj = data1(fileDir)
 
 # time = data1Obj.get_oneddiag('time')
 # psi = data1Obj.get_oneddiag('psi')
