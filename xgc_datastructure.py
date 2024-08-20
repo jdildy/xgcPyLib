@@ -18,7 +18,7 @@ class meshdata(object):
         Zmin = -0.25
         Zmax = 0.4
 
-        
+
         self.managerObj = xgc_filereader.loader(fileDir)
         # xgc1 object
         self.xgc1Obj = xgc_filereader.xgc1(fileDir)
@@ -47,10 +47,10 @@ class meshdata(object):
         except:
             time = [0]
 
-        Ntimes = len(time)
+        #Ntimes = len(time)
 
         print(time)
-        print(len(Ntimes))
+        
 
     
 
