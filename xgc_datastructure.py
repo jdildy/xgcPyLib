@@ -47,10 +47,10 @@ class meshdata(object):
         except:
             time = [0]
 
-        #Ntimes = len(time)
+        Ntimes = len(time)
 
         print(time)
-        print(Nplanes)
+        
         
 
     
@@ -64,7 +64,7 @@ class meshdata(object):
 
         triObj = Triangulation(R, Z, nd_connect_list)
 
-        #As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
+        As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
 
         # print(type(As))
         # print(As)
