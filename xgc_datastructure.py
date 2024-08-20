@@ -75,11 +75,22 @@ class meshdata(object):
 
         #As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
 
-        dpot = self.xgc1Obj.get_loadVar3D('dpot')
+        dpot3D = self.xgc1Obj.get_loadVar3D('dpot')
+        dpotF3D = self.xgc1Obj.get_loadVarF3D('dpot')
 
-        print(dpot)
-        dpot = np.array(dpot)
-        print(f"The size of this array is {dpot.size}")
+        print("dpot 3D: \n")
+        print(dpot3D)
+
+        print("dpot F3D: \n")
+        print(dpotF3D)
+
+
+        dpot3D = np.array(dpot3D)
+        print(f"The size of this array is {dpot3D.size}")
+
+        dpotF3D = np.array(dpotF3D)
+        print(f"The size of this array is {dpotF3D.size}")
+
 
         # Calculate grad(As) and transform As and grad(As) to 
         # Field-following projections
