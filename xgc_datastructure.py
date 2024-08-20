@@ -86,10 +86,10 @@ class meshdata(object):
 
 
         dpot3D = np.array(dpot3D)
-        print(f"The size of this array is {dpot3D.size}")
+        print(f"The size of 3D array is {dpot3D.size}")
 
         dpotF3D = np.array(dpotF3D)
-        print(f"The size of this array is {dpotF3D.size}")
+        print(f"The size of F3D array is {dpotF3D.size}")
 
 
         # Calculate grad(As) and transform As and grad(As) to 
