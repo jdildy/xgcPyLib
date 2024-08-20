@@ -7,7 +7,12 @@ import xgc_filereader
 
 class meshdata():
     fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
-    loader = xgc_filereader.loader(fileDir)
+    managerObj = xgc_filereader.loader(fileDir)
+    managerObj.reader(fileDir)
+
+    RZ = managerObj.get_loadVar('coordinate/values')
+
+
 
     
 
