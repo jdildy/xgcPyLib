@@ -939,7 +939,7 @@ class loader(object):
 
     
 
-#fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
+fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 #required
 #xgc1Obj = xgc1(fileDir)
@@ -972,7 +972,7 @@ class loader(object):
 #print(psi)
 
 
-
+xgc1Obj = xgc1(fileDir)
 
 
 
