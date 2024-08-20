@@ -45,6 +45,8 @@ class meshdata(object):
         
         R = RZ[:,0]
         Z = RZ[:,1]
+        print(RZ)
+
 
         Rmin = managerObj.get_loadVar('eq_x_r') if 'x' in str(Rmin).lower() else Rmin
         Rmax = managerObj.get_loadVar('eq_x_r') if 'x' in str(Rmax).lower() else Rmax
@@ -58,8 +60,10 @@ class meshdata(object):
             time = np.array(data1Obj.read_oneddiag('time')[mask1d],ndmin=1)
         except:
             time = [0]
+        print(time)
 
         Ntimes = len(time)
+        print(Ntimes)
 
         
 
@@ -74,8 +78,7 @@ class meshdata(object):
 
         As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
 
-        print(type(As))
-        print(As)
+
 
             # Calculate grad(As) and transfrom As and grad(As)
             # to field-following representation
