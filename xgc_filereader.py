@@ -112,6 +112,7 @@ class data1(object):
                 # return self.array_container
 
                 #nstep = int(r.available_variables()[v])
+                
                 return data
         except Exception as e:
             print(f"Error in file: {e}\n")
@@ -132,7 +133,8 @@ class xgc1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         print(str(self.xgc_path))
-        self.array_container = {}
+        self.array_containerF3D = {}
+        self.array_container3D = {}
         print("Reading XGC Output Data:")
         print("Gathering Time Slice Data...")
 
@@ -230,31 +232,52 @@ class xgc1(object):
 
 
     def xgc1_reader(self,file): 
-        try:
-            with Stream(file, 'rra') as r:
-                variables_list = r.available_variables()
-                for var_name in variables_list:
-                    var = r.read(var_name)
-                    self.array_container[var_name] = np.array(var)
-            print(f"Reading {file} file sucessful.")
-        except Exception as e:
-            print(f"Error reading file: {e}")
+        file = str(file).lower()
+        if '.f3d.' in file:
+            try:
+                with Stream(file, 'rra') as r:
+                    variables_list = r.available_variables()
+                    for var_name in variables_list:
+                        var = r.read(var_name)
+                        self.array_containerF3D[var_name] = np.array(var)
+                print(f"Reading {file} file sucessful.")
+            except Exception as e:
+                print(f"Error reading file: {e}")
+        elif '.3d.' in file:
+            try:
+                with Stream(file, 'rra') as r:
+                    variables_list = r.available_variables()
+                    for var_name in variables_list:
+                        var = r.read(var_name)
+                        self.array_container3D[var_name] = np.array(var)
+                print(f"Reading {file} file sucessful.")
+            except Exception as e:
+                print(f"Error reading file: {e}")
+        else:
+            print("Error: Neither F3D or 3D data exists.")
+
     
-    #Work in progress
-    def xgc1_readermult(self,file,time): 
-        try:
-            with Stream(file, 'rra') as r:
-                variables_list = r.available_variables()
-                for var_name in variables_list:
-                    var = r.read(var_name)[time]
-                    self.array_container[var_name] = np.array(var)[time]
-            print(f"Reading {file} file sucessful.")
-        except Exception as e:
-            print(f"Error reading file: {e}")
+    # #Work in progress
+    # def xgc1_readermult(self,file,time): 
+    #     try:
+    #         with Stream(file, 'rra') as r:
+    #             variables_list = r.available_variables()
+    #             for var_name in variables_list:
+    #                 var = r.read(var_name)[time]
+    #                 self.array_container[var_name] = np.array(var)[time]
+    #         print(f"Reading {file} file sucessful.")
+    #     except Exception as e:
+    #         print(f"Error reading file: {e}")
+
+    def get_loadVarF3D(self, name):
+        if name in self.array_containerF3D:
+            return self.array_containerF3D[str(name)]
+        else:
+            print(f"Variable with name '{name}' not found.")
 
     def get_loadVar3D(self, name):
-        if name in self.array_container:
-            return self.array_container[str(name)]
+        if name in self.array_container3D:
+            return self.array_container3D[str(name)]
         else:
             print(f"Variable with name '{name}' not found.")
 
