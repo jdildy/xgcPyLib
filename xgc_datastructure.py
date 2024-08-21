@@ -126,8 +126,7 @@ class meshdata(object):
         plt.ylabel('Z [m]')
         plt.ion()
         plt.savefig('plot.png')
-        image = Image.open('plot.png')
-        image.show()
+        
 
     
         #managerObj = xgc_filereader.loader(fileDir)
