@@ -70,11 +70,15 @@ class meshdata(object):
 
         self.R= np.array(self.RZ[:,0])
         self.Z = np.array(self.RZ[:,1])
+        Rmin = self.R.min
+        Rmax = self.R.max
+        Zmin = self.Z.min
+        Zmax = self.Z.max
     
 
         #setup Mesh Grid
-        Ri = np.linspace(self.R.min, self.R.max, 400)
-        Zi = np.linspace(self.Z.min, self.Z.max, 400)
+        Ri = np.linspace(Rmin, Rmax, 400)
+        Zi = np.linspace(Zmin, Zmax, 400)
         RI,ZI = np.meshgrid(Ri,Zi)
 
         nd_connect_list = self.managerObj.get_loadVar('nd_connect_list')
