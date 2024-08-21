@@ -205,7 +205,6 @@ class xgc1(object):
                 print(f"Error reading file: {e}\n")
         
         elif choice == 2:
-            data = []
             start, end = mult_timestep(time)
             print(f"Selected starting timestep: {start}\n")
             print(f"Selected ending timestep: {end}\n")
@@ -220,7 +219,7 @@ class xgc1(object):
                 try:
                     data =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
                     if j != count:
-                        data[j] = data
+                        data[j] = np.array(data)
                         j += 1
                 except Exception as e:
                     print(f"Error reading file: {e}\n")
@@ -231,6 +230,7 @@ class xgc1(object):
                 # except Exception as e:
                 #     print(f"Error reading file: {e}\n")
             print(f"Length of data: {len(data)}")
+
         elif choice == 3: 
             print("Exit")
             return 
