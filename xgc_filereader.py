@@ -215,13 +215,8 @@ class xgc1(object):
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
             for i in pbar:
                 try:
-                    print(i)
-                    for j in range(count):
-                        print(j)
-
-                #     stepdata =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
-                #     data[j] = stepdata
-                #     j+=1
+                    stepdata =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
+                    data.append(stepdata)
                 except Exception as e:
                     print(f"Error reading file: {e}\n")
 
