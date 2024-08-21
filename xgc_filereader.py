@@ -210,19 +210,21 @@ class xgc1(object):
             print(f"Selected ending timestep: {end}\n")
 
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
-            
-            for i in pbar:
-                try:
-                    self.xgc1_reader(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
+            count = len(range(start, end + istep, istep))
+            print(count)
+            # for i in pbar:
+            #     try:
+            #         self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
                     
-                except Exception as e:
-                    print(f"Error reading file: {e}\n")
 
-                try:
-                    self.xgc1_reader(xgc_path + '/xgc.f3d.%5.5d.bp' %(i))
+            #     except Exception as e:
+            #         print(f"Error reading file: {e}\n")
+
+            #     try:
+            #         dataRangeF3D = self.xgc1_reamultF3D(xgc_path + '/xgc.f3d.%5.5d.bp' %(i))
                     
-                except Exception as e:
-                    print(f"Error reading file: {e}\n")
+            #     except Exception as e:
+            #         print(f"Error reading file: {e}\n")
         elif choice == 3: 
             print("Exit")
             return 
@@ -254,30 +256,61 @@ class xgc1(object):
             print("Error: Neither F3D or 3D data exists.")
 
     
-    # #Work in progress
-    # def xgc1_readermult(self,file,time): 
-    #     try:
-    #         with Stream(file, 'rra') as r:
-    #             variables_list = r.available_variables()
-    #             for var_name in variables_list:
-    #                 var = r.read(var_name)[time]
-    #                 self.array_container[var_name] = np.array(var)[time]
-    #         print(f"Reading {file} file sucessful.")
-    #     except Exception as e:
-    #         print(f"Error reading file: {e}")
+    #Work in progress
+    def xgc1_readmult3D(self,file): 
+        data = []
+        try:
+            with Stream(file, 'rra') as r:
+                    variables_list = r.available_variables()
+                    for var_name in variables_list:
+                        var = r.read(var_name)
+                        self.array_container3D[var_name] = np.array(var)
+            print(f"Reading {file} file sucessful.")
+            return self.array_container3D
+        except Exception as e:
+                print(f"Error reading file: {e}")
+    
+    def xgc1_readmultF3D(self,file,start, end, step): 
+        data = []
+        for i in range(start, end, step):
+            try:
+                with Stream(file, 'rra') as r:
+                    variables_list = r.available_variables()
+                    for var_name in variables_list:
+                        var = r.read(var_name)
+                        self.array_container3D[var_name] = np.array(var)
+                        data[i] = self.array_container3D[var_name]
+                print(f"Reading {file} file sucessful.")
+                return data
+        
+            except Exception as e:
+                print(f"Error reading file: {e}")
 
+    # Create a function to list all variables in a specfic file
+            
+    def list3DVars(self):
+        for name in self.array_container3D:
+            print(name)
+
+    def list_F3DVars(self):
+        for name in self.array_containerF3D:
+            print(name)
+
+
+    # Retrieve Variable and its data
     def get_loadVarF3D(self, name):
         if name in self.array_containerF3D:
-            return self.array_containerF3D[str(name)]
+            return np.array(self.array_containerF3D[str(name)])
         else:
             print(f"Variable with name '{name}' not found.")
 
     def get_loadVar3D(self, name):
         if name in self.array_container3D:
-            return self.array_container3D[str(name)]
+            return np.array(self.array_container3D[str(name)])
         else:
             print(f"Variable with name '{name}' not found.")
 
+    # Retreive the timeslice
     def xgc1_timeslice(self):
             path = self.xgc_path
             bp_timeslices = []
