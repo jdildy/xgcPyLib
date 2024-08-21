@@ -211,15 +211,17 @@ class xgc1(object):
             count = len(range(start, end + istep, istep))
             #Test 2 , 10 as input
             print(count) # 5
+            data = []
+            
             j = 0
 
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
             for i in pbar:
                 print(j)
                 try:
-                    data =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
+                    stepdata =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
                     if j != count:
-                        data[j] = data
+                        data[j] = stepdata
                         j += 1
                 except Exception as e:
                     print(f"Error reading file: {e}\n")
@@ -235,6 +237,7 @@ class xgc1(object):
             # print(f"Dimensions of data: {data.ndim}")
             # print(f"Shape of data: {data.shape}")
             print(type(data))
+            print(len(data))
 
         elif choice == 3: 
             print("Exit")
