@@ -70,10 +70,10 @@ class meshdata(object):
 
         self.R= np.array(self.RZ[:,0])
         self.Z = np.array(self.RZ[:,1])
-        Rmin = self.R.min
-        Rmax = self.R.max
-        Zmin = self.Z.min
-        Zmax = self.Z.max
+        Rmin = np.min(self.R)
+        Rmax = np.max(self.R)
+        Zmin = np.min(self.Z)
+        Zmax = np.max(self.Z)
     
 
         #setup Mesh Grid
