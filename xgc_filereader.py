@@ -221,7 +221,6 @@ class xgc1(object):
                     if j != count:
                         data[j] = data
                         j += 1
-                    print("Success?")
                 except Exception as e:
                     print(f"Error reading file: {e}\n")
 
