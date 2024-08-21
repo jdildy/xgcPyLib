@@ -205,6 +205,7 @@ class xgc1(object):
                 print(f"Error reading file: {e}\n")
         
         elif choice == 2:
+            j = 0
             start, end = mult_timestep(time)
             print(f"Selected starting timestep: {start}\n")
             print(f"Selected ending timestep: {end}\n")
@@ -212,13 +213,12 @@ class xgc1(object):
             #Test 2 , 10 as input
             print(count) # 5
             data = []
-            j = 0
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
             for i in pbar:
-                print(j)
                 try:
                     stepdata =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
-                    data = stepdata
+                    data[j] = stepdata
+                    j+=1
                 except Exception as e:
                     print(f"Error reading file: {e}\n")
 
@@ -234,6 +234,7 @@ class xgc1(object):
             # print(f"Shape of data: {data.shape}")
             print(type(data))
             print(len(data))
+
 
         elif choice == 3: 
             print("Exit")
