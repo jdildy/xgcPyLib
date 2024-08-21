@@ -14,14 +14,6 @@ import numpy as np
 
 
 
-
-#Consider using Qt5Agg
-matplotlib.use('Qt5Agg')
-print(matplotlib.get_backend()) # agg
-
-
-
-
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 class meshdata(object):
