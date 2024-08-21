@@ -5,11 +5,14 @@ import matplotlib
 from matplotlib.tri import Triangulation, LinearTriInterpolator
 import os
 from PIL import Image
+matplotlib.use('Qt5Agg')
 import xgc_filereader
 from scipy.sparse import csr_matrix
 
+from PIL import Image
+
 print(matplotlib.get_backend())
-import numpy as np
+
 
 
 
