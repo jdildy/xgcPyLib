@@ -229,6 +229,7 @@ class xgc1(object):
                     
                 # except Exception as e:
                 #     print(f"Error reading file: {e}\n")
+            print(f"Length of data: {len(data)}")
         elif choice == 3: 
             print("Exit")
             return 
