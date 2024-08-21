@@ -212,13 +212,15 @@ class xgc1(object):
             count = len(range(start, end + istep, istep))
             #Test 2 , 10 as input
             print(count) # 5
+            j = 0
 
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
             for i in pbar:
                 try:
-                    for j in range(count):
-                       data =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
-                       data[j] = data
+                    data =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
+                    if j != count:
+                        data[j] = data
+                        j += 1
                     print("Success?")
                 except Exception as e:
                     print(f"Error reading file: {e}\n")
