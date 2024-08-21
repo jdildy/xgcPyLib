@@ -8,7 +8,8 @@ from scipy.sparse import csr_matrix
 
 import numpy as np
 
-
+import matplotlib
+print(matplotlib.get_backend())
 
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
