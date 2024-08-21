@@ -216,6 +216,7 @@ class xgc1(object):
 
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
             for i in pbar:
+                print(j)
                 try:
                     data =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
                     if j != count:
