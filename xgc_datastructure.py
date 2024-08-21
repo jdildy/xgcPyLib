@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib
 from matplotlib.tri import Triangulation, LinearTriInterpolator
 import os
-
+from PIL import Image
 import xgc_filereader
 from scipy.sparse import csr_matrix
 
@@ -133,8 +133,9 @@ class meshdata(object):
         plt.xlabel('R [m]')
         plt.ylabel('Z [m]')
         plt.ion()
-        plt.show()
-        print("Success?")
+        plt.savefig('plot.png')
+        image = Image.open('plot.png')
+        image.show()
 
     
         #managerObj = xgc_filereader.loader(fileDir)
