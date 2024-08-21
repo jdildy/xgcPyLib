@@ -205,7 +205,6 @@ class xgc1(object):
                 print(f"Error reading file: {e}\n")
         
         elif choice == 2:
-            j = 0
             start, end = mult_timestep(time)
             print(f"Selected starting timestep: {start}\n")
             print(f"Selected ending timestep: {end}\n")
@@ -217,6 +216,9 @@ class xgc1(object):
             for i in pbar:
                 try:
                     print(i)
+                    for j in range(count):
+                        print(j)
+
                 #     stepdata =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
                 #     data[j] = stepdata
                 #     j+=1
