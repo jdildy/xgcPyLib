@@ -229,11 +229,12 @@ class xgc1(object):
                     
                 # except Exception as e:
                 #     print(f"Error reading file: {e}\n")
-            print(f"Length of data: {len(data)}")
-            print(data)
-            data = np.array(data)
-            print(f"Dimensions of data: {data.ndim}")
-            print(f"Shape of data: {data.shape}")
+            # print(f"Length of data: {len(data)}")
+            # print(data)
+            # data = np.array(data)
+            # print(f"Dimensions of data: {data.ndim}")
+            # print(f"Shape of data: {data.shape}")
+            print(type(data))
 
         elif choice == 3: 
             print("Exit")
