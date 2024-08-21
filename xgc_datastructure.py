@@ -3,13 +3,21 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.tri import Triangulation, LinearTriInterpolator
 import os
+import matplotlib
 import xgc_filereader
 from scipy.sparse import csr_matrix
-
+matplotlib.use('Qt5Agg')
 import numpy as np
 
-import matplotlib
-print(matplotlib.get_backend())
+
+
+
+print(matplotlib.get_backend()) # agg
+
+#Consider using Qt5Agg
+
+
+
 
 
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
