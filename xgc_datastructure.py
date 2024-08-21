@@ -68,55 +68,25 @@ class meshdata(object):
         #     except:
         #         self.bfield = self.managerObj.get_loadVar('bfield')[...]
 
-        
+        self.R= np.array(self.RZ[:,0])
+        self.Z = np.array(self.RZ[:,1])
     
 
         #setup Mesh Grid
-        Ri = np.linspace(Rmin, Rmax, 400)
-        Zi = np.linspace(Zmin, Zmax, 400)
+        Ri = np.linspace(self.R.min, self.R.max, 400)
+        Zi = np.linspace(self.Z.min, self.Z.max, 400)
         RI,ZI = np.meshgrid(Ri,Zi)
 
         nd_connect_list = self.managerObj.get_loadVar('nd_connect_list')
+        grid_nwall = self.managerObj.get_loadVar('grid_nwall')
+        
 
-        triObj = Triangulation(self.RZ[:,0], self.RZ[:,1], nd_connect_list)
+
+        triObj = Triangulation(self.R, self.Z, nd_connect_list)
 
         #As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
 
         dpot3D = self.xgc1Obj.get_loadVar3D('dpot')
-        #dpotF3D = self.xgc1Obj.get_loadVarF3D('dpot')
-
-        # print("dpot 3D: \n")
-        # print(dpot3D)
-
-        # # print("dpot F3D: \n")
-        # # print(dpotF3D)
-
-        # print(len(self.RZ[:,0]))
-        # print(len(self.RZ[:,1]))
-        # print(len(dpot3D[0]))
-
-        # print("triObj: \n")
-        # print(triObj)
-
-
-        # dpot3D = np.array(dpot3D)
-        # print(f"The size of 3D array is {dpot3D.size}")
-        # print(f"Length of dpot3d: {len(dpot3D)}")
-        
-
-        # dpotF3D = np.array(dpotF3D)
-        # print(f"The size of F3D array is {dpotF3D.size}")
-
-
-
-
-        # Calculate grad(As) and transform As and grad(As) to 
-        # Field-following projections
-
-    #     dAs = self.GradAll(As[:,:,0])
-    #     As_phi_ff = conv_real2ff(As[:,:,0])
-    #    # dAs_phi_ff = 
-
 
 
         plt.figure(1)
