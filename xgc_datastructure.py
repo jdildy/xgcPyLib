@@ -8,6 +8,7 @@ from PIL import Image
 import xgc_filereader
 from scipy.sparse import csr_matrix
 
+print(matplotlib.get_backend())
 import numpy as np
 
 
@@ -125,7 +126,7 @@ class meshdata(object):
         plt.xlabel('R [m]')
         plt.ylabel('Z [m]')
         plt.ion()
-        plt.savefig('plot.png')
+        plt.show()
         
 
     
