@@ -129,7 +129,10 @@ class meshdata(object):
         plt.xlabel('R [m]')
         plt.ylabel('Z [m]')
         plt.ion()
-        plt.show()
+        plt.savefig('mesh.png')
+
+        image = Image.open('mesh.png')
+        image.show()
         
 
     
