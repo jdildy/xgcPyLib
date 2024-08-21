@@ -208,10 +208,10 @@ class xgc1(object):
             start, end = mult_timestep(time)
             print(f"Selected starting timestep: {start}\n")
             print(f"Selected ending timestep: {end}\n")
-
-            pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
             count = len(range(start, end + istep, istep))
             print(count)
+
+            #pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
             # for i in pbar:
             #     try:
             #         self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
