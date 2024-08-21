@@ -219,7 +219,7 @@ class xgc1(object):
                 try:
                     data =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
                     if j != count:
-                        data[j] = np.array(data)
+                        data[j] = data
                         j += 1
                 except Exception as e:
                     print(f"Error reading file: {e}\n")
@@ -230,6 +230,9 @@ class xgc1(object):
                 # except Exception as e:
                 #     print(f"Error reading file: {e}\n")
             print(f"Length of data: {len(data)}")
+            data = np.array(data)
+            print(f"Dimensions of data: {data.ndim}")
+            print(f"Shape of data: {data.shape}")
 
         elif choice == 3: 
             print("Exit")
