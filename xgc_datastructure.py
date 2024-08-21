@@ -11,6 +11,7 @@ import numpy as np
 import matplotlib
 print(matplotlib.get_backend())
 
+
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 class meshdata(object):
@@ -121,6 +122,7 @@ class meshdata(object):
         plt.colorbar()
         plt.xlabel('R [m]')
         plt.ylabel('Z [m]')
+        plt.ion()
         plt.show()
         print("Success?")
 
