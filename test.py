@@ -26,9 +26,9 @@ class meshdata(object):
         
 
     class Core():
-        def __init__(self, grid_nwall, grid_nwall_node, n_n, n_t, nd_connect_list, rz):
+        def __init__(self, grid_nwall, grid_wall_nodes, n_n, n_t, nd_connect_list, rz):
             self.grid_nwall = grid_nwall
-            self.grid_nwall_node = grid_nwall_node
+            self.grid_wall_nodes = grid_wall_nodes
             self.n_n = n_n 
             self.n_t = n_t
             self.nd_connect_list = nd_connect_list
@@ -82,7 +82,7 @@ if selection == 1:
         #Core Subclass
         core = meshdata.Core(
             handler.get_loadVar('grid_nwall'),
-            handler.get_loadVar('grid_nwall_node'),
+            handler.get_loadVar('grid_wall_nodes'),
             handler.get_loadVar('n_n'),
             handler.get_loadVar('n_t'),
             handler.get_loadVar('nd_connect_list'),
@@ -121,7 +121,6 @@ if selection == 1:
         print(f"Error occured: {e}")
 
     print(core.grid_nwall_node)
-    print(surface.nsurf)
 
     r = core.rz[:,0]
     z = core.rz[:,1]
