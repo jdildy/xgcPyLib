@@ -173,7 +173,7 @@ class xgc1(object):
             (2, "Option 2: Read a range of 3D data files"),
             (3, "Option 3: Exit.")
         ]
-        self.choice, KEY = user_select("Please choose an option:", choices)
+        self.choice = user_select("Please choose an option:", choices)
 
         if self.choice == 1:
             single = single_timestep(time)
