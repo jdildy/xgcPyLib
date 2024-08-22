@@ -174,9 +174,10 @@ elif selection == 2:
 
     data3D = xgc1Obj.get_mult3Data()
     result = []
-    for key in data3D:
-        if 'dpot' in key:
-            result.append({key: data3D['dpot']})
+
+    for var in data3D:
+        if 'dpot' in var:
+            result.append({'dpot': var['dpot']})
     
     print(len(result))
         
