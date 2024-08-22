@@ -167,9 +167,11 @@ if selection == 1:
 elif selection == 2: 
 
     start, end, step = xgc1Obj.get_timesteps()
-    print(start)
-    print(end)
-    print(step)
+
+    # Convert into int for iterations
+    start = int(start)
+    end = int(end)
+    step = int(step)
 
 else:
     print("End")
