@@ -109,6 +109,8 @@ if user_select == 1:
             handler.get_loadVar('psi'),
             handler.get_loadVar('theta')
         )
+        print("Data recieved from file")
+        print("Performing Data Visualization...")
     except Exception as e:
         print(f"Error occured: {e}")
 
