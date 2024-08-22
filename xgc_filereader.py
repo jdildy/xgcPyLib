@@ -237,10 +237,14 @@ class xgc1(object):
             return 
         else:
             #default
-            print("Error Occured")
+            print("Error Occured")  
 
+    #Get selection input used in test.py
     def get_choice(self):
         return self.choice
+    #Get start, end and step count, used in test.py
+    def get_timesteps(self):
+        return self.start, self.end, self.step
     def xgc1_reader(self,file): 
         if '.f3d.' in str(file).lower():
             try:

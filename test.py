@@ -15,6 +15,14 @@ handler = xgc_filereader.loader(fileDir)
 xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 
+def update_plot(t_start, t_end, t_step):
+    try: 
+       
+        print(start)
+        print(end)
+        print(step)
+
+
 class meshdata(object):
     def __init__(self):
         Rmin = 2.2
@@ -161,8 +169,16 @@ if selection == 1:
     plt.show()
     print("Success")
 
+elif selection == 2: 
 
-#elif user_select == 2: 
+    start, end, step = xgc1Obj.get_timesteps()
+    print(start)
+    print(end)
+    print(step)
+
+
+    
+
     
 
 
