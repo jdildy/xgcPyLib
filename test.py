@@ -94,7 +94,7 @@ if selection == 1:
         surface = meshdata.Surface(
             handler.get_loadVar('epsilon'),
             handler.get_loadVar('m_max_surf'),
-            handler.get_loadVar('surf'),
+            handler.get_loadVar('nsurf'),
             handler.get_loadVar('psi_surf'),
             handler.get_loadVar('qsafety'),
             handler.get_loadVar('rmaj'),
@@ -119,6 +119,9 @@ if selection == 1:
         print("Performing Data Visualization...")
     except Exception as e:
         print(f"Error occured: {e}")
+
+    print(core.grid_nwall_node)
+    print(surface.surf)
 
     r = core.rz[:,0]
     z = core.rz[:,1]
