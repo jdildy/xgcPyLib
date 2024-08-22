@@ -204,6 +204,12 @@ class xgc1(object):
         
         elif self.choice == 2:
             start, end = mult_timestep(time)
+
+            #Used in test.py
+            self.input_start = start
+            self.input_end = end
+
+
             print(f"Selected starting timestep: {start}\n")
             print(f"Selected ending timestep: {end}\n")
             count = len(range(start, end + istep, istep))
@@ -242,9 +248,13 @@ class xgc1(object):
     #Get selection input used in test.py
     def get_choice(self):
         return self.choice
+    
+
     #Get start, end and step count, used in test.py
     def get_timesteps(self):
-        return self.start, self.end, self.step
+        return self.input_start, self.input_end, self.step
+    
+    
     def xgc1_reader(self,file): 
         if '.f3d.' in str(file).lower():
             try:
