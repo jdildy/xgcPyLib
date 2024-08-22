@@ -12,8 +12,8 @@ from scipy.sparse import csr_matrix
 
 from PIL import Image
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
-#handler = xgc_filereader.loader(fileDir)
-#xgc1Obj = xgc_filereader.xgc1(fileDir)
+handler = xgc_filereader.loader(fileDir)
+xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 
 class meshdata(object):
@@ -22,6 +22,7 @@ class meshdata(object):
         Rmax = 2.31
         Zmin = -0.25
         Zmax = 0.4
+        handler.reader('/xgc.mesh.bp')
         
         
 
@@ -71,43 +72,45 @@ dataObj = meshdata()
 
 #core = meshdata.Core
 if user_select == 1:
-    #Core Subclass
-    core = meshdata.Core(
-        xgc1Obj.get_loadVar3D('grid_nwall'),
-        xgc1Obj.get_loadVar3D('grid_nwall_node'),
-        xgc1Obj.get_loadVar3D('n_n'),
-        xgc1Obj.get_loadVar3D('n_t'),
-        xgc1Obj.get_loadVar3D('nd_connect_list'),
-        xgc1Obj.get_loadVar3D('rz')
-        )
-    
-    
-    #Surface Subclass
-    surface = meshdata.Surface(
-        xgc1Obj.get_loadVar3D('epsilon'),
-        xgc1Obj.get_loadVar3D('m_max_surf'),
-        xgc1Obj.get_loadVar3D('surf'),
-        xgc1Obj.get_loadVar3D('psi_surf'),
-        xgc1Obj.get_loadVar3D('qsafety'),
-        xgc1Obj.get_loadVar3D('rmaj'),
-        xgc1Obj.get_loadVar3D('rmin'),
-        xgc1Obj.get_loadVar3D('surf_idx'),
-        xgc1Obj.get_loadVar3D('surf_len'),
-        xgc1Obj.get_loadVar3D('surf_maxlen'),
-        xgc1Obj.get_loadVar3D('trapped'))
+    try:
+        #Core Subclass
+        core = meshdata.Core(
+            handler.get_loadVar('grid_nwall'),
+            handler.get_loadVar('grid_nwall_node'),
+            handler.get_loadVar('n_n'),
+            handler.get_loadVar('n_t'),
+            handler.get_loadVar('nd_connect_list'),
+            handler.get_loadVar('rz')
+            )
         
-    trangle = meshdata.Triangle(
-        xgc1Obj.get_loadVar3D('tr_area')
-    )
-    vertex = meshdata.Vertex(
-        xgc1Obj.get_loadVar3D('node_vol'),
-        xgc1Obj.get_loadVar3D('node_vol_ff0'),
-        xgc1Obj.get_loadVar3D('node_vol_ff1'),
-        xgc1Obj.get_loadVar3D('node_vol_nearest'),
-        xgc1Obj.get_loadVar3D('psi'),
-        xgc1Obj.get_loadVar3D('theta')
-    )
-
+        
+        #Surface Subclass
+        surface = meshdata.Surface(
+            handler.get_loadVar('epsilon'),
+            handler.get_loadVar('m_max_surf'),
+            handler.get_loadVar('surf'),
+            handler.get_loadVar('psi_surf'),
+            handler.get_loadVar('qsafety'),
+            handler.get_loadVar('rmaj'),
+            handler.get_loadVar('rmin'),
+            handler.get_loadVar('surf_idx'),
+            handler.get_loadVar('surf_len'),
+            handler.get_loadVar('surf_maxlen'),
+            handler.get_loadVar('trapped'))
+            
+        trangle = meshdata.Triangle(
+            handler.get_loadVar('tr_area')
+        )
+        vertex = meshdata.Vertex(
+            handler.get_loadVar('node_vol'),
+            handler.get_loadVar('node_vol_ff0'),
+            handler.get_loadVar('node_vol_ff1'),
+            handler.get_loadVar('node_vol_nearest'),
+            handler.get_loadVar('psi'),
+            handler.get_loadVar('theta')
+        )
+    except Exception as e:
+        print(f"Error occured: {e}")
 
     r = core.rz[:,0]
     z = core.rz[:,1]
