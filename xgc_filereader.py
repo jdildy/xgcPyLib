@@ -12,9 +12,6 @@ from tqdm.auto import trange, tqdm
 
 import adios2
 
-
-
-
 import os
 import re
 
@@ -65,6 +62,7 @@ def single_timestep(time):
                 return select
             else:
                 print("Timestep not found. Try again.")
+
 
 # object for xgc.oneddiag.bp
 class data1(object):
@@ -175,9 +173,9 @@ class xgc1(object):
             (2, "Option 2: Read a range of 3D data files"),
             (3, "Option 3: Exit.")
         ]
-        choice = user_select("Please choose an option:", choices)
+        self.choice, KEY = user_select("Please choose an option:", choices)
 
-        if choice == 1:
+        if self.choice == 1:
             single = single_timestep(time)
 
 
@@ -204,7 +202,7 @@ class xgc1(object):
             except Exception as e:
                 print(f"Error reading file: {e}\n")
         
-        elif choice == 2:
+        elif self.choice == 2:
             start, end = mult_timestep(time)
             print(f"Selected starting timestep: {start}\n")
             print(f"Selected ending timestep: {end}\n")
@@ -234,14 +232,15 @@ class xgc1(object):
             # print(f"Shape of data: {data.shape}")
 
 
-        elif choice == 3: 
+        elif self.choice == 3: 
             print("Exit")
             return 
         else:
             #default
             print("Error Occured")
 
-
+    def get_choice(self):
+        return self.choice
     def xgc1_reader(self,file): 
         if '.f3d.' in str(file).lower():
             try:
@@ -293,7 +292,6 @@ class xgc1(object):
                 print(f"Error reading file: {e}")
 
     # Create a function to list all variables in a specfic file
-            
     def list3DVars(self):
         for name in self.array_container3D:
             print(name)

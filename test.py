@@ -7,7 +7,6 @@ import os
 from PIL import Image
 
 import xgc_filereader
-from xgc_filereader import user_select
 from scipy.sparse import csr_matrix
 
 from PIL import Image
@@ -68,12 +67,13 @@ class meshdata(object):
             self.tr_area = tr_area
 
 #initializing DataObj
-selection = user_select
+selection = xgc1Obj.get_choice()
+
 print(selection)
 dataObj = meshdata()
 
 #core = meshdata.Core
-if user_select == 1:
+if selection == 1:
     xgc1Obj.list3DVars()
     print("Processing all avialable variables...")
     try:
