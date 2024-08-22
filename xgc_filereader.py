@@ -214,7 +214,7 @@ class xgc1(object):
             print(f"Selected ending timestep: {end}\n")
             count = len(range(start, end + istep, istep))
             #Test 2 , 10 as input
-            print(count) # 5
+            #print(count) # 5
             data3D = []
             dataF3D = []
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
@@ -222,12 +222,14 @@ class xgc1(object):
                 try:
                     stepdata3D = self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
                     data3D.append(stepdata3D)
+                    self.data3D = data3D
                 except Exception as e:
                     print(f"Error reading file: {e}\n")
 
                 try:
                     stepdataF3D= self.xgc1_readmultF3D(xgc_path + '/xgc.f3d.%5.5d.bp' %(i))
                     dataF3D.append(stepdataF3D)
+                    self.dataF3D = dataF3D
 
                 except Exception as e:
                     print(f"Error reading file: {e}\n")
@@ -250,11 +252,14 @@ class xgc1(object):
         return self.choice
     
 
+
     #Get start, end and step count, used in test.py
     def get_timesteps(self):
         return self.input_start, self.input_end, self.step
     
-    
+
+
+
     def xgc1_reader(self,file): 
         if '.f3d.' in str(file).lower():
             try:
@@ -278,6 +283,9 @@ class xgc1(object):
             print("Error: Neither F3D or 3D data exists.")
 
     
+
+
+
     #Work in progress
     def xgc1_readmult3D(self,file): 
         data = []
@@ -291,7 +299,8 @@ class xgc1(object):
             return self.array_container3D
         except Exception as e:
                 print(f"Error reading file: {e}")
-    
+
+
     def xgc1_readmultF3D(self,file): 
         data = []
         try:
@@ -305,6 +314,10 @@ class xgc1(object):
         except Exception as e:
                 print(f"Error reading file: {e}")
 
+
+
+
+
     # Create a function to list all variables in a specfic file
     def list3DVars(self):
         for name in self.array_container3D:
@@ -315,7 +328,9 @@ class xgc1(object):
             print(name)
 
 
-    # Retrieve Variable and its data
+
+
+    # Retrieve a single variable and its data
     def get_loadVarF3D(self, name):
         if name in self.array_containerF3D:
             return np.array(self.array_containerF3D[str(name)])
@@ -327,6 +342,15 @@ class xgc1(object):
             return np.array(self.array_container3D[str(name)])
         else:
             print(f"Variable with name '{name}' not found.")
+
+
+
+
+    def get_mult3Data(self):
+        return self.data3D
+    
+    def get_multF3Data(self):
+        return self.dataF3D
 
     # Retreive the timeslice
     def xgc1_timeslice(self):

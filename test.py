@@ -172,6 +172,13 @@ elif selection == 2:
     end = int(end)
     step = int(step)
 
+    data3D = xgc1Obj.get_mult3Data()
+
+    print(len(data3D))
+
+
+
+
 else:
     print("End")
 
