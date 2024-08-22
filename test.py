@@ -25,7 +25,7 @@ class meshdata(object):
         
 
     class Core():
-        def __init__(self, grid_nwall, grid_nwall_node, n_n, n_t, nd_connect_list, rz)
+        def __init__(self, grid_nwall, grid_nwall_node, n_n, n_t, nd_connect_list, rz):
             self.grid_nwall = grid_nwall
             self.grid_nwall_node = grid_nwall_node
             self.n_n = n_n 
