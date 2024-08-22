@@ -12,7 +12,7 @@ from scipy.sparse import csr_matrix
 
 from PIL import Image
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
-handler = xgc_filereader.loader()
+handler = xgc_filereader.loader(fileDir)
 xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 class meshdata(object):
