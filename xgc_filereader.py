@@ -291,9 +291,6 @@ class xgc1(object):
             return self.array_containerF3D
         except Exception as e:
                 print(f"Error reading file: {e}")
-        
-            except Exception as e:
-                print(f"Error reading file: {e}")
 
     # Create a function to list all variables in a specfic file
             
