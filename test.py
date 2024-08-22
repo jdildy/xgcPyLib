@@ -178,8 +178,9 @@ elif selection == 2:
     for var in data3D:
         if 'dpot' in var:
             result.append({'dpot': var['dpot']})
+
+
     
-    print(result)
         
 
 
@@ -194,7 +195,8 @@ else:
 
     
 
-    
+def reset(event):
+    timestep_slider.reset()
 
 
     
