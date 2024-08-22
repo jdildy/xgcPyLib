@@ -121,7 +121,7 @@ if selection == 1:
         print(f"Error occured: {e}")
 
     print(core.grid_nwall_node)
-    print(surface.surf)
+    print(surface.nsurf)
 
     r = core.rz[:,0]
     z = core.rz[:,1]
