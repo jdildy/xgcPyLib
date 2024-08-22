@@ -72,7 +72,10 @@ dataObj = meshdata()
 
 #core = meshdata.Core
 if user_select == 1:
+    xgc1Obj.list3DVars()
+    print("Processing all avialable variables...")
     try:
+        
         #Core Subclass
         core = meshdata.Core(
             handler.get_loadVar('grid_nwall'),
@@ -152,6 +155,7 @@ if user_select == 1:
     # plt.savefig('mesh.png')
     # image = Image.open('mesh.png')
     plt.show()
+    print("Success")
 
 
 #elif user_select == 2: 

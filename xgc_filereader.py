@@ -211,27 +211,27 @@ class xgc1(object):
             count = len(range(start, end + istep, istep))
             #Test 2 , 10 as input
             print(count) # 5
-            data = []
+            data3D = []
+            dataF3D = []
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
             for i in pbar:
                 try:
-                    stepdata =  self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
-                    data.append(stepdata)
+                    stepdata3D = self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
+                    data3D.append(stepdata3D)
                 except Exception as e:
                     print(f"Error reading file: {e}\n")
 
-                # try:
-                #     dataRangeF3D = self.xgc1_reamultF3D(xgc_path + '/xgc.f3d.%5.5d.bp' %(i))
-                    
-                # except Exception as e:
-                #     print(f"Error reading file: {e}\n")
+                try:
+                    stepdataF3D= self.xgc1_readmultF3D(xgc_path + '/xgc.f3d.%5.5d.bp' %(i))
+                    dataF3D.append(stepdataF3D)
+
+                except Exception as e:
+                    print(f"Error reading file: {e}\n")
             # print(f"Length of data: {len(data)}")
             # print(data)
             # data = np.array(data)
             # print(f"Dimensions of data: {data.ndim}")
             # print(f"Shape of data: {data.shape}")
-            print(type(data))
-            print(len(data))
 
 
         elif choice == 3: 
@@ -279,7 +279,7 @@ class xgc1(object):
         except Exception as e:
                 print(f"Error reading file: {e}")
     
-    def xgc1_readmultF3D(self,file,start, end, step): 
+    def xgc1_readmultF3D(self,file,start,): 
         data = []
         for i in range(start, end, step):
             try:
@@ -288,9 +288,8 @@ class xgc1(object):
                     for var_name in variables_list:
                         var = r.read(var_name)
                         self.array_container3D[var_name] = np.array(var)
-                        data[i] = self.array_container3D[var_name]
                 print(f"Reading {file} file sucessful.")
-                return data
+                return self.array_containerF3D
         
             except Exception as e:
                 print(f"Error reading file: {e}")
@@ -589,10 +588,10 @@ class loader(object):
 
     
 
-fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
+#fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 #required
-xgc1Obj = xgc1(fileDir)
+#xgc1Obj = xgc1(fileDir)
 #xgcaObj = xgca(fileDir)
 # manager = loader(fileDir)
 #data1Obj = data1(fileDir)
