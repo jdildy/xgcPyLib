@@ -179,7 +179,7 @@ elif selection == 2:
         if 'dpot' in var:
             result.append({'dpot': var['dpot']})
     
-    print(len(result))
+    print(result)
         
 
 
