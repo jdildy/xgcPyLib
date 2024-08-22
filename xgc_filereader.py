@@ -8,7 +8,7 @@ from scipy.optimize import curve_fit
 from scipy.special import erfc
 import scipy.sparse as sp
 from tqdm.auto import trange, tqdm
-
+from tabulate import tabulate
 
 import adios2
 
@@ -538,6 +538,16 @@ class loader(object):
             return self.array_container[str(name)]
         else:
             print(f"Variable with name '{name}' not found.")
+
+    def list_Vars(self, file):
+        try:
+            with Stream(self.xgc_path + file, 'rra') as r:
+                variable_list = r.available_variables()
+                for var_name in variable_list:
+                    print(tabulate(var_name, tablefmt = 'fancy_grid'))
+        except Exception as e:
+            print(f"Error occured: {e}")
+
 
         
         

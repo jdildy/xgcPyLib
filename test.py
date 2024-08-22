@@ -74,8 +74,9 @@ dataObj = meshdata()
 
 #core = meshdata.Core
 if selection == 1:
-    xgc1Obj.list3DVars()
-    print("Processing all avialable variables...")
+    print("Processing all mesh variables...")
+    handler.list_Vars()
+    
     try:
         
         #Core Subclass
