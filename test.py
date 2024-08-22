@@ -174,7 +174,9 @@ elif selection == 2:
 
     data3D = xgc1Obj.get_mult3Data()
 
-    print(len(data3D))
+    print(data3D)
+
+    
 
 
 

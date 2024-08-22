@@ -345,7 +345,7 @@ class xgc1(object):
 
 
 
-
+    # Return list of timesteps if selecting multiple timesteps
     def get_mult3Data(self):
         return self.data3D
     
