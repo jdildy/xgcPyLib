@@ -279,17 +279,18 @@ class xgc1(object):
         except Exception as e:
                 print(f"Error reading file: {e}")
     
-    def xgc1_readmultF3D(self,file,start,): 
+    def xgc1_readmultF3D(self,file): 
         data = []
-        for i in range(start, end, step):
-            try:
-                with Stream(file, 'rra') as r:
+        try:
+            with Stream(file, 'rra') as r:
                     variables_list = r.available_variables()
                     for var_name in variables_list:
                         var = r.read(var_name)
-                        self.array_container3D[var_name] = np.array(var)
-                print(f"Reading {file} file sucessful.")
-                return self.array_containerF3D
+                        self.array_containerF3D[var_name] = np.array(var)
+            print(f"Reading {file} file sucessful.")
+            return self.array_containerF3D
+        except Exception as e:
+                print(f"Error reading file: {e}")
         
             except Exception as e:
                 print(f"Error reading file: {e}")
