@@ -75,7 +75,7 @@ dataObj = meshdata()
 #core = meshdata.Core
 if selection == 1:
     print("Processing all mesh variables...")
-    handler.list_Vars()
+    handler.list_Vars('/xgc.mesh.bp')
     
     try:
         
