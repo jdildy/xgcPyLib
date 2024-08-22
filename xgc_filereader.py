@@ -544,7 +544,7 @@ class loader(object):
             with Stream(self.xgc_path + file, 'rra') as r:
                 variable_list = r.available_variables()
                 for var_name in variable_list:
-                    print(var_name)
+                    print(var_name),
         except Exception as e:
             print(f"Error occured: {e}")
 
