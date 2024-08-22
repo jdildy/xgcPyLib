@@ -15,12 +15,7 @@ handler = xgc_filereader.loader(fileDir)
 xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 
-def update_plot(t_start, t_end, t_step):
-    try: 
-       
-        print(start)
-        print(end)
-        print(step)
+# def update_plot(t_start, t_end, t_step):
 
 
 class meshdata(object):
