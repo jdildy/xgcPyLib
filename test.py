@@ -72,7 +72,6 @@ class meshdata(object):
 #initializing DataObj
 selection = xgc1Obj.get_choice()
 
-print(selection)
 dataObj = meshdata()
 
 #core = meshdata.Core
