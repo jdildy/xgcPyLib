@@ -173,8 +173,14 @@ elif selection == 2:
     step = int(step)
 
     data3D = xgc1Obj.get_mult3Data()
+    result = []
+    for key in data3D:
+        if 'dpot' in key:
+            result.append({key: data3D['dpot']})
+    
+    print(len(result))
+        
 
-    print(data3D[0])
 
     
 
