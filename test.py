@@ -13,8 +13,8 @@ from scipy.sparse import csr_matrix
 from PIL import Image
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 handler = xgc_filereader.loader(fileDir)
-xgc1Obj = xgc_filereader.xgc1(fileDir)
-print("Complete")
+#xgc1Obj = xgc_filereader.xgc1(fileDir)
+
 
 class meshdata(object):
     def __init__(self):
@@ -145,7 +145,6 @@ if user_select == 1:
     plt.ylabel('Z [m]')
     plt.ion()
     # plt.savefig('mesh.png')
-
     # image = Image.open('mesh.png')
     plt.show()
 
