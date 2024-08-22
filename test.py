@@ -68,7 +68,8 @@ class meshdata(object):
             self.tr_area = tr_area
 
 #initializing DataObj
-print(user_select)
+selection = user_select
+print(selection)
 dataObj = meshdata()
 
 #core = meshdata.Core
