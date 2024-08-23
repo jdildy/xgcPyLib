@@ -128,7 +128,7 @@ class data1(object):
         
 
         try:
-            with Stream(self.xgc_path + file, 'rra') as r:
+            with Stream(self.xgc_path + file, 'r') as r:
                 variables_list = r.available_variables()
                 
                 for _ in r.steps():
