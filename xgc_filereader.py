@@ -679,7 +679,7 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
             
 sheathObj = shealth(fileDir)
 
-sheathObj.read_sheathdiag('nwall')
+sheathObj.read_sheathdiag('sheath_ilost')
 
 #one_diagObj.read_oneddiag()
 
