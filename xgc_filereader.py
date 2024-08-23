@@ -129,8 +129,8 @@ class data1(object):
         try:
             
             with Stream(self.xgc_path + file, 'rra') as r:
-                r.read(variable)
-                return variable
+                data = r.read(variable)
+                return data
                 # variables_list = r.available_variables()
                 # for var_name in variables_list:
                 #     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
