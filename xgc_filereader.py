@@ -758,7 +758,7 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 one_diagObj = data1(fileDir)
 
 oneddiagObj = one_diagObj.read_oneddiag('/xgc.oneddiag.bp', 'cden00_1d')
-print((oneddiagObj))
+print((type(oneddiagObj)))
 
 
 
