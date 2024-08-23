@@ -133,12 +133,21 @@ class data1(object):
                 for var_name in variables_list:
                     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
                     nsize = r.available_variables()[var_name]['Shape']
+
+                    # START AND COUNT ARE THE INDEXES OF THE ARRAYS
+                    # START IS THE INDEX TO START FROM 
+                    # COUNT IS HOW MANY INDICES YOU WANT TO READ IN THE ARRAY 
+
+                    # STEP_SELECTION DEALS WITH THE TIMESTEP 
+
                     # If the variable has 1D Arrays
-                    print(var_name + " step: " + str(nstep) + " size: " + str(nsize))
-                #     if nsize != '':
-                #         nsize = int(nsize)
-                #         data = r.read(var_name,start=[0], count = [nsize], step_selection=[0, nsize])
-                    
+                    #" + str(nsize))
+                    if nsize != '':
+                        nsize = int(nsize)
+                        data = r.read(var_name,start=[0], count = [nsize], step_selection=[0, nsize])
+                    else:
+                        data = r.read(var_name, start=[],count=[], step_selection=[0, nsize])
+            return data
                 #     # If the variables is scalar
                 #     else:
                 #         data = r.read(var_name,start=[], count=[], block_id=0, step_selection=nstep)
