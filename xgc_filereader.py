@@ -131,12 +131,11 @@ class data1(object):
             with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_variables()
                 for var_name in variables_list:
-                    
                     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
                     nsize = r.available_variables()[var_name]['Shape']
                     print(var_name)
                     for i in nstep:
-                        if nsize != '':
+                        if int(nsize) != '':
                             list[i] = r.read(var_name)
                         else: 
                             list[i] = r.read(var_name)
