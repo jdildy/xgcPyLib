@@ -124,22 +124,24 @@ class data1(object):
                 
     #             print(vartimelist.shape)
 
-    def read_oneddiag(self,file,inds = Ellipsis):
+    def read_oneddiag(self,file,variable, inds = Ellipsis):
         list =[]
         try:
             
             with Stream(self.xgc_path + file, 'rra') as r:
-                variables_list = r.available_variables()
-                for var_name in variables_list:
-                    nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
-                    nsize = r.available_variables()[var_name]['Shape']
-                    print(var_name)
-                    for i in nstep:
-                        if int(nsize) != '':
-                            list[i] = r.read(var_name)
-                        else: 
-                            list[i] = r.read(var_name)
-                return list
+                r.read(variable)
+                return variable
+                # variables_list = r.available_variables()
+                # for var_name in variables_list:
+                #     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
+                #     nsize = r.available_variables()[var_name]['Shape']
+                #     print(var_name)
+                #     for i in nstep:
+                #         if int(nsize) != '':
+                #             list[i] = r.read(var_name)
+                #         else: 
+                #             list[i] = r.read(var_name)
+                # return list
 
                     # START AND COUNT ARE THE INDEXES OF THE ARRAYS
                     # START IS THE INDEX TO START FROM 
@@ -755,8 +757,8 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
             
 one_diagObj = data1(fileDir)
 
-oneddiagObj = one_diagObj.read_oneddiag('/xgc.oneddiag.bp')
-print((np.array(oneddiagObj).size))
+oneddiagObj = one_diagObj.read_oneddiag('/xgc.oneddiag.bp', 'cden00_1d')
+print((oneddiagObj))
 
 
 
