@@ -127,7 +127,7 @@ class data1(object):
     def read_oneddiag(self,file,inds = Ellipsis):
         
         try:
-            with Stream(self.xgc_path + file, 'r') as r:
+            with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_variables()
                 for var_name in variables_list:
                     print(var_name)
