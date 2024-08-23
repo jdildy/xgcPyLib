@@ -127,11 +127,24 @@ class data1(object):
     def read_oneddiag(self,file,inds = Ellipsis):
         list =[]
         try:
+            
             with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_variables()
                 for var_name in variables_list:
-                    data = r.read(var_name)
-                    print(var_name, data)
+                    nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
+                    nsize = r.available_variables()[var_name]['Shape']
+                
+                #     data = r.read(var_name)
+                    
+                #     print(var_name, data)
+                    if nsize != '': #mostly xgc.oneddiag
+                        nsize = int(nsize)
+                        data = r.read(var_name,start=[0], count=[nsize], step_start=0, step_count=nstep)
+                    else: #mostly xgc.oneddiag
+                        data = r.read(var_name,start=[], count=[], step_start=0, step_count=nstep)
+                    
+                    print(data.size)
+            
                 
         except Exception as e:
             print(f"Error in file: {e}\n")
