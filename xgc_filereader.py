@@ -89,40 +89,55 @@ class data1(object):
 
         # if choice == 1:
         #     single = single_timestep(time)
-    def read_oneddiag(self,variable,inds = Ellipsis):
+    # def read_oneddiag(self,variable,inds = Ellipsis):
+    #     vartimelist = []
+    #     try:
+    #         with Stream(self.xgc_path + "/xgc.oneddiag.bp", "rra") as r:
+    #             # #self.vars = r.available_variables()
+
+    #             nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
+    #             nsize = r.available_variables()[variable]['Shape']
+
+    #             print(nstep)
+
+
+    #             # if nsize != '': #mostly xgc.oneddiag
+    #             #     nsize = int(nsize)
+    #             #     data = r.read(variable,start=[0], count=[nsize])
+    #             # else: #mostly xgc.oneddiag
+    #             #     data = r.read(variable,start=[], count=[])
+                
+    #             # # for v in self.vars:
+    #             # #     #print(v)
+
+    #             # #     #Start HERE 
+    #             # #     #data = r.read(v)[]
+    #             # #     self.array_container[v] = np.array(data)
+    #             # # return self.array_container
+
+    #             # #nstep = int(r.available_variables()[v])
+    #             variables_list = r.available_variables()
+    #             for var_name in variables_list:
+    #                 for _ in nstep:
+    #                     var = r.read(var_name)
+    #                     vartimelist = var
+                
+    #             print(vartimelist.shape)
+
+    def read_oneddiag(self,file,inds = Ellipsis):
         vartimelist = []
+
         try:
-            with Stream(self.xgc_path + "/xgc.oneddiag.bp", "rra") as r:
-                # #self.vars = r.available_variables()
-
-                nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
-                nsize = r.available_variables()[variable]['Shape']
-
-                print(nstep)
-                # if nsize != '': #mostly xgc.oneddiag
-                #     nsize = int(nsize)
-                #     data = r.read(variable,start=[0], count=[nsize])
-                # else: #mostly xgc.oneddiag
-                #     data = r.read(variable,start=[], count=[])
+            with Stream(file, 'rra') as r:
+                variables_list = r.available_variables()
                 
-                # # for v in self.vars:
-                # #     #print(v)
-
-                # #     #Start HERE 
-                # #     #data = r.read(v)[]
-                # #     self.array_container[v] = np.array(data)
-                # # return self.array_container
-
-                # #nstep = int(r.available_variables()[v])
-                    # variables_list = r.available_variables()
-                    # for var_name in variables_list:
-                    #     for _ in nstep:
-                    #         var = r.read(var_name)
-                    #         vartimelist = var
-
-                        
-                
-                return 
+                for var_name in variables_list:
+                    nstep = var_name['AvailableStepCount']
+                    for _ in nstep:
+                        var = r.read(var_name)
+                        vartimelist = var
+            
+            return vartimelist
         except Exception as e:
             print(f"Error in file: {e}\n")
     
@@ -704,9 +719,9 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # print(n_r)
             
 one_diagObj = data1(fileDir)
-cden00_1d = one_diagObj.read_oneddiag('cden00_1d')
+oneddiag = one_diagObj.read_oneddiag('/xgc.oneddiag.bp')
 
-#print(cden00_1d.shape)
+print(oneddiag.size)
 
 
 
