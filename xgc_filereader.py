@@ -591,7 +591,7 @@ class loader(object):
     #             return data
         
 # Object for sheath
-class shealth(object):
+class sheath(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         #print(str(self.xgc_path))
@@ -690,13 +690,13 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # n_r = manager.get_loadVar('n_r')
 # print(n_r)
             
-sheathObj = shealth(fileDir)
+sheathObj = sheath(fileDir)
 
-sheath_ilost = sheathObj.read_sheathdiag('sheath_ilost')
-print(type(sheath_ilost))
-print(sheath_ilost)
-print(sheath_ilost.shape)
-print(sheath_ilost.size)
+sheath_nphi = sheathObj.read_sheathdiag('sheath_nphi')
+print(type(sheath_nphi))
+print(sheath_nphi)
+print(sheath_nphi.shape)
+print(sheath_nphi.size)
 
 
 
