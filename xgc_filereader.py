@@ -601,7 +601,6 @@ class shealth(object):
 
     def read_sheathdiag(self,variable, inds = Ellipsis):
         try:
-            
             with Stream(self.xgc_path + '/xgc.sheathdiag.bp', 'rra') as r:
                 nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                 nsize = r.available_variables()[variable]['Shape']
@@ -682,7 +681,7 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
             
 sheathObj = shealth(fileDir)
 
-shealth.read_sheathdiag('nwall')
+sheathObj.read_sheathdiag('nwall')
 
 #one_diagObj.read_oneddiag()
 
