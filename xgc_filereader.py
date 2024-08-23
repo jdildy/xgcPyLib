@@ -607,7 +607,7 @@ class shealth(object):
                 
                 if nsize != '':
                     var = r.inquire_variable(variable)
-                    ndim = var.shape
+                    ndim = var.shape()
                     print(ndim)
                 #     nsize = int(nsize)
                 #     data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
