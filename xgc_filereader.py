@@ -125,13 +125,15 @@ class data1(object):
     #             print(vartimelist.shape)
 
     def read_oneddiag(self,file,inds = Ellipsis):
-        
+        list =[]
         try:
             with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_variables()
                 for var_name in variables_list:
-                    print(var_name)
-                print("Success")
+                    var = r.read(var_name, step_selection=[2,4])
+                    list = var
+                print(list.size)
+                
         except Exception as e:
             print(f"Error in file: {e}\n")
     
