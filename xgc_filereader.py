@@ -608,8 +608,8 @@ class sheath(object):
                 if nsize != '':
                     var = r.inquire_variable(variable)
                     ndim = var.shape
-                    rows = np.shape(vars)[0]
-                    columns = np.shape(vars)[1]
+                    rows = var.shape()[0]
+                    columns = var.shape()[1]
                     print(rows)
                     print(columns)
 
