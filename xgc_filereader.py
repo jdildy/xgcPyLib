@@ -130,7 +130,7 @@ class data1(object):
             with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_variables()
                 for var_name in variables_list:
-                    var = r.read(var_name, step_selection=[2,4])
+                    var = r.read(var_name, step_selection=[])
                     list = var
                 print(list)
                 
