@@ -135,7 +135,6 @@ class data1(object):
                     nstep = var_name['AvailableStepCount']
                     print(var_name + " " + nstep)
             
-            return self.array_container
         except Exception as e:
             print(f"Error in file: {e}\n")
     
@@ -715,6 +714,8 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # print(n_r)
             
 one_diagObj = data1(fileDir)
+
+one_diagObj.read_oneddiag('/xgc.oneddiag.bp')
 # oneddiag = one_diagObj.read_oneddiag('/xgc.oneddiag.bp')
 
 # print(oneddiag)
