@@ -73,6 +73,7 @@ class data1(object):
         print("Reading XGC Output Data:")
         filename = xgc_path + "/xgc.oneddiag.bp"
         #data = self.read_oneddiag()
+        
 
         #print(data)
 
@@ -89,29 +90,39 @@ class data1(object):
         # if choice == 1:
         #     single = single_timestep(time)
     def read_oneddiag(self,variable,inds = Ellipsis):
+        vartimelist = []
         try:
             with Stream(self.xgc_path + "/xgc.oneddiag.bp", "rra") as r:
-                #self.vars = r.available_variables()
+                # #self.vars = r.available_variables()
 
                 nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                 nsize = r.available_variables()[variable]['Shape']
-                if nsize != '': #mostly xgc.oneddiag
-                    nsize = int(nsize)
-                    data = r.read(variable,start=[0], count=[nsize])
-                else: #mostly xgc.oneddiag
-                    data = r.read(variable,start=[], count=[])
-                
-                # for v in self.vars:
-                #     #print(v)
 
-                #     #Start HERE 
-                #     #data = r.read(v)[]
-                #     self.array_container[v] = np.array(data)
-                # return self.array_container
-
-                #nstep = int(r.available_variables()[v])
+                print(nstep)
+                # if nsize != '': #mostly xgc.oneddiag
+                #     nsize = int(nsize)
+                #     data = r.read(variable,start=[0], count=[nsize])
+                # else: #mostly xgc.oneddiag
+                #     data = r.read(variable,start=[], count=[])
                 
-                return data
+                # # for v in self.vars:
+                # #     #print(v)
+
+                # #     #Start HERE 
+                # #     #data = r.read(v)[]
+                # #     self.array_container[v] = np.array(data)
+                # # return self.array_container
+
+                # #nstep = int(r.available_variables()[v])
+                    # variables_list = r.available_variables()
+                    # for var_name in variables_list:
+                    #     for _ in nstep:
+                    #         var = r.read(var_name)
+                    #         vartimelist = var
+
+                        
+                
+                return 
         except Exception as e:
             print(f"Error in file: {e}\n")
     
