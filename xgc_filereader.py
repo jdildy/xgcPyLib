@@ -136,7 +136,11 @@ class data1(object):
                     nsize = r.available_variables()[var_name]['Shape']
                     print(var_name)
                     for i in nstep:
-                        var = r.read(var_name)
+                        if nsize != '':
+                            list[i] = r.read(var_name)
+                        else: 
+                            list[i] = r.read(var_name)
+                return list
 
                     # START AND COUNT ARE THE INDEXES OF THE ARRAYS
                     # START IS THE INDEX TO START FROM 
@@ -152,8 +156,7 @@ class data1(object):
                     # else:
                     #     data = r.read(var_name, start=[],count=[], step_selection=[0, nstep])
                     # list = data
-                        list= var
-            return list
+                    
         
 
                 #     # If the variables is scalar
@@ -754,12 +757,7 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 one_diagObj = data1(fileDir)
 
 oneddiagObj = one_diagObj.read_oneddiag('/xgc.oneddiag.bp')
-print((oneddiagObj[0]))
-
-
-# oneddiag = one_diagObj.read_oneddiag('/xgc.oneddiag.bp')
-
-# print(oneddiag)
+print((oneddiagObj.))
 
 
 
