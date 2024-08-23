@@ -761,6 +761,7 @@ oneddiagObj = one_diagObj.read_oneddiag('/xgc.oneddiag.bp', 'cden00_1d')
 print((type(oneddiagObj)))
 print(oneddiagObj)
 print(oneddiagObj.ndim)
+print(oneddiagObj.size)
 
 
 
