@@ -608,21 +608,24 @@ class sheath(object):
                 if nsize != '':
                     var = r.inquire_variable(variable)
                     ndim = var.shape()
-                    rows,columns = var.shape()
-                    if len(ndim) == 1: 
-                        nsize = int(nsize)
-                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
-                        print("1D")
-                    elif len(ndim) == 2: 
-                        nsize = int(nsize)
-                        data = r.read(variable,start=[0,0], count=[rows, columns],  step_selection=[0, nstep])
-                        print("2D")
-                    else:
-                        print("Error: Too many dimensions.")
-                else: #scalar
-                    data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
-                    print("scalar")
-            return data
+                    dimensions = var.shape()
+                    print(type(dimensions))
+
+
+                #     if len(ndim) == 1: 
+                #         nsize = int(nsize)
+                #         data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
+                #         print("1D")
+                #     elif len(ndim) == 2: 
+                #         nsize = int(nsize)
+                #         data = r.read(variable,start=[0,0], count=[rows, columns],  step_selection=[0, nstep])
+                #         print("2D")
+                #     else:
+                #         print("Error: Too many dimensions.")
+                # else: #scalar
+                #     data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
+                #     print("scalar")
+            #return data
                 
                 # return data        
         except Exception as e:
@@ -691,12 +694,14 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # print(n_r)
             
 sheathObj = sheath(fileDir)
+sheathObj.read_sheathdiag('sheath_ilost')
 
-sheath_ilost = sheathObj.read_sheathdiag('sheath_ilost')
-print(type(sheath_ilost))
-print(sheath_ilost)
-print(sheath_ilost.shape)
-print(sheath_ilost.size)
+# sheath_ilost = sheathObj.read_sheathdiag('sheath_ilost')
+# print(type(sheath_ilost))
+# print(sheath_ilost)
+# print(sheath_ilost.shape)
+# print(sheath_ilost.size)
+
 
 
 
