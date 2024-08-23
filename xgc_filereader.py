@@ -128,7 +128,7 @@ class data1(object):
         vartimelist = []
 
         try:
-            with Stream(file, 'rra') as r:
+            with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_variables()
                 
                 for var_name in variables_list:
