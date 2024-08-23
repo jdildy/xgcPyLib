@@ -80,7 +80,7 @@ class data1(object):
                 if nsize != '': #mostly xgc.oneddiag
                     nsize = int(nsize)
                     data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
-                else: #mostly xgc.oneddiag
+                else: #scalar
                     data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
 
                 return data
@@ -692,11 +692,11 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
             
 sheathObj = shealth(fileDir)
 
-nwall = sheathObj.read_sheathdiag('nwall')
-print(type(nwall))
-print(nwall)
-print(nwall.shape)
-print(nwall.size)
+sheath_ilost = sheathObj.read_sheathdiag('sheath_ilost')
+print(type(sheath_ilost))
+print(sheath_ilost)
+print(sheath_ilost.shape)
+print(sheath_ilost.size)
 
 
 
