@@ -133,6 +133,7 @@ class data1(object):
                 for var_name in variables_list:
                     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
                     nsize = r.available_variables()[var_name]['Shape']
+                    print(var_name)
 
                     # START AND COUNT ARE THE INDEXES OF THE ARRAYS
                     # START IS THE INDEX TO START FROM 
