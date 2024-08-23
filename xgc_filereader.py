@@ -143,7 +143,7 @@ class data1(object):
                     else: #mostly xgc.oneddiag
                         data = r.read(var_name,start=[], count=[], block_id=0, step_selection=nstep)
                     
-                    print(data.size)
+                print(data.size)
             
                 
         except Exception as e:
