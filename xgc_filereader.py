@@ -136,6 +136,7 @@ class data1(object):
                     nsize = r.available_variables()[var_name]['Shape']
                     print(var_name)
                     for i in nstep:
+                        var = r.read(var_name)
 
                     # START AND COUNT ARE THE INDEXES OF THE ARRAYS
                     # START IS THE INDEX TO START FROM 
@@ -145,12 +146,13 @@ class data1(object):
 
                     # If the variable has 1D Arrays
                     #" + str(nsize))
-                        if nsize != '':
-                            nsize = int(nsize)
-                            data = r.read(var_name,start=[0], count = [nsize], step_selection=[0, nstep])
-                        else:
-                            data = r.read(var_name, start=[],count=[], step_selection=[0, nstep])
-                        list = data
+                    # if nsize != '':
+                    #     nsize = int(nsize)
+                    #     data = r.read(var_name,start=[0], count = [nsize], step_selection=[0, nstep])
+                    # else:
+                    #     data = r.read(var_name, start=[],count=[], step_selection=[0, nstep])
+                    # list = data
+                        list= var
             return list
         
 
