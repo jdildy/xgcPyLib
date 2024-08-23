@@ -759,6 +759,7 @@ one_diagObj = data1(fileDir)
 
 oneddiagObj = one_diagObj.read_oneddiag('/xgc.oneddiag.bp', 'cden00_1d')
 print((type(oneddiagObj)))
+print(oneddiagObj)
 
 
 
