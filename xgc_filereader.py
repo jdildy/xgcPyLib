@@ -133,9 +133,8 @@ class data1(object):
                 for var_name in variables_list:
                     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
                     nsize = r.available_variables()[var_name]['Shape']
-                    selection = Variable.set_selection(nstep, nsize)
                     if nsize != '':
-                        data = r.read(var_name,start=[], count = [], step_selection=selection)
+                        data = r.read(var_name,start=[], count = [], step_selection=[[nstep],[nsize]])
 
                 return data
                 
