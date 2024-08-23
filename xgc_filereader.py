@@ -148,6 +148,8 @@ class data1(object):
                     else:
                         data = r.read(var_name, start=[],count=[], step_selection=[0, nstep])
             return data
+        
+
                 #     # If the variables is scalar
                 #     else:
                 #         data = r.read(var_name,start=[], count=[], block_id=0, step_selection=nstep)
@@ -745,7 +747,10 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
             
 one_diagObj = data1(fileDir)
 
-one_diagObj.read_oneddiag('/xgc.oneddiag.bp')
+oneddiagObj = one_diagObj.read_oneddiag('/xgc.oneddiag.bp')
+print(type(oneddiagObj))
+
+
 # oneddiag = one_diagObj.read_oneddiag('/xgc.oneddiag.bp')
 
 # print(oneddiag)
