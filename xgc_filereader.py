@@ -47,8 +47,7 @@ def mult_timestep(time):
                 else: 
                     print("Both timesteps must be apart of the timestep list. Try again.")
             except ValueError:
-                print("Invalid inputs. Inputs must be numeric and cannot be letters.")
-            
+                print("Invalid inputs. Inputs must be numeric and cannot be letters.")       
 def single_timestep(time):
 
         while True:
@@ -64,7 +63,7 @@ def single_timestep(time):
                 print("Timestep not found. Try again.")
 
 
-# object for xgc.oneddiag.bp
+# object for xgc.oneddiag.bp works
 class data1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -84,14 +83,13 @@ class data1(object):
                 else: #mostly xgc.oneddiag
                     data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
 
-                return data        
+                return data
         except Exception as e:
             print(f"Error in file: {e}\n")
 
 
 
-
- 
+# Object for any xgc.3d.xxxxx.bp or xgc.f3d.xxxxx.bp file
 class xgc1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -345,7 +343,7 @@ class xgc1(object):
 
 
 
-
+# Object for any xgc.2d.xxxxx.bp or xgc.f2d.xxxxx.bp file
 class xgca(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -512,7 +510,8 @@ class xgca(object):
         else:
             print(f"Variable with name '{name}' not found.")
 
-#General FileReader Class
+# Object for reading files not dealing with timesteps 
+# (can read anything other than heatdiag2 and shealthdiag)
 class loader(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -591,7 +590,33 @@ class loader(object):
     #     #     print(f"An error has occured: {e}")  
     #             return data
         
+# Object for sheath
+class shealth(object):
+    def __init__(self,xgc_path):
+        self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
+        #print(str(self.xgc_path))
+        self.array_container = {}
+        print("Reading xgc.sheathdiag.bp data...")
+        
 
+    def read_sheathdiag(self,variable, inds = Ellipsis):
+        try:
+            
+            with Stream(self.xgc_path + '/xgc.sheathdiag.bp', 'rra') as r:
+                nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
+                nsize = r.available_variables()[variable]['Shape']
+                variable = r.inquire_variable(variable)
+                ndim = variable.shape()
+                print(ndim)
+                
+                # if nsize != '': #mostly xgc.oneddiag
+                #     nsize = int(nsize)
+                #     data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
+                # else: #mostly xgc.oneddiag
+                #     data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
+                # return data        
+        except Exception as e:
+            print(f"Error in file: {e}\n")
 
     
 
@@ -655,16 +680,12 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # n_r = manager.get_loadVar('n_r')
 # print(n_r)
             
-one_diagObj = data1(fileDir)
+sheathObj = shealth(fileDir)
+
+shealth.read_sheathdiag('nwall')
 
 #one_diagObj.read_oneddiag()
 
-cden00_1d = one_diagObj.read_oneddiag('cden00_1d')
-e_gc_density_1d = one_diagObj.read_oneddiag('e_gc_density_1d')
-print((type(e_gc_density_1d)))
-print(e_gc_density_1d)
-print(e_gc_density_1d.ndim)
-print(e_gc_density_1d.size)
 
 
 
