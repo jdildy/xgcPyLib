@@ -608,11 +608,10 @@ class shealth(object):
                 if nsize != '':
                     var = r.inquire_variable(variable)
                     ndim = var.shape()
-                    ndim = len(ndim)
                     print(len(ndim))
-                    if ndim ==1: 
+                    if len(ndim) ==1: 
                         print("1D Array")
-                    elif ndim == 2: 
+                    elif len(ndim) == 2: 
                         print("2D Array")
                     else:
                         print("Multidimensional Array")
