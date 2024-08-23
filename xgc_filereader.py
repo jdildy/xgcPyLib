@@ -134,7 +134,7 @@ class data1(object):
                     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
                     nsize = r.available_variables()[var_name]['Shape']
                     if nsize != '':
-                        data = r.read(var_name,start=[0], count = [nsize], step_selection=[0,nstep])
+                        data = r.read(var_name,start=[], count = [], step_selection=[])
 
                 return data
                 
