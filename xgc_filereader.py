@@ -125,7 +125,7 @@ class data1(object):
     #             print(vartimelist.shape)
 
     def read_oneddiag(self,file,inds = Ellipsis):
-        vartimelist = []
+        
 
         try:
             with Stream(self.xgc_path + file, 'rra') as r:
@@ -135,9 +135,9 @@ class data1(object):
                     nstep = var_name['AvailableStepCount']
                     for _ in nstep:
                         var = r.read(var_name)
-                        vartimelist = var
+                        self.array_container = var
             
-            return vartimelist
+            return self.array_container
         except Exception as e:
             print(f"Error in file: {e}\n")
     
@@ -314,7 +314,6 @@ class xgc1(object):
 
     #Work in progress
     def xgc1_readmult3D(self,file): 
-        data = []
         try:
             with Stream(file, 'rra') as r:
                     variables_list = r.available_variables()
@@ -328,7 +327,6 @@ class xgc1(object):
 
 
     def xgc1_readmultF3D(self,file): 
-        data = []
         try:
             with Stream(file, 'rra') as r:
                     variables_list = r.available_variables()
