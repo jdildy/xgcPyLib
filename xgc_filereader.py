@@ -196,6 +196,7 @@ class data1(object):
                 for variable in variable_list:
                     nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                     nsize = r.available_variables()[variable]['Shape']
+                    print(variable)
                     #print(nstep, nsize)
                     if nsize != '': #mostly xgc.oneddiag
                         nsize = int(nsize)
