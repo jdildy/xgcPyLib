@@ -769,10 +769,11 @@ one_diagObj = data1(fileDir)
 #one_diagObj.read_oneddiag()
 
 cden00_1d = one_diagObj.read_oneddiag('cden00_1d')
-print((type(cden00_1d)))
-print(cden00_1d)
-print(cden00_1d.ndim)
-print(cden00_1d.size)
+e_gc_density_1d = one_diagObj.read_oneddiag('e_gc_density_1d')
+print((type(e_gc_density_1d)))
+print(e_gc_density_1d)
+print(e_gc_density_1d.ndim)
+print(e_gc_density_1d.size)
 
 
 
