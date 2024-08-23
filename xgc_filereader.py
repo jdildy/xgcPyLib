@@ -1,7 +1,7 @@
 import numpy as np
 import os
 from matplotlib.tri import Triangulation, LinearTriInterpolator, CubicTriInterpolator
-from adios2 import Stream, FileReader
+from adios2 import Stream, Variable
 import matplotlib.pyplot as plt
 from scipy.io import matlab
 from scipy.optimize import curve_fit
@@ -133,8 +133,9 @@ class data1(object):
                 for var_name in variables_list:
                     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
                     nsize = r.available_variables()[var_name]['Shape']
+                    selection = Variable.set_selection(nstep, nsize)
                     if nsize != '':
-                        data = r.read(var_name,start=[], count = [], step_selection=[])
+                        data = r.read(var_name,start=[], count = [], step_selection=selection)
 
                 return data
                 
