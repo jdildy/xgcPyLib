@@ -604,7 +604,7 @@ class shealth(object):
             with Stream(self.xgc_path + '/xgc.sheathdiag.bp', 'rra') as r:
                 nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                 nsize = r.available_variables()[variable]['Shape']
-                print(nsize)
+                print(len(nsize))
                 
                 # if nsize != '': #mostly xgc.oneddiag
                 #     nsize = int(nsize)
