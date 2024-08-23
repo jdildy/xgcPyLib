@@ -205,7 +205,7 @@ class data1(object):
                         data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
                     
                 list = data
-                print(list.size)
+                print(list[0])
         except Exception as e:
             print(f"Error in file: {e}\n")
 
