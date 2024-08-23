@@ -133,17 +133,18 @@ class data1(object):
                 for var_name in variables_list:
                     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
                     nsize = r.available_variables()[var_name]['Shape']
+                    print(nstep)
                 
-                #     data = r.read(var_name)
+                # #     data = r.read(var_name)
                     
-                #     print(var_name, data)
-                    if nsize != '': #mostly xgc.oneddiag
-                        nsize = int(nsize)
-                        data = r.read(var_name,start=[0], count=[nsize], block_id=0, step_selection=[0,nstep])
-                    else: #mostly xgc.oneddiag
-                        data = r.read(var_name,start=[], count=[], block_id=0, step_selection=nstep)
+                # #     print(var_name, data)
+                #     if nsize != '': #mostly xgc.oneddiag
+                #         nsize = int(nsize)
+                #         data = r.read(var_name,start=[0], count=[nsize], block_id=0, step_selection=[0,nstep])
+                #     else: #mostly xgc.oneddiag
+                #         data = r.read(var_name,start=[], count=[], block_id=0, step_selection=nstep)
                     
-                print(data.size)
+                # print(data.size)
             
                 
         except Exception as e:
