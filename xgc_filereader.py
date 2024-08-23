@@ -136,9 +136,9 @@ class data1(object):
                 print(nstep, nsize)
                 if nsize != '': #mostly xgc.oneddiag
                     nsize = int(nsize)
-                    data = r.read(variable,start=[0], count=[nsize], step_start=0, step_selection=[0, nstep])
+                    data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
                 else: #mostly xgc.oneddiag
-                    data = r.read(variable,start=[], count=[], step_start=0, step_selection=[0, nstep])
+                    data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
                 # variables_list = r.available_variables()
                 # for var_name in variables_list:
                 #     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
