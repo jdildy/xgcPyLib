@@ -70,64 +70,10 @@ class data1(object):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         #print(str(self.xgc_path))
         self.array_container = {}
-        print("Reading XGC Output Data:")
-        filename = xgc_path + "/xgc.oneddiag.bp"
-        #data = self.read_oneddiag()
+        print("Reading xgc.oneddiag.bp Data...")
         
-
-        #print(data)
-
-        
-
-
-
-        # choices = [
-        #     (1, "Option 1: Read a single 2D data file"),
-        #     (2, "Option 2: Read a range of 2D data files"),
-        #     (3, "Option 3: Exit.")
-        # ]
-
-        # choice = user_select("Please choose an option:", choices)
-
-        # if choice == 1:
-        #     single = single_timestep(time)
-    # def read_oneddiag(self,variable,inds = Ellipsis):
-    #     vartimelist = []
-    #     try:
-    #         with Stream(self.xgc_path + "/xgc.oneddiag.bp", "rra") as r:
-    #             # #self.vars = r.available_variables()
-
-    #             nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
-    #             nsize = r.available_variables()[variable]['Shape']
-
-    #             print(nstep)
-
-
-    #             # if nsize != '': #mostly xgc.oneddiag
-    #             #     nsize = int(nsize)
-    #             #     data = r.read(variable,start=[0], count=[nsize])
-    #             # else: #mostly xgc.oneddiag
-    #             #     data = r.read(variable,start=[], count=[])
-                
-    #             # # for v in self.vars:
-    #             # #     #print(v)
-
-    #             # #     #Start HERE 
-    #             # #     #data = r.read(v)[]
-    #             # #     self.array_container[v] = np.array(data)
-    #             # # return self.array_container
-
-    #             # #nstep = int(r.available_variables()[v])
-    #             variables_list = r.available_variables()
-    #             for var_name in variables_list:
-    #                 for _ in nstep:
-    #                     var = r.read(var_name)
-    #                     vartimelist = var
-                
-    #             print(vartimelist.shape)
 
     def read_oneddiag(self,variable, inds = Ellipsis):
-        list =[]
         try:
             with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
                 nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
@@ -139,63 +85,9 @@ class data1(object):
                 else: #mostly xgc.oneddiag
                     data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
 
-                return data
-    #             # variables_list = r.available_variables()
-    #             # for var_name in variables_list:
-    #             #     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
-    #             #     nsize = r.available_variables()[var_name]['Shape']
-    #             #     print(var_name)
-    #             #     for i in nstep:
-    #             #         if int(nsize) != '':
-    #             #             list[i] = r.read(var_name)
-    #             #         else: 
-    #             #             list[i] = r.read(var_name)
-    #             # return list
-
-    #                 # START AND COUNT ARE THE INDEXES OF THE ARRAYS
-    #                 # START IS THE INDEX TO START FROM 
-    #                 # COUNT IS HOW MANY INDICES YOU WANT TO READ IN THE ARRAY 
-
-    #                 # STEP_SELECTION DEALS WITH THE TIMESTEP 
-
-    #                 # If the variable has 1D Arrays
-    #                 #" + str(nsize))
-    #                 # if nsize != '':
-    #                 #     nsize = int(nsize)
-    #                 #     data = r.read(var_name,start=[0], count = [nsize], step_selection=[0, nstep])
-    #                 # else:
-    #                 #     data = r.read(var_name, start=[],count=[], step_selection=[0, nstep])
-    #                 # list = data
-                    
-        
-
-    #             #     # If the variables is scalar
-    #             #     else:
-    #             #         data = r.read(var_name,start=[], count=[], block_id=0, step_selection=nstep)
-    #             # return data
-                
-    #             # #     data = r.read(var_name)
-                    
-    #             # #     print(var_name, data)
-    #             #     if nsize != '': #mostly xgc.oneddiag
-    #             #         nsize = int(nsize)
-    #             #         data = r.read(var_name,start=[0], count=[nsize], block_id=0, step_selection=[0,nstep])
-    #             #     else: #mostly xgc.oneddiag
-    #             #         data = r.read(var_name,start=[], count=[], block_id=0, step_selection=nstep)
-                    
-    #             # print(data.size)
-                
+                return data        
         except Exception as e:
             print(f"Error in file: {e}\n")
-
-    
-    def get_oneddiag(self, name):
-        if name in self.array_container:
-            return self.array_container[name]
-        else:
-            print(f"Variable '{name}' not found.")
-            return None
-
 
 
 
