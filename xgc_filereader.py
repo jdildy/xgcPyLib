@@ -131,8 +131,7 @@ class data1(object):
                 variables_list = r.available_variables()
                 for var_name in variables_list:
                     var = r.read(var_name)
-                    list = var
-                print(list[0])
+                    print(var)
                 
         except Exception as e:
             print(f"Error in file: {e}\n")
