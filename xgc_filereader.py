@@ -132,7 +132,10 @@ class data1(object):
                 for var_name in variables_list:
                     var = r.read(var_name, step_selection=[2,4])
                     list = var
-                print(list.size)
+                print(list[0])
+                print(list[1])
+                print(list[2])
+                print(list[3])
                 
         except Exception as e:
             print(f"Error in file: {e}\n")
