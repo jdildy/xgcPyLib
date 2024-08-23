@@ -695,7 +695,7 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 one_diagObj = data1(fileDir)
 cden00_1d = one_diagObj.read_oneddiag('cden00_1d')
 
-print(cden00_1d)
+print(cden00_1d.shape)
 
 
 
