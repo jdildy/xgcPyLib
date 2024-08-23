@@ -609,6 +609,12 @@ class shealth(object):
                     var = r.inquire_variable(variable)
                     ndim = var.shape()
                     print(ndim)
+                    if ndim ==1: 
+                        print("1D Array")
+                    elif ndim == 2: 
+                        print("2D Array")
+                    else:
+                        print("Multidimensional Array")
                 #     nsize = int(nsize)
                 #     data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
                 # else: #mostly xgc.oneddiag
