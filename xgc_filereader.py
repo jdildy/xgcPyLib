@@ -144,15 +144,12 @@ class data1(object):
 
                     # If the variable has 1D Arrays
                     #" + str(nsize))
-                        if nsize != '':
-                            nsize = int(nsize)
-                            data = r.read(var_name,start=[0], count = [nsize], step_selection=[0, nstep])
-                        else:
-                            data = r.read(var_name, start=[],count=[], step_selection=[0, nstep])
-                    list = data
-
-                    
-            return list
+                        # if nsize != '':
+                        #     nsize = int(nsize)
+                        data = r.read(var_name,start=[0], count = [nsize], step_selection=[0, nstep])
+                        print(data)
+                        # else:
+                            #data = r.read(var_name, start=[],count=[], step_selection=[0, nstep])
         
 
                 #     # If the variables is scalar
