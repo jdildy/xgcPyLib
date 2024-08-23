@@ -609,7 +609,7 @@ class sheath(object):
                     var = r.inquire_variable(variable)
                     ndim = var.shape()
                     dimensions = var.shape()
-                    print(type(len(dimensions)))
+                    print(len(dimensions))
 
 
                 #     if len(ndim) == 1: 
