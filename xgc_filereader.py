@@ -133,9 +133,7 @@ class data1(object):
                 
                 for var_name in variables_list:
                     nstep = var_name['AvailableStepCount']
-                    for _ in nstep:
-                        var = r.read(var_name)
-                        self.array_container = var
+                    print(var_name + " " + nstep)
             
             return self.array_container
         except Exception as e:
@@ -717,9 +715,9 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # print(n_r)
             
 one_diagObj = data1(fileDir)
-oneddiag = one_diagObj.read_oneddiag('/xgc.oneddiag.bp')
+# oneddiag = one_diagObj.read_oneddiag('/xgc.oneddiag.bp')
 
-print(oneddiag)
+# print(oneddiag)
 
 
 
