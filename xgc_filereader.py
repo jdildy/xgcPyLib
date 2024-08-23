@@ -77,6 +77,8 @@ class data1(object):
 
         #print(data)
 
+        
+
 
 
         # choices = [
@@ -129,8 +131,14 @@ class data1(object):
         try:
             
             with Stream(self.xgc_path + file, 'rra') as r:
-                data = r.read(variable)
-                return data
+                nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
+                nsize = r.available_variables()[variable]['Shape']
+                print(nstep, nsize)
+                if nsize != '': #mostly xgc.oneddiag
+                    nsize = int(nsize)
+                    data = r.read(variable,start=[0], count=[nsize], step_start=0, step_selection=[0, nstep])
+                else: #mostly xgc.oneddiag
+                    data = r.read(variable,start=[], count=[], step_start=0, step_selection=[0, nstep])
                 # variables_list = r.available_variables()
                 # for var_name in variables_list:
                 #     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
@@ -757,11 +765,13 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
             
 one_diagObj = data1(fileDir)
 
-oneddiagObj = one_diagObj.read_oneddiag('/xgc.oneddiag.bp', 'cden00_1d')
-print((type(oneddiagObj)))
-print(oneddiagObj)
-print(oneddiagObj.ndim)
-print(oneddiagObj.size)
+one_diagObj.read_oneddiag('/xgc.oneddiag.bp', 'cden00_1d')
+
+# oneddiagObj = one_diagObj.read_oneddiag('/xgc.oneddiag.bp', 'cden00_1d')
+# print((type(oneddiagObj)))
+# print(oneddiagObj)
+# print(oneddiagObj.ndim)
+# print(oneddiagObj.size)
 
 
 
