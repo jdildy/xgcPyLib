@@ -131,9 +131,10 @@ class data1(object):
             with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_variables()
                 for var_name in variables_list:
-                    nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
-                    nsize = r.available_variables()[var_name]['Shape']
-                    print(var_name)
+                    if var_name == 'cden00_1d':
+                        nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
+                        nsize = r.available_variables()[var_name]['Shape']
+                        print(var_name)
 
                     # START AND COUNT ARE THE INDEXES OF THE ARRAYS
                     # START IS THE INDEX TO START FROM 
@@ -143,12 +144,14 @@ class data1(object):
 
                     # If the variable has 1D Arrays
                     #" + str(nsize))
-                    if nsize != '':
-                        nsize = int(nsize)
-                        data = r.read(var_name,start=[0], count = [nsize], step_selection=[0, nstep])
-                    else:
-                        data = r.read(var_name, start=[],count=[], step_selection=[0, nstep])
+                        if nsize != '':
+                            nsize = int(nsize)
+                            data = r.read(var_name,start=[0], count = [nsize], step_selection=[0, nstep])
+                        else:
+                            data = r.read(var_name, start=[],count=[], step_selection=[0, nstep])
                     list = data
+
+                    
             return list
         
 
