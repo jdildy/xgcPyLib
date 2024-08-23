@@ -130,8 +130,8 @@ class data1(object):
             with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_variables()
                 for var_name in variables_list:
-                    var = r.read(var_name)
-                    print(var_name)
+                    data = r.read(var_name)
+                    print(var_name, data)
                 
         except Exception as e:
             print(f"Error in file: {e}\n")
