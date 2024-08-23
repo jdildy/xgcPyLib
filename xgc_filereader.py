@@ -608,6 +608,7 @@ class shealth(object):
                 if nsize != '':
                     var = r.inquire_variable(variable)
                     ndim = var.shape()
+                    ndim = len(ndim)
                     print(len(ndim))
                     if ndim ==1: 
                         print("1D Array")
