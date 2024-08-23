@@ -126,11 +126,11 @@ class data1(object):
                 
     #             print(vartimelist.shape)
 
-    def read_oneddiag(self,file,variable, inds = Ellipsis):
+    def read_oneddiag(self,variable, inds = Ellipsis):
         list =[]
         try:
             
-            with Stream(self.xgc_path + file, 'rra') as r:
+            with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
                 nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                 nsize = r.available_variables()[variable]['Shape']
                 print(nstep, nsize)
@@ -769,7 +769,7 @@ one_diagObj = data1(fileDir)
 
 #one_diagObj.read_oneddiag('/xgc.oneddiag.bp', 'cden00_1d')
 
-oneddiagObj = one_diagObj.read_oneddiag('/xgc.oneddiag.bp', 'cden00_1d')
+oneddiagObj = one_diagObj.read_oneddiag( 'cden00_1d')
 print((type(oneddiagObj)))
 print(oneddiagObj)
 print(oneddiagObj.ndim)
