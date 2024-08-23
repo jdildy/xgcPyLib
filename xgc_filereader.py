@@ -606,7 +606,7 @@ class shealth(object):
                 nsize = r.available_variables()[variable]['Shape']
                 variable = r.inquire_variable(variable)
                 ndim = variable.shape()
-                print(ndim)
+                print(len(ndim))
                 
                 # if nsize != '': #mostly xgc.oneddiag
                 #     nsize = int(nsize)
