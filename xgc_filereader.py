@@ -692,11 +692,11 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
             
 sheathObj = sheath(fileDir)
 
-sheath_nphi = sheathObj.read_sheathdiag('sheath_nphi')
-print(type(sheath_nphi))
-print(sheath_nphi)
-print(sheath_nphi.shape)
-print(sheath_nphi.size)
+sheath_ilost = sheathObj.read_sheathdiag('sheath_ilost')
+print(type(sheath_ilost))
+print(sheath_ilost)
+print(sheath_ilost.shape)
+print(sheath_ilost.size)
 
 
 
