@@ -131,8 +131,11 @@ class data1(object):
             with Stream(self.xgc_path + file, 'rra') as r:
                 variables_list = r.available_variables()
                 
+                
                 for var_name in variables_list:
-                    nstep = int(r.available_variables()[var_name]['AvailableStepCount'])
+                    nstep = r.current_step()
+
+                    
                     print(var_name + " " + nstep)
             
         except Exception as e:
