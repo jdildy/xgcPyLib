@@ -608,17 +608,19 @@ class shealth(object):
                 if nsize != '':
                     var = r.inquire_variable(variable)
                     ndim = var.shape()
-                    print(len(ndim))
-                    if len(ndim) ==1: 
-                        print("1D Array")
+                    rows,columns = var.shape()
+                    if len(ndim) == 1: 
+                        nsize = int(nsize)
+                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
                     elif len(ndim) == 2: 
-                        print("2D Array")
+                        nsize = int(nsize)
+                        data = r.read(variable,start=[0,0], count=[rows, columns],  step_selection=[0, nstep])
                     else:
-                        print("Multidimensional Array")
-                #     nsize = int(nsize)
-                #     data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
-                # else: #mostly xgc.oneddiag
-                #     data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
+                        print("Error: Too many dimensions.")
+                else: #mostly xgc.oneddiag
+                    data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
+            return data
+                
                 # return data        
         except Exception as e:
             print(f"Error in file: {e}\n")
@@ -687,7 +689,13 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
             
 sheathObj = shealth(fileDir)
 
-sheathObj.read_sheathdiag('sheath_ilost')
+nwall = sheathObj.read_sheathdiag('nwall')
+print(type(nwall))
+print(nwall)
+print(nwall.shape)
+print(nwall.size)
+
+
 
 #one_diagObj.read_oneddiag()
 
