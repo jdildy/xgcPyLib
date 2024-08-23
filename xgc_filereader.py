@@ -632,7 +632,7 @@ class loader(object):
 
     
 
-#fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
+fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 #required
 #xgc1Obj = xgc1(fileDir)
@@ -692,7 +692,7 @@ class loader(object):
 # n_r = manager.get_loadVar('n_r')
 # print(n_r)
             
-one_diagObj = data1()
+one_diagObj = data1(fileDir)
 cden00_1d = one_diagObj.read_oneddiag('cden00_1d')
 
 print(cden00_1d)
