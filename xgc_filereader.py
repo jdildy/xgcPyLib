@@ -126,20 +126,20 @@ class data1(object):
                 
     #             print(vartimelist.shape)
 
-    # def read_oneddiag(self,variable, inds = Ellipsis):
-    #     list =[]
-    #     try:
-    #         with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
-    #             nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
-    #             nsize = r.available_variables()[variable]['Shape']
-    #             print(nstep, nsize)
-    #             if nsize != '': #mostly xgc.oneddiag
-    #                 nsize = int(nsize)
-    #                 data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
-    #             else: #mostly xgc.oneddiag
-    #                 data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
+    def read_oneddiag(self,variable, inds = Ellipsis):
+        list =[]
+        try:
+            with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
+                nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
+                nsize = r.available_variables()[variable]['Shape']
+                print(nstep, nsize)
+                if nsize != '': #mostly xgc.oneddiag
+                    nsize = int(nsize)
+                    data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
+                else: #mostly xgc.oneddiag
+                    data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
 
-    #             return data
+                return data
     #             # variables_list = r.available_variables()
     #             # for var_name in variables_list:
     #             #     nstep = int(r.available_variables()[var_name]['AvailableStepsCount'])
@@ -185,27 +185,6 @@ class data1(object):
                     
     #             # print(data.size)
                 
-    #     except Exception as e:
-    #         print(f"Error in file: {e}\n")
-
-    def read_oneddiag(self):
-        list = {}
-        try:
-            with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
-                variable_list = r.available_variables()
-                for variable in variable_list:
-                    nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
-                    nsize = r.available_variables()[variable]['Shape']
-                    print(variable)
-                    #print(nstep, nsize)
-                    if nsize != '': #mostly xgc.oneddiag
-                        nsize = int(nsize)
-                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
-                    else: #mostly xgc.oneddiag
-                        data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
-                    
-                list = data
-                print(list[0])
         except Exception as e:
             print(f"Error in file: {e}\n")
 
@@ -787,13 +766,13 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
             
 one_diagObj = data1(fileDir)
 
-one_diagObj.read_oneddiag()
+#one_diagObj.read_oneddiag()
 
-# cden00_1d = one_diagObj.read_oneddiag( 'cden00_1d')
-# print((type(cden00_1d)))
-# print(cden00_1d)
-# print(cden00_1d.ndim)
-# print(cden00_1d.size)
+cden00_1d = one_diagObj.read_oneddiag('cden00_1d')
+print((type(cden00_1d)))
+print(cden00_1d)
+print(cden00_1d.ndim)
+print(cden00_1d.size)
 
 
 
