@@ -139,7 +139,7 @@ class data1(object):
                 #     print(var_name, data)
                     if nsize != '': #mostly xgc.oneddiag
                         nsize = int(nsize)
-                        data = r.read(var_name,start=[0], count=[nsize], block_id=0, step_selection=nstep)
+                        data = r.read(var_name,start=[0], count=[nsize], block_id=0, step_selection=[2,nstep])
                     else: #mostly xgc.oneddiag
                         data = r.read(var_name,start=[], count=[], block_id=0, step_selection=nstep)
                     
