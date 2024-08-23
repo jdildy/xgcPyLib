@@ -132,7 +132,7 @@ class data1(object):
                 variables_list = r.available_variables()
                 
                 for var_name in variables_list:
-                    nstep = var_name['AvailableStepCount']
+                    nstep = int(r.available_variables()[var_name]['AvailableStepCount'])
                     print(var_name + " " + nstep)
             
         except Exception as e:
