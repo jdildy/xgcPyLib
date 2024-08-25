@@ -604,7 +604,7 @@ class sheath(object):
             with Stream(self.xgc_path + '/xgc.sheathdiag.bp', 'rra') as r:
                 nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                 nsize = r.available_variables()[variable]['Shape']
-                
+                print(nsize)
                 if nsize != '':
                     var = r.inquire_variable(variable)
                     ndim = var.shape
