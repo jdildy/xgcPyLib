@@ -605,6 +605,7 @@ class sheath(object):
                 nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                 nsize = r.available_variables()[variable]['Shape']
                 print(nsize)
+                print(type(nsize))
                 if nsize != '':
                     var = r.inquire_variable(variable)
                     ndim = var.shape
