@@ -606,9 +606,9 @@ class sheath(object):
                 nsize = r.available_variables()[variable]['Shape']
                 
                 if nsize != '':
-                    
+
                     var = r.inquire_variable(variable)
-                    ndim = len(var)
+                    ndim = var.shape
                     print(type(ndim))
                     #print(rows)
                     #print(columns)
