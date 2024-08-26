@@ -621,24 +621,19 @@ class sheath(object):
                     numbers = cdim.split(',')
                     print(numbers)
 
-                    number = [int(num) for num in numbers]
-                    print(number)
-
-                    for numerical in number:
-                        print(numerical)
+                    number_list = [int(num) for num in numbers]
+                    
 
 
                     
                     
 
-                    if len(array_count) == 1: 
+                    if len(number_list) == 1: 
                         nsize = int(nsize)
                         data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
                         print("1D")
-                    elif len(array_count) == 2: 
-                        print(nsize)
-                
-                                     
+                    elif len(number_list) == 2: 
+                        #print(nsize)  
                         nsize = int(nsize)
                         data = r.read(variable,start=[0,0], count=[rows, columns],  step_selection=[0, nstep])
                         print("2D")
