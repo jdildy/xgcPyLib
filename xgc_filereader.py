@@ -612,32 +612,31 @@ class sheath(object):
                
                 print(len(array_count))
                 if nsize != '':
+                    # var = r.inquire_variable(variable)
+                    # ndim = var.shape
+
+                    # rows = var.shape()[0]
+                    # columns = var.shape()[1]
+                    # print(ndim)
+                    # print(rows)
+                    # print(columns)
+
                     
-                    var = r.inquire_variable(variable)
-                    ndim = var.shape
 
-                    rows = var.shape()[0]
-                    columns = var.shape()[1]
-                    print(ndim)
-                    print(rows)
-                    print(columns)
-
-                    
-
-                #     if len(ndim) == 1: 
-                #         nsize = int(nsize)
-                #         data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
-                #         print("1D")
-                #     elif len(ndim) == 2: 
-                #         nsize = int(nsize)
-                #         data = r.read(variable,start=[0,0], count=[rows, columns],  step_selection=[0, nstep])
-                #         print("2D")
-                #     else:
-                #         print("Error: Too many dimensions.")
-                # else: #scalar
-                #     data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
-                #     print("scalar")
-            #return data
+                    if len(array_count) == 1: 
+                        nsize = int(nsize)
+                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
+                        print("1D")
+                    elif len(array_count) == 2: 
+                        nsize = int(nsize)
+                        data = r.read(variable,start=[0,0], count=[rows, columns],  step_selection=[0, nstep])
+                        print("2D")
+                    else:
+                        print("Error: Too many dimensions.")
+                else: #scalar
+                   data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
+                   print("scalar")
+                return data
                 
                 # return data        
         except Exception as e:
