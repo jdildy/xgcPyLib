@@ -15,11 +15,9 @@ from PIL import Image
 parser = argparse.ArgumentParser(description='Get a directory path through command line input.')
 
 parser.add_argument('rundir', type=str, help='Requires the rundir that holds all xgc data.')
-args = parser.parse_args()
+rundir = parser.parse_args()
 
 
-args = parser.parse_args()
-rundir = args._get_args
 
 print(rundir)
 
