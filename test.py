@@ -201,7 +201,10 @@ if selection == 1:
         #As = np.zeros((len(RZ[:,0]), Nplanes, Ntimes))
 
     dpot3D = xgc1Obj.get_loadVar3D('dpot')
+    dpotF3D = xgc1Obj.get_loadVarF3D('dpot')
 
+    print(len(dpot3D))
+    print(len(dpotF3D))
 
     plt.figure(1)
     tci=LinearTriInterpolator(triObj,dpot3D[0])
