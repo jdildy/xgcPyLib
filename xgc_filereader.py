@@ -606,8 +606,8 @@ class sheath(object):
                 nsize = r.available_variables()[variable]['Shape']
                 print(nsize)
                 
-                cdim = str(nsize)
-                array_count = cdim.split(',')
+                # cdim = str(nsize)
+                # array_count = cdim.split(',')
                 # array_count = [int(number.strip()) for number in array_count]
 
                 # print(array_count)
