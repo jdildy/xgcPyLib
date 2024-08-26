@@ -625,11 +625,11 @@ class sheath(object):
                     
                     
 
-                    if len(ndim) == 1: 
+                    if len(array_count) == 1: 
                         nsize = int(nsize)
                         data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
                         print("1D")
-                    elif len(ndim) == 2: 
+                    elif len(array_count) == 2: 
                         print(nsize)
                 
                                      
