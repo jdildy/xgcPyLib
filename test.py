@@ -3,13 +3,30 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
 from matplotlib.tri import Triangulation, LinearTriInterpolator
-import os
 from PIL import Image
+import argparse
+import os
 
 import xgc_filereader
 
 from PIL import Image
-fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
+parser = argparse.ArgumentParser(description='Get a directory path through command line input.')
+
+parser.add_argument('directory', type=str, help='Requires the rundir that holds all xgc data.')
+
+args = parser.parse_args()
+
+print(f"The rundir provided: {args}")
+
+if os.path.isdir(args):
+        print(f"{args} is a valid directory.")
+        fileDir = args
+else:
+    print(f"{args} is not a valid directory.")
+    
+
+
+
 handler = xgc_filereader.loader(fileDir)
 xgc1Obj = xgc_filereader.xgc1(fileDir)
 
