@@ -615,6 +615,13 @@ class sheath(object):
                     #print(rows)
                     #print(columns)
 
+                    cdim = str(nsize)
+                    print(cdim)
+
+                    array_count = cdim.split(',')
+                    array_count = [int(number.strip()) for number in array_count]
+
+
                     
                     
 
@@ -625,12 +632,7 @@ class sheath(object):
                     elif len(ndim) == 2: 
                         print(nsize)
                 
-                        cdim = str(nsize)
-                        print(cdim)
-                        array_count = cdim.split(',')
-                        array_count = [int(number.strip()) for number in array_count]
-
-                        
+                                     
                         nsize = int(nsize)
                         data = r.read(variable,start=[0,0], count=[rows, columns],  step_selection=[0, nstep])
                         print("2D")
