@@ -740,7 +740,7 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # print(n_r)
             
 heatObj = heatdiag(fileDir)
-heatObj.read_heatdiag2('r')
+heatObj.read_heatdiag2('ds')
 
 # sheath_ilost = sheathObj.read_sheathdiag('sheath_ilost')
 # print(type(sheath_ilost))
