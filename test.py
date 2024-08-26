@@ -212,9 +212,7 @@ if selection == 1:
     plt.colorbar()
     plt.xlabel('R [m]')
     plt.ylabel('Z [m]')
-    plt.ion()
-    # plt.savefig('mesh.png')
-    # image = Image.open('mesh.png')
+    #plt.ion()
     plt.show()
     print("Success")
 
