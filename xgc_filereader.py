@@ -642,6 +642,7 @@ class sheath(object):
                 # return data        
         except Exception as e:
             print(f"Error in file: {e}\n")
+            print("This ran")
 
     
 
