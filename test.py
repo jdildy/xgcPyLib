@@ -7,7 +7,6 @@ import os
 from PIL import Image
 
 import xgc_filereader
-from scipy.sparse import csr_matrix
 
 from PIL import Image
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
@@ -38,7 +37,7 @@ class meshdata(object):
             self.rz = rz
             
 
-    class Surface:
+    class Surface():
         def __init__(self, epsilon, m_max_surf, nsurf, psi_surf, qsafety,rmaj, rmin, surf_idx, 
                      surf_len, surf_maxlen, trapped):
             
@@ -55,7 +54,7 @@ class meshdata(object):
             self.trapped = trapped
 
 
-    class Vertex:
+    class Vertex():
         def __init__(self,node_vol, node_vol_ff0, node_vol_ff1, node_vol_nearest, psi, theta):
             self.node_vol = node_vol
             self.node_vol_ff0 = node_vol_ff0
@@ -65,16 +64,58 @@ class meshdata(object):
             self.theta = theta
 
 
-    class Triangle:
+    class Triangle():
         def __init__(self, tr_area):
             self.tr_area = tr_area
+
+
+class FluxAvg():   
+    def __init__(self):
+        handler.reader('/xgc.fluxavg.bp')
+        nelement = handler.get_loadVar('nelement')
+        nelement = np.array(nelement)
+        eindex = handler.get_loadVar('eindex')
+        norm1d = handler.get_loadVar('norm1d')
+        value = handler.get_loadVar('value')
+        npsi = handler.get_loadVar('npsi')
+        self.fluxavg_mat = self.create_sparse_xgc(nelement, eindex, value, m=nelement.size, n=npsi).T
+
+
+        
+    def create_sparse_xgc(self, nelement, eindex, value, m=None, n=None):
+        from scipy.sparse import csr_matrix
+
+        #Creating parameters
+        indptr = np.insert(np.cumsum(nelement),0,0)
+        indices =np.empty((indptr[-1],))
+        data = np.empty((indptr[-1],))
+
+        for i in range(nelement.size):
+            indices[indptr[i]:indptr[i+1]] = eindex[i,0:nelement[i]]
+            data[indptr[i]:indptr[i+1]] = value[i,0:nelement[i]]
+        #create sparse matrices
+        spmat = csr_matrix((data,indices,indptr),shape=(m,n))
+        return spmat
+    
+
+    
+
+
+    
+
+
+
+
+
+
+
 
 #initializing DataObj
 selection = xgc1Obj.get_choice()
 
 dataObj = meshdata()
 
-#core = meshdata.Core
+core = meshdata.Core
 if selection == 1:
     print("Processing all mesh variables...")
     handler.list_Vars('/xgc.mesh.bp')
@@ -195,8 +236,7 @@ else:
 
     
 
-def reset(event):
-    timestep_slider.reset()
+
 
 
     

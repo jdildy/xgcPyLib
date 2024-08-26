@@ -73,6 +73,7 @@ class data1(object):
         
 
     def read_oneddiag(self,variable, inds = Ellipsis):
+        # STEP_SELECTION CONTROLS THE AMOUNT OF TIMESTEPS YOU WANT TO READ
         try:
             with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
                 nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
@@ -222,7 +223,7 @@ class xgc1(object):
     
 
 
-
+    # Reader method for both F3D and 3D
     def xgc1_reader(self,file): 
         if '.f3d.' in str(file).lower():
             try:
@@ -338,9 +339,6 @@ class xgc1(object):
             #print(type(numbers[0])) each element is of type int
             # print(sorted_array) WORKS 
             return numbers
-
-
-
 
 
 # Object for any xgc.2d.xxxxx.bp or xgc.f2d.xxxxx.bp file
@@ -635,6 +633,7 @@ class sheath(object):
             print(f"Error in file: {e}\n")
             print("This ran")
 
+# Object for heatdiag
 class heatdiag(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -677,7 +676,6 @@ class heatdiag(object):
                 # return data        
         except Exception as e:
             print(f"Error in file: {e}\n")
-            print("This ran")
 
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
