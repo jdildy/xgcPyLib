@@ -612,17 +612,10 @@ class sheath(object):
 
                     rows = var.shape()[0]
                     columns = var.shape()[1]
-                    print(rows)
-                    print(columns)
+                    #print(rows)
+                    #print(columns)
 
-                    print(nsize)
-                
-                    cdim = str(nsize)
-                    print(cdim)
-                    array_count = cdim.split(',')
-                    array_count = [int(number.strip()) for number in array_count]
-
-                    print(array_count)
+                    
                     
 
                     if len(ndim) == 1: 
@@ -630,6 +623,14 @@ class sheath(object):
                         data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
                         print("1D")
                     elif len(ndim) == 2: 
+                        print(nsize)
+                
+                        cdim = str(nsize)
+                        print(cdim)
+                        array_count = cdim.split(',')
+                        array_count = [int(number.strip()) for number in array_count]
+
+                        
                         nsize = int(nsize)
                         data = r.read(variable,start=[0,0], count=[rows, columns],  step_selection=[0, nstep])
                         print("2D")
