@@ -608,11 +608,11 @@ class sheath(object):
                 
                 cdim = str(nsize)
                 array_count = cdim.split(',')
-                array_count = [int(number.strip()) for number in array_count]
+                # array_count = [int(number.strip()) for number in array_count]
 
-                print(array_count)
+                # print(array_count)
                
-                print(len(array_count))
+                # print(len(array_count))
                 # if nsize != '':
                 #     var = r.inquire_variable(variable)
                 #     ndim = var.shape
