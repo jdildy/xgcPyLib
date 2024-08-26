@@ -615,8 +615,11 @@ class sheath(object):
                     #print(rows)
                     #print(columns)
 
-                    cdim = str(nsize)
-                    print(type(cdim))
+                    cdim = str(nsize) #1,471
+                    print(type(cdim)) # STring
+
+                    numbers = cdim.split(',')
+                    print(numbers)
 
 
                     
