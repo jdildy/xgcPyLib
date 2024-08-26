@@ -619,7 +619,10 @@ class sheath(object):
                     print(type(cdim)) # STring
 
                     numbers = cdim.split(',')
-                    print(int(numbers))
+                    print(numbers)
+
+                    number = [int(num) for num in numbers]
+                    print(number)
 
 
                     
