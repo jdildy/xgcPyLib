@@ -16,15 +16,15 @@ parser = argparse.ArgumentParser(description='Get a directory path through comma
 
 parser.add_argument('--input', type=str, help='Requires the rundir that holds all xgc data.')
 args = parser.parse_args()
-
-print('input:' , args.input)
+fileDir = args.input
+print(args.input)
 
 
 
 # fileDir = str(args)
 # print(fileDir)
 
-print(f"The rundir provided: {args}")
+print(f"The rundir provided: {fileDir}")
 
 # if os.path.isdir(fileDir):
 #         print(f"{fileDir} is a valid directory.")
