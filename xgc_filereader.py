@@ -10,7 +10,6 @@ import scipy.sparse as sp
 from tqdm.auto import trange, tqdm
 from tabulate import tabulate
 
-import adios2
 
 import os
 import re
@@ -677,7 +676,7 @@ class heatdiag(object):
         except Exception as e:
             print(f"Error in file: {e}\n")
 
-fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
+#fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 #required
 #xgc1Obj = xgc1(fileDir)

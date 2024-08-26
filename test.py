@@ -18,18 +18,7 @@ parser.add_argument('--input', type=str, help='Requires the rundir that holds al
 args = parser.parse_args()
 fileDir = args.input
 print(args.input)
-
-
-
-# fileDir = str(args)
-# print(fileDir)
-
-print(f"The rundir provided: {fileDir}")
-
-# if os.path.isdir(fileDir):
-#         print(f"{fileDir} is a valid directory.")
-# else:
-#     print(f"{fileDir} is not a valid directory.")
+       
     
 
 
