@@ -205,6 +205,8 @@ if selection == 1:
     print(len(dpotF3D[1]))
     print(len(r))
     print(len(z))
+    print(len(dpot3D[0]))
+    print(len(triObj))
 
     
 
