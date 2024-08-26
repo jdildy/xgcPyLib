@@ -12,19 +12,16 @@ import xgc_filereader
 from PIL import Image
 
 
-def dir_path (string):
-    if os.path.isdir(string):
-        return string
-    else: 
-        raise NotADirectoryError(string)
-
 parser = argparse.ArgumentParser(description='Get a directory path through command line input.')
 
-parser.add_argument('xgcrundir', type=dir_path, help='Requires the rundir that holds all xgc data.')
+parser.add_argument('rundir', type=str, help='Requires the rundir that holds all xgc data.')
 args = parser.parse_args()
 
 
+args = parser.parse_args()
+rundir = args.rundir
 
+print(rundir)
 
 # fileDir = str(args)
 # print(fileDir)
