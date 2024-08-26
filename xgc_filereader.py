@@ -622,6 +622,7 @@ class sheath(object):
                     print(numbers)
 
                     number_list = [int(num) for num in numbers]
+                    print(len(number_list))
                     
 
 
