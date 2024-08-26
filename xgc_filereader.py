@@ -611,19 +611,16 @@ class sheath(object):
                     ndim = var.shape
                     cdim = str(nsize) #1,471
                     numbers = cdim.split(',')
-                    number_list = [int(num) for num in numbers]
+                    dim = [int(num) for num in numbers]
                   
-                    
-
-                    if len(number_list) == 1: 
+                    # Check the Dimensions of the Data
+                    if len(dim) == 1: 
                         nsize = int(nsize)
                         data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
                         print("1D")
-                    elif len(number_list) == 2: 
-
+                    elif len(dim) == 2: 
                         rows = var.shape()[0]
                         columns = var.shape()[1]
-                        
                         data = r.read(variable,start=[0,0], count=[rows, columns],  step_selection=[0, nstep])
                         print("2D")
                     else:
@@ -638,7 +635,49 @@ class sheath(object):
             print(f"Error in file: {e}\n")
             print("This ran")
 
-    
+class heatdiag(object):
+    def __init__(self,xgc_path):
+        self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
+        #print(str(self.xgc_path))
+        self.array_container = {}
+        print("Reading xgc.heatdiag2.bp data...")
+        
+
+    def read_heatdiag2(self,variable, inds = Ellipsis):
+        try:
+            with Stream(self.xgc_path + '/xgc.sheathdiag.bp', 'rra') as r:
+                nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
+                nsize = r.available_variables()[variable]['Shape']
+                
+            
+                if nsize != '':
+                    var = r.inquire_variable(variable)
+                    ndim = var.shape
+                    cdim = str(nsize) #1,471
+                    numbers = cdim.split(',')
+                    dim = [int(num) for num in numbers]
+                  
+                    # Check the Dimensions of the Data
+                    if len(dim) == 1: 
+                        nsize = int(nsize)
+                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
+                        print("1D")
+                    elif len(dim) == 2: 
+                        rows = var.shape()[0]
+                        columns = var.shape()[1]
+                        data = r.read(variable,start=[0,0], count=[rows, columns],  step_selection=[0, nstep])
+                        print("2D")
+                    else:
+                        print("Error: Too many dimensions.")
+                else: #scalar
+                   data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
+                   print("scalar")
+                return data
+                
+                # return data        
+        except Exception as e:
+            print(f"Error in file: {e}\n")
+            print("This ran")
 
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
@@ -700,8 +739,8 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # n_r = manager.get_loadVar('n_r')
 # print(n_r)
             
-sheathObj = sheath(fileDir)
-sheathObj.read_sheathdiag('sheath_lost')
+heatObj = heatdiag(fileDir)
+heatObj.read_heatdiag2('ds')
 
 # sheath_ilost = sheathObj.read_sheathdiag('sheath_ilost')
 # print(type(sheath_ilost))
