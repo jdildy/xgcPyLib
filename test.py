@@ -16,10 +16,12 @@ parser.add_argument('directory', type=str, help='Requires the rundir that holds 
 
 args = parser.parse_args()
 
-fileDir = str(args)
-print(fileDir)
 
-print(f"The rundir provided: {fileDir}")
+
+# fileDir = str(args)
+# print(fileDir)
+
+print(f"The rundir provided: {args}")
 
 # if os.path.isdir(fileDir):
 #         print(f"{fileDir} is a valid directory.")
