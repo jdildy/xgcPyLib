@@ -636,7 +636,7 @@ class sheath(object):
                 # else: #scalar
                 #    data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
                 #    print("scalar")
-                return data
+                #return data
                 
                 # return data        
         except Exception as e:
