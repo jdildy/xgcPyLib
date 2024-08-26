@@ -609,18 +609,10 @@ class sheath(object):
                 if nsize != '':
                     var = r.inquire_variable(variable)
                     ndim = var.shape
-                    #print(ndim)
-                    
-                    #print(columns)
-
                     cdim = str(nsize) #1,471
-                    #print(type(cdim)) # STring
-
                     numbers = cdim.split(',')
-                    #print(numbers)
-
                     number_list = [int(num) for num in numbers]
-                    print(len(number_list))
+                  
                     
 
                     if len(number_list) == 1: 
@@ -628,12 +620,10 @@ class sheath(object):
                         data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
                         print("1D")
                     elif len(number_list) == 2: 
-                        # #print(nsize)  
-                        # nsize = int(nsize)
 
                         rows = var.shape()[0]
                         columns = var.shape()[1]
-                        print(type(rows))
+                        
                         data = r.read(variable,start=[0,0], count=[rows, columns],  step_selection=[0, nstep])
                         print("2D")
                     else:
