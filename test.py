@@ -17,7 +17,7 @@ parser = argparse.ArgumentParser(description='Get a directory path through comma
 parser.add_argument('--input', type=str, help='Requires the rundir that holds all xgc data.')
 args = parser.parse_args()
 fileDir = args.input
-print(args.input)
+1
        
     
 
