@@ -202,14 +202,12 @@ if selection == 1:
 
     dpot3D = xgc1Obj.get_loadVar3D('dpot')
     dpotF3D = xgc1Obj.get_loadVarF3D('dpot')
-
-    print(len(dpotF3D))
     print(len(dpotF3D[1]))
 
     
 
     plt.figure(1)
-    tci=LinearTriInterpolator(triObj,dpotF3D[1])
+    tci=LinearTriInterpolator(triObj,dpot3D[0])
     out=tci(RI,ZI)
     fac=0.25
     colra=np.arange(np.min(out)*fac,np.max(out)*fac,fac*np.abs(np.max(out)-np.min(out))*0.01)
