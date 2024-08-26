@@ -14,12 +14,12 @@ from PIL import Image
 
 parser = argparse.ArgumentParser(description='Get a directory path through command line input.')
 
-parser.add_argument('rundir', type=str, help='Requires the rundir that holds all xgc data.')
-rundir = parser.parse_args()
+parser.add_argument('--input', type=str, help='Requires the rundir that holds all xgc data.')
+args = parser.parse_args()
+
+print('input:' , args.input)
 
 
-
-print(rundir)
 
 # fileDir = str(args)
 # print(fileDir)
