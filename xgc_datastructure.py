@@ -21,7 +21,6 @@ print(matplotlib.get_backend())
 fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 class meshdata(object):
-    
 
     def __init__(self):
         Rmin = 2.2
@@ -68,8 +67,8 @@ class meshdata(object):
         #     except:
         #         self.bfield = self.managerObj.get_loadVar('bfield')[...]
 
-        self.R= np.array(self.RZ[:,0])
-        self.Z = np.array(self.RZ[:,1])
+        self.R= self.RZ[:,0]
+        self.Z = self.RZ[:,1]
         Rmin = np.min(self.R)
         Rmax = np.max(self.R)
         Zmin = np.min(self.Z)
@@ -118,7 +117,6 @@ class meshdata(object):
         # RZ = managerObj.get_loadVar('rz')
         # print(RZ)
 
-    
 
     def oned_mask(self):
         try:
@@ -339,8 +337,8 @@ class meshdata(object):
 # # #         pass
     
  
-meshdata()
 
+meshdata()
 
 
     
