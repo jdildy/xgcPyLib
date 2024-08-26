@@ -614,15 +614,14 @@ class sheath(object):
                
                 print(len(array_count))
                 if nsize != '':
-                    # var = r.inquire_variable(variable)
-                    # ndim = var.shape
+                    var = r.inquire_variable(variable)
+                    ndim = var.shape
 
-                    # rows = var.shape()[0]
-                    # columns = var.shape()[1]
-                    # print(ndim)
-                    # print(rows)
-                    # print(columns)
-
+                    rows = var.shape()[0]
+                    columns = var.shape()[1]
+                    print(ndim)
+                    print(rows)
+                    print(columns)
                     
 
                     if len(array_count) == 1: 
