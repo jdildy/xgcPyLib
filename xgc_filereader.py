@@ -708,7 +708,7 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 # print(n_r)
             
 sheathObj = sheath(fileDir)
-sheathObj.read_sheathdiag('nwall')
+sheathObj.read_sheathdiag('sheath_ilost')
 
 # sheath_ilost = sheathObj.read_sheathdiag('sheath_ilost')
 # print(type(sheath_ilost))
