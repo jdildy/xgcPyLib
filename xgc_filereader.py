@@ -645,7 +645,7 @@ class heatdiag(object):
 
     def read_heatdiag2(self,variable, inds = Ellipsis):
         try:
-            with Stream(self.xgc_path + '/xgc.sheathdiag.bp', 'rra') as r:
+            with Stream(self.xgc_path + '/xgc.heatdiag2.bp', 'rra') as r:
                 nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                 nsize = r.available_variables()[variable]['Shape']
                 
