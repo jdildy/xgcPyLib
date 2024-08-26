@@ -676,12 +676,11 @@ class heatdiag(object):
         except Exception as e:
             print(f"Error in file: {e}\n")
 
-#fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
+fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 #required
-#xgc1Obj = xgc1(fileDir)
 #xgcaObj = xgca(fileDir)
-# manager = loader(fileDir)
+# manager = loader(fileDir)adsfsdax
 #data1Obj = data1(fileDir)
 
 # manager.reader('/xgc.mesh.bp')
