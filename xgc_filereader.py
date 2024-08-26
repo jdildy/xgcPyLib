@@ -618,20 +618,12 @@ class sheath(object):
                     cdim = str(nsize)
                     print(cdim)
 
-                    # The input string
-                    input_string = "1,2,3,4,5,6,7,8,9"
-
-                    # Split the string by commas to get individual number strings
-                    number_strings = input_string.split(',')
-
-                    # Convert the list of number strings to integers
-                    numbers = [int(num) for num in number_strings]
-
-                    print(numbers)
-                    print(len(numbers))
 
                     array_count = cdim.split(',')
-                    array_count = [int(number.strip()) for number in array_count]
+                    array_count = [int(number) for number in array_count]
+
+                    for number in array_count:
+                        print(array_count)
 
 
                     
