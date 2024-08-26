@@ -624,6 +624,9 @@ class sheath(object):
                     number = [int(num) for num in numbers]
                     print(number)
 
+                    for numerical in number:
+                        print(numerical)
+
 
                     
                     
