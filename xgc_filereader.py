@@ -610,7 +610,7 @@ class sheath(object):
                 array_count = cdim.split(',')
                 array_count = [int(number.strip()) for number in array_count]
 
-                print(array_count)
+                # print(array_count)
                
                 # print(len(array_count))
                 # if nsize != '':
