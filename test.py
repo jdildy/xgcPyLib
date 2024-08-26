@@ -203,6 +203,8 @@ if selection == 1:
     dpot3D = xgc1Obj.get_loadVar3D('dpot')
     dpotF3D = xgc1Obj.get_loadVarF3D('dpot')
     print(len(dpotF3D[1]))
+    print(r)
+    print(z)
 
     
 
