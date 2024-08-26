@@ -616,7 +616,7 @@ class sheath(object):
                     #print(columns)
 
                     cdim = str(nsize)
-                    print(cdim)
+                    print(type(cdim))
 
 
                     
