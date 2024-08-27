@@ -93,10 +93,9 @@ class data1(object):
 class xgc1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
-        print(str(self.xgc_path))
+        print("Input Directory : " + str(self.xgc_path))
         self.array_containerF3D = {}
         self.array_container3D = {}
-        print("Reading XGC Output Data:")
         print("Gathering Time Slice Data...")
 
 
@@ -113,10 +112,10 @@ class xgc1(object):
         self.end = self.time[-1] + self.step
     
 
-        istart = self.start #2
-        iend = self.end #2172
-        istep = self.step #2
-        time = self.time # list
+        istart = self.start 
+        iend = self.end 
+        istep = self.step 
+        time = self.time 
 
         self.length = len(self.time)
         length = self.length
@@ -313,7 +312,7 @@ class xgc1(object):
     def get_multF3Data(self):
         return self.dataF3D
 
-    # Retreive the timeslice
+    # Retreive the timeslice available
     def xgc1_timeslice(self):
             path = self.xgc_path
             bp_timeslices = []
@@ -347,14 +346,15 @@ class xgca(object):
         print(str(self.xgc_path))
         self.array_containerF2D = {}
         self.array_container2D = {}
+        print("Reading XGC Output Data:")
+        print("Gathering Time Slice Data...")
 
-        print("Gathering xgca (2D) Data:")
-        print("Getting Time Slice Data...")
+
         self.time = self.xgca_timeslice()
         if not self.time:
-            print("No 2D Timeslisce data available. Reading other files.")
+            print("No 2D Timeslisces data available. Reading other files.")
             return
-        self.time = self.xgca_timeslice()
+        
         print("TimeSlice Data Capture Complete.\n")
         self.length = len(self.time)
 
@@ -363,10 +363,10 @@ class xgca(object):
         self.end = self.time[-1] + self.step
     
 
-        istart = self.start #2
-        iend = self.end #2172
-        istep = self.step #2
-        time = self.time # list
+        istart = self.start 
+        iend = self.end 
+        istep = self.step 
+        time = self.time 
 
         self.length = len(self.time)
         length = self.length
@@ -378,7 +378,7 @@ class xgca(object):
         print("Last Timestep: " + str(iend - istep))
         print("Step: " + str(istep))
         print("There are " + str(length) + " total steps available.")
-        print(type(self.time))
+    
         print("----------------------------------------\n")
 
         choices = [
@@ -386,73 +386,189 @@ class xgca(object):
             (2, "Option 2: Read a range of 2D data files"),
             (3, "Option 3: Exit.")
         ]
-        choice = user_select("Please choose an option:", choices)
+        self.choice = user_select("Please choose an option:", choices)
 
-        if choice == 1:
+        if self.choice == 1:
             single = single_timestep(time)
-            #XGC.2D.Reader
+
+
+            #XGC.3D.Reader
             print("Reading xgc.2d.%5.5d.bp..." %(single))
             filename = xgc_path + "/xgc.2d.%5.5d.bp" %(single)
+           
+            #print(filename)
             
             try:
                 self.xgca_reader(filename)
-                
-                    
-                print("xgc.2d.%5.5d.bp read sucessfully." %(single))
+                print("xgc.2d.%5.5d.bp read sucessfully.\n" %(single))
+            
             except Exception as e:
-                print(f"Error reading file: {e}")
-    
-
-            #XGC.F2D.Reader
+                print(f"Error reading file: {e}\n")
+        
+            #XGC.F3D.Reader 
             print("Reading xgc.f2d.%5.5d.bp files..." %(single))
             filename = xgc_path + "/xgc.f2d.%5.5d.bp" %(single)
+
             try:
-                self.xgca_reader(xgc_path + '/xgc.f2d.%5.5d.bp' %(single))
-               
-                
+                self.xgca_reader(filename)
+                print("xgc.f2d.%5.5d.bp read sucessfully.\n" %(single))
             except Exception as e:
-                print(f"Error reading file: {e}")
+                print(f"Error reading file: {e}\n")
         
-
-        elif choice == 2:
+        elif self.choice == 2:
             start, end = mult_timestep(time)
-            print(f"Selected starting timestep: {start}")
-            print(f"Selected ending timestep: {end}")
 
+            #Used in test.py
+            self.input_start = start
+            self.input_end = end
+
+
+            print(f"Selected starting timestep: {start}\n")
+            print(f"Selected ending timestep: {end}\n")
+            count = len(range(start, end + istep, istep))
+            #Test 2 , 10 as input
+            #print(count) # 5
+            data2D = []
+            dataF2D = []
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
-            
             for i in pbar:
                 try:
-                    self.xgca_reader(xgc_path + 'xgc2d.%5.5d.bp' %(i))
-                   
+                    stepdata2D = self.xgca_readmult2D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
+                    data2D.append(stepdata2D)
+                    self.data2D = data2D
                 except Exception as e:
-                    print(f"Error reading file: {e}")
-                
-
-
-                #XGC.F2D.Reader
-                print("Reading xgc.f2d.%5.5d.bp files..." %(i))
+                    print(f"Error reading file: {e}\n")
 
                 try:
-                    self.xgca_reader(xgc_path + '/xgc.f2d.%5.5d.bp %' %(i))
-                    
+                    stepdataF2D= self.xgca_readmultF2D(xgc_path + '/xgc.f3d.%5.5d.bp' %(i))
+                    dataF2D.append(stepdataF2D)
+                    self.dataF2D = dataF2D
+
                 except Exception as e:
-                    print(f"Error reading file: {e}")
-            print("Requested file read sucessful.\n")
+                    print(f"Error reading file: {e}\n")
+            # print(f"Length of data: {len(data)}")
+            # print(data)
+            # data = np.array(data)
+            # print(f"Dimensions of data: {data.ndim}")
+            # print(f"Shape of data: {data.shape}")
 
 
-        elif choice == 3: 
+        elif self.choice == 3: 
             print("Exit")
+            return 
         else:
             #default
-            print("Error Occured")
+            print("Error Occured")  
 
+    #Get selection input used in test.py
+    def get_choice(self):
+        return self.choice
+    
+
+
+    #Get start, end and step count, used in test.py
+    def get_timesteps(self):
+        return self.input_start, self.input_end, self.step
+    
+
+
+    # Reader method for both F3D and 3D
+    def xgca_reader(self,file): 
+        if '.f3d.' in str(file).lower():
+            try:
+                with Stream(file, 'rra') as r:
+                    variables_list = r.available_variables()
+                    for var_name in variables_list:
+                        var = r.read(var_name)
+                        self.array_containerF2D[var_name] = np.array(var)
+            except Exception as e:
+                print(f"Error reading file: {e}")
+        elif '.3d.' in file:
+            try:
+                with Stream(file, 'rra') as r:
+                    variables_list = r.available_variables()
+                    for var_name in variables_list:
+                        var = r.read(var_name)
+                        self.array_container2D[var_name] = np.array(var)
+            except Exception as e:
+                print(f"Error reading file: {e}")
+        else:
+            print("Error: Neither F3D or 3D data exists.")
+
+    
+
+
+
+    #Work in progress
+    def xgca_readmult2D(self,file): 
+        try:
+            with Stream(file, 'rra') as r:
+                    variables_list = r.available_variables()
+                    for var_name in variables_list:
+                        var = r.read(var_name)
+                        self.array_container2D[var_name] = np.array(var)
+            print(f"Reading {file} file sucessful.")
+            return self.array_container2D
+        except Exception as e:
+                print(f"Error reading file: {e}")
+
+
+    def xgca_readmultF2D(self,file): 
+        try:
+            with Stream(file, 'rra') as r:
+                    variables_list = r.available_variables()
+                    for var_name in variables_list:
+                        var = r.read(var_name)
+                        self.array_containerF2D[var_name] = np.array(var)
+            print(f"Reading {file} file sucessful.")
+            return self.array_containerF2D
+        except Exception as e:
+                print(f"Error reading file: {e}")
+
+
+
+
+
+    # Create a function to list all variables in a specfic file
+    def list2DVars(self):
+        for name in self.array_container2D:
+            print(name)
+
+    def list_F2DVars(self):
+        for name in self.array_containerF2D:
+            print(name)
+
+
+
+
+    # Retrieve a single variable and its data
+    def get_loadVarF2D(self, name):
+        if name in self.array_containerF2D:
+            return np.array(self.array_containerF2D[str(name)])
+        else:
+            print(f"Variable with name '{name}' not found.")
+
+    def get_loadVar3D(self, name):
+        if name in self.array_container2D:
+            return np.array(self.array_container2D[str(name)])
+        else:
+            print(f"Variable with name '{name}' not found.")
+
+
+
+    # Return list of timesteps if selecting multiple timesteps
+    def get_mult2Data(self):
+        return self.data2D
+    
+    def get_multF2Data(self):
+        return self.dataF2D
+
+    # Retreive the timeslice available
     def xgca_timeslice(self):
             path = self.xgc_path
             bp_timeslices = []
 
             pattern = re.compile(r'\b2d\.(\d+)\.bp\b')
-
             if os.path.exists(path):
                 for root, dirs, files in os.walk(path):
                     for dir in dirs:
@@ -471,41 +587,6 @@ class xgca(object):
             #print(type(numbers[0])) each element is of type int
             # print(sorted_array) WORKS 
             return numbers
-    
-    def xgca_reader(self, file):
-        if '.f2d.' in str(file).lower():
-            try:
-                with Stream(file, 'rra') as r:
-                    variables_list = r.available_variables()
-                    for var_name in variables_list:
-                        var = r.read(var_name)
-                        self.array_containerF2D[var_name] = np.array(var)
-            except Exception as e:
-                print(f"Error reading file: {e}")
-        elif '.2d.' in file:
-            try:
-                with Stream(file, 'rra') as r:
-                    variables_list = r.available_variables()
-                    for var_name in variables_list:
-                        var = r.read(var_name)
-                        self.array_container2D[var_name] = np.array(var)
-            except Exception as e:
-                print(f"Error reading file: {e}")
-        else:
-            print("Error: Neither F2D or 2D data exists.")
-
-
-    def get_loadVar2D(self,name):
-        if name in self.array_container2D:
-            return self.array_container2D[str(name)]
-        else:
-            print(f"Variable with name '{name}' not found.")
-
-    def get_loadVarF2D(self,name):
-        if name in self.array_containerF2D:
-            return self.array_containerF2D[str(name)]
-        else:
-            print(f"Variable with name '{name}' not found.")
 
 # Object for reading files not dealing with timesteps 
 # (can read anything other than heatdiag2 and shealthdiag)
@@ -676,7 +757,7 @@ class heatdiag(object):
         except Exception as e:
             print(f"Error in file: {e}\n")
 
-fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
+#fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 #required
 #xgcaObj = xgca(fileDir)
