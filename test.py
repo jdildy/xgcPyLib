@@ -19,9 +19,11 @@ parser = argparse.ArgumentParser(description='Get a directory path through comma
 parser.add_argument('--input', type=str, help='Requires the rundir that holds all xgc data.')
 args = parser.parse_args()
 fileDir = args.input
+print(fileDir)
+print(type(fileDir))
 
        
-#fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
+#fileDir = '/pscratch/sd/s/sku/n552pe_d_NT_new_profile_Jun'
 
 
 
