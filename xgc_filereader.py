@@ -1,15 +1,9 @@
 import numpy as np
 import os
-from matplotlib.tri import Triangulation, LinearTriInterpolator, CubicTriInterpolator
-from adios2 import Stream, Variable
-import matplotlib.pyplot as plt
-from scipy.io import matlab
-from scipy.optimize import curve_fit
-from scipy.special import erfc
-import scipy.sparse as sp
-from tqdm.auto import trange, tqdm
-from tabulate import tabulate
+from adios2 import Stream
 
+from tqdm.auto import tqdm
+import glob
 
 import os
 import re
@@ -61,6 +55,31 @@ def single_timestep(time):
             else:
                 print("Timestep not found. Try again.")
 
+
+def checkpath(*args):
+    if not args:
+        raise ValueError("No path provided")
+    
+    file_path = args[0]
+
+    
+    if not os.path.isdir(file_path):
+        raise ValueError(f"The path {file_path} is not a valid directory")
+    
+    file_path = os.path.join(file_path, '')
+    print(file_path)
+    return file_path
+
+    
+    
+    # if len(glob.glob(file_path+'xgc.3d*')):
+    #     return xgc1(file_path)
+    
+    # elif len(glob.glob(file_path+'xgc.2d*')):
+    #     return xgca(file_path)
+    
+    # else:
+    #     raise ValueError('XGC files not found in ' + file_path)
 
 # object for xgc.oneddiag.bp works
 class data1(object):
