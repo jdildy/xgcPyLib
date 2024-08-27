@@ -30,8 +30,6 @@ print(type(fileDir))
 
 
 
-handler = xgc_filereader.loader(fileDir)
-xgcaObj = xgc_filereader.xgca(fileDir)
 xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 
