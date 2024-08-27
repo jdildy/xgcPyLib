@@ -14,22 +14,26 @@ import xgc_filereader
 from PIL import Image
 
 
-parser = argparse.ArgumentParser(description='Get a directory path through command line input.')
+# parser = argparse.ArgumentParser(description='Get a directory path through command line input.')
 
-parser.add_argument('--input', type=str, help='Requires the rundir that holds all xgc data.')
-args = parser.parse_args()
-fileDir = args.input
+# parser.add_argument('--input', type=str, help='Requires the rundir that holds all xgc data.')
+# args = parser.parse_args()
+# fileDir = args.input
 
        
 #fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
+try:
+    fileDir = xgc_filereader.load('/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun')
+except ValueError as e:
+    print(f"Error:{e}")
 
 
 
-handler = xgc_filereader.loader(fileDir)
-xgcaObj = xgc_filereader.xgca(fileDir)
-xgc1Obj = xgc_filereader.xgc1(fileDir)
+# handler = xgc_filereader.loader(fileDir)
+# xgcaObj = xgc_filereader.xgca(fileDir)
+# xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 
 
@@ -117,7 +121,7 @@ class FluxAvg(matrix):
             npsi            = handler.get_loadVar('npsi')
             value           = handler.get_loadVar('value')
             self.flux_mat   = self.create_sparse_xgc(nelement, eindex, value, m=nelement.size, n=npsi).T
-            print('created flux surface average matrix sucessfully')
+            print('created flux surface average matrix sucessfully.\n')
         except:
             self.flux_mat   = 0
 
@@ -141,7 +145,7 @@ class Gradient(matrix):
             nrows    = handler.get_loadVar(('m_z'))
             ncols    = handler.get_loadVar('n_z')
             self.grad_mat_z = self.create_sparse_xgc(nelement, eindex, value, m=nrows, n=ncols)
-            print('Created gradient matrix along r and z sucessfully')
+            print('Created gradient matrix along r and z sucessfully.\n')
         except:
             self.grad_mat_r     = 0
             self.grad_mat_z     = 0
@@ -332,11 +336,11 @@ if selection == 1:
 
     dpot3D = xgc1Obj.get_loadVar3D('dpot')
     dpotF3D = xgc1Obj.get_loadVarF3D('dpot')
-    print(len(dpotF3D[1]))
-    print(len(dpotF3D[0]))
-    print(len(r))
-    print(len(z))
-    print(len(dpot3D[0]))
+    # print(len(dpotF3D[1])) 16
+    # print(len(dpotF3D[0])) 16
+    # print(len(r)) 132273
+    # print(len(z)) 132273
+    # print(len(dpot3D[0])) 132273
     
 
     

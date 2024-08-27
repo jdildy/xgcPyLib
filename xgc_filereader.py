@@ -350,7 +350,7 @@ class xgca(object):
 
         self.time = self.xgca_timeslice()
         if not self.time:
-            print("No 2D Timeslisces data available. Reading other files.")
+            print("No 2D Timeslice data available. Reading other files.")
             return
         
         print("TimeSlice Data Capture Complete.\n")
@@ -539,7 +539,7 @@ class xgca(object):
 
 
 
-    # Retrieve a single variable and its data
+    
     def get_loadVarF2D(self, name):
         if name in self.array_containerF2D:
             return np.array(self.array_containerF2D[str(name)])
