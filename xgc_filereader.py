@@ -55,7 +55,7 @@ def single_timestep(time):
             else:
                 print("Timestep not found. Try again.")
 
-
+# Gets path from users and determines if it is a valid path or not
 def checkpath(*args):
     if not args:
         raise ValueError("No path provided")
@@ -67,21 +67,10 @@ def checkpath(*args):
         raise ValueError(f"The path {file_path} is not a valid directory")
     
     file_path = os.path.join(file_path, '')
-    print(file_path)
     return file_path
 
-    
-    
-    # if len(glob.glob(file_path+'xgc.3d*')):
-    #     return xgc1(file_path)
-    
-    # elif len(glob.glob(file_path+'xgc.2d*')):
-    #     return xgca(file_path)
-    
-    # else:
-    #     raise ValueError('XGC files not found in ' + file_path)
 
-# object for xgc.oneddiag.bp works
+# Class handles all xgc.oneddiag.bp data
 class data1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -89,7 +78,7 @@ class data1(object):
         self.array_container = {}
         print("Reading xgc.oneddiag.bp Data...")
         
-
+    # Reader for xgc.oneddiag.bp data
     def read_oneddiag(self,variable, inds = Ellipsis):
         # STEP_SELECTION CONTROLS THE AMOUNT OF TIMESTEPS YOU WANT TO READ
         try:
@@ -108,7 +97,7 @@ class data1(object):
 
 
 
-# Object for any xgc.3d.xxxxx.bp or xgc.f3d.xxxxx.bp file
+# Class handles xgc.3d.xxxxx.bp or xgc.f3d.xxxxx.bp files
 class xgc1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -357,7 +346,8 @@ class xgc1(object):
             return numbers
 
 
-# Object for any xgc.2d.xxxxx.bp or xgc.f2d.xxxxx.bp file
+# Class handles xgc.2d.xxxxx.bp or xgc.f2d.xxxxx.bp files
+
 class xgca(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -605,14 +595,11 @@ class xgca(object):
             # print(sorted_array) WORKS 
             return numbers
 
-# Object for reading files not dealing with timesteps 
-# (can read anything other than heatdiag2 and shealthdiag)
+# General reader (can read anything other than heatdiag2 and shealthdiag)
 class loader(object):
     def __init__(self,xgc_path):
-        self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
-        #print(str(self.xgc_path)) # /pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun/
+        self.xgc_path = os.path.join(xgc_path,'') 
         self.array_container = {}
-        #self.reader('xgc.grad_rz')
 
 
     # Can handle all General BP files except heatdiag2 and sheathdiag. Need to create tests to catch if 
@@ -645,47 +632,7 @@ class loader(object):
 
 
         
-        
-        
-
-        
-
-
-
-
-    # def readAdios(file,variable,inds = Ellipsis):
-    #     if '/' in variable: variable = '/'+variable
-    #         #v = '/'+v #this may be necessary for older xgc files
-
-    #     " NEED SOME TYPE OF CHECKER TO ENSURE CORRECT FILE BEING OPENED"
-    #     with Stream(str(file)+'.bp','rra') as r:
-    #             if not isinstance(r, Stream):
-    #                 raise TypeError("The object is not an instance of adios2.Stream")
-                
-    #             variables = r.available_variables()
-                
-    #             if variable not in variables:
-    #                 raise KeyError(f"Variable '{variable}' not found in stream")
-                
-    #             nstep = int(variables[variable]['AvailableStepsCount'])
-    #             nsize = variables[variable]['Shape']
-
-    #             if nstep==1:
-    #                 data = r.read(variable)[inds]
-    #             elif nsize != '': #mostly xgc.oneddiag
-    #                 nsize = int(nsize)
-    #                 data = r.read(variable,start=[0], count=[nsize], step_start = 0, step_count = nstep)
-    #             else: #mostly xgc.oneddiag
-    #                 data = r.read(variable,start=[], count=[], step_start = 0, step_count=nstep)
-    #     # except FileNotFoundError:
-    #     #     print(f"File {file} not found.")
-    #     # except TypeError as e:
-    #     #     print(e)
-    #     # except Exception as e: 
-    #     #     print(f"An error has occured: {e}")  
-    #             return data
-        
-# Object for sheath
+# Class handles xgc.sheathdiag.bp
 class sheath(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -730,7 +677,7 @@ class sheath(object):
             print(f"Error in file: {e}\n")
             print("This ran")
 
-# Object for heatdiag
+# class handles xgc.heatdiag.bp
 class heatdiag(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there

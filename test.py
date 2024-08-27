@@ -72,7 +72,6 @@ class meshdata(object):
             self.surf_maxlen = surf_maxlen
             self.trapped = trapped
 
-
     class Vertex():
         def __init__(self,node_vol, node_vol_ff0, node_vol_ff1, node_vol_nearest, psi, theta):
             self.node_vol = node_vol
