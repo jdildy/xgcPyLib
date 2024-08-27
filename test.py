@@ -24,8 +24,11 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
 
+
 handler = xgc_filereader.loader(fileDir)
+xgcaObj = xgc_filereader(fileDir)
 xgc1Obj = xgc_filereader.xgc1(fileDir)
+
 
 
 class meshdata(object):
@@ -250,10 +253,10 @@ class Gradient(matrix):
 #initializing DataObj
 selection = xgc1Obj.get_choice()
 
-gradient = Gradient()
-fluxavg = FluxAvg()
+# gradient = Gradient()
+# fluxavg = FluxAvg()
 
-dataObj = meshdata()
+# dataObj = meshdata()
 
 if selection == 1:
     print("Processing all mesh variables...")
