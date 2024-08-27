@@ -120,7 +120,7 @@ class FluxAvg(matrix):
 class Gradient(matrix):
     def __init__(self):
         try:
-            handler.reader('/xgc.grad_rz')
+            handler.reader('/xgc.grad_rz.bp')
             self.mat_basis = handler.get_loadVar('basis')
         
             nelement = handler.get_loadVar('nelement_r')
