@@ -6,20 +6,22 @@ from matplotlib.tri import Triangulation, LinearTriInterpolator
 from PIL import Image
 import argparse
 import os
+import adios2 as ad
+
 
 import xgc_filereader
 
 from PIL import Image
 
 
-# parser = argparse.ArgumentParser(description='Get a directory path through command line input.')
+parser = argparse.ArgumentParser(description='Get a directory path through command line input.')
 
-# parser.add_argument('--input', type=str, help='Requires the rundir that holds all xgc data.')
-# args = parser.parse_args()
-# fileDir = args.input
+parser.add_argument('--input', type=str, help='Requires the rundir that holds all xgc data.')
+args = parser.parse_args()
+fileDir = args.input
 
        
-fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
+#fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
 
