@@ -28,9 +28,6 @@ handler = xgc_filereader.loader(fileDir)
 xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 
-# def update_plot(t_start, t_end, t_step):
-
-
 class meshdata(object):
     def __init__(self):
         Rmin = 2.2
@@ -48,8 +45,7 @@ class meshdata(object):
             self.n_n = n_n 
             self.n_t = n_t
             self.nd_connect_list = nd_connect_list
-            self.rz = rz
-            
+            self.rz = rz          
 
     class Surface():
         def __init__(self, epsilon, m_max_surf, nsurf, psi_surf, qsafety,rmaj, rmin, surf_idx, 
@@ -77,42 +73,169 @@ class meshdata(object):
             self.psi = psi
             self.theta = theta
 
-
     class Triangle():
         def __init__(self, tr_area):
             self.tr_area = tr_area
 
 
-class FluxAvg():   
+# Setup for flux average and gradient matrices # 
+class matrix(object):
+     def create_sparse_xgc(self, nelement, eindex, value, m=None, n=None):
+            from scipy.sparse import csr_matrix
+            nelement = np.array(nelement)
+
+            if m is None: m = nelement.size
+            if n is None: n = nelement.size
+            
+
+            #Creating parameters
+            indptr = np.insert(np.cumsum(nelement),0,0)
+            indices =np.empty((indptr[-1],))
+            data = np.empty((indptr[-1],))
+
+            for i in range(nelement.size):
+                indices[indptr[i]:indptr[i+1]] = eindex[i,0:nelement[i]]
+                data[indptr[i]:indptr[i+1]] = value[i,0:nelement[i]]
+            #create sparse matrices
+            spmat = csr_matrix((data,indices,indptr),shape=(m,n))
+            return spmat
+     
+
+
+class FluxAvg(matrix):
     def __init__(self):
-        handler.reader('/xgc.fluxavg.bp')
-        nelement = handler.get_loadVar('nelement')
-        nelement = np.array(nelement)
-        eindex = handler.get_loadVar('eindex')
-        norm1d = handler.get_loadVar('norm1d')
-        value = handler.get_loadVar('value')
-        npsi = handler.get_loadVar('npsi')
-        self.fluxavg_mat = self.create_sparse_xgc(nelement, eindex, value, m=nelement.size, n=npsi).T
+        try:
+            handler.reader('/xgc.fluxavg.bp')
+            nelement        = handler.get_loadVar('nelement')
+            nelement        = np.array(nelement)
+            eindex          = handler.get_loadVar('eindex')
+            npsi            = handler.get_loadVar('npsi')
+            value           = handler.get_loadVar('value')
+            self.flux_mat   = self.create_sparse_xgc(nelement, eindex, value, m=nelement.size, n=npsi).T
+            print('created flux surface average matrix sucessfully')
+        except:
+            self.flux_mat   = 0
+
+
+class Gradient(matrix):
+    def __init__(self):
+        try:
+            handler.reader('/xgc.grad_rz')
+            self.mat_basis = handler.get_loadVar('basis')
+        
+            nelement = handler.get_loadVar('nelement_r')
+            eindex   = handler.get_loadVar('eindex_r')-1 
+            value    = handler.get_loadVar('value_r')
+            nrows    = handler.get_loadVar('m_r')
+            ncols    = handler.get_loadVar('n_r')
+            self.grad_mat_r = self.create_sparse_xgc(nelement, eindex, value, m=nrows, n=ncols)
+
+            nelement = handler.get_loadVar('nelement_z')
+            eindex   = handler.get_loadVar('eindex_z')-1 
+            value    = handler.get_loadVar('value_z')
+            nrows    = handler.get_loadVar(('m_z'))
+            ncols    = handler.get_loadVar('n_z')
+            self.grad_mat_z = self.create_sparse_xgc(nelement, eindex, value, m=nrows, n=ncols)
+            print('Created gradient matrix along r and z sucessfully')
+        except:
+            self.grad_mat_r     = 0
+            self.grad_mat_z     = 0
+            self.mat_basis      = 0
+
+            
+
+    # class Gradient():
+    #     def __init__(self, )
+        
+
+    
+
+    # class fluxAvg(): 
+    #     def __init__(self):
+    #         # Flux Surface Average Reader and Initializer 
+    #         handler.reader('/xgc.fluxavg.bp')
+    #         print("Reading xgc.fluxavg.bp...")
+    #         nelement = handler.get_loadVar('nelement')
+    #         nelement = np.array(nelement)
+    #         eindex = handler.get_loadVar('eindex')
+    #         norm1d = handler.get_loadVar('norm1d')
+    #         value = handler.get_loadVar('value')
+    #         npsi = handler.get_loadVar('npsi')
+
+    #         self.fluxavg_mat = self.create_sparse_xgc(nelement, eindex, value, m=nelement.size, n=npsi).T
+
+    #         # Gradient Matrix Reader and Iniatializer
+
+    # class Gradient(): 
+    #     def __init__(self):
+    #         handler.reader('/xgc.grad_rz')
+    #         print("Reading xgc.grad_rz.bp...")
+
+    #         while True:
+    #             try: 
+    #                 select = str(input('Please enter "r" for r coordinate or "z" for z coordinate to generate sparse matrix.')).lower()
+    #             except ValueError:
+    #                 print("Invalid input. Please select r or z ")
+
+    #                 if select == 'r':
+    #                     nelement_r = handler.get_loadVar('nelement_r')
+    #                     #nelement_r = np.array(nelement_r)
+    #                     eindex_r= handler.get_loadVar('eindex_r')
+    #                     value_r = handler.get_loadVar('value_r')
+    #                     m_r = handler.get_loadVar('m_r')
+    #                     n_r = handler.get_loadVar('n_r')
+
+
+    #                     self.gradr_mat = self.create_sparse_xgc(nelement_r, eindex_r, value_r, m=m_r, n=n_r).T
+    #                 elif select == 'z':
+    #                     nelement_z = handler.get_loadVar('nelement_z')
+    #                     #nelement_z = np.array(nelement_z)
+    #                     eindex_z = handler.get_loadVar('eindex_z')
+    #                     value_z = handler.get_loadVar('value_z')
+    #                     m_z = handler.get_loadVar('m_z')
+    #                     n_z = handler.get_loadVar('n_z')
+    #                     self.gradz_mat = self.create_sparse_xgc(nelement_z, eindex_z, value_z, m=m_z, n=n_z).T
+
+    #     print("Matrix for fluxavg and gradient sucessfull")
+
+
+            
+        
+    
+
+    class HeatDiag():
+        def __init__(self,ds, e_number, e_para_energy, e_perp_energy, e_potential,
+                     i_number, i_para_energy, i_perp_energy, i_potential,
+                     nphi, nseg, nseg1, psi, r, strike_angle, time, z):
+            self.ds = ds 
+            self.e_number = e_number
+            self.e_para_energy = e_para_energy
+            self.e_perp_energy = e_perp_energy
+            self.e_potential = e_potential
+
+            self.i_number = i_number
+            self.i_para_energy = i_para_energy
+            self.i_perp_energy = i_perp_energy
+            self.i_potential = i_potential
+            
+            self.nphi = nphi
+            self.nseg = nseg 
+            self.nseg1 =nseg1
+            self.psi = psi
+            self.r = r
+            self.strike_angle = strike_angle
+            self.time = time
+            self.z = z
 
 
         
-    def create_sparse_xgc(self, nelement, eindex, value, m=None, n=None):
-        from scipy.sparse import csr_matrix
 
-        #Creating parameters
-        indptr = np.insert(np.cumsum(nelement),0,0)
-        indices =np.empty((indptr[-1],))
-        data = np.empty((indptr[-1],))
 
-        for i in range(nelement.size):
-            indices[indptr[i]:indptr[i+1]] = eindex[i,0:nelement[i]]
-            data[indptr[i]:indptr[i+1]] = value[i,0:nelement[i]]
-        #create sparse matrices
-        spmat = csr_matrix((data,indices,indptr),shape=(m,n))
-        return spmat
-    
+            
+             
 
-    
+  
+
 
 
     
@@ -127,15 +250,16 @@ class FluxAvg():
 #initializing DataObj
 selection = xgc1Obj.get_choice()
 
+gradient = Gradient()
+fluxavg = FluxAvg()
+
 dataObj = meshdata()
 
-core = meshdata.Core
 if selection == 1:
     print("Processing all mesh variables...")
     handler.list_Vars('/xgc.mesh.bp')
     
     try:
-        
         #Core Subclass
         core = meshdata.Core(
             handler.get_loadVar('grid_nwall'),
@@ -174,6 +298,7 @@ if selection == 1:
         )
         print("Data recieved from file")
         print("Performing Data Visualization...")
+
     except Exception as e:
         print(f"Error occured: {e}")
 
