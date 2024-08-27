@@ -21,7 +21,7 @@ from PIL import Image
 # fileDir = args.input
 
        
-fileDir = '/pscratch/sd/s/sku/n552pe_d_NT_new_profile_Jun'
+fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 print(fileDir)
 print(type(fileDir))
