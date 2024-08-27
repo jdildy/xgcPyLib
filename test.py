@@ -255,8 +255,8 @@ class Gradient(matrix):
 #initializing DataObj
 selection = xgc1Obj.get_choice()
 
-# gradient = Gradient()
-# fluxavg = FluxAvg()
+gradient = Gradient()
+fluxavg = FluxAvg()
 
 dataObj = meshdata()
 
