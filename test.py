@@ -26,7 +26,7 @@ fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
 handler = xgc_filereader.loader(fileDir)
-xgcaObj = xgc_filereader(fileDir)
+xgcaObj = xgc_filereader.xgca(fileDir)
 xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 
