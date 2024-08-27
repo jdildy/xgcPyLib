@@ -25,15 +25,15 @@ from PIL import Image
 
 
 try:
-    fileDir = xgc_filereader.load('/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun')
+    fileDir = xgc_filereader.checkpath('/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun')
 except ValueError as e:
     print(f"Error:{e}")
 
 
 
-# handler = xgc_filereader.loader(fileDir)
-# xgcaObj = xgc_filereader.xgca(fileDir)
-# xgc1Obj = xgc_filereader.xgc1(fileDir)
+handler = xgc_filereader.loader(fileDir)
+xgcaObj = xgc_filereader.xgca(fileDir)
+xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 
 
