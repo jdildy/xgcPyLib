@@ -93,7 +93,6 @@ class data1(object):
 class xgc1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
-        print("Input Directory : " + str(self.xgc_path))
         self.array_containerF3D = {}
         self.array_container3D = {}
         print("Gathering Time Slice Data...")
@@ -343,10 +342,9 @@ class xgc1(object):
 class xgca(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
-        print(str(self.xgc_path))
+        
         self.array_containerF2D = {}
         self.array_container2D = {}
-        print("Reading XGC Output Data:")
         print("Gathering Time Slice Data...")
 
 
