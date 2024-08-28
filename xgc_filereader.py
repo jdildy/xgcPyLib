@@ -73,6 +73,7 @@ def checkpath(*args):
 
 
 # Class handles all xgc.oneddiag.bp data
+
 class data1(object):
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
@@ -81,6 +82,24 @@ class data1(object):
         print("Reading xgc.oneddiag.bp Data...")
         
     # Reader for xgc.oneddiag.bp data
+    """
+    read_oneddiag mehthod reads and returns based on the variable value
+
+    INPUTS 
+    :param str variable: variable from xgc.oneddiag to retrieve information from
+    :param int s_start: Time step to start reading from (0-based i.e if your steps start at and interval by 2, s_start is 0
+    :param int s_count: Count of steps from s_start you want to read.
+
+    Note: Not inputting s_start and s_count will read all available steps for a specific variable
+
+    OPTIONAL
+    
+
+
+
+    :
+
+    """
     def read_oneddiag(self,variable, s_start =None, s_count = None, dt= None, inds = Ellipsis):
         # STEP_SELECTION CONTROLS THE AMOUNT OF TIMESTEPS YOU WANT TO READ
 
