@@ -107,6 +107,7 @@ class data1(object):
                 if s_start != None and s_count != None: # Read all timestep data
                     if dt > 1: # catches dt greater than 1
                         start = (s_start -dt) / dt
+                        print(start)
                         nsize = r.available_variables()[variable]['Shape']
                         if nsize != '': #mostly xgc.oneddiag
                             nsize = int(nsize)
