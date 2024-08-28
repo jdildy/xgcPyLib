@@ -282,31 +282,58 @@ class xgc1(object):
 
 
     # Reader method for both F3D and 3D
-    def xgc1_reader(self,file):
+    # def xgc1_reader(self,file):
+    #     """
+    #     Reader for f3d and 3d data. Only needs to be called once so that the get functions can retrieve the data.
+
+    #     INPUTS
+    #     param: str file: Name of the f3d or 3d file being read.
+    #     """
+    #     if '.f3d.' in str(file).lower():
+    #         try:
+    #             with Stream(file, 'rra') as r:
+    #                 variables_list = r.available_variables()
+    #                 for var_name in variables_list:
+    #                     var = r.read(var_name)
+    #                     self.array_containerF3D[var_name] = np.array(var)
+    #         except Exception as e:
+    #             print(f"Error reading file: {e}")
+    #     elif '.3d.' in file:
+    #         try:
+    #             with Stream(file, 'rra') as r:
+    #                 variables_list = r.available_variables()
+    #                 for var_name in variables_list:
+    #                     var = r.read(var_name)
+    #                     self.array_container3D[var_name] = np.array(var)
+    #         except Exception as e:
+    #             print(f"Error reading file: {e}")
+    #     else:
+    #         print("Error: Neither F3D or 3D data exists.")
+        
+
+    def read_single3D(self,step, name = None):
         """
         Reader for f3d and 3d data. Only needs to be called once so that the get functions can retrieve the data.
 
         INPUTS
         param: str file: Name of the f3d or 3d file being read.
         """
-        if '.f3d.' in str(file).lower():
-            try:
-                with Stream(file, 'rra') as r:
-                    variables_list = r.available_variables()
-                    for var_name in variables_list:
-                        var = r.read(var_name)
-                        self.array_containerF3D[var_name] = np.array(var)
-            except Exception as e:
-                print(f"Error reading file: {e}")
-        elif '.3d.' in file:
-            try:
-                with Stream(file, 'rra') as r:
+        try:
+            
+            with Stream('/xgc.f3d.%5.5d.bp' %(step), 'rra') as r:
+                if name == None:
                     variables_list = r.available_variables()
                     for var_name in variables_list:
                         var = r.read(var_name)
                         self.array_container3D[var_name] = np.array(var)
-            except Exception as e:
-                print(f"Error reading file: {e}")
+                else: 
+                    variables_list = r.available_variables()
+                    for var_name in variables_list:
+                        if var_name == name:
+                            var = r.read(var_name)
+                            return var
+        except Exception as e:
+            print(f"Error reading file: {e}")
         else:
             print("Error: Neither F3D or 3D data exists.")
 
