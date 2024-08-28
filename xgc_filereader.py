@@ -86,7 +86,7 @@ class data1(object):
 
         try:
             with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
-                print(r.available_variables())
+                #print(r.available_variables())
                 #if t_start == None and t_count == None: # Read all timestep data
                 nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                 nsize = r.available_variables()[variable]['Shape']
