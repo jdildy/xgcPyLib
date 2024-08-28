@@ -337,10 +337,9 @@ class xgc1(object):
                         for var_name in variables_list:
                             var = r.read(var_name)
                             self.array_container3D[var_name] = np.array(var)
-                            return self.array_container3D
                     except Exception as e:
                             print(f"Error reading file: {e}")
-            return self.array_container3D
+        return self.array_container3D
     
 
 
