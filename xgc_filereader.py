@@ -70,6 +70,8 @@ def checkpath(*args):
     return file_path
 
 
+
+
 # Class handles all xgc.oneddiag.bp data
 class data1(object):
     def __init__(self,xgc_path):
@@ -85,12 +87,12 @@ class data1(object):
             with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
                 nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                 nsize = r.available_variables()[variable]['Shape']
+                print( variable, nstep, nsize)
                 if nsize != '': #mostly xgc.oneddiag
                     nsize = int(nsize)
                     data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
                 else: #scalar
                     data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
-
                 return data
         except Exception as e:
             print(f"Error in file: {e}\n")
@@ -151,8 +153,6 @@ class xgc1(object):
             #XGC.3D.Reader
             print("Reading xgc.3d.%5.5d.bp..." %(single))
             filename = xgc_path + "/xgc.3d.%5.5d.bp" %(single)
-           
-            #print(filename)
             
             try:
                 self.xgc1_reader(filename)
@@ -256,6 +256,10 @@ class xgc1(object):
 
 
     #Work in progress
+    """
+
+    
+    """
     def xgc1_readmult3D(self,file): 
         try:
             with Stream(file, 'rra') as r:
