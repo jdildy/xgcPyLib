@@ -340,7 +340,7 @@ class xgc1(object):
                         for var_name in variables_list:
                             if var_name == name:
                                 var = r.read(var_name)
-                                stepdata[j] = var
+                                stepdata = var
                                 print(j)
                                 j+=1
                     except Exception as e:
