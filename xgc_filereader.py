@@ -93,7 +93,7 @@ class data1(object):
                 print( variable, nstep, nsize)
                 if nsize != '': #mostly xgc.oneddiag
                     nsize = int(nsize)
-                    data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, 0])
+                    data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, 1])
                 else: #scalar
                     data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
                 return data
