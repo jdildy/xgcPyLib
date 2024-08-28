@@ -158,34 +158,34 @@ print(oneddiag.read_oneddiag('cden00_1d'))
 
 
 
-class HeatDiag():
-        def __init__(self,ds, e_number, e_para_energy, e_perp_energy, e_potential,
-                     i_number, i_para_energy, i_perp_energy, i_potential,
-                     nphi, nseg, nseg1, psi, r, strike_angle, time, z)
-            self.ds = ds 
-            self.e_number = e_number
-            self.e_para_energy = e_para_energy
-            self.e_perp_energy = e_perp_energy
-            self.e_potential = e_potential
+# class HeatDiag():
+#         def __init__(self,ds, e_number, e_para_energy, e_perp_energy, e_potential,
+#                      i_number, i_para_energy, i_perp_energy, i_potential,
+#                      nphi, nseg, nseg1, psi, r, strike_angle, time, z)
+#             self.ds = ds 
+#             self.e_number = e_number
+#             self.e_para_energy = e_para_energy
+#             self.e_perp_energy = e_perp_energy
+#             self.e_potential = e_potential
 
-            self.i_number = i_number
-            self.i_para_energy = i_para_energy
-            self.i_perp_energy = i_perp_energy
-            self.i_potential = i_potential
+#             self.i_number = i_number
+#             self.i_para_energy = i_para_energy
+#             self.i_perp_energy = i_perp_energy
+#             self.i_potential = i_potential
             
-            self.nphi = nphi
-            self.nseg = nseg 
-            self.nseg1 =nseg1
-            self.psi = psi
-            self.r = r
-            self.strike_angle = strike_angle
-            self.time = time
-            self.z = z
+#             self.nphi = nphi
+#             self.nseg = nseg 
+#             self.nseg1 =nseg1
+#             self.psi = psi
+#             self.r = r
+#             self.strike_angle = strike_angle
+#             self.time = time
+#             self.z = z
 
 
-            time_ht = self.time
-            nt_ht = len(self.time)
-            s = 
+#             time_ht = self.time
+#             nt_ht = len(self.time)
+#             s = 
 
 
 # HeatDiag()
