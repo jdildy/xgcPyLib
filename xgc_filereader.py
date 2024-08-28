@@ -329,9 +329,9 @@ class xgc1(object):
     
     """
     def xgc1_readmult3D(self,start, end, istep): 
+        pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
         for i in pbar:
             with Stream(self.xgc_path + '/xgc.3d.%5.5d.bp' %(i), 'rra') as r:
-                    pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
                     try:
                         variables_list = r.available_variables()
                         for var_name in variables_list:
