@@ -132,6 +132,7 @@ class data1(object):
                             data = r.read(variable,start=[0], count=[nsize],  step_selection=[start, s_count])
                         else: #scalar
                             data = r.read(variable,start=[], count=[], step_selection=[start, s_count])
+                            return data
                         
                     
                 
