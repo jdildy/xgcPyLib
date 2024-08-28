@@ -320,7 +320,7 @@ class xgc1(object):
         """
         try:
             
-            with Stream('/xgc.f3d.%5.5d.bp' %(step), 'rra') as r:
+            with Stream(self.xgc_path + '/xgc.f3d.%5.5d.bp' %(step), 'rra') as r:
                 if name == None:
                     variables_list = r.available_variables()
                     for var_name in variables_list:
