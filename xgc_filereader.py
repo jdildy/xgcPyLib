@@ -373,10 +373,12 @@ class xgc1(object):
 
     # Return list of timesteps if selecting multiple timesteps
     def get_mult3Data(self,name):
-        return self.data3D[name]
+        if name in self.array_container3D:
+            return np.array(self.array_container3D[str(name)])
     
     def get_multF3Data(self,name):
-        return self.dataF3D[name]
+        if name in self.array_containerF3D:
+            return np.array(self.array_containerF3D[str(name)])
 
     # Retreive the timeslice available
     def xgc1_timeslice(self):
