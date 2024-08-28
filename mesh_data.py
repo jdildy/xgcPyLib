@@ -39,7 +39,7 @@ xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 
 dpot = xgc1Obj.get_loadVar3D('dpot')
-print(len(dpot[0]))
+print(dpot.size)
 # handler = xgc_filereader.loader(fileDir)
 # xgcaObj = xgc_filereader.xgca(fileDir)
 # xgc1Obj = xgc_filereader.xgc1(fileDir)
