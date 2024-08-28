@@ -107,11 +107,12 @@ class data1(object):
                 if s_start != None and s_count != None: # Read all timestep data
                     if dt > 1: # catches dt greater than 1
                         start = (s_start -dt) / dt
+                        start = int(start)
                         print(start)
                         nsize = r.available_variables()[variable]['Shape']
                         if nsize != '': #mostly xgc.oneddiag
                             nsize = int(nsize)
-                            data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, s_count])
+                            data = r.read(variable,start=[0], count=[nsize],  step_selection=[start, s_count])
                         else: #scalar
                             data = r.read(variable,start=[], count=[], step_selection=[start, s_count])
                         return data
