@@ -75,6 +75,14 @@ def checkpath(*args):
 # Class handles all xgc.oneddiag.bp data
 
 class data1(object):
+    """
+    XGC.ONEDDIAG Data Class
+
+    This class handles the reading and returning of any value and its data pertaining to xgc.oneddiag.bp data
+
+    INPUTS
+    :param str xgc_pat: Name of the directory containing XGC Data
+    """
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         #print(str(self.xgc_path))
@@ -82,33 +90,25 @@ class data1(object):
         print("Reading xgc.oneddiag.bp Data...")
         
     # Reader for xgc.oneddiag.bp data
-    """
-    read_oneddiag mehthod reads and returns based on the variable value
-
-    INPUTS 
-    :param str variable: variable from xgc.oneddiag to retrieve information from
-    :param int s_start: Time step to start reading from 
-    :param int s_count: Count of steps from s_start you want to read.
-    :param int dt: Invertal between timesteps 
-    Note: Not inputting s_start and s_count will read all available steps for a specific variable
-
-    OPTIONAL
-
-
-
-
-    :
-
-    """
+  
     def read_oneddiag(self,variable, s_start =None, s_count = None, dt= None, inds = Ellipsis):
-        # STEP_SELECTION CONTROLS THE AMOUNT OF TIMESTEPS YOU WANT TO READ
+        """
+        read_oneddiag mehthod reads and returns based on the variable value
+
+        INPUTS 
+        :param str variable: variable from xgc.oneddiag to retrieve information from
+        :param int s_start: Time step to start reading from 
+        :param int s_count: Count of steps from s_start you want to read.
+        :param int dt: Invertal between timesteps 
+
+        Note: Not inputting s_start and s_count will read all available steps for that specific variable
+        """
         try:
             with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
                 if s_start != None and s_count != None: # Read all timestep data
                     if dt > 1: # catches dt greater than 1
                         start = (s_start -dt) / dt
                         start = int(start)
-                        print(start)
                         nsize = r.available_variables()[variable]['Shape']
                         if nsize != '': #mostly xgc.oneddiag
                             nsize = int(nsize)
@@ -134,14 +134,6 @@ class data1(object):
                         data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
                     else: #scalar
                         data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
-
-
-                    
-                        
-                    
-                
-
-
         except Exception as e:
             print(f"Error in file: {e}\n")
 
@@ -149,6 +141,15 @@ class data1(object):
 
 # Class handles xgc.3d.xxxxx.bp or xgc.f3d.xxxxx.bp files
 class xgc1(object):
+    """
+    XGC.3D.XXXXX.BP & XGC.F3D.XXXXX.BP Data Class
+
+    This class handles the reading and returning of any value and its data pertaining to xgc1 data
+    This class handles reading both 3D and F3D in one call, and deploys get functions to retrieve each variable
+
+    INPUTS
+    :param str xgc_pat: Name of the directory containing XGC Data
+    """
     def __init__(self,xgc_path):
         self.xgc_path = os.path.join(xgc_path,'')  #get file_path, add path separator if not there
         self.array_containerF3D = {}
@@ -277,7 +278,13 @@ class xgc1(object):
 
 
     # Reader method for both F3D and 3D
-    def xgc1_reader(self,file): 
+    def xgc1_reader(self,file):
+        """
+        Reader for f3d and 3d data. Only needs to be called once so that the get functions can retrieve the data.
+
+        INPUTS
+        param: str file: Name of the f3d or 3d file being read.
+        """
         if '.f3d.' in str(file).lower():
             try:
                 with Stream(file, 'rra') as r:
@@ -305,7 +312,7 @@ class xgc1(object):
 
     #Work in progress
     """
-
+    XGC 3D reader reads mulitple timesteps of data
     
     """
     def xgc1_readmult3D(self,file): 
@@ -365,11 +372,11 @@ class xgc1(object):
 
 
     # Return list of timesteps if selecting multiple timesteps
-    def get_mult3Data(self):
-        return self.data3D
+    def get_mult3Data(self,name):
+        return self.data3D[name]
     
-    def get_multF3Data(self):
-        return self.dataF3D
+    def get_multF3Data(self,name):
+        return self.dataF3D[name]
 
     # Retreive the timeslice available
     def xgc1_timeslice(self):

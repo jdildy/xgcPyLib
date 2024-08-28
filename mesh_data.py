@@ -24,16 +24,18 @@ from PIL import Image
 #fileDir = '/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun'
 
 
-try:
-    fileDir = xgc_filereader.checkpath('/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun')
-except ValueError as e:
-    print(f"Error:{e}")
 
-oneddiag = xgc_filereader.data1(fileDir)
+fileDir = xgc_filereader.checkpath('/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile_Jun')
 
 
-cden00_1d = oneddiag.read_oneddiag('cden00_1d', 2, 1,2)
-print(cden00_1d)
+# oneddiag = xgc_filereader.data1(fileDir)
+
+
+# cden00_1d = oneddiag.read_oneddiag('cden00_1d', 2, 1,2)
+# print(cden00_1d)
+
+
+xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 
 
