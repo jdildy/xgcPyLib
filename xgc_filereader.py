@@ -329,16 +329,16 @@ class xgc1(object):
     
     """
     def xgc1_readmult3D(self,start, end, istep): 
+        for i in pbar:
             with Stream(self.xgc_path + '/xgc.3d.%5.5d.bp' %(i), 'rra') as r:
                     pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
-                    for i in pbar:
-                        try:
-                            variables_list = r.available_variables()
-                            for var_name in variables_list:
-                                var = r.read(var_name)
-                                self.array_container3D[var_name] = np.array(var)
-                                return self.array_container3D
-                        except Exception as e:
+                    try:
+                        variables_list = r.available_variables()
+                        for var_name in variables_list:
+                            var = r.read(var_name)
+                            self.array_container3D[var_name] = np.array(var)
+                            return self.array_container3D
+                    except Exception as e:
                             print(f"Error reading file: {e}")
             return self.array_container3D
     
