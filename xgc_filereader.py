@@ -81,31 +81,31 @@ class data1(object):
         print("Reading xgc.oneddiag.bp Data...")
         
     # Reader for xgc.oneddiag.bp data
-    def read_oneddiag(self,variable, s_start =None, s_count = None, inds = Ellipsis):
+    def read_oneddiag(self,variable, s_start =None, s_count = None, dt= None, inds = Ellipsis):
         # STEP_SELECTION CONTROLS THE AMOUNT OF TIMESTEPS YOU WANT TO READ
 
         try:
             with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
                 #print(r.available_variables())
-                #if t_start == None and t_count == None: # Read all timestep data
-                nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
-                nsize = r.available_variables()[variable]['Shape']
-                # IN STEP SELECTION THE FIRST INTEGER DICTATES THE STEP i.e 0 corresponds to step 2 since it counts by 2, and the SECOND INTEGER READS N STEPS [2,1] WOULD START AT 2 AND READ 1 STEP (WHICH IS 2)
-                # 
-                if nsize != '': #mostly xgc.oneddiag
-                    nsize = int(nsize)
-                    data = r.read(variable,start=[0], count=[nsize],  step_selection=[0,1085])
-                else: #scalar
-                    data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
-                return data
-                # else:
-                #     nsize = r.available_variables()[variable]['Shape']
-                #     if nsize != '': #mostly xgc.oneddiag
-                #         nsize = int(nsize)
-                #         data = r.read(variable,start=[0], count=[nsize],  step_selection=[t_start, t_count])
-                #     else: #scalar
-                #         data = r.read(variable,start=[], count=[], step_selection=[t_start, t_count])
-                #     return data
+                if s_start == None and s_count == None: # Read all timestep data
+                    nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
+                    nsize = r.available_variables()[variable]['Shape']
+                    # IN STEP SELECTION THE FIRST INTEGER DICTATES THE STEP i.e 0 corresponds to step 2 since it counts by 2, and the SECOND INTEGER READS N STEPS [2,1] WOULD START AT 2 AND READ 1 STEP (WHICH IS 2)
+                    # 
+                    if nsize != '': #mostly xgc.oneddiag
+                        nsize = int(nsize)
+                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
+                    else: #scalar
+                        data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
+                    return data
+                else:
+                    nsize = r.available_variables()[variable]['Shape']
+                    if nsize != '': #mostly xgc.oneddiag
+                        nsize = int(nsize)
+                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[s_start, s_count])
+                    else: #scalar
+                        data = r.read(variable,start=[], count=[], step_selection=[s_start, s_count])
+                    return data
 
 
         except Exception as e:
