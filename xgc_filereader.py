@@ -335,14 +335,14 @@ class xgc1(object):
             for i in pbar:
                 with Stream(self.xgc_path + '/xgc.3d.%5.5d.bp' %(i), 'rra') as r:
                     try:
+                        print(i)
                         variables_list = r.available_variables()
                         for var_name in variables_list:
                             if var_name == name:
                                 var = r.read(var_name)
-                                stepdata = var
                     except Exception as e:
                             print(f"Error reading file: {e}")
-            return stepdata
+            return 
         
 
 
