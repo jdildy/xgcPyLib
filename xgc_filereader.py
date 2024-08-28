@@ -330,19 +330,21 @@ class xgc1(object):
     """
     def xgc1_readmult3D(self,name,start, end, istep): 
         stepdata = []
+        j= 0
         if start != None and end != None and istep != None:
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
             for i in pbar:
                 with Stream(self.xgc_path + '/xgc.3d.%5.5d.bp' %(i), 'rra') as r:
                     try:
-                        print(i)
                         variables_list = r.available_variables()
                         for var_name in variables_list:
                             if var_name == name:
                                 var = r.read(var_name)
+                                stepdata[j] = var
+                                j+=1
                     except Exception as e:
                             print(f"Error reading file: {e}")
-            return 
+            return stepdata
         
 
 
