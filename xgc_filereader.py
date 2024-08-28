@@ -328,19 +328,22 @@ class xgc1(object):
     XGC 3D reader reads mulitple timesteps of data
     
     """
-    def xgc1_readmult3D(self,start, end, istep): 
-        pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
-        for i in pbar:
-            with Stream(self.xgc_path + '/xgc.3d.%5.5d.bp' %(i), 'rra') as r:
+    def xgc1_readmult3D(self,name,start, end, istep): 
+        stepdata = []
+        if start != None and end != None and istep != None:
+            pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
+            for i in pbar:
+                with Stream(self.xgc_path + '/xgc.3d.%5.5d.bp' %(i), 'rra') as r:
                     try:
                         variables_list = r.available_variables()
                         for var_name in variables_list:
-                            var = r.read(var_name)
-                            self.array_container3D[var_name] = np.array(var)
+                            if var_name == name:
+                                var = r.read(var_name)
+                                self.array_container3D = np.array(var)
                     except Exception as e:
                             print(f"Error reading file: {e}")
-        return self.array_container3D
-    
+            return self.array_container3D
+        
 
 
 
