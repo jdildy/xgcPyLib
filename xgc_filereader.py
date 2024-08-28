@@ -93,7 +93,7 @@ class data1(object):
     Note: Not inputting s_start and s_count will read all available steps for a specific variable
 
     OPTIONAL
-    
+
 
 
 
@@ -121,9 +121,9 @@ class data1(object):
                     nsize = r.available_variables()[variable]['Shape']
                     if nsize != '': #mostly xgc.oneddiag
                         nsize = int(nsize)
-                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[s_start, s_count])
+                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[s_start-dt, s_count])
                     else: #scalar
-                        data = r.read(variable,start=[], count=[], step_selection=[s_start, s_count])
+                        data = r.read(variable,start=[], count=[], step_selection=[s_start-dt, s_count])
                     return data
 
 
