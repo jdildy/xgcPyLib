@@ -81,7 +81,7 @@ class data1(object):
         print("Reading xgc.oneddiag.bp Data...")
         
     # Reader for xgc.oneddiag.bp data
-    def read_oneddiag(self,variable, inds = Ellipsis):
+    def read_oneddiag(self,variable, t_start =None, t_end = None, inds = Ellipsis):
         # STEP_SELECTION CONTROLS THE AMOUNT OF TIMESTEPS YOU WANT TO READ
         try:
             with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
