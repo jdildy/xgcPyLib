@@ -87,18 +87,26 @@ class data1(object):
         try:
             with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
                 print(r.available_variables())
-                if t_start == None and t_count == None: # Read all timestep data
-                    nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
-                    nsize = r.available_variables()[variable]['Shape']
-                    print( variable, nstep, nsize)
-                    if nsize != '': #mostly xgc.oneddiag
-                        nsize = int(nsize)
-                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
-                    else: #scalar
-                        data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
-                    return data
-                else:
-                    nstep 
+                #if t_start == None and t_count == None: # Read all timestep data
+                nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
+                nsize = r.available_variables()[variable]['Shape']
+                print( variable, nstep, nsize)
+                if nsize != '': #mostly xgc.oneddiag
+                    nsize = int(nsize)
+                    data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, 0])
+                else: #scalar
+                    data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
+                return data
+                # else:
+                #     nsize = r.available_variables()[variable]['Shape']
+                #     if nsize != '': #mostly xgc.oneddiag
+                #         nsize = int(nsize)
+                #         data = r.read(variable,start=[0], count=[nsize],  step_selection=[t_start, t_count])
+                #     else: #scalar
+                #         data = r.read(variable,start=[], count=[], step_selection=[t_start, t_count])
+                #     return data
+
+
         except Exception as e:
             print(f"Error in file: {e}\n")
 
