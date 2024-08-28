@@ -102,25 +102,15 @@ class data1(object):
     """
     def read_oneddiag(self,variable, s_start =None, s_count = None, dt= None, inds = Ellipsis):
         # STEP_SELECTION CONTROLS THE AMOUNT OF TIMESTEPS YOU WANT TO READ
-
         try:
             with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
-                if s_start == None and s_count == None: # Read all timestep data
-                    nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
-                    nsize = r.available_variables()[variable]['Shape']
-                    if nsize != '': #mostly xgc.oneddiag
-                        nsize = int(nsize)
-                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
-                    else: #scalar
-                        data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
-                    return data
-                else:
+                if s_start != None and s_count != None: # Read all timestep data
                     if dt > 1: # catches dt greater than 1
                         start = (s_start -dt) / dt
                         nsize = r.available_variables()[variable]['Shape']
                         if nsize != '': #mostly xgc.oneddiag
                             nsize = int(nsize)
-                            data = r.read(variable,start=[0], count=[nsize],  step_selection=[start, s_count])
+                            data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, s_count])
                         else: #scalar
                             data = r.read(variable,start=[], count=[], step_selection=[start, s_count])
                         return data
@@ -133,6 +123,18 @@ class data1(object):
                         else: #scalar
                             data = r.read(variable,start=[], count=[], step_selection=[start, s_count])
                             return data
+                    return data
+                else:
+                    nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
+                    nsize = r.available_variables()[variable]['Shape']
+                    if nsize != '': #mostly xgc.oneddiag
+                        nsize = int(nsize)
+                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
+                    else: #scalar
+                        data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
+
+
+                    
                         
                     
                 
