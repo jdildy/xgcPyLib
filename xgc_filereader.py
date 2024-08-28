@@ -115,7 +115,7 @@ class data1(object):
                         data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
                     return data
                 else:
-                    if dt < 1: # catches any interval greater than 1
+                    if dt > 1: # catches dt greater than 1
                         start = (s_start -dt) / dt
                         nsize = r.available_variables()[variable]['Shape']
                         if nsize != '': #mostly xgc.oneddiag
@@ -124,7 +124,7 @@ class data1(object):
                         else: #scalar
                             data = r.read(variable,start=[], count=[], step_selection=[start, s_count])
                         return data
-                    else: 
+                    elif dt == 1:  
                         start = (s_start - 1)
                         nsize = r.available_variables()[variable]['Shape']
                         if nsize != '': #mostly xgc.oneddiag
