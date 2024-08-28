@@ -87,9 +87,9 @@ class data1(object):
 
     INPUTS 
     :param str variable: variable from xgc.oneddiag to retrieve information from
-    :param int s_start: Time step to start reading from (0-based i.e if your steps start at and interval by 2, s_start is 0
+    :param int s_start: Time step to start reading from 
     :param int s_count: Count of steps from s_start you want to read.
-
+    :param int dt: Invertal between timesteps 
     Note: Not inputting s_start and s_count will read all available steps for a specific variable
 
     OPTIONAL
@@ -105,12 +105,9 @@ class data1(object):
 
         try:
             with Stream(self.xgc_path + '/xgc.oneddiag.bp', 'rra') as r:
-                #print(r.available_variables())
                 if s_start == None and s_count == None: # Read all timestep data
                     nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                     nsize = r.available_variables()[variable]['Shape']
-                    # IN STEP SELECTION THE FIRST INTEGER DICTATES THE STEP i.e 0 corresponds to step 2 since it counts by 2, and the SECOND INTEGER READS N STEPS [2,1] WOULD START AT 2 AND READ 1 STEP (WHICH IS 2)
-                    # 
                     if nsize != '': #mostly xgc.oneddiag
                         nsize = int(nsize)
                         data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
@@ -118,13 +115,26 @@ class data1(object):
                         data = r.read(variable,start=[], count=[], step_selection=[0, nstep])
                     return data
                 else:
-                    nsize = r.available_variables()[variable]['Shape']
-                    if nsize != '': #mostly xgc.oneddiag
-                        nsize = int(nsize)
-                        data = r.read(variable,start=[0], count=[nsize],  step_selection=[s_start-dt, s_count])
-                    else: #scalar
-                        data = r.read(variable,start=[], count=[], step_selection=[s_start-dt, s_count])
-                    return data
+                    if dt < 1: # catches any interval greater than 1
+                        start = (s_start -dt) / dt
+                        nsize = r.available_variables()[variable]['Shape']
+                        if nsize != '': #mostly xgc.oneddiag
+                            nsize = int(nsize)
+                            data = r.read(variable,start=[0], count=[nsize],  step_selection=[start, s_count])
+                        else: #scalar
+                            data = r.read(variable,start=[], count=[], step_selection=[start, s_count])
+                        return data
+                    else: 
+                        start = (s_start - 1)
+                        nsize = r.available_variables()[variable]['Shape']
+                        if nsize != '': #mostly xgc.oneddiag
+                            nsize = int(nsize)
+                            data = r.read(variable,start=[0], count=[nsize],  step_selection=[start, s_count])
+                        else: #scalar
+                            data = r.read(variable,start=[], count=[], step_selection=[start, s_count])
+                        
+                    
+                
 
 
         except Exception as e:
