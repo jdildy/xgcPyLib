@@ -32,7 +32,7 @@ except ValueError as e:
 oneddiag = xgc_filereader.data1(fileDir)
 
 
-cden00_1d = oneddiag.read_oneddiag('cden00_1d', 0, 1)
+cden00_1d = oneddiag.read_oneddiag('cden00_1d', 0, 1,0)
 print(cden00_1d)
 
 
