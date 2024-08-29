@@ -110,7 +110,7 @@ class data1(object):
                         start = (s_start -dt) / dt
                         start = int(start)
                         nsize = r.available_variables()[variable]['Shape']
-                        if nsize != '': #mostly xgc.oneddiag
+                        if nsize != '': 
                             nsize = int(nsize)
                             data = r.read(variable,start=[0], count=[nsize],  step_selection=[start, s_count])
                         else: #scalar
@@ -119,7 +119,7 @@ class data1(object):
                     elif dt == 1:  
                         start = (s_start - 1)
                         nsize = r.available_variables()[variable]['Shape']
-                        if nsize != '': #mostly xgc.oneddiag
+                        if nsize != '': 
                             nsize = int(nsize)
                             data = r.read(variable,start=[0], count=[nsize],  step_selection=[start, s_count])
                         else: #scalar
@@ -129,7 +129,7 @@ class data1(object):
                 else:
                     nstep = int(r.available_variables()[variable]['AvailableStepsCount'])
                     nsize = r.available_variables()[variable]['Shape']
-                    if nsize != '': #mostly xgc.oneddiag
+                    if nsize != '': 
                         nsize = int(nsize)
                         data = r.read(variable,start=[0], count=[nsize],  step_selection=[0, nstep])
                     else: #scalar
@@ -159,7 +159,7 @@ class xgc1(object):
 
         self.time = self.xgc1_timeslice()
         if not self.time:
-            print("No 3D Timeslisces data available. Reading other files.")
+            print("No 3D Timeslices data available. Reading other files.")
             return
         
         print("TimeSlice Data Capture Complete.\n")
@@ -185,157 +185,165 @@ class xgc1(object):
         print("Last Timestep: " + str(iend - istep))
         print("Step: " + str(istep))
         print("There are " + str(length) + " total steps available.")
-    
         print("----------------------------------------\n")
 
-        # choices = [
-        #     (1, "Option 1: Read a single 3D data file"),
-        #     (2, "Option 2: Read a range of 3D data files"),
-        #     (3, "Option 3: Exit.")
-        # ]
-        # self.choice = user_select("Please choose an option:", choices)
+        choices = [
+            (1, "Option 1: Read a single 3D data file"),
+            (2, "Option 2: Read a range of 3D data files"),
+            (3, "Option 3: Exit.")
+        ]
+        self.choice = user_select("Please choose an option:", choices)
 
-        # if self.choice == 1:
-        #     single = single_timestep(time)
+        if self.choice == 1:
+            single = single_timestep(time)
 
 
-        #     #XGC.3D.Reader
-        #     print("Reading xgc.3d.%5.5d.bp..." %(single))
-        #     filename = xgc_path + "/xgc.3d.%5.5d.bp" %(single)
+            #XGC.3D.Reader
+            print("Reading xgc.3d.%5.5d.bp..." %(single))
+            filename = xgc_path + "/xgc.3d.%5.5d.bp" %(single)
             
-        #     try:
-        #         self.xgc1_reader(filename)
-        #         print("xgc.3d.%5.5d.bp read sucessfully.\n" %(single))
+            try:
+                self.xgc1_reader(filename)
+                print("xgc.3d.%5.5d.bp read sucessfully.\n" %(single))
             
-        #     except Exception as e:
-        #         print(f"Error reading file: {e}\n")
+            except Exception as e:
+                print(f"Error reading file: {e}\n")
         
-        #     #XGC.F3D.Reader 
-        #     print("Reading xgc.f3d.%5.5d.bp files..." %(single))
-        #     filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
+            #XGC.F3D.Reader 
+            print("Reading xgc.f3d.%5.5d.bp files..." %(single))
+            filename = xgc_path + "/xgc.f3d.%5.5d.bp" %(single)
 
-        #     try:
-        #         self.xgc1_reader(filename)
-        #         print("xgc.f3d.%5.5d.bp read sucessfully.\n" %(single))
-        #     except Exception as e:
-        #         print(f"Error reading file: {e}\n")
-        
-
+            try:
+                self.xgc1_reader(filename)
+                print("xgc.f3d.%5.5d.bp read sucessfully.\n" %(single))
+            except Exception as e:
+                print(f"Error reading file: {e}\n")
 
 
+        elif self.choice == 2:
+            start, end = mult_timestep(time)
 
-        # elif self.choice == 2:
-        #     start, end = mult_timestep(time)
-
-        #     #Used in test.py
-        #     self.input_start = start
-        #     self.input_end = end
-
-
-        #     print(f"Selected starting timestep: {start}\n")
-        #     print(f"Selected ending timestep: {end}\n")
-        #     count = len(range(start, end + istep, istep))
-        #     #Test 2 , 10 as input
-        #     #print(count) # 5
-        #     data3D = []
-        #     dataF3D = []
-        #     pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
-        #     for i in pbar:
-        #         try:
-        #             stepdata3D = self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
-        #             data3D.append(stepdata3D)
-        #             self.data3D = data3D
-        #         except Exception as e:
-        #             print(f"Error reading file: {e}\n")
-
-        #         try:
-        #             stepdataF3D= self.xgc1_readmultF3D(xgc_path + '/xgc.f3d.%5.5d.bp' %(i))
-        #             dataF3D.append(stepdataF3D)
-        #             self.dataF3D = dataF3D
-
-        #         except Exception as e:
-        #             print(f"Error reading file: {e}\n")
-        #     # print(f"Length of data: {len(data)}")
-        #     # print(data)
-        #     # data = np.array(data)
-        #     # print(f"Dimensions of data: {data.ndim}")
-        #     # print(f"Shape of data: {data.shape}")
+            #Used in test.py
+            self.input_start = start
+            self.input_end = end
 
 
-        # elif self.choice == 3: 
-        #     print("Exit")
-        #     return 
-        # else:
-        #     #default
-        #     print("Error Occured")  
+            print(f"Selected starting timestep: {start}\n")
+            print(f"Selected ending timestep: {end}\n")
+            count = len(range(start, end + istep, istep))
+            #Test 2 , 10 as input
+            #print(count) # 5
+            data3D = []
+            dataF3D = []
+            pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
+            for i in pbar:
+                try:
+                    stepdata3D = self.xgc1_readmult3D(xgc_path + '/xgc.3d.%5.5d.bp' %(i))
+                    data3D.append(stepdata3D)
+                    self.data3D = data3D
+                except Exception as e:
+                    print(f"Error reading file: {e}\n")
 
-    # #Get selection input used in test.py
-    # def get_choice(self):
-    #     return self.choice
+                try:
+                    stepdataF3D= self.xgc1_readmultF3D(xgc_path + '/xgc.f3d.%5.5d.bp' %(i))
+                    dataF3D.append(stepdataF3D)
+                    self.dataF3D = dataF3D
+
+                except Exception as e:
+                    print(f"Error reading file: {e}\n")
+            # print(f"Length of data: {len(data)}")
+            # print(data)
+            # data = np.array(data)
+            # print(f"Dimensions of data: {data.ndim}")
+            # print(f"Shape of data: {data.shape}")
+
+
+        elif self.choice == 3: 
+            print("Exit")
+            return 
+        else:
+            #default
+            print("Error Occured")  
+
+    #Get selection input used in test.py
+    def get_choice(self):
+        return self.choice
     
 
 
-    # #Get start, end and step count, used in test.py
-    # def get_timesteps(self):
-    #     return self.input_start, self.input_end, self.step
+    #Get start, end and step count, used in test.py
+    def get_timesteps(self):
+        return self.input_start, self.input_end, self.step
     
 
 
     # Reader method for both F3D and 3D
-    # def xgc1_reader(self,file):
-    #     """
-    #     Reader for f3d and 3d data. Only needs to be called once so that the get functions can retrieve the data.
-
-    #     INPUTS
-    #     param: str file: Name of the f3d or 3d file being read.
-    #     """
-    #     if '.f3d.' in str(file).lower():
-    #         try:
-    #             with Stream(file, 'rra') as r:
-    #                 variables_list = r.available_variables()
-    #                 for var_name in variables_list:
-    #                     var = r.read(var_name)
-    #                     self.array_containerF3D[var_name] = np.array(var)
-    #         except Exception as e:
-    #             print(f"Error reading file: {e}")
-    #     elif '.3d.' in file:
-    #         try:
-    #             with Stream(file, 'rra') as r:
-    #                 variables_list = r.available_variables()
-    #                 for var_name in variables_list:
-    #                     var = r.read(var_name)
-    #                     self.array_container3D[var_name] = np.array(var)
-    #         except Exception as e:
-    #             print(f"Error reading file: {e}")
-    #     else:
-    #         print("Error: Neither F3D or 3D data exists.")
-        
-
-    def read_single3D(self,step, name = None):
+    def xgc1_reader(self,file):
         """
         Reader for f3d and 3d data. Only needs to be called once so that the get functions can retrieve the data.
 
         INPUTS
         param: str file: Name of the f3d or 3d file being read.
         """
-        try:
-            
-            with Stream(self.xgc_path + '/xgc.f3d.%5.5d.bp' %(step), 'rra') as r:
-                if name == None:
+        if '.f3d.' in str(file).lower():
+            try:
+                with Stream(file, 'rra') as r:
+                    variables_list = r.available_variables()
+                    for var_name in variables_list:
+                        var = r.read(var_name)
+                        self.array_containerF3D[var_name] = np.array(var)
+            except Exception as e:
+                print(f"Error reading file: {e}")
+        elif '.3d.' in file:
+            try:
+                with Stream(file, 'rra') as r:
                     variables_list = r.available_variables()
                     for var_name in variables_list:
                         var = r.read(var_name)
                         self.array_container3D[var_name] = np.array(var)
-                else: 
-                    variables_list = r.available_variables()
-                    for var_name in variables_list:
-                        if var_name == name:
-                            var = r.read(var_name)
-                            return var
-        except Exception as e:
-            print(f"Error reading file: {e}")
+            except Exception as e:
+                print(f"Error reading file: {e}")
         else:
             print("Error: Neither F3D or 3D data exists.")
+        
+
+    # def read_singleF3D(self,name, step):
+    #     """
+    #     Reader for f3d data. Returns variable information on step 
+
+    #     INPUTS
+    #     param: str name: Name of the F3D file being read.
+    #     param: str step: Step of the F3D file being read. 
+
+    #     """
+    #     try:
+    #         with Stream(self.xgc_path + '/xgc.f3d.%5.5d.bp' %(step), 'rra') as r:
+    #             variables_list = r.available_variables()
+    #             for var_name in variables_list:
+    #                 if var_name == name:
+    #                     var = r.read(var_name)
+    #                     return var
+    #     except Exception as e:
+    #         print(f"Error reading file: {e}")
+
+    # def read_single3D(self,name, step):
+    #     """
+    #     Reader for 3D data. Returns variable information upon step 
+
+    #     INPUTS
+    #     param: str name: Name of the 3D file being read.
+    #     param: str step: Step of the 3D file being read. 
+    #     """
+    #     try:
+    #         with Stream(self.xgc_path + '/xgc.3d.%5.5d.bp' %(step), 'rra') as r:
+    #             variables_list = r.available_variables()
+    #             for var_name in variables_list:
+    #                 if var_name == name:
+    #                     var = r.read(var_name)
+    #                     return var
+    #     except Exception as e:
+    #         print(f"Error reading file: {e}")
+        
 
     
 
@@ -356,7 +364,7 @@ class xgc1(object):
     
     """
     def xgc1_readmult3D(self,name,start, end, istep): 
-        stepdata = []
+        stepdata = {}
         j= 0
         if start != None and end != None and istep != None:
             pbar = tqdm(range(start,end + istep,istep), desc="Reading Files")
@@ -368,25 +376,9 @@ class xgc1(object):
                             if var_name == name:
                                 var = r.read(var_name)
                                 stepdata = var
-                                print(j)
-                                j+=1
                     except Exception as e:
                             print(f"Error reading file: {e}")
             return stepdata
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     def xgc1_readmultF3D(self,file): 
