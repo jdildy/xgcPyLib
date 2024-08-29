@@ -287,7 +287,7 @@ class xgc1(object):
         """
         if '.f3d.' in str(file).lower():
             try:
-                with Stream(file, 'rra') as r:
+                with Stream(self.xgc_path + file, 'rra') as r:
                     variables_list = r.available_variables()
                     for var_name in variables_list:
                         var = r.read(var_name)
@@ -296,7 +296,7 @@ class xgc1(object):
                 print(f"Error reading file: {e}")
         elif '.3d.' in file:
             try:
-                with Stream(file, 'rra') as r:
+                with Stream(self.xgc_path + file, 'rra') as r:
                     variables_list = r.available_variables()
                     for var_name in variables_list:
                         var = r.read(var_name)
