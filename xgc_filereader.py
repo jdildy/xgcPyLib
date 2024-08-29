@@ -305,6 +305,19 @@ class xgc1(object):
                 print(f"Error reading file: {e}")
         else:
             print("Error: Neither F3D or 3D data exists.")
+
+    # Retrieve a single variable and its from F3D
+    def get_loadVarF3D(self, name):
+        if name in self.array_containerF3D:
+            return np.array(self.array_containerF3D[str(name)])
+        else:
+            print(f"Variable with name '{name}' not found.")
+    # Retrieve a single variable and its from 3D
+    def get_loadVar3D(self, name):
+        if name in self.array_container3D:
+            return np.array(self.array_container3D[str(name)])
+        else:
+            print(f"Variable with name '{name}' not found.")
         
 
     # def read_singleF3D(self,name, step):
@@ -372,10 +385,13 @@ class xgc1(object):
                 with Stream(self.xgc_path + '/xgc.3d.%5.5d.bp' %(i), 'rra') as r:
                     try:
                         variables_list = r.available_variables()
+                        timestep_data ={}
                         for var_name in variables_list:
                             if var_name == name:
                                 var = r.read(var_name)
-                                stepdata = var
+                                timestep_data[var_name]= np.array(var)
+                        if timestep_data:
+                            stepdata[i] = timestep_data
                     except Exception as e:
                             print(f"Error reading file: {e}")
             return stepdata
@@ -409,18 +425,7 @@ class xgc1(object):
 
 
 
-    # Retrieve a single variable and its data
-    def get_loadVarF3D(self, name):
-        if name in self.array_containerF3D:
-            return np.array(self.array_containerF3D[str(name)])
-        else:
-            print(f"Variable with name '{name}' not found.")
-
-    def get_loadVar3D(self, name):
-        if name in self.array_container3D:
-            return np.array(self.array_container3D[str(name)])
-        else:
-            print(f"Variable with name '{name}' not found.")
+    
 
 
 

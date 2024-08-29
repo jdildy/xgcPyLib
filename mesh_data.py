@@ -39,10 +39,10 @@ xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 xgc1Obj.xgc1_reader('/xgc.3d.00098.bp')
 dpot = xgc1Obj.get_loadVar3D('dpot')
-print(dpot.size)
+print()
 
 dpotstep = xgc1Obj.xgc1_readmult3D('dpot',2,6,2)
-print(dpotstep.size)
+print(len(dpotstep))
 # dpot = 
 # data3D = xgc1Obj.xgc1_readmult3D('dpot',2,6,2)
 # print(len(data3D))
