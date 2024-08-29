@@ -38,7 +38,10 @@ fileDir = xgc_filereader.checkpath('/pscratch/sd/s/sku/n552pe_d3d_NT_new_profile
 xgc1Obj = xgc_filereader.xgc1(fileDir)
 
 xgc1Obj.xgc1_reader('/xgc.3d.00098.bp')
-dpot = xgc1Obj.get_loadVar3D('dpot')
+#dpot = xgc1Obj.get_loadVar3D('dpot')
+
+dpotstep = xgc1Obj.xgc1_readmult3D('dpot',2,6,2)
+print(dpotstep.size)
 # dpot = 
 # data3D = xgc1Obj.xgc1_readmult3D('dpot',2,6,2)
 # print(len(data3D))
